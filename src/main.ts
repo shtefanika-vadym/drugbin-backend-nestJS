@@ -7,7 +7,7 @@ async function start() {
   const app = await NestFactory.create(AppModule, { cors: false });
 
   app.enableCors({
-    origin: ["http://localhost:3000", "https://drugbin.vercel.app"],
+    origin: '*',
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   });

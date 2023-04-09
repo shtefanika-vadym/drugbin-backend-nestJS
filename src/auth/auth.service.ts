@@ -1,8 +1,9 @@
 import {
+  BadRequestException,
   HttpException,
   HttpStatus,
   Injectable,
-  UnauthorizedException,
+  NotFoundException,
 } from "@nestjs/common";
 import { CreateCompanyDto } from "src/company/dto/create-company.dto";
 import { CompanyService } from "src/company/company.service";
@@ -54,8 +55,8 @@ export class AuthService {
       companyDto.email
     );
     if (!company)
-      throw new UnauthorizedException({
-        message: "Company not exist",
+      throw new NotFoundException({
+        message: "Company not registered",
       });
 
     const passwordEquals = await bcrypt.compare(
@@ -65,7 +66,7 @@ export class AuthService {
     if (company && passwordEquals) {
       return company;
     }
-    throw new UnauthorizedException({
+    throw new BadRequestException({
       message: "Invalid email or password",
     });
   }
