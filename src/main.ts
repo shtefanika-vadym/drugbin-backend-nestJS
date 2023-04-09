@@ -5,6 +5,13 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 async function start() {
   const PORT = process.env.PORT || 5000;
   const app = await NestFactory.create(AppModule, { cors: false });
+
+  app.enableCors({
+    origin: ["http://localhost:3000", "https://drugbin.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle("Drugbin")
     .setDescription("Documentation REST API")
