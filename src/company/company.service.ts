@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Company } from "src/company/company.model";
 import { InjectModel } from "@nestjs/sequelize";
 import { CreateCompanyDto } from "src/company/dto/create-company.dto";
@@ -22,13 +22,15 @@ export class CompanyService {
   async getAllCompanies(role: Role) {
     const companies = await this.companyRepository.findAll({
       where: { role },
+      attributes: ["id", "name", "email"],
     });
-    return companies.map(({ id, name, email }) => ({ id, name, email }));
+    return companies;
   }
 
   async updateCompany(dto: UpdateCompanyDto, id: string) {
     const company = await this.companyRepository.findByPk(id);
-    if (!company) return { message: "Company not found" };
+    if (!company)
+      throw new NotFoundException(`Company with id ${id} does not exist`);
 
     await company.update(dto);
     return { message: "Company successfully updated" };
@@ -42,26 +44,26 @@ export class CompanyService {
     return user;
   }
 
-  async getPharmacyById(companyId: string) {
-    const company = await this.companyRepository.findByPk(companyId);
-    if (!company) return { message: "Company not found" };
-
-    const companyInfo = {
-      id: company.id,
-      name: company.name,
-      email: company.email,
-      location: company.location,
-      street: company.street,
-      schedule: company.schedule,
-      createdAt: company.createdAt,
-      phone: company.phone,
-    };
+  async getPharmacyById(companyId: number) {
+    const company = await this.companyRepository.findByPk(companyId, {
+      attributes: [
+        "id",
+        "name",
+        "email",
+        "location",
+        "street",
+        "schedule",
+        "createdAt",
+        "phone",
+      ],
+    });
+    if (!company) throw new NotFoundException("Company not found");
 
     const expiredProducts = await this.expiredProductRepository.findAll({
       where: { companyId },
       include: { all: true },
     });
 
-    return { ...companyInfo, expiredProducts };
+    return { ...company.toJSON(), expiredProducts };
   }
 }

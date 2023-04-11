@@ -5,9 +5,14 @@ import {
   ForeignKey,
   Model,
   Table,
+  PrimaryKey,
+  AutoIncrement,
+  Unique,
+  AllowNull,
 } from "sequelize-typescript";
 import { Company } from "src/company/company.model";
 import { Status } from "src/expired-products/enum/Status";
+import { IsEnum } from "class-validator";
 
 interface ExpiredProductCreationAttrs {
   name: string;
@@ -23,26 +28,39 @@ export class ExpiredProduct extends Model<
   ExpiredProduct,
   ExpiredProductCreationAttrs
 > {
-  @Column({
-    type: DataType.INTEGER,
-    unique: true,
-    autoIncrement: true,
-    primaryKey: true,
-  })
+  @PrimaryKey
+  @AutoIncrement
+  @Unique
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
   id: number;
 
-  @Column({ type: DataType.STRING, allowNull: false })
+  @AllowNull(false)
+  @Column(DataType.STRING)
   name: string;
-  @Column({ type: DataType.STRING, allowNull: false })
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
   brand: string;
-  @Column({ type: DataType.STRING, allowNull: false })
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
   type: string;
-  @Column({ type: DataType.STRING, allowNull: false })
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
   pack: string;
-  @Column({ type: DataType.STRING, allowNull: false })
+
+  @AllowNull(false)
+  @IsEnum(Status)
+  @Column(DataType.ENUM(...Object.values(Status)))
   status: Status;
 
   @ForeignKey(() => Company)
-  @Column({ type: DataType.INTEGER })
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
   companyId: number;
+
+  @BelongsTo(() => Company)
+  company: Company;
 }

@@ -1,0 +1,56 @@
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseArrayPipe,
+  Post,
+  UseGuards,
+  UsePipes,
+} from "@nestjs/common";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
+import { RolesGuard } from "src/auth/roles.guard";
+import { Roles } from "src/auth/roles.decorator";
+import { Role } from "src/company/enum/Role";
+import { ValidationPipe } from "src/pipes/validation.pipe";
+import { CreateDrugDto } from "src/drug-stock/dto/create-drug.dto";
+import { DrugStockService } from "src/drug-stock/drug-stock.service";
+
+@UseGuards(JwtAuthGuard)
+@ApiTags("Drug Stock")
+@Controller("drug-stock")
+export class DrugStockController {
+  constructor(private drugStockService: DrugStockService) {}
+
+  // Create drug
+  @ApiOperation({ summary: "Create drug" })
+  @UsePipes(ValidationPipe)
+  @UseGuards(RolesGuard)
+  @Roles(Role.pharmacy)
+  @Post()
+  create(@Body() dto: CreateDrugDto) {
+    return this.drugStockService.create(dto);
+  }
+
+  // Filter drugs by barcode or name
+  @ApiOperation({ summary: "Get drugs by same name or barcode" })
+  @ApiResponse({ status: 200, type: [CreateDrugDto] })
+  @UseGuards(RolesGuard)
+  @Roles(Role.pharmacy)
+  @Get("/:query")
+  filterByBarcode(@Param("query") query: string) {
+    return this.drugStockService.filter(query);
+  }
+
+  //   // Filter drugs by name
+  //   @ApiOperation({ summary: "Get drugs by same barcode" })
+  //   @ApiResponse({ status: 200, type: [CreateDrugDto] })
+  //   @UsePipes(ValidationPipe)
+  //   @UseGuards(RolesGuard)
+  //   @Roles(Role.pharmacy)
+  //   @Get("/name/:id")
+  //   filterByName(@Param("name") name: string) {
+  //     return this.drugStockService.filter(name);
+  //   }
+}

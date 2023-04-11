@@ -1,5 +1,13 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
-import { ApiProperty } from "@nestjs/swagger";
+import {
+  Column,
+  DataType,
+  Model,
+  Table,
+  PrimaryKey,
+  AutoIncrement,
+  Unique,
+  AllowNull,
+} from "sequelize-typescript";
 import { Role } from "src/company/enum/Role";
 
 interface CompanyCreationAttrs {
@@ -13,53 +21,47 @@ interface CompanyCreationAttrs {
 
 @Table({ tableName: "companies" })
 export class Company extends Model<Company, CompanyCreationAttrs> {
-  @ApiProperty({ example: "1", description: "ID" })
-  @Column({
-    type: DataType.INTEGER,
-    unique: true,
-    autoIncrement: true,
-    primaryKey: true,
-  })
+  @PrimaryKey
+  @AutoIncrement
+  @Unique
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
   id: number;
-  @ApiProperty({ example: "Hello World", description: "Full Name" })
-  @Column({ type: DataType.STRING, allowNull: false })
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
   name: string;
-  @ApiProperty({ example: "pharacist@gmail.com", description: "Email" })
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+
+  @Unique
+  @AllowNull(false)
+  @Column(DataType.STRING)
   email: string;
-  @ApiProperty({ example: "12345678", description: "Password" })
-  @Column({ type: DataType.STRING, allowNull: false })
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
   password: string;
 
-  @ApiProperty({ example: "pharmacy", description: "role", nullable: false })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @AllowNull(false)
+  @Column(DataType.STRING)
   role: Role;
 
-  @ApiProperty({ example: "Suceava", description: "location", nullable: false })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @AllowNull(false)
+  @Column(DataType.STRING)
   location: string;
 
-  @ApiProperty({ example: "4355678456", description: "CUI", nullable: false })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @AllowNull(false)
+  @Column(DataType.STRING)
   cui: string;
 
-  @ApiProperty({
-    example: "Str. Oituz 34",
-    description: "Street",
-    nullable: true,
-  })
-  @Column({ type: DataType.STRING, allowNull: true })
+  @AllowNull(true)
+  @Column(DataType.STRING)
   street?: string;
 
-  @ApiProperty({
-    example: "08:00 - 21:00",
-    description: "Schedule",
-    nullable: true,
-  })
-  @Column({ type: DataType.STRING, allowNull: true })
+  @AllowNull(true)
+  @Column(DataType.STRING)
   schedule?: string;
 
-  @ApiProperty({ example: "0741314156", description: "Phone", nullable: true })
-  @Column({ type: DataType.STRING, allowNull: true })
+  @AllowNull(true)
+  @Column(DataType.STRING)
   phone?: string;
 }

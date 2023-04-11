@@ -1,30 +1,34 @@
-import { Injectable } from "@nestjs/common";
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { CreateExpiredProductDto } from "src/expired-products/dto/create-expired-product.dto";
 import { InjectModel } from "@nestjs/sequelize";
 import { ExpiredProduct } from "src/expired-products/expired-products.model";
-import { JwtService } from "@nestjs/jwt";
 import { Status } from "src/expired-products/enum/Status";
+import { TokenUtils } from "src/utils/token.utils";
 
 @Injectable()
 export class ExpiredProductsService {
   constructor(
     @InjectModel(ExpiredProduct)
     private expiredProductsRepository: typeof ExpiredProduct,
-    private jwtService: JwtService
+    private tokenUtils: TokenUtils
   ) {}
 
-  async create(dto: CreateExpiredProductDto, req) {
-    const token = req.headers.authorization.split(" ")[1];
-    const { id } = this.jwtService.verify(token);
+  async create(dto: CreateExpiredProductDto, token: string) {
+    const companyId = this.tokenUtils.getCompanyIdFromToken(token);
     const product = {
       ...dto,
-      companyId: id,
+      companyId,
       status: Status.pending,
     };
+
     await this.expiredProductsRepository.create(product);
-    const products = await this.getAll();
+
     return {
-      data: products,
       message: "Expired product successfully created",
     };
   }
@@ -32,14 +36,10 @@ export class ExpiredProductsService {
   async updateStatus(id: number) {
     const product = await this.expiredProductsRepository.findByPk(id);
 
-    if (!product)
-      return {
-        message: "Expired product not found",
-      };
-    else if (product.status === Status.recycled)
-      return {
-        message: "Product is already confirmed",
-      };
+    if (!product) throw new NotFoundException("Expired product not found");
+
+    if (product.status === Status.recycled)
+      throw new BadRequestException("Product is already confirmed");
 
     await product.update({ ...product, status: Status.recycled });
 
@@ -48,17 +48,21 @@ export class ExpiredProductsService {
     };
   }
 
-  async updateProduct(id: number, productDto: CreateExpiredProductDto) {
+  async updateProduct(
+    id: number,
+    productDto: CreateExpiredProductDto,
+    token: string
+  ) {
+    const companyId = this.tokenUtils.getCompanyIdFromToken(token);
     const product = await this.expiredProductsRepository.findByPk(id);
 
-    if (!product)
-      return {
-        message: "Expired product not found",
-      };
-    else if (product.status === Status.recycled)
-      return {
-        message: "Product is already confirmed",
-      };
+    if (!product) throw new NotFoundException("Expired product not found");
+
+    if (product.companyId !== companyId)
+      throw new ForbiddenException("Forbidden");
+
+    if (product.status === Status.recycled)
+      throw new BadRequestException("Product is already confirmed");
 
     await product.update(productDto);
 
@@ -67,45 +71,44 @@ export class ExpiredProductsService {
     };
   }
 
-  async getAll() {
-    const expiredProducts = await this.expiredProductsRepository.findAll({
+  async getAllProducts() {
+    const products = await this.expiredProductsRepository.findAll({
       include: { all: true },
+      attributes: [
+        "id",
+        "name",
+        "type",
+        "pack",
+        "brand",
+        "status",
+        "createdAt",
+      ],
     });
-    return expiredProducts.map(
-      ({ id, name, brand, type, pack, status, createdAt }) => ({
-        id,
-        name,
-        brand,
-        type,
-        pack,
-        status,
-        createdAt,
-      })
-    );
+    return products;
   }
 
-  async delete(id: string) {
+  async delete(id: number) {
     const deletedProduct = await this.expiredProductsRepository.destroy({
       where: { id },
     });
 
+    if (!deletedProduct)
+      throw new NotFoundException("Expired product not found");
+
     return {
-      message: deletedProduct
-        ? "Expired product successfully deleted"
-        : "Expired product not found",
+      message: "Expired product successfully deleted",
     };
   }
 
-  async getRecentPending() {
+  async getAllPending() {
     const expiredProducts = await this.expiredProductsRepository.findAll({
       include: { all: true },
+      where: {
+        status: Status.pending,
+      },
     });
 
-    const filtered = expiredProducts.filter(
-      (product) => product.status === Status.pending
-    );
-
-    return filtered;
+    return expiredProducts;
   }
 
   async getByCompanyId(companyId: string) {

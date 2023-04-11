@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Status } from "src/expired-products/enum/Status";
 
-export class GetExpiredProductDto {
+export class ExpiredProductDto {
   @ApiProperty({ example: 1, description: "Id" })
   id: number;
   @ApiProperty({ example: "Omeprazol TERAPIA", description: "Name" })

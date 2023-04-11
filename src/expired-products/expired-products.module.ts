@@ -4,19 +4,12 @@ import { ExpiredProductsController } from "src/expired-products/expired-products
 import { SequelizeModule } from "@nestjs/sequelize";
 import { Company } from "src/company/company.model";
 import { ExpiredProduct } from "src/expired-products/expired-products.model";
-import { JwtModule } from "@nestjs/jwt";
+import { TokenUtils } from "src/utils/token.utils";
+import { AuthModule } from "src/auth/auth.module";
 
 @Module({
-  providers: [ExpiredProductsService],
+  providers: [ExpiredProductsService, TokenUtils],
   controllers: [ExpiredProductsController],
-  imports: [
-    SequelizeModule.forFeature([Company, ExpiredProduct]),
-    JwtModule.register({
-      secret: "SECRET",
-      signOptions: {
-        expiresIn: "24h",
-      },
-    }),
-  ],
+  imports: [SequelizeModule.forFeature([Company, ExpiredProduct]), AuthModule],
 })
 export class ExpiredProductsModule {}

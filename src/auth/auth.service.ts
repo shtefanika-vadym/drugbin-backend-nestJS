@@ -10,7 +10,7 @@ import { CompanyService } from "src/company/company.service";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcryptjs";
 import { Company } from "src/company/company.model";
-import { LoginCompanyDto } from "src/company/dto/login-company.dto";
+import { LoginDto } from "src/auth/dto/login.dto";
 
 @Injectable()
 export class AuthService {
@@ -19,7 +19,7 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async login(companyDto: LoginCompanyDto) {
+  async login(companyDto: LoginDto) {
     const user = await this.validateCompany(companyDto);
     return this.generateToken(user);
   }
@@ -50,13 +50,13 @@ export class AuthService {
     };
   }
 
-  private async validateCompany(companyDto: LoginCompanyDto) {
+  private async validateCompany(companyDto: LoginDto) {
     const company = await this.pharmacistService.getCompanyByEmail(
       companyDto.email
     );
     if (!company)
       throw new NotFoundException({
-        message: "Company not registered",
+        message: "Company not found",
       });
 
     const passwordEquals = await bcrypt.compare(
