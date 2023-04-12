@@ -42,15 +42,4 @@ export class DrugStockController {
   filterByBarcode(@Param("query") query: string) {
     return this.drugStockService.filter(query);
   }
-
-  //   // Filter drugs by name
-  //   @ApiOperation({ summary: "Get drugs by same barcode" })
-  //   @ApiResponse({ status: 200, type: [CreateDrugDto] })
-  //   @UsePipes(ValidationPipe)
-  //   @UseGuards(RolesGuard)
-  //   @Roles(Role.pharmacy)
-  //   @Get("/name/:id")
-  //   filterByName(@Param("name") name: string) {
-  //     return this.drugStockService.filter(name);
-  //   }
 }
