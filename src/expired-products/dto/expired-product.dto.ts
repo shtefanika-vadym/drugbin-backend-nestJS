@@ -12,7 +12,12 @@ export class ExpiredProductDto {
   type: string;
   @ApiProperty({ example: "Blister", description: "Pack" })
   pack: string;
-  @ApiProperty({ example: "pending", enum: Status, description: "Status" })
+  @ApiProperty({ example: 12, description: "Quantity" })
+  quantity: number;
+  @ApiProperty({
+    example: "2023-04-08T10:20:39.771Z",
+    description: "Created At",
+  })
   status: Status;
   @ApiProperty({
     example: "2023-04-08T10:20:39.771Z",

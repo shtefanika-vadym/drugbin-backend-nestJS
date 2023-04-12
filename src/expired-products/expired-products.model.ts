@@ -21,6 +21,7 @@ interface ExpiredProductCreationAttrs {
   pack: string;
   status: Status;
   companyId: number;
+  quantity: number;
 }
 
 @Table({ tableName: "expired-products" })
@@ -42,6 +43,10 @@ export class ExpiredProduct extends Model<
   @AllowNull(false)
   @Column(DataType.STRING)
   brand: string;
+
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
+  quantity: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)

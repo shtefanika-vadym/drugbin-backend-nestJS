@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, MinLength, MaxLength } from "class-validator";
+import { IsString, MinLength, MaxLength, IsNumber } from "class-validator";
 
 export class CreateExpiredProductDto {
   @ApiProperty({ example: "Omeprazol TERAPIA", description: "Name" })
@@ -25,6 +25,10 @@ export class CreateExpiredProductDto {
     message: "Type must be shorter than or equal to 255 characters",
   })
   readonly type: string;
+
+  @ApiProperty({ example: 1, description: "Quantity" })
+  @IsNumber(undefined, { message: "Quantity must be a number" })
+  readonly quantity: number;
 
   @ApiProperty({ example: "Blister", description: "Pack" })
   @IsString({ message: "Pack must be a string" })

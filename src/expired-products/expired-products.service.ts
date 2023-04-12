@@ -72,18 +72,7 @@ export class ExpiredProductsService {
   }
 
   async getAllProducts() {
-    const products = await this.expiredProductsRepository.findAll({
-      include: { all: true },
-      attributes: [
-        "id",
-        "name",
-        "type",
-        "pack",
-        "brand",
-        "status",
-        "createdAt",
-      ],
-    });
+    const products = await this.expiredProductsRepository.findAll();
     return products;
   }
 
