@@ -1,4 +1,4 @@
-export enum Status {
+export enum ProductStatus {
   pending = "pending",
   recycled = "recycled",
 }

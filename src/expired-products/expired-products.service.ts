@@ -7,7 +7,7 @@ import {
 import { CreateExpiredProductDto } from "src/expired-products/dto/create-expired-product.dto";
 import { InjectModel } from "@nestjs/sequelize";
 import { ExpiredProduct } from "src/expired-products/expired-products.model";
-import { Status } from "src/expired-products/enum/Status";
+import { ProductStatus } from "src/expired-products/enum/product-status";
 import { TokenUtils } from "src/utils/token.utils";
 
 @Injectable()
@@ -23,7 +23,7 @@ export class ExpiredProductsService {
     const product = {
       ...dto,
       companyId,
-      status: Status.pending,
+      status: ProductStatus.pending,
     };
 
     await this.expiredProductsRepository.create(product);
@@ -38,13 +38,13 @@ export class ExpiredProductsService {
 
     if (!product) throw new NotFoundException("Expired product not found");
 
-    if (product.status === Status.recycled)
+    if (product.status === ProductStatus.recycled)
       throw new BadRequestException("Product is already confirmed");
 
-    await product.update({ ...product, status: Status.recycled });
+    await product.update({ ...product, status: ProductStatus.recycled });
 
     return {
-      message: "Status successfully updated",
+      message: "ProductStatus successfully updated",
     };
   }
 
@@ -61,13 +61,13 @@ export class ExpiredProductsService {
     if (product.companyId !== companyId)
       throw new ForbiddenException("Forbidden");
 
-    if (product.status === Status.recycled)
+    if (product.status === ProductStatus.recycled)
       throw new BadRequestException("Product is already confirmed");
 
     await product.update(productDto);
 
     return {
-      message: "Status successfully updated",
+      message: "ProductStatus successfully updated",
     };
   }
 
@@ -96,7 +96,7 @@ export class ExpiredProductsService {
     const expiredProducts = await this.expiredProductsRepository.findAll({
       include: { all: true },
       where: {
-        status: Status.pending,
+        status: ProductStatus.pending,
       },
     });
 

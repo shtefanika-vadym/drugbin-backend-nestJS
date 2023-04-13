@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from "@nestjs/common";
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { DrugStock } from "src/drug-stock/drug-stock.model";
 import { CreateDrugDto } from "src/drug-stock/dto/create-drug.dto";
@@ -24,6 +28,12 @@ export class DrugStockService {
     return {
       message: "Thanks! Drug successfully added",
     };
+  }
+
+  async getById(id: number) {
+    const drug = await this.drugStockRepository.findByPk(id);
+    if (!drug) throw new NotFoundException("Drug found drug");
+    return drug;
   }
 
   async filter(query: string) {

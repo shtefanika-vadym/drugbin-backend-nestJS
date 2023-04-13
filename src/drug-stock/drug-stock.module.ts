@@ -8,9 +8,7 @@ import { DrugStock } from "src/drug-stock/drug-stock.model";
 @Module({
   providers: [DrugStockService],
   controllers: [DrugStockController],
-  imports: [
-    SequelizeModule.forFeature([DrugStock]),
-    AuthModule,
-  ],
+  imports: [SequelizeModule.forFeature([DrugStock]), AuthModule],
+  exports: [DrugStockService],
 })
 export class DrugStockModule {}

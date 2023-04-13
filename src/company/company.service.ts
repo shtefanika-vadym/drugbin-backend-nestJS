@@ -5,13 +5,17 @@ import { CreateCompanyDto } from "src/company/dto/create-company.dto";
 import { Role } from "src/company/enum/Role";
 import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
 import { ExpiredProduct } from "src/expired-products/expired-products.model";
+import { DrugStockService } from "src/drug-stock/drug-stock.service";
+import { DrugStock } from "src/drug-stock/drug-stock.model";
+import { ProductPack } from "src/expired-products/enum/product-pack";
 
 @Injectable()
 export class CompanyService {
   constructor(
     @InjectModel(Company) private companyRepository: typeof Company,
     @InjectModel(ExpiredProduct)
-    private expiredProductRepository: typeof ExpiredProduct
+    private expiredProductRepository: typeof ExpiredProduct,
+    private drugStockService: DrugStockService
   ) {}
 
   async createCompany(dto: CreateCompanyDto) {
@@ -46,24 +50,27 @@ export class CompanyService {
 
   async getPharmacyById(companyId: number) {
     const company = await this.companyRepository.findByPk(companyId, {
-      attributes: [
-        "id",
-        "name",
-        "email",
-        "location",
-        "street",
-        "schedule",
-        "createdAt",
-        "phone",
-      ],
+      attributes: { exclude: ["password", "updatedAt", "createdAt", "role"] },
     });
     if (!company) throw new NotFoundException("Company not found");
 
     const expiredProducts = await this.expiredProductRepository.findAll({
       where: { companyId },
-      include: { all: true },
+      include: [
+        {
+          model: DrugStock,
+          as: "drug",
+        },
+      ],
     });
 
-    return { ...company.toJSON(), expiredProducts };
+    let totalR = expiredProducts.reduce((total, product) => {
+      let pack = 1;
+      if (product.pack === ProductPack.pack) pack = 24;
+      else if (product.pack === ProductPack.blister) pack = 12;
+
+      return total + product.quantity * (pack * product.drug.weight);
+    }, 0);
+    return { ...company.toJSON(), expiredProducts, total: totalR };
   }
 }

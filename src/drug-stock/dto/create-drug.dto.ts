@@ -1,4 +1,4 @@
-import { DrugType } from "src/drug-stock/enum/DrugType";
+import { DrugType } from "src/drug-stock/enum/drug-type";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString } from "class-validator";
 
@@ -10,6 +10,7 @@ import {
   Min,
   MinLength,
 } from "class-validator";
+import { ProductPack } from "src/expired-products/enum/product-pack";
 
 export class CreateDrugDto {
   @ApiProperty({ example: "Paduden", description: "Name" })
@@ -19,13 +20,15 @@ export class CreateDrugDto {
     message: "Name must be shorter than or equal to 255 characters",
   })
   readonly name: string;
-  @ApiProperty({ example: "Pill", description: "Package" })
-  @IsString({ message: "Package must be a string" })
-  @MinLength(1, { message: "Package must not be empty" })
-  @MaxLength(255, {
-    message: "Package must be shorter than or equal to 255 characters",
+  @ApiProperty({
+    example: ProductPack.pack,
+    description: "Package",
+    enum: ProductPack,
   })
-  readonly package: string;
+  @IsEnum(ProductPack, {
+    message: "Package must be one of the allowed values",
+  })
+  readonly package: ProductPack;
 
   @ApiProperty({ example: 32, description: "Package Total Elements" })
   @IsInt({ message: "Package Total Elements must be an integer" })
@@ -43,11 +46,13 @@ export class CreateDrugDto {
   readonly weight: number;
 
   @ApiProperty({
-    example: DrugType.OTC,
-    description: "Drug Type",
+    example: DrugType.otc,
+    description: "Drug TypeProduct",
     enum: DrugType,
   })
-  @IsEnum(DrugType, { message: "Drug Type must be one of the allowed values" })
+  @IsEnum(DrugType, {
+    message: "Drug TypeProduct must be one of the allowed values",
+  })
   readonly type: DrugType;
 
   @ApiProperty({ example: 67875434567768765, description: "Barcode" })

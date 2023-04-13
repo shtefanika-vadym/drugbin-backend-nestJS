@@ -11,15 +11,17 @@ import {
   AllowNull,
 } from "sequelize-typescript";
 import { Company } from "src/company/company.model";
-import { Status } from "src/expired-products/enum/Status";
+import { ProductStatus } from "src/expired-products/enum/product-status";
 import { IsEnum } from "class-validator";
+import { DrugStock } from "src/drug-stock/drug-stock.model";
+import { ProductPack } from "src/expired-products/enum/product-pack";
+import { DrugType } from "src/drug-stock/enum/drug-type";
 
 interface ExpiredProductCreationAttrs {
   name: string;
-  brand: string;
-  type: string;
-  pack: string;
-  status: Status;
+  type: DrugType;
+  pack: ProductPack;
+  status: ProductStatus;
   companyId: number;
   quantity: number;
 }
@@ -41,25 +43,23 @@ export class ExpiredProduct extends Model<
   name: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  brand: string;
-
-  @AllowNull(false)
   @Column(DataType.INTEGER)
   quantity: number;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  type: string;
+  @IsEnum(DrugType)
+  @Column(DataType.ENUM(...Object.values(DrugType)))
+  type: DrugType;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  pack: string;
+  @IsEnum(ProductPack)
+  @Column(DataType.ENUM(...Object.values(ProductPack)))
+  pack: ProductPack;
 
   @AllowNull(false)
-  @IsEnum(Status)
-  @Column(DataType.ENUM(...Object.values(Status)))
-  status: Status;
+  @IsEnum(ProductStatus)
+  @Column(DataType.ENUM(...Object.values(ProductStatus)))
+  status: ProductStatus;
 
   @ForeignKey(() => Company)
   @AllowNull(false)
@@ -68,4 +68,12 @@ export class ExpiredProduct extends Model<
 
   @BelongsTo(() => Company)
   company: Company;
+
+  @ForeignKey(() => DrugStock)
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
+  drugId: number;
+
+  @BelongsTo(() => DrugStock)
+  drug: DrugStock;
 }

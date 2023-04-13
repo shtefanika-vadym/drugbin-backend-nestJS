@@ -8,7 +8,7 @@ import {
   Unique,
   AllowNull,
 } from "sequelize-typescript";
-import { DrugType } from "src/drug-stock/enum/DrugType";
+import { DrugType } from "src/drug-stock/enum/drug-type";
 import { IsEnum } from "class-validator";
 
 interface DrugStockCreationAttrs {
