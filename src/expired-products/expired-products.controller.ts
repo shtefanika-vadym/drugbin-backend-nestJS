@@ -76,8 +76,8 @@ export class ExpiredProductsController {
   @Roles(Role.pharmacy)
   @ApiResponse({ status: 200, type: [ExpiredProductDto] })
   @Get()
-  getAllProducts() {
-    return this.expiredProductService.getAllProducts();
+  getAllProducts(@Headers("Authorization") token: string) {
+    return this.expiredProductService.getAllProducts(token);
   }
 
   // Retrieve all expired products

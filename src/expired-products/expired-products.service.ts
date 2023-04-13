@@ -71,8 +71,11 @@ export class ExpiredProductsService {
     };
   }
 
-  async getAllProducts() {
-    const products = await this.expiredProductsRepository.findAll();
+  async getAllProducts(token: string) {
+    const companyId = this.tokenUtils.getCompanyIdFromToken(token);
+    const products = await this.expiredProductsRepository.findAll({
+      where: { companyId },
+    });
     return products;
   }
 
