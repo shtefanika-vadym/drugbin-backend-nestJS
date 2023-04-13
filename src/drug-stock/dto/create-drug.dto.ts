@@ -1,6 +1,6 @@
 import { DrugType } from "src/drug-stock/enum/drug-type";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 import {
   IsEnum,
@@ -35,13 +35,15 @@ export class CreateDrugDto {
   @Min(1, {
     message: "Package Total Elements must be greater than or equal to 1",
   })
-  readonly package_total: number;
+  readonly packageTotal: number;
 
-  @ApiProperty({ example: 32, description: "Strength", required: false })
+  @ApiProperty({ example: 200, description: "Strength .mg", required: false })
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsNumber(undefined, { message: "Strength must be a number" })
   readonly strength?: number;
 
-  @ApiProperty({ example: 32, description: "Weight" })
+  @ApiProperty({ example: 0.67, description: "Weight .gr" })
   @IsNumber(undefined, { message: "Weight must be a number" })
   readonly weight: number;
 

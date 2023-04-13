@@ -8,7 +8,7 @@ export class ExpiredProductDto {
   name: string;
   @ApiProperty({ example: "OTC", description: "Type" })
   type: string;
-  @ApiProperty({ example: "Blister", description: "Pack" })
+  @ApiProperty({ example: "pill", description: "Pack" })
   pack: string;
   @ApiProperty({ example: 12, description: "Quantity" })
   quantity: number;

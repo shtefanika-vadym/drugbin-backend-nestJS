@@ -5,17 +5,16 @@ import { CreateCompanyDto } from "src/company/dto/create-company.dto";
 import { Role } from "src/company/enum/Role";
 import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
 import { ExpiredProduct } from "src/expired-products/expired-products.model";
-import { DrugStockService } from "src/drug-stock/drug-stock.service";
 import { DrugStock } from "src/drug-stock/drug-stock.model";
 import { ProductPack } from "src/expired-products/enum/product-pack";
+import { DrugType } from "src/drug-stock/enum/drug-type";
 
 @Injectable()
 export class CompanyService {
   constructor(
     @InjectModel(Company) private companyRepository: typeof Company,
     @InjectModel(ExpiredProduct)
-    private expiredProductRepository: typeof ExpiredProduct,
-    private drugStockService: DrugStockService
+    private expiredProductRepository: typeof ExpiredProduct
   ) {}
 
   async createCompany(dto: CreateCompanyDto) {
@@ -26,7 +25,7 @@ export class CompanyService {
   async getAllCompanies(role: Role) {
     const companies = await this.companyRepository.findAll({
       where: { role },
-      attributes: ["id", "name", "email"],
+      attributes: ["id", "name", "email", "weight"],
     });
     return companies;
   }
@@ -48,12 +47,75 @@ export class CompanyService {
     return user;
   }
 
+  calculateProductWeight(
+    quantity: number,
+    weight: number,
+    pack: ProductPack,
+    packageTotal: number
+  ) {
+    let total = quantity * parseFloat(String(weight));
+
+    if (pack === ProductPack.pack) total *= packageTotal;
+
+    return total;
+  }
+
+  async updateQuantity(companyId: number) {
+    const company = await this.companyRepository.findByPk(companyId);
+    const products = await this.expiredProductRepository.findAll({
+      where: { companyId },
+      include: [
+        {
+          model: DrugStock,
+          as: "drug",
+        },
+      ],
+    });
+
+    const initialWeights = {
+      [DrugType.rx]: 0,
+      [DrugType.otc]: 0,
+      [DrugType.supplement]: 0,
+    };
+
+    const weights = products.reduce((acc, product) => {
+      const { drug, quantity, pack, type } = product;
+      const { weight, packageTotal } = drug;
+
+      const totalWeight = this.calculateProductWeight(
+        quantity,
+        weight,
+        pack,
+        packageTotal
+      );
+      acc[type] += totalWeight;
+
+      return acc;
+    }, initialWeights);
+
+    const totalWeight =
+      weights[DrugType.rx] +
+      weights[DrugType.otc] +
+      weights[DrugType.supplement];
+
+    await company.update({
+      weight: totalWeight,
+      weightRx: weights[DrugType.rx],
+      weightOtc: weights[DrugType.otc],
+      weightSupplement: weights[DrugType.supplement],
+    });
+  }
+
   async getPharmacyById(companyId: number) {
-    // Improve this
-    const company = await this.companyRepository.findByPk(companyId, {
+    const company = await this.companyRepository.findOne({
+      where: {
+        id: companyId,
+        role: Role.pharmacy,
+      },
       attributes: { exclude: ["password", "updatedAt", "createdAt", "role"] },
     });
-    if (!company) throw new NotFoundException("Company not found");
+
+    if (!company) throw new NotFoundException("Pharmacy not found");
 
     const expiredProducts = await this.expiredProductRepository.findAll({
       where: { companyId },
@@ -65,13 +127,6 @@ export class CompanyService {
       ],
     });
 
-    let totalR = expiredProducts.reduce((total, product) => {
-      let pack = 1;
-      if (product.pack === ProductPack.pack) pack = 24;
-      else if (product.pack === ProductPack.blister) pack = 12;
-
-      return total + product.quantity * (pack * product.drug.weight);
-    }, 0);
-    return { ...company.toJSON(), expiredProducts, total: totalR };
+    return { ...company.toJSON(), expiredProducts };
   }
 }

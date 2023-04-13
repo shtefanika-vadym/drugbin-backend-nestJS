@@ -14,13 +14,13 @@ import { IsEnum } from "class-validator";
 interface DrugStockCreationAttrs {
   name: string;
   package: string;
-  package_total: number;
+  packageTotal: number;
   strength?: number;
   type: DrugType;
   barcode: string;
 }
 
-@Table({ tableName: "drug-stock" })
+@Table({ tableName: "drug_stock" })
 export class DrugStock extends Model<DrugStock, DrugStockCreationAttrs> {
   @PrimaryKey
   @AutoIncrement
@@ -39,20 +39,19 @@ export class DrugStock extends Model<DrugStock, DrugStockCreationAttrs> {
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
-  package_total: number;
+  packageTotal: number;
 
   @Column(DataType.INTEGER)
   strength?: number;
 
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column(DataType.DECIMAL)
   weight: number;
 
   @AllowNull(false)
   @IsEnum(DrugType)
   @Column(DataType.ENUM(...Object.values(DrugType)))
   type: DrugType;
-
   @AllowNull(false)
   @Unique
   @Column(DataType.STRING)

@@ -16,6 +16,7 @@ import { Role } from "src/company/enum/Role";
 import { ValidationPipe } from "src/pipes/validation.pipe";
 import { CreateDrugDto } from "src/drug-stock/dto/create-drug.dto";
 import { DrugStockService } from "src/drug-stock/drug-stock.service";
+import { DrugType } from "src/drug-stock/enum/drug-type";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Drug Stock")
@@ -38,8 +39,11 @@ export class DrugStockController {
   @ApiResponse({ status: 200, type: [CreateDrugDto] })
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
-  @Get("/:query")
-  filterByBarcode(@Param("query") query: string) {
-    return this.drugStockService.filter(query);
+  @Get("/:type/:query")
+  filterByBarcode(
+    @Param("type") type: DrugType,
+    @Param("query") query: string
+  ) {
+    return this.drugStockService.filter(type, query);
   }
 }

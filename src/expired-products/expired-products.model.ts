@@ -26,7 +26,7 @@ interface ExpiredProductCreationAttrs {
   quantity: number;
 }
 
-@Table({ tableName: "expired-products" })
+@Table({ tableName: "expired_products" })
 export class ExpiredProduct extends Model<
   ExpiredProduct,
   ExpiredProductCreationAttrs

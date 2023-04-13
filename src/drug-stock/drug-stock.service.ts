@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -7,6 +8,7 @@ import { InjectModel } from "@nestjs/sequelize";
 import { DrugStock } from "src/drug-stock/drug-stock.model";
 import { CreateDrugDto } from "src/drug-stock/dto/create-drug.dto";
 import { Op } from "sequelize";
+import { DrugType } from "src/drug-stock/enum/drug-type";
 
 @Injectable()
 export class DrugStockService {
@@ -30,30 +32,30 @@ export class DrugStockService {
     };
   }
 
+
+
   async getById(id: number) {
     const drug = await this.drugStockRepository.findByPk(id);
     if (!drug) throw new NotFoundException("Drug found drug");
     return drug;
   }
 
-  async filter(query: string) {
+  async filter(type: DrugType, query: string) {
+    if (!Object.values(DrugType).includes(type))
+      throw new BadRequestException("Invalid query type");
+
     const drugs = await this.drugStockRepository.findAll({
       where: {
+        type,
         [Op.or]: [
           { name: { [Op.iLike]: `%${query}%` } },
           { barcode: { [Op.iLike]: `%${query}%` } },
         ],
       },
       include: { all: true },
-      attributes: [
-        "name",
-        "package",
-        "package_total",
-        "strength",
-        "weight",
-        "type",
-        "barcode",
-      ],
+      attributes: {
+        exclude: ["createdAt", "updatedAt"]
+      },
     });
 
     return drugs;

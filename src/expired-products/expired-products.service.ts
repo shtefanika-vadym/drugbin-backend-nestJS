@@ -9,12 +9,16 @@ import { InjectModel } from "@nestjs/sequelize";
 import { ExpiredProduct } from "src/expired-products/expired-products.model";
 import { ProductStatus } from "src/expired-products/enum/product-status";
 import { TokenUtils } from "src/utils/token.utils";
+import { CompanyService } from "src/company/company.service";
+import { DrugStockService } from "src/drug-stock/drug-stock.service";
 
 @Injectable()
 export class ExpiredProductsService {
   constructor(
     @InjectModel(ExpiredProduct)
     private expiredProductsRepository: typeof ExpiredProduct,
+    private companyService: CompanyService,
+    private drugService: DrugStockService,
     private tokenUtils: TokenUtils
   ) {}
 
@@ -27,6 +31,7 @@ export class ExpiredProductsService {
     };
 
     await this.expiredProductsRepository.create(product);
+    await this.companyService.updateQuantity(companyId);
 
     return {
       message: "Expired product successfully created",
