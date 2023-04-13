@@ -49,6 +49,7 @@ export class CompanyService {
   }
 
   async getPharmacyById(companyId: number) {
+    // Improve this
     const company = await this.companyRepository.findByPk(companyId, {
       attributes: { exclude: ["password", "updatedAt", "createdAt", "role"] },
     });
