@@ -11,6 +11,8 @@ import { AuthModule } from "src/auth/auth.module";
 import { AppController } from "src/app.controller";
 import { DrugStock } from "src/drug-stock/drug-stock.model";
 import { DrugStockModule } from "src/drug-stock/drug-stock.module";
+import { ContactUs } from "src/contact-us/contact.model";
+import { ContactUsModule } from "src/contact-us/contact-us.module";
 
 @Module({
   controllers: [AppController],
@@ -26,13 +28,14 @@ import { DrugStockModule } from "src/drug-stock/drug-stock.module";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Company, ExpiredProduct, DrugStock],
+      models: [Company, ExpiredProduct, DrugStock, ContactUs],
       autoLoadModels: true,
     }),
     AdditionalModule,
     CompanyModule,
     AuthModule,
     DrugStockModule,
+    ContactUsModule,
     ExpiredProductsModule,
   ],
 })
