@@ -20,12 +20,12 @@ import { DrugType } from "src/drug-stock/enum/drug-type";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Drug Stock")
-@Controller("drug-stock")
+@Controller("drug.interface.ts-stock")
 export class DrugStockController {
   constructor(private drugStockService: DrugStockService) {}
 
-  // Create drug
-  @ApiOperation({ summary: "Create drug" })
+  // Create drug.interface.ts
+  @ApiOperation({ summary: "Create drug.interface.ts" })
   @UsePipes(ValidationPipe)
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
@@ -37,8 +37,6 @@ export class DrugStockController {
   // Filter drugs by barcode or name
   @ApiOperation({ summary: "Get drugs by same name or barcode" })
   @ApiResponse({ status: 200, type: [CreateDrugDto] })
-  @UseGuards(RolesGuard)
-  @Roles(Role.pharmacy)
   @Get("/:type/:query")
   filterByBarcode(
     @Param("type") type: DrugType,

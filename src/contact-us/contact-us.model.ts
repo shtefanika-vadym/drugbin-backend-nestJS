@@ -28,12 +28,10 @@ export class ContactUs extends Model<ContactUs, ContactUsCreationAttrs> {
   @Column(DataType.STRING)
   name: string;
 
-  @Unique
   @AllowNull(false)
   @Column(DataType.STRING)
   email: string;
 
-  @Unique
   @AllowNull(false)
   @Column(DataType.STRING)
   message: string;

@@ -22,7 +22,7 @@ export class DrugStockService {
       where: { barcode: dto.barcode },
     });
     if (existingDrug) {
-      throw new ConflictException("A drug with the same code already exists");
+      throw new ConflictException("A drug.interface.ts with the same code already exists");
     }
 
     await this.drugStockRepository.create(dto);
@@ -36,7 +36,7 @@ export class DrugStockService {
 
   async getById(id: number) {
     const drug = await this.drugStockRepository.findByPk(id);
-    if (!drug) throw new NotFoundException("Drug found drug");
+    if (!drug) throw new NotFoundException("Drug found drug.interface.ts");
     return drug;
   }
 

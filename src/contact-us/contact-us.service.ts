@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { CreateContactDto } from "src/contact-us/dto/create-contact.dto";
-import { ContactUs } from "src/contact-us/contact.model";
+import { ContactUs } from "src/contact-us/contact-us.model";
 
 @Injectable()
 export class ContactUsService {
@@ -14,5 +14,14 @@ export class ContactUsService {
     return {
       message: "Thanks! We will contact you shortly",
     };
+  }
+
+  async getAll() {
+    const contactUsList = await this.contactUsRepository.findAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+    return contactUsList;
   }
 }

@@ -17,8 +17,6 @@ export class CompanyController {
   // Retrieve all pharmacies
   @ApiOperation({ summary: "Get all pharmacies" })
   @ApiResponse({ status: 200, type: [CompanyDto] })
-  @UseGuards(RolesGuard)
-  @Roles(Role.recycle)
   @Get("/pharmacies")
   async getAllPharmacies() {
     const pharmacists = await this.companyService.getAllCompanies(
