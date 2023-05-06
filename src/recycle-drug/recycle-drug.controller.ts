@@ -43,6 +43,7 @@ export class RecycleDrugController {
   }
 
   // Get verbal process
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get verbal process" })
   @Get("/:id")
   async getVerbalProcess(@Param("id") id: number, @Res() res): Promise<void> {
