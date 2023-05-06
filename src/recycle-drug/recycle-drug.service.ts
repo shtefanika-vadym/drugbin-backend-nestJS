@@ -4,7 +4,7 @@ import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { CreateRecycleDrugDto } from "src/recycle-drug/dto/create-recycle-drug.dto";
 import { CompanyService } from "src/company/company.service";
 import { TokenUtils } from "src/utils/token.utils";
-import { createPdf } from "@saemhco/nestjs-html-pdf";
+// import { createPdf } from "@saemhco/nestjs-html-pdf";
 import { ProductPack } from "src/expired-products/enum/product-pack";
 import { DrugsService } from "src/drugs/drugs.service";
 import {
@@ -84,10 +84,10 @@ export class RecycleDrugService {
     }));
 
     const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleDrugUtils;
-    return createPdf(getPathTemplate(), getPdfFormat(), {
-      ...drug.toJSON(),
-      date: getCurrentDate(),
-      drugList,
-    });
+    // return createPdf(getPathTemplate(), getPdfFormat(), {
+    //   ...drug.toJSON(),
+    //   date: getCurrentDate(),
+    //   drugList,
+    // });
   }
 }
