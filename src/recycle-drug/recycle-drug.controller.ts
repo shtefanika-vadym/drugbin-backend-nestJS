@@ -50,6 +50,7 @@ export class RecycleDrugController {
       const verbalProcessPdf = await this.recycleDrugService.getVerbalProcess(
         id
       );
+      res.contentType("application/pdf");
       res.send(verbalProcessPdf);
     } catch (error) {
       if (error instanceof NotFoundException)

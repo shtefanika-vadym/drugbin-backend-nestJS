@@ -36,7 +36,6 @@
     "class-validator": "^0.13.1",
     "cross-env": "^7.0.3",
     "handlebars": "^4.7.7",
-    "html-pdf-node": "^1.0.8",
     "mysql2": "^3.2.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
@@ -45,8 +44,7 @@
     "sequelize": "^6.6.2",
     "sequelize-typescript": "^2.1.0",
     "swagger-ui-express": "^4.1.6",
-    "uuid": "^8.3.2",
-    "xlsx": "^0.18.5"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",
