@@ -57,7 +57,7 @@ export class CreateDrugDto {
   })
   readonly type: DrugType;
 
-  @ApiProperty({ example: 67875434567768765, description: "Barcode" })
+  @ApiProperty({ example: "67875434567768765", description: "Barcode" })
   @IsString({ message: "Barcode must be a string" })
   @MinLength(1, { message: "Barcode must not be empty" })
   @MaxLength(255, {

@@ -9,6 +9,7 @@ import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { CompanyDetailsDto } from "src/company/dto/company-details.dto";
 
+@UseGuards(JwtAuthGuard)
 @ApiTags("Companies")
 @Controller("companies")
 export class CompanyController {
@@ -26,7 +27,6 @@ export class CompanyController {
   }
 
   // Update a company
-  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Update company" })
   @ApiResponse({ status: 200, type: [CompanyDto] })
   @Put(":id")
@@ -45,7 +45,7 @@ export class CompanyController {
   @ApiResponse({ status: 200, type: [CompanyDetailsDto] })
   @Get("/pharmacies/:id")
   async getPharmacy(@Param("id") id: number) {
-    const pharmacy = await this.companyService.getPharmacyById(id);
+    const pharmacy = await this.companyService.getPharmacyDetails(id);
     return pharmacy;
   }
 }

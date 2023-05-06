@@ -3,30 +3,26 @@ import {
   Controller,
   Get,
   Param,
-  ParseArrayPipe,
   Post,
   UseGuards,
-  UsePipes,
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { RolesGuard } from "src/auth/roles.guard";
 import { Roles } from "src/auth/roles.decorator";
 import { Role } from "src/company/enum/Role";
-import { ValidationPipe } from "src/pipes/validation.pipe";
 import { CreateDrugDto } from "src/drug-stock/dto/create-drug.dto";
 import { DrugStockService } from "src/drug-stock/drug-stock.service";
 import { DrugType } from "src/drug-stock/enum/drug-type";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Drug Stock")
-@Controller("drug.interface.ts-stock")
+@Controller("drug-stock")
 export class DrugStockController {
   constructor(private drugStockService: DrugStockService) {}
 
   // Create drug.interface.ts
-  @ApiOperation({ summary: "Create drug.interface.ts" })
-  @UsePipes(ValidationPipe)
+  @ApiOperation({ summary: "Create drug" })
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
   @Post()

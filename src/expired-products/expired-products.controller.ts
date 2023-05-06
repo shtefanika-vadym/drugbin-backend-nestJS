@@ -9,7 +9,6 @@ import {
   Put,
   Headers,
   UseGuards,
-  UsePipes,
 } from "@nestjs/common";
 import { CreateExpiredProductDto } from "src/expired-products/dto/create-expired-product.dto";
 import { ExpiredProductsService } from "src/expired-products/expired-products.service";
@@ -19,7 +18,6 @@ import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { RolesGuard } from "src/auth/roles.guard";
 import { Roles } from "src/auth/roles.decorator";
 import { Role } from "src/company/enum/Role";
-import { ValidationPipe } from "src/pipes/validation.pipe";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Expired Products")
@@ -29,7 +27,6 @@ export class ExpiredProductsController {
 
   // Create expired product
   @ApiOperation({ summary: "Create expired product" })
-  @UsePipes(ValidationPipe)
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
   @Post()

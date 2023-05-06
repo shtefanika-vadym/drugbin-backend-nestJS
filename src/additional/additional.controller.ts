@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Res } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AdditionalService } from "src/additional/additional.service";
 import { GetRoleListDto } from "src/additional/dto/get-role-list.dto";
@@ -13,9 +13,14 @@ export class AdditionalController {
   @ApiOperation({ summary: "Get all roles" })
   @ApiResponse({ status: 200, type: [GetRoleListDto] })
   @Get("/roles")
-  getRoles() {
-    const roles = this.additionalService.getListRoles();
-    return roles;
+  async getRoles(@Res() res) {
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Disposition": "attachment; filename=verbal-process.pdf",
+    });
+
+    const pdf = await this.additionalService.getListRoles();
+    res.send(pdf);
   }
 
   // Retrieve all locations

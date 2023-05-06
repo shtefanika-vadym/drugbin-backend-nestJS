@@ -7,14 +7,17 @@ import {
   AutoIncrement,
   Unique,
   AllowNull,
+  ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
-import { IDrug } from "src/recycle-drug/interfaces/drug.interface";
+import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
+import { Company } from "src/company/company.model";
 
 interface RecycleDrugCreationAttrs {
   email?: string;
   firstName: string;
   lastName: string;
-  drugList: IDrug[];
+  drugList: IRecycledDrug[];
 }
 
 @Table({ tableName: "recycle_drug" })
@@ -38,7 +41,15 @@ export class RecycleDrug extends Model<RecycleDrug, RecycleDrugCreationAttrs> {
   @Column(DataType.STRING)
   email?: string;
 
+  @AllowNull(true)
+  @Column(DataType.JSON)
+  drugList: IRecycledDrug[];
+
   @AllowNull(false)
-  @Column(DataType.ARRAY(DataType.JSON))
-  drugList: IDrug[];
+  @Column(DataType.INTEGER)
+  @ForeignKey(() => Company)
+  pharmacyId: number;
+
+  @BelongsTo(() => Company)
+  pharmacy: Company;
 }

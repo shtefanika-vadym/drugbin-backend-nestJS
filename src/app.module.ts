@@ -15,6 +15,9 @@ import { ContactUs } from "src/contact-us/contact-us.model";
 import { ContactUsModule } from "src/contact-us/contact-us.module";
 import { RecycleDrugModule } from "src/recycle-drug/recycle-drug.module";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
+import { Drug } from "src/drugs/drugs.model";
+import { importDrugs } from "src/drugs/import-drugs";
+import { DrugsModule } from "src/drugs/drugs.module";
 
 @Module({
   controllers: [AppController],
@@ -30,12 +33,20 @@ import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Company, ExpiredProduct, DrugStock, ContactUs, RecycleDrug],
+      models: [
+        Company,
+        ExpiredProduct,
+        DrugStock,
+        ContactUs,
+        RecycleDrug,
+        Drug,
+      ],
       autoLoadModels: true,
     }),
     AdditionalModule,
     CompanyModule,
     AuthModule,
+    DrugsModule,
     DrugStockModule,
     ContactUsModule,
     RecycleDrugModule,
@@ -47,5 +58,6 @@ export class AppModule {
 
   async onModuleInit() {
     await this.sequelize.sync();
+    importDrugs();
   }
 }

@@ -106,14 +106,20 @@ export class CompanyService {
     });
   }
 
-  async getPharmacyById(companyId: number) {
-    const company = await this.companyRepository.findOne({
+  async getPharmacyById(id: number) {
+    const pharmacy = await this.companyRepository.findOne({
       where: {
-        id: companyId,
+        id: id,
         role: Role.pharmacy,
       },
       attributes: { exclude: ["password", "updatedAt", "createdAt", "role"] },
     });
+
+    return pharmacy;
+  }
+
+  async getPharmacyDetails(companyId: number) {
+    const company = await this.getPharmacyById(companyId);
 
     if (!company) throw new NotFoundException("Pharmacy not found");
 

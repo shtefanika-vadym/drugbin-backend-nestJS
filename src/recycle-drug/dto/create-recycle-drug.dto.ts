@@ -6,18 +6,14 @@ import {
   MaxLength,
   ValidateNested,
   IsArray,
-  IsEnum, IsOptional
+  IsEnum,
+  IsOptional,
+  IsNumber,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { ProductPack } from "src/expired-products/enum/product-pack";
 
-class IDrug {
-  @ApiProperty({
-    example: 123,
-    description: "Drug id",
-  })
-  readonly id: number;
-
+class DrugDto {
   @ApiProperty({
     example: 123,
     description: "The lot number",
@@ -46,6 +42,14 @@ class IDrug {
     description: "The expiration date of the drug",
   })
   readonly expirationDate: string;
+
+  @ApiProperty({
+    required: true,
+    example: 1,
+    description: "Selected drug id from drugs"
+  })
+  @IsNumber(undefined, { message: "Drug Id must be a number" })
+  readonly drugId;
 }
 
 export class CreateRecycleDrugDto {
@@ -60,6 +64,14 @@ export class CreateRecycleDrugDto {
     message: "First Name must be shorter than or equal to 255 characters",
   })
   readonly firstName: string;
+
+  @ApiProperty({
+    example: 1,
+    description: "Pharmacy Id",
+    required: true,
+  })
+  @IsNumber(undefined, { message: "Pharmacy Id must be a number" })
+  readonly pharmacyId: number;
 
   @ApiProperty({
     example: "Popescu",
@@ -86,9 +98,9 @@ export class CreateRecycleDrugDto {
   })
   readonly email: string;
 
-  @ApiProperty({ type: [IDrug], description: "Message", required: true })
+  @ApiProperty({ type: [DrugDto], description: "Drug List", required: true })
   @IsArray()
+  @Type(() => DrugDto)
   @ValidateNested({ each: true })
-  @Type(() => IDrug)
-  readonly drugList: IDrug[];
+  readonly drugList: DrugDto[];
 }
