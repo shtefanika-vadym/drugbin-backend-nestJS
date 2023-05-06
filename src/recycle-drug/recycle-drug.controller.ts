@@ -14,6 +14,7 @@ import { RecycleDrugService } from "src/recycle-drug/recycle-drug.service";
 import { CreateRecycleDrugDto } from "src/recycle-drug/dto/create-recycle-drug.dto";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
+import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle-drug")
@@ -22,15 +23,12 @@ export class RecycleDrugController {
 
   // Create recycle drug
   @ApiOperation({ summary: "Create recycle drug" })
-  @ApiResponse({ status: 200, type: Number })
+  @ApiResponse({ status: 200, type: CreateRecycleDrugResponse })
   @Post()
   async create(
     @Body() dto: CreateRecycleDrugDto
-  ): Promise<{ drugCode: number }> {
-    const response: { drugCode: number } = await this.recycleDrugService.create(
-      dto
-    );
-    return response;
+  ): Promise<CreateRecycleDrugResponse> {
+    return this.recycleDrugService.create(dto);
   }
 
   // Get all recycle drug
@@ -38,13 +36,10 @@ export class RecycleDrugController {
   @ApiOperation({ summary: "Get all recycle drug" })
   @ApiResponse({ status: 200, type: [CreateRecycleDrugDto] })
   @Get()
-  async getAllDrugByPharmacy(
+  getAllDrugByPharmacy(
     @Headers("Authorization") token: string
   ): Promise<RecycleDrug[]> {
-    const response: RecycleDrug[] = await this.recycleDrugService.getAllDrugByPharmacy(
-      token
-    );
-    return response;
+    return this.recycleDrugService.getAllDrugByPharmacy(token);
   }
 
   // Get verbal process

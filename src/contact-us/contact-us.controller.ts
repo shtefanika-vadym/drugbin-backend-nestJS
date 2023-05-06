@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ContactUsService } from "src/contact-us/contact-us.service";
 import { CreateContactDto } from "src/contact-us/dto/create-contact.dto";
+import { ContactUs } from "src/contact-us/contact-us.model";
+import { MessageResponse } from "src/reponses/message-response";
 
 @ApiTags("Contact Us")
 @Controller("contact-us")
@@ -10,17 +12,17 @@ export class ContactUsController {
 
   // Create contact us
   @ApiOperation({ summary: "Create contact us" })
+  @ApiResponse({ status: 200, type: MessageResponse })
   @Post()
-  async create(@Body() dto: CreateContactDto) {
-    const response = await this.contactUsService.create(dto);
-    return response;
+  create(@Body() dto: CreateContactDto): Promise<MessageResponse> {
+    return this.contactUsService.create(dto);
   }
 
   // Get all contact us
   @ApiOperation({ summary: "Get list contact us" })
+  @ApiResponse({ status: 200, type: [ContactUs] })
   @Get()
-  async getAll() {
-    const response = await this.contactUsService.getAll();
-    return response;
+  getAll(): Promise<ContactUs[]> {
+    return this.contactUsService.getAll();
   }
 }

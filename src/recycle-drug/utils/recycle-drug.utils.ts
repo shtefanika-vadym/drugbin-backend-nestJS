@@ -24,7 +24,7 @@ const getPdfFormat = () => ({
 const getPathTemplate = (): string =>
   path.join(process.cwd(), "templates", "pdf-verbal-process.hbs");
 
-export const RecycleUtils = {
+export const RecycleDrugUtils = {
   getCurrentDate,
   getPdfFormat,
   getPathTemplate,

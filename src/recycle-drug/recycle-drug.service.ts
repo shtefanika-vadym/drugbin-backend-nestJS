@@ -13,7 +13,8 @@ import {
 } from "src/recycle-drug/interfaces/drug.interface";
 import { Drug } from "src/drugs/drugs.model";
 import { Company } from "src/company/company.model";
-import { RecycleUtils } from "src/recycle-drug/utils/recycleUtils";
+import { RecycleDrugUtils } from "src/recycle-drug/utils/recycle-drug.utils";
+import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 
 @Injectable()
 export class RecycleDrugService {
@@ -24,7 +25,7 @@ export class RecycleDrugService {
     private tokenUtils: TokenUtils
   ) {}
 
-  async create(dto: CreateRecycleDrugDto): Promise<{ drugCode: number }> {
+  async create(dto: CreateRecycleDrugDto): Promise<CreateRecycleDrugResponse> {
     const pharmacy: Company = await this.companyService.getPharmacyById(
       dto.pharmacyId
     );
@@ -82,7 +83,7 @@ export class RecycleDrugService {
       pack: pack === ProductPack.pack ? "cutie" : "pastila",
     }));
 
-    const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleUtils;
+    const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleDrugUtils;
     return createPdf(getPathTemplate(), getPdfFormat(), {
       ...drug.toJSON(),
       date: getCurrentDate(),

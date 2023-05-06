@@ -7,8 +7,8 @@ import { Op } from "sequelize";
 export class DrugsService {
   constructor(@InjectModel(Drug) private drugRepository: typeof Drug) {}
 
-  async getDrugsByName(name: string) {
-    const drugs = await this.drugRepository.findAll({
+  async getDrugsByName(name: string): Promise<Drug[]> {
+    const drugs: Drug[] = await this.drugRepository.findAll({
       where: {
         [Op.or]: [{ name: { [Op.iLike]: `%${name}%` } }],
       },
@@ -16,8 +16,8 @@ export class DrugsService {
     return drugs;
   }
 
-  async getDrugByIdList(idList: number[]) {
-    const drugList = await this.drugRepository.findAll({
+  async getDrugByIdList(idList: number[]): Promise<Drug[]> {
+    const drugList: Drug[] = await this.drugRepository.findAll({
       where: {
         id: idList,
       },

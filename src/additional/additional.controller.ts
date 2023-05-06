@@ -1,8 +1,8 @@
-import { Controller, Get, Res } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AdditionalService } from "src/additional/additional.service";
-import { GetRoleListDto } from "src/additional/dto/get-role-list.dto";
-import { GetLocationListDto } from "src/additional/dto/get-location-list.dto";
+import { RoleListResponse } from "src/additional/responses/role-list-response";
+import { LocationListResponse } from "src/additional/responses/location-list-response";
 
 @ApiTags("Additional")
 @Controller("additional")
@@ -11,24 +11,17 @@ export class AdditionalController {
 
   // Retrieve all roles
   @ApiOperation({ summary: "Get all roles" })
-  @ApiResponse({ status: 200, type: [GetRoleListDto] })
+  @ApiResponse({ status: 200, type: [RoleListResponse] })
   @Get("/roles")
-  async getRoles(@Res() res) {
-    res.set({
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=verbal-process.pdf",
-    });
-
-    const pdf = await this.additionalService.getListRoles();
-    res.send(pdf);
+  getRoles(): RoleListResponse {
+    return this.additionalService.getListRoles();
   }
 
   // Retrieve all locations
   @ApiOperation({ summary: "Get all locations" })
-  @ApiResponse({ status: 200, type: [GetLocationListDto] })
+  @ApiResponse({ status: 200, type: [LocationListResponse] })
   @Get("/locations")
-  getLocations() {
-    const locations = this.additionalService.getListLocations();
-    return locations;
+  getLocations(): LocationListResponse {
+    return this.additionalService.getListLocations();
   }
 }

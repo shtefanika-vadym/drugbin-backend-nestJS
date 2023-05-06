@@ -8,6 +8,8 @@ import { ExpiredProduct } from "src/expired-products/expired-products.model";
 import { DrugStock } from "src/drug-stock/drug-stock.model";
 import { ProductPack } from "src/expired-products/enum/product-pack";
 import { DrugType } from "src/drug-stock/enum/drug-type";
+import { CompanyDetailsDto } from "src/company/dto/company-details.dto";
+import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()
 export class CompanyService {
@@ -17,21 +19,24 @@ export class CompanyService {
     private expiredProductRepository: typeof ExpiredProduct
   ) {}
 
-  async createCompany(dto: CreateCompanyDto) {
-    const user = await this.companyRepository.create(dto);
+  async createCompany(dto: CreateCompanyDto): Promise<Company> {
+    const user: Company = await this.companyRepository.create(dto);
     return user;
   }
 
-  async getAllCompanies(role: Role) {
-    const companies = await this.companyRepository.findAll({
+  async getAllCompanies(role: Role): Promise<Company[]> {
+    const companies: Company[] = await this.companyRepository.findAll({
       where: { role },
       attributes: ["id", "name", "email", "weight"],
     });
     return companies;
   }
 
-  async updateCompany(dto: UpdateCompanyDto, id: string) {
-    const company = await this.companyRepository.findByPk(id);
+  async updateCompany(
+    dto: UpdateCompanyDto,
+    id: string
+  ): Promise<MessageResponse> {
+    const company: Company = await this.companyRepository.findByPk(id);
     if (!company)
       throw new NotFoundException(`Company with id ${id} does not exist`);
 
@@ -39,8 +44,8 @@ export class CompanyService {
     return { message: "Company successfully updated" };
   }
 
-  async getCompanyByEmail(email: string) {
-    const user = await this.companyRepository.findOne({
+  async getCompanyByEmail(email: string): Promise<Company> {
+    const user: Company = await this.companyRepository.findOne({
       where: { email },
       include: { all: true },
     });
@@ -52,15 +57,16 @@ export class CompanyService {
     weight: number,
     pack: ProductPack,
     packageTotal: number
-  ) {
-    let total = quantity * parseFloat(String(weight));
+  ): number {
+    let total: number = quantity * parseFloat(String(weight));
 
     if (pack === ProductPack.pack) total *= packageTotal;
 
     return total;
   }
 
-  async updateQuantity(companyId: number) {
+  // Need updates
+  async updateQuantity(companyId: number): Promise<void> {
     const company = await this.companyRepository.findByPk(companyId);
     const products = await this.expiredProductRepository.findAll({
       where: { companyId },
@@ -106,8 +112,8 @@ export class CompanyService {
     });
   }
 
-  async getPharmacyById(id: number) {
-    const pharmacy = await this.companyRepository.findOne({
+  async getPharmacyById(id: number): Promise<Company> {
+    const pharmacy: Company = await this.companyRepository.findOne({
       where: {
         id: id,
         role: Role.pharmacy,
@@ -119,19 +125,21 @@ export class CompanyService {
   }
 
   async getPharmacyDetails(companyId: number) {
-    const company = await this.getPharmacyById(companyId);
+    const company: Company = await this.getPharmacyById(companyId);
 
     if (!company) throw new NotFoundException("Pharmacy not found");
 
-    const expiredProducts = await this.expiredProductRepository.findAll({
-      where: { companyId },
-      include: [
-        {
-          model: DrugStock,
-          as: "drug",
-        },
-      ],
-    });
+    const expiredProducts: ExpiredProduct[] = await this.expiredProductRepository.findAll(
+      {
+        where: { companyId },
+        include: [
+          {
+            model: DrugStock,
+            as: "drug",
+          },
+        ],
+      }
+    );
 
     return { ...company.toJSON(), expiredProducts };
   }

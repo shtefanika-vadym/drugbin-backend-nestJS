@@ -1,13 +1,14 @@
 import { Body, Controller, Get, Param, Put, UseGuards } from "@nestjs/common";
 import { CompanyService } from "src/company/company.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { CompanyDto } from "src/company/dto/company.dto";
 import { RolesGuard } from "src/auth/roles.guard";
 import { Roles } from "src/auth/roles.decorator";
 import { Role } from "src/company/enum/Role";
 import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { CompanyDetailsDto } from "src/company/dto/company-details.dto";
+import { MessageResponse } from "src/reponses/message-response";
+import { Company } from "src/company/company.model";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Companies")
@@ -17,25 +18,21 @@ export class CompanyController {
 
   // Retrieve all pharmacies
   @ApiOperation({ summary: "Get all pharmacies" })
-  @ApiResponse({ status: 200, type: [CompanyDto] })
+  @ApiResponse({ status: 200, type: [Company] })
   @Get("/pharmacies")
-  async getAllPharmacies() {
-    const pharmacists = await this.companyService.getAllCompanies(
-      Role.pharmacy
-    );
-    return pharmacists;
+  async getAllPharmacies(): Promise<Company[]> {
+    return this.companyService.getAllCompanies(Role.pharmacy);
   }
 
   // Update a company
   @ApiOperation({ summary: "Update company" })
-  @ApiResponse({ status: 200, type: [CompanyDto] })
+  @ApiResponse({ status: 200, type: [MessageResponse] })
   @Put(":id")
-  async updateCompany(
+  updateCompany(
     @Body() companyDto: UpdateCompanyDto,
     @Param("id") id: string
-  ) {
-    const company = await this.companyService.updateCompany(companyDto, id);
-    return company;
+  ): Promise<MessageResponse> {
+    return this.companyService.updateCompany(companyDto, id);
   }
 
   // Retrieve pharmacy details
@@ -44,8 +41,7 @@ export class CompanyController {
   @Roles(Role.recycle)
   @ApiResponse({ status: 200, type: [CompanyDetailsDto] })
   @Get("/pharmacies/:id")
-  async getPharmacy(@Param("id") id: number) {
-    const pharmacy = await this.companyService.getPharmacyDetails(id);
-    return pharmacy;
+  getPharmacy(@Param("id") id: number) {
+    return this.companyService.getPharmacyDetails(id);
   }
 }

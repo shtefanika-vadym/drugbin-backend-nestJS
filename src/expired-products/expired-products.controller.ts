@@ -18,6 +18,8 @@ import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { RolesGuard } from "src/auth/roles.guard";
 import { Roles } from "src/auth/roles.decorator";
 import { Role } from "src/company/enum/Role";
+import { MessageResponse } from "src/reponses/message-response";
+import { ExpiredProduct } from "src/expired-products/expired-products.model";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Expired Products")
@@ -39,24 +41,27 @@ export class ExpiredProductsController {
 
   // Delete expired product
   @ApiOperation({ summary: "Delete expired product" })
+  @ApiResponse({ status: 200, type: MessageResponse })
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
   @Delete(":id")
-  delete(@Param("id") id: number) {
+  delete(@Param("id") id: number): Promise<MessageResponse> {
     return this.expiredProductService.delete(id);
   }
 
   // Confirm expired product status
   @ApiOperation({ summary: "Confirm status expired product" })
+  @ApiResponse({ status: 200, type: MessageResponse })
   @UseGuards(RolesGuard)
   @Roles(Role.recycle)
   @Patch("/update-status/:id")
-  updateStatus(@Param("id") id: number) {
+  updateStatus(@Param("id") id: number): Promise<MessageResponse> {
     return this.expiredProductService.updateStatus(id);
   }
 
   // Update expired product
   @ApiOperation({ summary: "Update product" })
+  @ApiResponse({ status: 200, type: MessageResponse })
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
   @Put("/:id")
@@ -64,16 +69,18 @@ export class ExpiredProductsController {
     @Body() productDto: CreateExpiredProductDto,
     @Param("id") id: number,
     @Headers("Authorization") token: string
-  ) {
+  ): Promise<MessageResponse> {
     return this.expiredProductService.updateProduct(id, productDto, token);
   }
 
   @ApiOperation({ summary: "Get all expired products" })
   @UseGuards(RolesGuard)
   @Roles(Role.pharmacy)
-  @ApiResponse({ status: 200, type: [ExpiredProductDto] })
+  @ApiResponse({ status: 200, type: [ExpiredProduct] })
   @Get()
-  getAllProducts(@Headers("Authorization") token: string) {
+  getAllProducts(
+    @Headers("Authorization") token: string
+  ): Promise<ExpiredProduct[]> {
     return this.expiredProductService.getAllProducts(token);
   }
 
@@ -83,7 +90,7 @@ export class ExpiredProductsController {
   @UseGuards(RolesGuard)
   @Roles(Role.recycle)
   @Get("/pending")
-  getAllPending() {
+  getAllPending(): Promise<ExpiredProduct[]> {
     return this.expiredProductService.getAllPending();
   }
 }

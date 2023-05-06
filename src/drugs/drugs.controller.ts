@@ -12,8 +12,7 @@ export class DrugsController {
   @ApiOperation({ summary: "Get drugs by name" })
   @ApiResponse({ status: 200, type: [Drug] })
   @Get("/:name")
-  async getDrugsByName(@Param("name") name: string): Promise<Drug[]> {
-    const drugs = await this.drugService.getDrugsByName(name);
-    return drugs;
+  getDrugsByName(@Param("name") name: string): Promise<Drug[]> {
+    return this.drugService.getDrugsByName(name);
   }
 }

@@ -11,6 +11,8 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcryptjs";
 import { Company } from "src/company/company.model";
 import { LoginDto } from "src/auth/dto/login.dto";
+import { LoginResponse } from "src/auth/responses/login-response";
+import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()
 export class AuthService {
@@ -19,13 +21,13 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async login(companyDto: LoginDto) {
-    const user = await this.validateCompany(companyDto);
+  async login(companyDto: LoginDto): Promise<LoginResponse> {
+    const user: Company = await this.validateCompany(companyDto);
     return this.generateToken(user);
   }
 
-  async register(companyDto: CreateCompanyDto) {
-    const candidate = await this.pharmacistService.getCompanyByEmail(
+  async register(companyDto: CreateCompanyDto): Promise<MessageResponse> {
+    const candidate: Company = await this.pharmacistService.getCompanyByEmail(
       companyDto.email
     );
     if (candidate) {
@@ -35,14 +37,14 @@ export class AuthService {
       );
     }
     const hashPassword = await bcrypt.hash(companyDto.password, 5);
-    const user = await this.pharmacistService.createCompany({
+    await this.pharmacistService.createCompany({
       ...companyDto,
       password: hashPassword,
     });
     return { message: "Company successfully registered." };
   }
 
-  private async generateToken(user: Company) {
+  private async generateToken(user: Company): Promise<LoginResponse> {
     const payload = { email: user.email, id: user.id, role: user.role };
     return {
       role: user.role,
@@ -50,8 +52,8 @@ export class AuthService {
     };
   }
 
-  private async validateCompany(companyDto: LoginDto) {
-    const company = await this.pharmacistService.getCompanyByEmail(
+  private async validateCompany(companyDto: LoginDto): Promise<Company> {
+    const company: Company = await this.pharmacistService.getCompanyByEmail(
       companyDto.email
     );
     if (!company)

@@ -13,31 +13,25 @@ export class TokenUtils {
 
   getCompanyIdFromToken(token: string): number {
     try {
-      if (!token) {
-        throw new TokenException("Token is missing or empty");
-      }
+      if (!token) throw new TokenException("Token is missing or empty");
 
-      const tokenParts = token.split(" ");
+      const tokenParts: string[] = token.split(" ");
 
-      if (tokenParts.length < 2) {
+      if (tokenParts.length < 2)
         throw new TokenException("Token format is not correct");
-      }
 
       const decodedToken = this.jwtService.verify(tokenParts[1]);
 
-      if (!decodedToken || !decodedToken.id) {
+      if (!decodedToken || !decodedToken.id)
         throw new TokenException("Cannot read companyId from token");
-      }
 
       return decodedToken.id;
     } catch (error) {
-      if (error instanceof TokenException) {
-        throw error;
-      } else {
+      if (error instanceof TokenException) throw error;
+      else
         throw new TokenException(
           `Error occurred while getting companyId from token: ${error.message}`
         );
-      }
     }
   }
 }

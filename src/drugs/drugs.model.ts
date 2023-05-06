@@ -8,9 +8,11 @@ import {
   AutoIncrement,
   Unique,
 } from "sequelize-typescript";
+import { ApiProperty } from "@nestjs/swagger";
 
 @Table({ tableName: "drugs" })
 export class Drug extends Model<Drug> {
+  @ApiProperty()
   @PrimaryKey
   @AutoIncrement
   @Unique
@@ -18,50 +20,62 @@ export class Drug extends Model<Drug> {
   @Column(DataType.INTEGER)
   id: number;
 
+  @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
   cim: string;
 
+  @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
   name: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   dci: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   form: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   concentration: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   firm: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   app: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   atc: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   action: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   prescription: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   packaging: string;
 
+  @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   packageVolume: string;

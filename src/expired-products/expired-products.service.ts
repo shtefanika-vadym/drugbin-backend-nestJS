@@ -11,6 +11,7 @@ import { ProductStatus } from "src/expired-products/enum/product-status";
 import { TokenUtils } from "src/utils/token.utils";
 import { CompanyService } from "src/company/company.service";
 import { DrugStockService } from "src/drug-stock/drug-stock.service";
+import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()
 export class ExpiredProductsService {
@@ -22,8 +23,11 @@ export class ExpiredProductsService {
     private tokenUtils: TokenUtils
   ) {}
 
-  async create(dto: CreateExpiredProductDto, token: string) {
-    const companyId = this.tokenUtils.getCompanyIdFromToken(token);
+  async create(
+    dto: CreateExpiredProductDto,
+    token: string
+  ): Promise<MessageResponse> {
+    const companyId: number = this.tokenUtils.getCompanyIdFromToken(token);
     const product = {
       ...dto,
       companyId,
@@ -38,8 +42,10 @@ export class ExpiredProductsService {
     };
   }
 
-  async updateStatus(id: number) {
-    const product = await this.expiredProductsRepository.findByPk(id);
+  async updateStatus(id: number): Promise<MessageResponse> {
+    const product: ExpiredProduct = await this.expiredProductsRepository.findByPk(
+      id
+    );
 
     if (!product) throw new NotFoundException("Expired product not found");
 
@@ -57,9 +63,11 @@ export class ExpiredProductsService {
     id: number,
     productDto: CreateExpiredProductDto,
     token: string
-  ) {
-    const companyId = this.tokenUtils.getCompanyIdFromToken(token);
-    const product = await this.expiredProductsRepository.findByPk(id);
+  ): Promise<MessageResponse> {
+    const companyId: number = this.tokenUtils.getCompanyIdFromToken(token);
+    const product: ExpiredProduct = await this.expiredProductsRepository.findByPk(
+      id
+    );
 
     if (!product) throw new NotFoundException("Expired product not found");
 
@@ -76,18 +84,22 @@ export class ExpiredProductsService {
     };
   }
 
-  async getAllProducts(token: string) {
-    const companyId = this.tokenUtils.getCompanyIdFromToken(token);
-    const products = await this.expiredProductsRepository.findAll({
-      where: { companyId },
-    });
+  async getAllProducts(token: string): Promise<ExpiredProduct[]> {
+    const companyId: number = this.tokenUtils.getCompanyIdFromToken(token);
+    const products: ExpiredProduct[] = await this.expiredProductsRepository.findAll(
+      {
+        where: { companyId },
+      }
+    );
     return products;
   }
 
-  async delete(id: number) {
-    const deletedProduct = await this.expiredProductsRepository.destroy({
-      where: { id },
-    });
+  async delete(id: number): Promise<MessageResponse> {
+    const deletedProduct: number = await this.expiredProductsRepository.destroy(
+      {
+        where: { id },
+      }
+    );
 
     if (!deletedProduct)
       throw new NotFoundException("Expired product not found");
@@ -97,22 +109,16 @@ export class ExpiredProductsService {
     };
   }
 
-  async getAllPending() {
-    const expiredProducts = await this.expiredProductsRepository.findAll({
-      include: { all: true },
-      where: {
-        status: ProductStatus.pending,
-      },
-    });
+  async getAllPending(): Promise<ExpiredProduct[]> {
+    const expiredProducts: ExpiredProduct[] = await this.expiredProductsRepository.findAll(
+      {
+        include: { all: true },
+        where: {
+          status: ProductStatus.pending,
+        },
+      }
+    );
 
     return expiredProducts;
-  }
-
-  async getByCompanyId(companyId: string) {
-    const products = await this.expiredProductsRepository.findOne({
-      where: { companyId },
-      include: { all: true },
-    });
-    return products;
   }
 }

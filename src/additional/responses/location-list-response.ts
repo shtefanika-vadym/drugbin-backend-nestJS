@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class GetLocationListDto {
+export class LocationListResponse {
   @ApiProperty({ type: String, isArray: true })
   locations: string[];
 }
