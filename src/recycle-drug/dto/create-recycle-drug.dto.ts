@@ -9,6 +9,7 @@ import {
   IsEnum,
   IsOptional,
   IsNumber,
+  IsDateString,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { ProductPack } from "src/expired-products/enum/product-pack";
@@ -42,12 +43,13 @@ class DrugDto {
     example: "2023-01-01",
     description: "The expiration date of the drug",
   })
+  @IsDateString(undefined, { message: "Invalid date string" })
   readonly expirationDate: string;
 
   @ApiProperty({
     required: true,
     example: 1,
-    description: "Selected drug id from drugs"
+    description: "Selected drug id from drugs",
   })
   @IsNumber(undefined, { message: "Drug Id must be a number" })
   readonly drugId;
