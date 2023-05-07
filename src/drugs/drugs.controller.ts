@@ -11,8 +11,8 @@ export class DrugsController {
   // Get drugs by name
   @ApiOperation({ summary: "Get drugs by name" })
   @ApiResponse({ status: 200, type: [Drug] })
-  @Get("/:name")
-  getDrugsByName(@Param("name") name: string): Promise<Drug[]> {
+  @Get("/:name?")
+  getDrugsByName(@Param("name") name?: string): Promise<Drug[]> {
     return this.drugService.getDrugsByName(name);
   }
 }

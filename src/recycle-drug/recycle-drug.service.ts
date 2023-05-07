@@ -61,13 +61,12 @@ export class RecycleDrugService {
 
   async getAllDrugByPharmacy(token: string): Promise<RecycleDrug[]> {
     const pharmacyId: number = this.tokenUtils.getCompanyIdFromToken(token);
-    const drugList: RecycleDrug[] = await this.recycleDrugRepository.findAll({
+    return this.recycleDrugRepository.findAll({
       where: { pharmacyId },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
     });
-    return drugList;
   }
 
   async getVerbalProcess(id: number): Promise<any> {

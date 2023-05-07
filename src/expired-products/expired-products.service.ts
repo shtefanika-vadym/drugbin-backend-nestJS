@@ -109,16 +109,12 @@ export class ExpiredProductsService {
     };
   }
 
-  async getAllPending(): Promise<ExpiredProduct[]> {
-    const expiredProducts: ExpiredProduct[] = await this.expiredProductsRepository.findAll(
-      {
-        include: { all: true },
-        where: {
-          status: ProductStatus.pending,
-        },
-      }
-    );
-
-    return expiredProducts;
+  getAllPending(): Promise<ExpiredProduct[]> {
+    return this.expiredProductsRepository.findAll({
+      include: { all: true },
+      where: {
+        status: ProductStatus.pending,
+      },
+    });
   }
 }

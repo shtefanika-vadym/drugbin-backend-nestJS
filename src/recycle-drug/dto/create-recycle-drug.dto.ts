@@ -25,6 +25,7 @@ class DrugDto {
     description: "The quantity of the drug",
     required: true,
   })
+  @IsNumber(undefined, { message: "Quantity must be a number" })
   readonly quantity: number;
 
   @ApiProperty({

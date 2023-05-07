@@ -44,7 +44,7 @@ export class AuthService {
     return { message: "Company successfully registered." };
   }
 
-  private async generateToken(user: Company): Promise<LoginResponse> {
+  async generateToken(user: Company): Promise<LoginResponse> {
     const payload = { email: user.email, id: user.id, role: user.role };
     return {
       role: user.role,
@@ -52,7 +52,7 @@ export class AuthService {
     };
   }
 
-  private async validateCompany(companyDto: LoginDto): Promise<Company> {
+  async validateCompany(companyDto: LoginDto): Promise<Company> {
     const company: Company = await this.pharmacistService.getCompanyByEmail(
       companyDto.email
     );
