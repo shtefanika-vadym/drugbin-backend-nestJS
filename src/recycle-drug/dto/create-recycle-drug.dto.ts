@@ -43,8 +43,9 @@ class DrugDto {
     example: "2023-01-01",
     description: "The expiration date of the drug",
   })
+  @IsOptional()
   @IsDateString(undefined, { message: "Invalid date string" })
-  readonly expirationDate: string;
+  readonly expirationDate?: string;
 
   @ApiProperty({
     required: true,

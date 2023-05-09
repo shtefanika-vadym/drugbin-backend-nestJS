@@ -45,7 +45,7 @@ export class RecycleDrugController {
   // Get verbal process
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get verbal process" })
-  @Get("/:id")
+  @Get("/verbal-process/:id")
   async getVerbalProcess(@Param("id") id: number, @Res() res): Promise<void> {
     try {
       const verbalProcessPdf = await this.recycleDrugService.getVerbalProcess(
@@ -60,6 +60,34 @@ export class RecycleDrugController {
         Expires: 0,
       });
       res.end(verbalProcessPdf);
+    } catch (error) {
+      if (error instanceof NotFoundException)
+        res.status(404).send({ error: error.message });
+      else res.status(500).send({ error: "Internal Server Error" });
+    }
+  }
+
+  // Get monthly audit
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: "Get monthly audit" })
+  @Get("/audit")
+  async getMonthlyAudit(
+    @Headers("Authorization") token: string,
+    @Res() res
+  ): Promise<any> {
+    try {
+      const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(
+        token
+      );
+      res.set({
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename=pdf.pdf`,
+        "Content-Length": monthlyAuditPdf.length,
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: 0,
+      });
+      res.end(monthlyAuditPdf);
     } catch (error) {
       if (error instanceof NotFoundException)
         res.status(404).send({ error: error.message });

@@ -1,13 +1,6 @@
 import * as path from "path";
 
-const getCurrentDate = (): string =>
-  new Date()
-    .toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    })
-    .replace(/\//g, "-");
+const getCurrentDate = (): string => new Date().toISOString().slice(0, 10);
 
 const getPdfFormat = () => ({
   format: "A4",
@@ -24,8 +17,12 @@ const getPdfFormat = () => ({
 const getPathTemplate = (): string =>
   path.join(process.cwd(), "templates", "pdf-verbal-process.hbs");
 
+const getPathMonthlyTemplate = (): string =>
+  path.join(process.cwd(), "templates", "pdf-verbal-process-month.hbs");
+
 export const RecycleDrugUtils = {
   getCurrentDate,
   getPdfFormat,
   getPathTemplate,
+  getPathMonthlyTemplate,
 };

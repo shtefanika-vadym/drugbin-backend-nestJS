@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
@@ -90,6 +91,62 @@ export class RecycleDrugService {
     const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleDrugUtils;
     return createPdf(getPathTemplate(), getPdfFormat(), {
       ...drug.toJSON(),
+      date: getCurrentDate(),
+      drugList,
+    });
+  }
+
+  // Need refactoring after MVP
+  async getMonthlyAudit(token: string): Promise<any> {
+    const pharmacyId: number = this.tokenUtils.getCompanyIdFromToken(token);
+    const pharmacy: Company = await this.companyService.getPharmacyById(
+      pharmacyId
+    );
+
+    if (!pharmacy) throw new NotFoundException("Pharmacy not found");
+
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+    const recycleDrugs: RecycleDrug[] = await this.recycleDrugRepository.findAll(
+      {
+        where: {
+          pharmacyId,
+          status: ProductStatus.recycled,
+          createdAt: {
+            [Op.gte]: oneMonthAgo,
+          },
+        },
+      }
+    );
+
+    const drugList = recycleDrugs
+      .map(
+        ({
+          firstName,
+          lastName,
+          drugList,
+          updatedAt: recycledAt,
+        }: RecycleDrug) => {
+          const details = { fullName: `${firstName} ${lastName}`, recycledAt };
+          return drugList.map(({ pack, ...rest }: IRecycledDrug) => ({
+            ...rest,
+            ...details,
+            pack: pack === ProductPack.pack ? "cutie" : "pastila",
+            recycledAt: new Date(recycledAt).toISOString().slice(0, 10),
+          }));
+        }
+      )
+      .reduce((acc, val) => acc.concat(val), []);
+
+    const {
+      getPdfFormat,
+      getCurrentDate,
+      getPathMonthlyTemplate,
+    } = RecycleDrugUtils;
+
+    return createPdf(getPathMonthlyTemplate(), getPdfFormat(), {
+      pharmacyName: pharmacy.name,
       date: getCurrentDate(),
       drugList,
     });
