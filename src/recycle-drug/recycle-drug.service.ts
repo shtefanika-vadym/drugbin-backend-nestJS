@@ -17,6 +17,7 @@ import { Company } from "src/company/company.model";
 import { RecycleDrugUtils } from "src/recycle-drug/utils/recycle-drug.utils";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 import { ProductStatus } from "src/expired-products/enum/product-status";
+import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()
 export class RecycleDrugService {
@@ -73,6 +74,28 @@ export class RecycleDrugService {
     });
   }
 
+  async updateRecycleDrugStatus(
+    id: number,
+    token: string
+  ): Promise<MessageResponse> {
+    const pharmacyId: number = this.tokenUtils.getCompanyIdFromToken(token);
+    const drug: RecycleDrug = await this.recycleDrugRepository.findOne({
+      where: { pharmacyId, id },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+      order: [["id", "DESC"]],
+    });
+
+    if (!drug) throw new NotFoundException("Drug not found");
+
+    await drug.update({ ...drug, status: ProductStatus.recycled });
+
+    return {
+      message: "Drug successfully updated!",
+    };
+  }
+
   async getVerbalProcess(id: number): Promise<any> {
     const drug: RecycleDrug = await this.recycleDrugRepository.findOne({
       where: { id },
@@ -85,8 +108,6 @@ export class RecycleDrugService {
       ...rest,
       pack: pack === ProductPack.pack ? "cutie" : "pastila",
     }));
-
-    await drug.update({ ...drug, status: ProductStatus.recycled });
 
     const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleDrugUtils;
     return createPdf(getPathTemplate(), getPdfFormat(), {

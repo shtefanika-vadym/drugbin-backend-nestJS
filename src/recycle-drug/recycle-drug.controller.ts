@@ -5,6 +5,7 @@ import {
   Headers,
   NotFoundException,
   Param,
+  Patch,
   Post,
   Res,
   UseGuards,
@@ -15,6 +16,7 @@ import { CreateRecycleDrugDto } from "src/recycle-drug/dto/create-recycle-drug.d
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
+import { MessageResponse } from "src/reponses/message-response";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle-drug")
@@ -40,6 +42,19 @@ export class RecycleDrugController {
     @Headers("Authorization") token: string
   ): Promise<RecycleDrug[]> {
     return this.recycleDrugService.getAllDrugByPharmacy(token);
+  }
+
+  // Confirm recycle drug status
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: "Confirm recycle drug status" })
+  @ApiResponse({ status: 200, type: MessageResponse })
+  @Patch("/:id")
+  updateRecycleDrugStatus(
+    @Param("id") id: number,
+    @Headers("Authorization")
+    token: string
+  ): Promise<MessageResponse> {
+    return this.recycleDrugService.updateRecycleDrugStatus(id, token);
   }
 
   // Get verbal process
