@@ -51,8 +51,15 @@ export class RecycleDrugController {
       const verbalProcessPdf = await this.recycleDrugService.getVerbalProcess(
         id
       );
-      res.contentType("application/pdf");
-      res.send(verbalProcessPdf);
+      res.set({
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename=pdf.pdf`,
+        "Content-Length": verbalProcessPdf.length,
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: 0,
+      });
+      res.end(verbalProcessPdf);
     } catch (error) {
       if (error instanceof NotFoundException)
         res.status(404).send({ error: error.message });
