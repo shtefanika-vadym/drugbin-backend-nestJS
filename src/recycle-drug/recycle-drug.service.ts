@@ -15,6 +15,7 @@ import { Drug } from "src/drugs/drugs.model";
 import { Company } from "src/company/company.model";
 import { RecycleDrugUtils } from "src/recycle-drug/utils/recycle-drug.utils";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
+import { ProductStatus } from "src/expired-products/enum/product-status";
 
 @Injectable()
 export class RecycleDrugService {
@@ -51,6 +52,7 @@ export class RecycleDrugService {
 
     const createdDrug: RecycleDrug = await this.recycleDrugRepository.create({
       ...dto,
+      status: ProductStatus.pending,
       drugList: recycledDrugList,
     });
 
@@ -82,6 +84,8 @@ export class RecycleDrugService {
       ...rest,
       pack: pack === ProductPack.pack ? "cutie" : "pastila",
     }));
+
+    await drug.update({ ...drug, status: ProductStatus.recycled });
 
     const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleDrugUtils;
     return createPdf(getPathTemplate(), getPdfFormat(), {

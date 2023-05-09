@@ -8,7 +8,6 @@ import { ExpiredProduct } from "src/expired-products/expired-products.model";
 import { DrugStock } from "src/drug-stock/drug-stock.model";
 import { ProductPack } from "src/expired-products/enum/product-pack";
 import { DrugType } from "src/drug-stock/enum/drug-type";
-import { CompanyDetailsDto } from "src/company/dto/company-details.dto";
 import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()

@@ -12,11 +12,14 @@ import {
 } from "sequelize-typescript";
 import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
 import { Company } from "src/company/company.model";
+import { ProductStatus } from "src/expired-products/enum/product-status";
+import { IsEnum } from "class-validator";
 
 interface RecycleDrugCreationAttrs {
   email?: string;
   firstName: string;
   lastName: string;
+  status: ProductStatus
   drugList: IRecycledDrug[];
 }
 
@@ -40,6 +43,11 @@ export class RecycleDrug extends Model<RecycleDrug, RecycleDrugCreationAttrs> {
   @AllowNull(true)
   @Column(DataType.STRING)
   email?: string;
+
+  @AllowNull(true)
+  @IsEnum(ProductStatus)
+  @Column(DataType.ENUM(...Object.values(ProductStatus)))
+  status: ProductStatus;
 
   @AllowNull(true)
   @Column(DataType.JSON)
