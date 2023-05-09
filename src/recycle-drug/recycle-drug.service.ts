@@ -66,6 +66,7 @@ export class RecycleDrugService {
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
+      order: [["id", "DESC"]],
     });
   }
 
