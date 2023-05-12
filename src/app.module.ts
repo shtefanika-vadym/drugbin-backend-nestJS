@@ -7,8 +7,6 @@ import { Sequelize } from "sequelize";
 import { AdditionalModule } from "src/additional/additional.module";
 import { AuthModule } from "src/auth/auth.module";
 import { AppController } from "src/app.controller";
-import { DrugStock } from "src/drug-stock/drug-stock.model";
-import { DrugStockModule } from "src/drug-stock/drug-stock.module";
 import { ContactUs } from "src/contact-us/contact-us.model";
 import { ContactUsModule } from "src/contact-us/contact-us.module";
 import { RecycleDrugModule } from "src/recycle-drug/recycle-drug.module";
@@ -31,14 +29,13 @@ import { DrugsModule } from "src/drugs/drugs.module";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Company, DrugStock, ContactUs, RecycleDrug, Drug],
+      models: [Company, ContactUs, RecycleDrug, Drug],
       autoLoadModels: true,
     }),
     AdditionalModule,
     CompanyModule,
     AuthModule,
     DrugsModule,
-    DrugStockModule,
     ContactUsModule,
     RecycleDrugModule,
   ],

@@ -14,8 +14,8 @@ import { Company } from "src/company/company.model";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 import { MessageResponse } from "src/reponses/message-response";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
-import { ProductStatus } from "src/drug-stock/enum/product-status";
-import { ProductPack } from "src/drug-stock/enum/product-pack";
+import { ProductStatus } from "src/recycle-drug/enum/product-status";
+import { ProductPack } from "src/recycle-drug/enum/product-pack";
 
 @Injectable()
 export class RecycleDrugService {
@@ -116,7 +116,6 @@ export class RecycleDrugService {
     return response;
   }
 
-  // Need refactoring after MVP
   async getMonthlyAudit(id: number): Promise<any> {
     const pharmacy: Company = await this.companyService.getPharmacyById(id);
 

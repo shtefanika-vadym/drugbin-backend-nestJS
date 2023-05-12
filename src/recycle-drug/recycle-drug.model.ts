@@ -13,7 +13,7 @@ import {
 import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
 import { Company } from "src/company/company.model";
 import { IsEnum } from "class-validator";
-import { ProductStatus } from "src/drug-stock/enum/product-status";
+import { ProductStatus } from "src/recycle-drug/enum/product-status";
 
 interface RecycleDrugCreationAttrs {
   email?: string;

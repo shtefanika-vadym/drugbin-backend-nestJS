@@ -1,5 +1,5 @@
 import { Drug } from "src/drugs/drugs.model";
-import { ProductPack } from "src/drug-stock/enum/product-pack";
+import { ProductPack } from "src/recycle-drug/enum/product-pack";
 
 export interface IDrug {
   lot?: number;
