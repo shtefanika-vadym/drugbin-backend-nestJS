@@ -12,7 +12,7 @@ import {
   IsDateString,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { ProductPack } from "src/drug-stock/enum/product-pack";
+import { ProductPack } from "src/recycle-drug/enum/product-pack";
 
 class DrugDto {
   @ApiProperty({
