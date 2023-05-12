@@ -35,10 +35,13 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cross-env": "^7.0.3",
+    "fs-extra": "^11.1.1",
     "handlebars": "^4.7.7",
     "mysql2": "^3.2.0",
+    "nest-puppeteer": "^1.1.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "puppeteer": "^20.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^5.0.0",
     "rxjs": "^6.6.3",
@@ -69,7 +72,7 @@
     "ts-loader": "^8.0.8",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.5"
   },
   "jest": {
     "moduleFileExtensions": [

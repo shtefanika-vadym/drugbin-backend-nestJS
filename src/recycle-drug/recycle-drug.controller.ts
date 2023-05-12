@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
   NotFoundException,
   Param,
   Patch,
@@ -17,6 +16,7 @@ import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 import { MessageResponse } from "src/reponses/message-response";
+import { CompanyId } from "src/auth/company-id.decorator";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle-drug")
@@ -38,10 +38,8 @@ export class RecycleDrugController {
   @ApiOperation({ summary: "Get all recycle drug" })
   @ApiResponse({ status: 200, type: [CreateRecycleDrugDto] })
   @Get()
-  getAllDrugByPharmacy(
-    @Headers("Authorization") token: string
-  ): Promise<RecycleDrug[]> {
-    return this.recycleDrugService.getAllDrugByPharmacy(token);
+  getAllDrugByPharmacy(@CompanyId() id: number): Promise<RecycleDrug[]> {
+    return this.recycleDrugService.getAllDrugByPharmacy(id);
   }
 
   // Confirm recycle drug status
@@ -50,11 +48,10 @@ export class RecycleDrugController {
   @ApiResponse({ status: 200, type: MessageResponse })
   @Patch("/:id")
   updateRecycleDrugStatus(
-    @Param("id") id: number,
-    @Headers("Authorization")
-    token: string
+    @CompanyId() companyId: number,
+    @Param("id") id: number
   ): Promise<MessageResponse> {
-    return this.recycleDrugService.updateRecycleDrugStatus(id, token);
+    return this.recycleDrugService.updateRecycleDrugStatus(id, companyId);
   }
 
   // Get verbal process
@@ -86,14 +83,9 @@ export class RecycleDrugController {
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get monthly audit" })
   @Get("/audit")
-  async getMonthlyAudit(
-    @Headers("Authorization") token: string,
-    @Res() res
-  ): Promise<any> {
+  async getMonthlyAudit(@Res() res, @CompanyId() id: number): Promise<any> {
     try {
-      const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(
-        token
-      );
+      const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(id);
       res.set({
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename=pdf.pdf`,

@@ -2,8 +2,6 @@ import { Module } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { CompanyModule } from "src/company/company.module";
 import { Company } from "src/company/company.model";
-import { ExpiredProductsModule } from "src/expired-products/expired-products.module";
-import { ExpiredProduct } from "src/expired-products/expired-products.model";
 import { ConfigModule } from "@nestjs/config";
 import { Sequelize } from "sequelize";
 import { AdditionalModule } from "src/additional/additional.module";
@@ -33,14 +31,7 @@ import { DrugsModule } from "src/drugs/drugs.module";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [
-        Company,
-        ExpiredProduct,
-        DrugStock,
-        ContactUs,
-        RecycleDrug,
-        Drug,
-      ],
+      models: [Company, DrugStock, ContactUs, RecycleDrug, Drug],
       autoLoadModels: true,
     }),
     AdditionalModule,
@@ -50,13 +41,12 @@ import { DrugsModule } from "src/drugs/drugs.module";
     DrugStockModule,
     ContactUsModule,
     RecycleDrugModule,
-    ExpiredProductsModule,
   ],
 })
 export class AppModule {
   constructor(private readonly sequelize: Sequelize) {}
 
-  async onModuleInit() {
+  async onModuleInit(): Promise<void> {
     await this.sequelize.sync();
     importDrugs();
   }

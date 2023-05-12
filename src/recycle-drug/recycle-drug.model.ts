@@ -12,14 +12,14 @@ import {
 } from "sequelize-typescript";
 import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
 import { Company } from "src/company/company.model";
-import { ProductStatus } from "src/expired-products/enum/product-status";
 import { IsEnum } from "class-validator";
+import { ProductStatus } from "src/drug-stock/enum/product-status";
 
 interface RecycleDrugCreationAttrs {
   email?: string;
   firstName: string;
   lastName: string;
-  status: ProductStatus
+  status: ProductStatus;
   drugList: IRecycledDrug[];
 }
 

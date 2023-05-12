@@ -6,9 +6,9 @@ import { Roles } from "src/auth/roles.decorator";
 import { Role } from "src/company/enum/Role";
 import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
-import { CompanyDetailsDto } from "src/company/dto/company-details.dto";
 import { MessageResponse } from "src/reponses/message-response";
 import { Company } from "src/company/company.model";
+import { CompanyDto } from "src/company/dto/company.dto";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Companies")
@@ -39,7 +39,7 @@ export class CompanyController {
   @ApiOperation({ summary: "Get pharmacy details" })
   @UseGuards(RolesGuard)
   @Roles(Role.recycle)
-  @ApiResponse({ status: 200, type: [CompanyDetailsDto] })
+  @ApiResponse({ status: 200, type: [CompanyDto] })
   @Get("/pharmacies/:id")
   getPharmacy(@Param("id") id: number) {
     return this.companyService.getPharmacyDetails(id);

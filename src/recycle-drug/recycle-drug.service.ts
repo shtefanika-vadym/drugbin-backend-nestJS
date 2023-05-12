@@ -4,9 +4,6 @@ import { InjectModel } from "@nestjs/sequelize";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { CreateRecycleDrugDto } from "src/recycle-drug/dto/create-recycle-drug.dto";
 import { CompanyService } from "src/company/company.service";
-import { TokenUtils } from "src/utils/token.utils";
-import { createPdf } from "@saemhco/nestjs-html-pdf";
-import { ProductPack } from "src/expired-products/enum/product-pack";
 import { DrugsService } from "src/drugs/drugs.service";
 import {
   IDrug,
@@ -14,18 +11,19 @@ import {
 } from "src/recycle-drug/interfaces/drug.interface";
 import { Drug } from "src/drugs/drugs.model";
 import { Company } from "src/company/company.model";
-import { RecycleDrugUtils } from "src/recycle-drug/utils/recycle-drug.utils";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
-import { ProductStatus } from "src/expired-products/enum/product-status";
 import { MessageResponse } from "src/reponses/message-response";
+import { PuppeteerService } from "src/puppeteer/puppetter.service";
+import { ProductStatus } from "src/drug-stock/enum/product-status";
+import { ProductPack } from "src/drug-stock/enum/product-pack";
 
 @Injectable()
 export class RecycleDrugService {
   constructor(
     @InjectModel(RecycleDrug) private recycleDrugRepository: typeof RecycleDrug,
+    private puppeteerService: PuppeteerService,
     private companyService: CompanyService,
-    private drugService: DrugsService,
-    private tokenUtils: TokenUtils
+    private drugService: DrugsService
   ) {}
 
   async create(dto: CreateRecycleDrugDto): Promise<CreateRecycleDrugResponse> {
@@ -63,8 +61,7 @@ export class RecycleDrugService {
     };
   }
 
-  async getAllDrugByPharmacy(token: string): Promise<RecycleDrug[]> {
-    const pharmacyId: number = this.tokenUtils.getCompanyIdFromToken(token);
+  async getAllDrugByPharmacy(pharmacyId: number): Promise<RecycleDrug[]> {
     return this.recycleDrugRepository.findAll({
       where: { pharmacyId },
       attributes: {
@@ -76,9 +73,8 @@ export class RecycleDrugService {
 
   async updateRecycleDrugStatus(
     id: number,
-    token: string
+    pharmacyId: number
   ): Promise<MessageResponse> {
-    const pharmacyId: number = this.tokenUtils.getCompanyIdFromToken(token);
     const drug: RecycleDrug = await this.recycleDrugRepository.findOne({
       where: { pharmacyId, id },
       attributes: {
@@ -109,23 +105,35 @@ export class RecycleDrugService {
       pack: pack === ProductPack.pack ? "cutie" : "pastila",
     }));
 
-    const { getPdfFormat, getCurrentDate, getPathTemplate } = RecycleDrugUtils;
-    return createPdf(getPathTemplate(), getPdfFormat(), {
-      ...drug.toJSON(),
-      date: getCurrentDate(),
-      drugList,
-    });
+    const response = await this.puppeteerService.generatePDF(
+      "pdf-verbal-process.hbs",
+      {
+        ...drug.toJSON(),
+        drugList,
+        date: new Date().toISOString().slice(0, 10),
+      }
+    );
+    return response;
   }
 
   // Need refactoring after MVP
-  async getMonthlyAudit(token: string): Promise<any> {
-    const pharmacyId: number = this.tokenUtils.getCompanyIdFromToken(token);
-    const pharmacy: Company = await this.companyService.getPharmacyById(
-      pharmacyId
+  async getMonthlyAudit(id: number): Promise<any> {
+    const pharmacy: Company = await this.companyService.getPharmacyById(id);
+
+    const drugList = await this.getDrugsByOneMonthAgo(id);
+
+    const response = await this.puppeteerService.generatePDF(
+      "pdf-verbal-process-month.hbs",
+      {
+        drugList,
+        pharmacyName: pharmacy.name,
+        date: new Date().toISOString().slice(0, 10),
+      }
     );
+    return response;
+  }
 
-    if (!pharmacy) throw new NotFoundException("Pharmacy not found");
-
+  async getDrugsByOneMonthAgo(pharmacyId: number) {
     const oneMonthAgo = new Date();
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
@@ -141,7 +149,7 @@ export class RecycleDrugService {
       }
     );
 
-    const drugList = recycleDrugs
+    return recycleDrugs
       .map(
         ({
           firstName,
@@ -159,17 +167,5 @@ export class RecycleDrugService {
         }
       )
       .reduce((acc, val) => acc.concat(val), []);
-
-    const {
-      getPdfFormat,
-      getCurrentDate,
-      getPathMonthlyTemplate,
-    } = RecycleDrugUtils;
-
-    return createPdf(getPathMonthlyTemplate(), getPdfFormat(), {
-      pharmacyName: pharmacy.name,
-      date: getCurrentDate(),
-      drugList,
-    });
   }
 }

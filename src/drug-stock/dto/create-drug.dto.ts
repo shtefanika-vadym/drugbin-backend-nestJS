@@ -10,7 +10,7 @@ import {
   Min,
   MinLength,
 } from "class-validator";
-import { ProductPack } from "src/expired-products/enum/product-pack";
+import { ProductPack } from "src/drug-stock/enum/product-pack";
 
 export class CreateDrugDto {
   @ApiProperty({ example: "Paduden", description: "Name" })
