@@ -75,24 +75,4 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
   @AllowNull(true)
   @Column(DataType.STRING)
   phone?: string;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.DECIMAL)
-  weight?: number;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.DECIMAL)
-  weightRx?: number;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.DECIMAL)
-  weightOtc?: number;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.DECIMAL)
-  weightSupplement?: number;
 }

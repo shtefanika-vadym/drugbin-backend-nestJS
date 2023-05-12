@@ -4,8 +4,6 @@ import { InjectModel } from "@nestjs/sequelize";
 import { CreateCompanyDto } from "src/company/dto/create-company.dto";
 import { Role } from "src/company/enum/Role";
 import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
-import { DrugStock } from "src/drug-stock/drug-stock.model";
-import { DrugType } from "src/drug-stock/enum/drug-type";
 import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()
