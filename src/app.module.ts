@@ -44,7 +44,7 @@ export class AppModule {
   constructor(private readonly sequelize: Sequelize) {}
 
   async onModuleInit(): Promise<void> {
-    await this.sequelize.sync();
-    importDrugs();
+    // await this.sequelize.sync();
+    // importDrugs();
   }
 }

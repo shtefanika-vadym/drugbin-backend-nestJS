@@ -10,6 +10,7 @@ import { TokenUtils } from "src/utils/token.utils";
 import { DrugsService } from "src/drugs/drugs.service";
 import { Drug } from "src/drugs/drugs.model";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
+import { VisionService } from "src/vision/vision.service";
 
 @Module({
   controllers: [RecycleDrugController],
@@ -19,6 +20,7 @@ import { PuppeteerService } from "src/puppeteer/puppetter.service";
     CompanyService,
     TokenUtils,
     DrugsService,
+    VisionService,
   ],
   imports: [
     SequelizeModule.forFeature([RecycleDrug, Company, Drug]),
