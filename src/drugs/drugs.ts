@@ -21304,7 +21304,7 @@ export const DRUG_LIST = [
   },
   {
     cim: "W67997001",
-    name: "COLDREX MAXGRIP FRUCTE DE PADURE & MENTOL",
+    name: "COLDREX MAX GRIP FRUCTE DE PADURE & MENTOL",
     dci: "COMBINATII",
     form: "PULB. PT. SUSP. ORALA",
     firm: "OMEGA PHARMA INTERNATIONAL NV - BELGIA",
@@ -21317,7 +21317,7 @@ export const DRUG_LIST = [
   },
   {
     cim: "W67990001",
-    name: "COLDREX MAXGRIP LEMON",
+    name: "COLDREX MAX GRIP LEMON",
     dci: "COMBINATII",
     form: "PULB. PT. SUSP. ORALA",
     firm: "OMEGA PHARMA INTERNATIONAL NV - BELGIA",

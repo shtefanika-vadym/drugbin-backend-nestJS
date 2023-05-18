@@ -34,32 +34,41 @@ export class DrugsService {
 
   async identifyDrugByImage(image: Express.Multer.File): Promise<any> {
     const drugs: Drug[] = await this.drugRepository.findAll();
-    const result: string[] = await this.visionService.identifyText(image);
+    const textList: string[][] = await this.visionService.identifyText(image);
 
-    let bestScore: number = -1;
-    let bestDrug: Drug = null;
+    const identifiedDrugs: Drug[] = [];
 
-    drugs.forEach((drug: Drug): void => {
-      const drugNameList: string[] = drug.name.split(" ");
-      const totalCount: number = result.reduce(
-        (acc: number, el: string): number => {
-          const isCounting: boolean = drug.name
-            .toLowerCase()
-            .includes(el.toLowerCase());
-          return isCounting ? acc + 1 : acc;
-        },
-        0
-      );
-      const isContainsAll: boolean = drugNameList.every((item: string) =>
-        result.some(
-          (el: string): boolean => el.toLowerCase() === item.toLowerCase()
-        )
-      );
-      if (totalCount >= bestScore && isContainsAll) {
-        bestScore = totalCount;
-        bestDrug = drug;
-      }
+    textList.forEach((drugDetailsList: string[]): void => {
+      let bestScore: number = -1;
+      let bestDrug: Drug = null;
+
+      drugs.forEach((drug: Drug): void => {
+        const drugNameList: string[] = drug.name.split(/[ /-]/);
+        const totalCount: number = drugDetailsList.reduce(
+          (acc: number, el: string): number => {
+            const isCounting: boolean = drug.name
+              .toLowerCase()
+              .includes(el.toLowerCase());
+            return isCounting ? acc + 1 : acc;
+          },
+          0
+        );
+
+        const isContainsAll: boolean = drugNameList.every((item: string) =>
+          drugDetailsList.some((el: string): boolean => {
+            if (item === '&') return true
+            return el.toLowerCase() === item.toLowerCase();
+          })
+        );
+
+        if (totalCount >= bestScore && isContainsAll) {
+          bestScore = totalCount;
+          bestDrug = drug;
+        }
+      });
+
+      if (bestDrug) identifiedDrugs.push(bestDrug);
     });
-    return bestDrug;
+    return identifiedDrugs;
   }
 }
