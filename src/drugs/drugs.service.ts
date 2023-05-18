@@ -39,7 +39,7 @@ export class DrugsService {
     let bestScore: number = -1;
     let bestDrug: Drug = null;
 
-    drugs.forEach((drug: Drug) => {
+    drugs.forEach((drug: Drug): void => {
       const drugNameList: string[] = drug.name.split(" ");
       const totalCount: number = result.reduce(
         (acc: number, el: string): number => {

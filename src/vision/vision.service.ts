@@ -26,16 +26,19 @@ export class VisionService {
     });
 
     const textAnnotations = result.textAnnotations;
+
     const textList: string[] = textAnnotations[0].description
       .split("\n")
       .map((str: string) => str.split(" "))
       .reduce((acc, val) => acc.concat(val), []);
-    return [...new Set(textList)].filter((str: string) => str.length > 0);
+    return [...new Set(textList)].filter(
+      (str: string): boolean => str.length > 0
+    );
   }
 }
 
 function streamToBuffer(stream: Readable): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject): void => {
     const chunks: Buffer[] = [];
     stream.on("data", (chunk: Buffer) => chunks.push(chunk));
     stream.on("end", () => resolve(Buffer.concat(chunks)));
