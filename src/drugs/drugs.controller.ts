@@ -30,7 +30,7 @@ export class DrugsController {
   }
 
   // Identify drug by image
-  @ApiOperation({ summary: "Identify drug by image" })
+  @ApiOperation({ summary: "Identify drugs by image" })
   @ApiConsumes("multipart/form-data")
   @UseInterceptors(FilesInterceptor("image", 1, { fileFilter: imageFilter }))
   @ApiResponse({ status: 200, type: [Drug] })

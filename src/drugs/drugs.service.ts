@@ -56,7 +56,7 @@ export class DrugsService {
 
         const isContainsAll: boolean = drugNameList.every((item: string) =>
           drugDetailsList.some((el: string): boolean => {
-            if (item === '&') return true
+            if (item === "&") return true;
             return el.toLowerCase() === item.toLowerCase();
           })
         );

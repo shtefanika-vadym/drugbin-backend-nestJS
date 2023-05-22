@@ -60,9 +60,13 @@ export class VisionService {
 
         const croppedTextAnnotations = croppedImageAnnotation.textAnnotations;
 
-        const textList: string[] = removeDiacritics(croppedTextAnnotations[0].description)
+        const textList: string[] = removeDiacritics(
+          croppedTextAnnotations[0].description
+        )
           .split("\n")
-          .map((str: string) => str.split(/[ /-]/))
+          .map((str: string) =>
+            str.replace("mg", " mg").split(/[ /-]/)
+          )
           .reduce((acc, val) => acc.concat(val), []);
 
         resultList.push(
@@ -70,6 +74,8 @@ export class VisionService {
             (str: string): boolean => str.length > 0
           )
         );
+
+        console.log(resultList);
 
         // await croppedImage.writeAsync(
         //   path.join(
@@ -112,5 +118,8 @@ function removeDiacritics(text: string): string {
     Ț: "T",
   };
 
-  return text.replace(/[ăâîșşțĂÂÎȘȚ]/g, (match: string) => diacriticsMap[match]);
+  return text.replace(
+    /[ăâîșşțĂÂÎȘȚ]/g,
+    (match: string) => diacriticsMap[match]
+  );
 }
