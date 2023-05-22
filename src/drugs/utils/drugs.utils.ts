@@ -1,3 +1,5 @@
+import { DrugPillsType } from "src/drugs/enum/drug-pills-type";
+
 const getStringListByKey = (input: string[], key: string): string[] => {
   const result: string[] = [];
   input.forEach((str: string, index: number) => {
@@ -17,20 +19,20 @@ const getDrugDetailsByKeys = (input: string[]) => {
       .split(/[ /-]/);
 
     if (
-      !parsedStr.includes("mg") &&
-      !parsedStr.includes("plicuri") &&
-      !parsedStr.includes("drajeuri") &&
-      !parsedStr.includes("capsule")
+      !parsedStr.includes(DrugPillsType.mg) &&
+      !parsedStr.includes(DrugPillsType.pills) &&
+      !parsedStr.includes(DrugPillsType.packets) &&
+      !parsedStr.includes(DrugPillsType.capsules)
     )
       result.push(...parsedStr);
-    else if (parsedStr.includes("mg"))
-      result.push(...getStringListByKey(parsedStr, "mg"));
-    else if (parsedStr.includes("plicuri"))
-      result.push(...getStringListByKey(parsedStr, "plicuri"));
-    else if (parsedStr.includes("drajeuri"))
-      result.push(...getStringListByKey(parsedStr, "drajeuri"));
-    else if (parsedStr.includes("capsule"))
-      result.push(...getStringListByKey(parsedStr, "capsule"));
+    else if (parsedStr.includes(DrugPillsType.mg))
+      result.push(...getStringListByKey(parsedStr, DrugPillsType.mg));
+    else if (parsedStr.includes(DrugPillsType.packets))
+      result.push(...getStringListByKey(parsedStr, DrugPillsType.packets));
+    else if (parsedStr.includes(DrugPillsType.pills))
+      result.push(...getStringListByKey(parsedStr, DrugPillsType.pills));
+    else if (parsedStr.includes(DrugPillsType.capsules))
+      result.push(...getStringListByKey(parsedStr, DrugPillsType.capsules));
   });
 
   return [...new Set(result)];

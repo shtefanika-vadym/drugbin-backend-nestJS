@@ -3,7 +3,7 @@ import { InjectModel } from "@nestjs/sequelize";
 import { Drug } from "src/drugs/drugs.model";
 import { VisionService } from "src/vision/vision.service";
 import { Op } from "sequelize";
-import { DrugsUtils } from "src/drugs/utils/drugs.utils";
+import { DrugPillsType } from "src/drugs/enum/drug-pills-type";
 
 @Injectable()
 export class DrugsService {
@@ -50,7 +50,7 @@ export class DrugsService {
         const drugPackageList: string[] = drug.packaging.match(/\d+/g) || [];
 
         const drugConcentration: string[] = drug.concentration
-          .split(/[ /-]/)
+          .split(/[ \/,-]/)
           .map((str: string) => str.replace(/(\d+)\s*(\D+)/i, "$1 $2"));
 
         const nameWithConcentration = (
@@ -60,7 +60,7 @@ export class DrugsService {
         ).toLowerCase();
 
         const drugNameWithConcentration: string[] = nameWithConcentration.split(
-          /[ /-]/
+          /[ \/,-]/
         );
 
         const uniqueDrugNameList: string[] = [
@@ -79,11 +79,18 @@ export class DrugsService {
           0
         );
 
+        const hasPackage: boolean = drugDetailsList.some(
+          (details: string): boolean =>
+            details.includes(DrugPillsType.pills) ||
+            details.includes(DrugPillsType.packets) ||
+            details.includes(DrugPillsType.capsules)
+        );
+
         const isSamePackage: boolean = drugDetailsList.some(
           (drugDetails: string) => {
             return (
               drugDetails.split(" ").length === 2 &&
-              !drugDetails.includes("mg") &&
+              !drugDetails.includes(DrugPillsType.mg) &&
               drugDetails.includes(String(packageTotal))
             );
           }
@@ -97,27 +104,27 @@ export class DrugsService {
             })
         );
 
-        // if (
-        //   nameWithConcentration.includes("biofen") &&
-        //   nameWithConcentration.includes("200")
-        // ) {
+        // if (nameWithConcentration.includes("parasinus")) {
         //   console.log(
-        //     drugDetailsList,
+        //     uniqueDrugNameList,
         //     isSamePackage,
         //     isContainsAll,
-        //     packageTotal
+        //     packageTotal,
+        //     nameWithConcentration
         //   );
         // }
 
-        if (totalCount >= bestScore && isSamePackage && isContainsAll) {
-          bestScore = totalCount;
-          bestDrug = drug;
+        if (totalCount >= bestScore && isContainsAll) {
+          if ((hasPackage && isSamePackage) || !hasPackage) {
+            bestScore = totalCount;
+            bestDrug = drug;
+          }
         }
       });
 
-      const isAlreadyExisted: boolean = identifiedDrugs.some(
-        (drug: Drug): boolean => drug.id === bestDrug.id
-      );
+      const isAlreadyExisted: boolean =
+        bestDrug &&
+        identifiedDrugs.some((drug: Drug): boolean => drug.id === bestDrug.id);
 
       if (bestDrug && !isAlreadyExisted) identifiedDrugs.push(bestDrug);
     });
