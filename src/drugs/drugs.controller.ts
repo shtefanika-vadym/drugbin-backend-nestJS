@@ -1,9 +1,9 @@
 import {
   Controller,
   Get,
-  Param,
+  Param, Post,
   UploadedFiles,
-  UseInterceptors,
+  UseInterceptors
 } from "@nestjs/common";
 import {
   ApiConsumes,
@@ -34,11 +34,11 @@ export class DrugsController {
   @ApiConsumes("multipart/form-data")
   @UseInterceptors(FilesInterceptor("image", 1, { fileFilter: imageFilter }))
   @ApiResponse({ status: 200, type: [Drug] })
-  @Get("/identify")
+  @Post("/identify")
   identifyDrugByImage(
     @UploadedFiles()
     files: Express.Multer.File[]
-  ): Promise<any> {
+  ): Promise<Drug[]> {
     return this.drugService.identifyDrugByImage(files[0]);
   }
 }

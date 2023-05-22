@@ -32,7 +32,7 @@ export class DrugsService {
     });
   }
 
-  async identifyDrugByImage(image: Express.Multer.File): Promise<any> {
+  async identifyDrugByImage(image: Express.Multer.File): Promise<Drug[]> {
     const drugs: Drug[] = await this.drugRepository.findAll();
     const textList: string[][] = await this.visionService.identifyText(image);
 
