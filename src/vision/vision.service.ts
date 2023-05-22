@@ -4,6 +4,7 @@ import { Express } from "express";
 import * as path from "path";
 import { Readable } from "stream";
 import * as Jimp from "jimp";
+import { DrugsUtils } from "src/drugs/utils/drugs.utils";
 
 @Injectable()
 export class VisionService {
@@ -60,14 +61,14 @@ export class VisionService {
 
         const croppedTextAnnotations = croppedImageAnnotation.textAnnotations;
 
-        const textList: string[] = removeDiacritics(
+        let textList: string[] = removeDiacritics(
           croppedTextAnnotations[0].description
-        )
-          .split("\n")
-          .map((str: string) =>
-            str.replace("mg", " mg").split(/[ /-]/)
-          )
-          .reduce((acc, val) => acc.concat(val), []);
+        ).split("\n");
+
+        textList = DrugsUtils.getDrugDetailsByKeys(textList).reduce(
+          (acc: string[], val: string) => acc.concat(val),
+          []
+        );
 
         resultList.push(
           [...new Set(textList)].filter(
