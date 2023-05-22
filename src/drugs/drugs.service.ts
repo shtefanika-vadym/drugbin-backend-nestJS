@@ -18,6 +18,7 @@ export class DrugsService {
       });
 
     return this.drugRepository.findAll({
+      limit: 10,
       where: {
         [Op.or]: [{ name: { [Op.iLike]: `%${name}%` } }],
       },
@@ -36,6 +37,8 @@ export class DrugsService {
     const drugs: Drug[] = await this.drugRepository.findAll();
     const textList: string[][] = await this.visionService.identifyText(image);
 
+    console.log(textList);
+
     const identifiedDrugs: Drug[] = [];
 
     textList.forEach((drugDetailsList: string[]): void => {
@@ -43,8 +46,14 @@ export class DrugsService {
       let bestDrug: Drug = null;
 
       drugs.forEach((drug: Drug): void => {
+        const drugPackageList: string[] = drug.packaging.match(/\d+/g) || [];
         const drugNameList: string[] = drug.name.split(/[ /-]/);
-        const totalCount: number = drugDetailsList.reduce(
+
+        const packageTotal: number = drugPackageList
+          .map(Number)
+          .reduce((acc: number, el: number) => acc * el, 1);
+
+        let totalCount: number = drugDetailsList.reduce(
           (acc: number, el: string): number => {
             const isCounting: boolean = drug.name
               .toLowerCase()
@@ -54,6 +63,15 @@ export class DrugsService {
           0
         );
 
+        const isSamePackage: boolean =
+          drugDetailsList.includes(String(packageTotal)) ||
+          drugPackageList.some((pack: string) =>
+            drugDetailsList.includes(pack)
+          );
+
+        // if (drugDetailsList.includes("theraflu"))
+        //   console.log(isSamePackage, drugDetailsList);
+
         const isContainsAll: boolean = drugNameList.every((item: string) =>
           drugDetailsList.some((el: string): boolean => {
             if (item === "&") return true;
@@ -61,7 +79,16 @@ export class DrugsService {
           })
         );
 
-        if (totalCount >= bestScore && isContainsAll) {
+        // if ((isSamePackage || totalCount >= bestScore) && isContainsAll)
+        //   console.log(
+        //     isSamePackage,
+        //     totalCount >= bestScore,
+        //     drugPackageList,
+        //     drug.name,
+        //     drug.packaging
+        //   );
+
+        if (totalCount >= bestScore && isSamePackage && isContainsAll) {
           bestScore = totalCount;
           bestDrug = drug;
         }

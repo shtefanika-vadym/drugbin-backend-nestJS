@@ -75,8 +75,6 @@ export class VisionService {
           )
         );
 
-        console.log(resultList);
-
         // await croppedImage.writeAsync(
         //   path.join(
         //     process.cwd(),
