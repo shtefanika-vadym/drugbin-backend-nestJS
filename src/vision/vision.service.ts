@@ -65,6 +65,11 @@ export class VisionService {
           croppedTextAnnotations[0].description
         ).split("\n");
 
+        // textList = DrugsUtils.getDrugDetailsByKeys(textList).reduce(
+        //   (acc: string[], val: string) => acc.concat(val),
+        //   []
+        // );
+
         textList = DrugsUtils.getDrugDetailsByKeys(textList).reduce(
           (acc: string[], val: string) => acc.concat(val),
           []

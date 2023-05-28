@@ -14,10 +14,11 @@ const getDrugPack = (input: string): string[] => {
   const result: string[] = [];
   const wordList: string[] = input.split(" ");
   wordList.forEach((str: string, index: number) => {
-    if (Object.keys(DrugPillsType).includes(str) && index > 0) result.push(`${wordList[index - 1]} ${str}`);
+    if (Object.keys(DrugPillsType).includes(str) && index > 0)
+      result.push(`${wordList[index - 1]} ${str}`);
   });
 
-  return result
+  return result;
 };
 
 const getDrugDetailsByKeys = (input: string[]) => {
@@ -26,7 +27,7 @@ const getDrugDetailsByKeys = (input: string[]) => {
     const parsedStr: string[] = str
       .toLowerCase()
       .replace(",", "")
-      .split(/[ /-]/);
+      ?.split(/[ /-]/);
 
     if (
       !parsedStr.includes(DrugPillsType.mg) &&
