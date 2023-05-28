@@ -73,7 +73,7 @@ export class DrugsService {
 
     const identifiedDrugs: Drug[] = [];
 
-    // console.log(textList);
+    console.log(textList);
 
     textList.forEach((drugDetailsList: string[]): void => {
       let bestScore: number = -1;
