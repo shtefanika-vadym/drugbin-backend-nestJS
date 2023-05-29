@@ -62,8 +62,13 @@ export class VisionService {
         const croppedTextAnnotations = croppedImageAnnotation.textAnnotations;
 
         let textList: string[] = removeDiacritics(
-          croppedTextAnnotations[0].description
+          croppedTextAnnotations[0]?.description
+            .replace("(", "")
+            .replace(")", "")
+            .replace("ⓡ", "")
         ).split("\n");
+
+        // console.log(textList);
 
         // textList = DrugsUtils.getDrugDetailsByKeys(textList).reduce(
         //   (acc: string[], val: string) => acc.concat(val),
@@ -81,14 +86,14 @@ export class VisionService {
           )
         );
 
-        // await croppedImage.writeAsync(
-        //   path.join(
-        //     process.cwd(),
-        //     "src",
-        //     "vision",
-        //     `cropped_${new Date().getTime()}.jpg`
-        //   )
-        // );
+        await croppedImage.writeAsync(
+          path.join(
+            process.cwd(),
+            "src",
+            "vision",
+            `cropped_${new Date().getTime()}.jpg`
+          )
+        );
       } catch (error) {
         console.error("Error processing image:", error);
       }

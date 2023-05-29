@@ -69,8 +69,6 @@ export class DrugsService {
     const drugs: Drug[] = await this.drugRepository.findAll();
     const textList: string[][] = await this.visionService.identifyText(image);
 
-    console.log(textList);
-
     const identifiedDrugs: Drug[] = [];
 
     console.log(textList);
@@ -89,7 +87,10 @@ export class DrugsService {
         const nameWithConcentration = drug.name
           // " " +
           // drugConcentration
-          .toLowerCase();
+          .toLowerCase()
+          .replace("(", "")
+          .replace(")", "")
+          .replace("ⓡ", "");
 
         const drugNameWithConcentration: string[] = nameWithConcentration.split(
           /[ \/,+-]/

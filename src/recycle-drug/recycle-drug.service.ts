@@ -71,6 +71,21 @@ export class RecycleDrugService {
     });
   }
 
+  async getAllDrugsByPharmacy(pharmacyId: number): Promise<IRecycledDrug[]> {
+    const drugs: RecycleDrug[] = await this.recycleDrugRepository.findAll({
+      where: { pharmacyId },
+      order: [["id", "DESC"]],
+    });
+
+    return [].concat(
+      ...drugs.map(({ drugList, createdAt }) =>
+        drugList
+          .map((item) => ({ ...item, createdAt }))
+          .reduce((acc, val) => acc.concat(val), [])
+      )
+    );
+  }
+
   async updateRecycleDrugStatus(
     id: number,
     pharmacyId: number

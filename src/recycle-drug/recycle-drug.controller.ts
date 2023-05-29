@@ -17,6 +17,7 @@ import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 import { MessageResponse } from "src/reponses/message-response";
 import { CompanyId } from "src/auth/company-id.decorator";
+import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle-drug")
@@ -40,6 +41,13 @@ export class RecycleDrugController {
   @Get()
   getAllDrugByPharmacy(@CompanyId() id: number): Promise<RecycleDrug[]> {
     return this.recycleDrugService.getAllDrugByPharmacy(id);
+  }
+
+  // Get all drugs
+  @UseGuards(JwtAuthGuard)
+  @Get("/history")
+  getAllDrugsByPharmacy(@CompanyId() id: number): Promise<IRecycledDrug[]> {
+    return this.recycleDrugService.getAllDrugsByPharmacy(id);
   }
 
   // Confirm recycle drug status
