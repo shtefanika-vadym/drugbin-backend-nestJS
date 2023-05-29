@@ -73,7 +73,7 @@ export class RecycleDrugService {
 
   async getAllDrugsByPharmacy(pharmacyId: number): Promise<IRecycledDrug[]> {
     const drugs: RecycleDrug[] = await this.recycleDrugRepository.findAll({
-      where: { pharmacyId },
+      where: { pharmacyId, status: ProductStatus.recycled },
       order: [["id", "DESC"]],
     });
 

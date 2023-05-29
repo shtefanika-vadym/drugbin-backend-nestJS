@@ -86,14 +86,14 @@ export class VisionService {
           )
         );
 
-        await croppedImage.writeAsync(
-          path.join(
-            process.cwd(),
-            "src",
-            "vision",
-            `cropped_${new Date().getTime()}.jpg`
-          )
-        );
+        // await croppedImage.writeAsync(
+        //   path.join(
+        //     process.cwd(),
+        //     "src",
+        //     "vision",
+        //     `cropped_${new Date().getTime()}.jpg`
+        //   )
+        // );
       } catch (error) {
         console.error("Error processing image:", error);
       }
