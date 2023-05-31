@@ -1,9 +1,10 @@
 import {
   Controller,
   Get,
-  Param, Post,
+  Param,
+  Post,
   UploadedFiles,
-  UseInterceptors
+  UseInterceptors,
 } from "@nestjs/common";
 import {
   ApiConsumes,
@@ -15,6 +16,7 @@ import { DrugsService } from "src/drugs/drugs.service";
 import { Drug } from "src/drugs/drugs.model";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { imageFilter } from "src/filters/image.filter";
+import { RequestTime } from "src/request-time/request-time";
 
 @ApiTags("Drugs")
 @Controller("drugs")
@@ -25,7 +27,10 @@ export class DrugsController {
   @ApiOperation({ summary: "Get drugs by name" })
   @ApiResponse({ status: 200, type: [Drug] })
   @Get("/search/:name?")
-  getDrugsByName(@Param("name") name?: string): Promise<Drug[]> {
+  getDrugsByName(
+    @RequestTime() requestTime: any,
+    @Param("name") name?: string
+  ): Promise<Drug[]> {
     return this.drugService.getDrugsByName(name);
   }
 
@@ -37,7 +42,8 @@ export class DrugsController {
   @Post("/identify")
   identifyDrugByImage(
     @UploadedFiles()
-    files: Express.Multer.File[]
+    files: Express.Multer.File[],
+    @RequestTime() requestTime: any
   ): Promise<Drug[]> {
     return this.drugService.identifyDrugByImage(files[0]);
   }
