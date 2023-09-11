@@ -1,0 +1,18 @@
+{
+  "chains": [
+    {
+      "id": 1,
+      "name": "DONA",
+      "email": "pharmacy@dona.com",
+      "description": "Descopera ofertele noastre",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Farmacia_Dona_logo.svg/800px-Farmacia_Dona_logo.svg.png"
+    },
+    {
+      "id": 2,
+      "name": "Catena",
+      "email": "pharmacy@catena.com",
+      "description": "Farmacia inimii catena",
+      "image": "https://www.catena.ro/assets/images/mobile/farmacia-catena.jpg"
+    }
+  ]
+}

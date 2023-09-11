@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { CompanyModule } from "src/company/company.module";
-import { Company } from "src/company/company.model";
+import { PharmacyModule } from "src/pharmacies/pharmacy.module";
+import { Pharmacy } from "src/pharmacies/pharmacy.model";
 import { ConfigModule } from "@nestjs/config";
 import { AdditionalModule } from "src/additional/additional.module";
 import { AuthModule } from "src/auth/auth.module";
@@ -13,6 +13,8 @@ import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { Drug } from "src/drugs/drugs.model";
 import { DrugsModule } from "src/drugs/drugs.module";
 import { SeederModule } from "nestjs-sequelize-seeder";
+import { ChainsModule } from "src/chains/chains.module";
+import { Chain } from "src/chains/chains.model";
 
 @Module({
   controllers: [AppController],
@@ -28,16 +30,17 @@ import { SeederModule } from "nestjs-sequelize-seeder";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Company, ContactUs, RecycleDrug, Drug],
+      models: [Pharmacy, ContactUs, RecycleDrug, Drug, Chain],
       autoLoadModels: true,
     }),
     SeederModule.forRoot({
       runOnlyIfTableIsEmpty: true,
     }),
     AdditionalModule,
-    CompanyModule,
+    PharmacyModule,
     AuthModule,
     DrugsModule,
+    ChainsModule,
     ContactUsModule,
     RecycleDrugModule,
   ],

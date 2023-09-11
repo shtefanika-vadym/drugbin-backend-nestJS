@@ -8,7 +8,7 @@ import {
   IsPhoneNumber,
 } from "class-validator";
 
-export class UpdateCompanyDto {
+export class UpdatePharmacyDto {
   @ApiProperty({ example: "Hello World", description: "Full Name" })
   @IsString({ message: "Name must be a string" })
   @MinLength(1, { message: "Name must not be empty" })

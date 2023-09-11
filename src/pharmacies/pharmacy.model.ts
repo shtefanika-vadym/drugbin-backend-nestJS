@@ -7,21 +7,21 @@ import {
   AutoIncrement,
   Unique,
   AllowNull,
+  ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
-import { Role } from "src/company/enum/Role";
 import { ApiProperty } from "@nestjs/swagger";
+import { Chain } from "src/chains/chains.model";
 
 interface CompanyCreationAttrs {
-  role: Role;
-  cui: string;
   name: string;
   email: string;
   password: string;
   location: string;
 }
 
-@Table({ tableName: "companies" })
-export class Company extends Model<Company, CompanyCreationAttrs> {
+@Table({ tableName: "pharmacies" })
+export class Pharmacy extends Model<Pharmacy, CompanyCreationAttrs> {
   @ApiProperty()
   @PrimaryKey
   @AutoIncrement
@@ -35,6 +35,10 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
   @Column(DataType.STRING)
   name: string;
 
+  @ForeignKey(() => Chain)
+  @Column(DataType.INTEGER)
+  chainId: number;
+
   @ApiProperty()
   @Unique
   @AllowNull(false)
@@ -47,19 +51,9 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
   password: string;
 
   @ApiProperty()
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.STRING)
-  role: Role;
-
-  @ApiProperty()
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  location: string;
-
-  @ApiProperty()
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  cui: string;
+  location?: string;
 
   @ApiProperty()
   @AllowNull(true)
@@ -75,4 +69,7 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
   @AllowNull(true)
   @Column(DataType.STRING)
   phone?: string;
+
+  @BelongsTo(() => Chain)
+  chain: Chain;
 }

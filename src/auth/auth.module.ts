@@ -1,14 +1,14 @@
 import { forwardRef, Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { CompanyModule } from "src/company/company.module";
+import { PharmacyModule } from "src/pharmacies/pharmacy.module";
 import { JwtModule } from "@nestjs/jwt";
 
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
   imports: [
-    forwardRef(() => CompanyModule),
+    forwardRef(() => PharmacyModule),
     JwtModule.register({
       secret: "SECRET",
       signOptions: {

@@ -1,35 +1,35 @@
 import { Body, Controller, Get, Param, Put, UseGuards } from "@nestjs/common";
-import { CompanyService } from "src/company/company.service";
+import { PharmacyService } from "src/pharmacies/pharmacy.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { RolesGuard } from "src/auth/roles.guard";
 import { Roles } from "src/auth/roles.decorator";
-import { Role } from "src/company/enum/Role";
-import { UpdateCompanyDto } from "src/company/dto/update-company.dto";
+import { Role } from "src/pharmacies/enum/Role";
+import { UpdatePharmacyDto } from "src/pharmacies/dto/update-pharmacy.dto";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { MessageResponse } from "src/reponses/message-response";
-import { Company } from "src/company/company.model";
-import { CompanyDto } from "src/company/dto/company.dto";
+import { Pharmacy } from "src/pharmacies/pharmacy.model";
+import { PharmacyDto } from "src/pharmacies/dto/pharmacy.dto";
 
 @UseGuards(JwtAuthGuard)
-@ApiTags("Companies")
-@Controller("companies")
-export class CompanyController {
-  constructor(private companyService: CompanyService) {}
+@ApiTags("Pharmacies")
+@Controller("pharmacies")
+export class PharmacyController {
+  constructor(private companyService: PharmacyService) {}
 
   // Retrieve all pharmacies
   @ApiOperation({ summary: "Get all pharmacies" })
-  @ApiResponse({ status: 200, type: [Company] })
+  @ApiResponse({ status: 200, type: [Pharmacy] })
   @Get("/pharmacies")
-  async getAllPharmacies(): Promise<Company[]> {
+  async getAllPharmacies(): Promise<Pharmacy[]> {
     return this.companyService.getAllCompanies(Role.pharmacy);
   }
 
-  // Update a company
-  @ApiOperation({ summary: "Update company" })
+  // Update a pharmacies
+  @ApiOperation({ summary: "Update pharmacies" })
   @ApiResponse({ status: 200, type: [MessageResponse] })
   @Put(":id")
   updateCompany(
-    @Body() companyDto: UpdateCompanyDto,
+    @Body() companyDto: UpdatePharmacyDto,
     @Param("id") id: string
   ): Promise<MessageResponse> {
     return this.companyService.updateCompany(companyDto, id);
@@ -39,7 +39,7 @@ export class CompanyController {
   @ApiOperation({ summary: "Get pharmacy details" })
   @UseGuards(RolesGuard)
   @Roles(Role.recycle)
-  @ApiResponse({ status: 200, type: [CompanyDto] })
+  @ApiResponse({ status: 200, type: [PharmacyDto] })
   @Get("/pharmacies/:id")
   getPharmacy(@Param("id") id: number) {
     return this.companyService.getPharmacyDetails(id);

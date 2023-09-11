@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Role } from "src/company/enum/Role";
+import { Role } from "src/pharmacies/enum/Role";
 import { LOCATIONS } from "src/locations";
 import { RoleListResponse } from "src/additional/responses/role-list-response";
 import { LocationListResponse } from "src/additional/responses/location-list-response";

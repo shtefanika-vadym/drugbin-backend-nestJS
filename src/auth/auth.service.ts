@@ -5,11 +5,11 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
-import { CreateCompanyDto } from "src/company/dto/create-company.dto";
-import { CompanyService } from "src/company/company.service";
+import { CreatePharmacyDto } from "src/pharmacies/dto/create-pharmacy.dto";
+import { PharmacyService } from "src/pharmacies/pharmacy.service";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcryptjs";
-import { Company } from "src/company/company.model";
+import { Pharmacy } from "src/pharmacies/pharmacy.model";
 import { LoginDto } from "src/auth/dto/login.dto";
 import { LoginResponse } from "src/auth/responses/login-response";
 import { MessageResponse } from "src/reponses/message-response";
@@ -17,17 +17,17 @@ import { MessageResponse } from "src/reponses/message-response";
 @Injectable()
 export class AuthService {
   constructor(
-    private pharmacistService: CompanyService,
+    private pharmacistService: PharmacyService,
     private jwtService: JwtService
   ) {}
 
   async login(companyDto: LoginDto): Promise<LoginResponse> {
-    const user: Company = await this.validateCompany(companyDto);
+    const user: Pharmacy = await this.validateCompany(companyDto);
     return this.generateToken(user);
   }
 
-  async register(companyDto: CreateCompanyDto): Promise<MessageResponse> {
-    const candidate: Company = await this.pharmacistService.getCompanyByEmail(
+  async register(companyDto: CreatePharmacyDto): Promise<MessageResponse> {
+    const candidate: Pharmacy = await this.pharmacistService.getCompanyByEmail(
       companyDto.email
     );
     if (candidate) {
@@ -44,16 +44,15 @@ export class AuthService {
     return { message: "Company successfully registered." };
   }
 
-  async generateToken(user: Company): Promise<LoginResponse> {
-    const payload = { email: user.email, id: user.id, role: user.role };
+  async generateToken(user: Pharmacy): Promise<LoginResponse> {
+    const payload = { email: user.email, id: user.id };
     return {
-      role: user.role,
       token: this.jwtService.sign(payload),
     };
   }
 
-  async validateCompany(companyDto: LoginDto): Promise<Company> {
-    const company: Company = await this.pharmacistService.getCompanyByEmail(
+  async validateCompany(companyDto: LoginDto): Promise<Pharmacy> {
+    const company: Pharmacy = await this.pharmacistService.getCompanyByEmail(
       companyDto.email
     );
     if (!company)

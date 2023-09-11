@@ -3,14 +3,14 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { CreateRecycleDrugDto } from "src/recycle-drug/dto/create-recycle-drug.dto";
-import { CompanyService } from "src/company/company.service";
+import { PharmacyService } from "src/pharmacies/pharmacy.service";
 import { DrugsService } from "src/drugs/drugs.service";
 import {
   IDrug,
   IRecycledDrug,
 } from "src/recycle-drug/interfaces/drug.interface";
 import { Drug } from "src/drugs/drugs.model";
-import { Company } from "src/company/company.model";
+import { Pharmacy } from "src/pharmacies/pharmacy.model";
 import { CreateRecycleDrugResponse } from "src/recycle-drug/responses/create-recycle-drug-response";
 import { MessageResponse } from "src/reponses/message-response";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
@@ -22,12 +22,12 @@ export class RecycleDrugService {
   constructor(
     @InjectModel(RecycleDrug) private recycleDrugRepository: typeof RecycleDrug,
     private puppeteerService: PuppeteerService,
-    private companyService: CompanyService,
+    private companyService: PharmacyService,
     private drugService: DrugsService
   ) {}
 
   async create(dto: CreateRecycleDrugDto): Promise<CreateRecycleDrugResponse> {
-    const pharmacy: Company = await this.companyService.getPharmacyById(
+    const pharmacy: Pharmacy = await this.companyService.getPharmacyById(
       dto.pharmacyId
     );
 
@@ -132,7 +132,7 @@ export class RecycleDrugService {
   }
 
   async getMonthlyAudit(id: number): Promise<any> {
-    const pharmacy: Company = await this.companyService.getPharmacyById(id);
+    const pharmacy: Pharmacy = await this.companyService.getPharmacyById(id);
 
     const drugList = await this.getDrugsByOneMonthAgo(id);
 

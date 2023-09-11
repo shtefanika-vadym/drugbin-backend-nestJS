@@ -17,12 +17,18 @@ export class DrugsService {
     if (!name)
       return this.drugRepository.findAll({
         limit: 10,
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
       });
 
     return this.drugRepository.findAll({
       limit: 10,
       where: {
         [Op.or]: [{ name: { [Op.iLike]: `%${name}%` } }],
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
       },
     });
   }
@@ -73,7 +79,7 @@ export class DrugsService {
         const response = await axios.post("http://127.0.0.1:5000/similarity", {
           search_term,
         });
-        return response.data
+        return response.data;
       } catch (error) {
         console.error(`Error for text "${search_term}":`, error);
         return null;
@@ -82,7 +88,7 @@ export class DrugsService {
     console.log(textList);
     const apiCallPromises = textList.map((text) => makeAPICall(text));
     const results = await Promise.all(apiCallPromises);
-    return results
+    return results;
     // const response = await axios.post("http://127.0.0.1:5000/similarity", {
     //   search_term: "paduden 400mg",
     // });

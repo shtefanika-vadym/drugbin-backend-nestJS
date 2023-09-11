@@ -6,9 +6,9 @@ import {
   MinLength,
   MaxLength,
 } from "class-validator";
-import { Role } from "src/company/enum/Role";
+import { Role } from "src/pharmacies/enum/Role";
 
-export class CreateCompanyDto {
+export class CreatePharmacyDto {
   @ApiProperty({
     example: "Catena1",
     description: "Company Name",
@@ -22,7 +22,7 @@ export class CreateCompanyDto {
   readonly name: string;
 
   @ApiProperty({
-    example: "company@gmail.com",
+    example: "pharmacies@gmail.com",
     description: "Email",
     required: true,
   })
@@ -40,15 +40,6 @@ export class CreateCompanyDto {
     message: "Password must be shorter than or equal to 16 characters",
   })
   readonly password: string;
-
-  @ApiProperty({
-    example: "pharmacy",
-    description: "Role",
-    required: true,
-    enum: Role,
-  })
-  @IsEnum(Role)
-  readonly role: Role;
 
   @ApiProperty({ example: "Suceava", description: "Location", required: true })
   @IsString({ message: "Location must be a string" })
