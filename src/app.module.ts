@@ -12,6 +12,7 @@ import { RecycleDrugModule } from "src/recycle-drug/recycle-drug.module";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import { Drug } from "src/drugs/drugs.model";
 import { DrugsModule } from "src/drugs/drugs.module";
+import { SeederModule } from "nestjs-sequelize-seeder";
 
 @Module({
   controllers: [AppController],
@@ -30,6 +31,9 @@ import { DrugsModule } from "src/drugs/drugs.module";
       models: [Company, ContactUs, RecycleDrug, Drug],
       autoLoadModels: true,
     }),
+    SeederModule.forRoot({
+      runOnlyIfTableIsEmpty: true,
+    }),
     AdditionalModule,
     CompanyModule,
     AuthModule,
@@ -38,9 +42,4 @@ import { DrugsModule } from "src/drugs/drugs.module";
     RecycleDrugModule,
   ],
 })
-export class AppModule {
-  // async onModuleInit(): Promise<void> {
-  //   // await this.sequelize.sync();
-  //   importDrugs();
-  // }
-}
+export class AppModule {}

@@ -23,47 +23,27 @@ export class Drug extends Model<Drug> {
   @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
-  cim: string;
-
-  @ApiProperty()
-  @AllowNull(false)
-  @Column(DataType.STRING)
   name: string;
 
   @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
-  dci: string;
+  producer: string;
 
   @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
-  form: string;
+  importer: string;
 
   @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  concentration: string;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  firm: string;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  app: string;
+  @AllowNull(false)
+  @Column(DataType.BOOLEAN)
+  isPsycholeptic: boolean;
 
   @ApiProperty()
   @AllowNull(true)
   @Column(DataType.STRING)
   atc: string;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  action: string;
 
   @ApiProperty()
   @AllowNull(true)
@@ -74,9 +54,4 @@ export class Drug extends Model<Drug> {
   @AllowNull(true)
   @Column(DataType.STRING)
   packaging: string;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  packageVolume: string;
 }
