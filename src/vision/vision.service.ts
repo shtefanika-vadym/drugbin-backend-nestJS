@@ -8,7 +8,7 @@ import { DrugsUtils } from "src/drugs/utils/drugs.utils";
 
 @Injectable()
 export class VisionService {
-  async identifyText(image: Express.Multer.File): Promise<string[][]> {
+  async identifyText(image: Express.Multer.File): Promise<string[]> {
     const visionClient: ImageAnnotatorClient = new ImageAnnotatorClient({
       keyFilename: path.join(
         process.cwd(),
@@ -29,7 +29,7 @@ export class VisionService {
       features: [{ type: "OBJECT_LOCALIZATION" }],
     });
 
-    const resultList: string[][] = [];
+    const resultList: string[] = [];
 
     const objects = imageAnnotation.localizedObjectAnnotations;
     for (const object of objects) {
@@ -68,22 +68,10 @@ export class VisionService {
             .replace("ⓡ", "")
         ).split("\n");
 
-        // console.log(textList);
-
-        // textList = DrugsUtils.getDrugDetailsByKeys(textList).reduce(
-        //   (acc: string[], val: string) => acc.concat(val),
-        //   []
-        // );
-
-        textList = DrugsUtils.getDrugDetailsByKeys(textList).reduce(
-          (acc: string[], val: string) => acc.concat(val),
-          []
-        );
-
         resultList.push(
           [...new Set(textList)].filter(
             (str: string): boolean => str.length > 0
-          )
+          ).join(' ')
         );
 
         // await croppedImage.writeAsync(
