@@ -15,6 +15,7 @@ import { DrugsModule } from "src/drugs/drugs.module";
 import { SeederModule } from "nestjs-sequelize-seeder";
 import { ChainsModule } from "src/chains/chains.module";
 import { Chain } from "src/chains/chains.model";
+import * as process from "process";
 
 @Module({
   controllers: [AppController],
@@ -35,6 +36,7 @@ import { Chain } from "src/chains/chains.model";
     }),
     SeederModule.forRoot({
       runOnlyIfTableIsEmpty: true,
+      disabled: Boolean(process.env.SEEDER_DISABLED),
     }),
     AdditionalModule,
     PharmacyModule,

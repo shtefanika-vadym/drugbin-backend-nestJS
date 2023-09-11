@@ -44,19 +44,19 @@ export class PharmacyService {
     return user;
   }
 
-  async getPharmacyById(id: number): Promise<Pharmacy> {
+  async getById(id: number): Promise<Pharmacy> {
     const pharmacy: Pharmacy = await this.companyRepository.findOne({
       where: {
         id: id,
       },
-      attributes: { exclude: ["password", "updatedAt", "createdAt", "role"] },
+      attributes: { exclude: ["password", "updatedAt", "createdAt"] },
     });
 
     return pharmacy;
   }
 
   async getPharmacyDetails(companyId: number) {
-    const company: Pharmacy = await this.getPharmacyById(companyId);
+    const company: Pharmacy = await this.getById(companyId);
 
     if (!company) throw new NotFoundException("Pharmacy not found");
 

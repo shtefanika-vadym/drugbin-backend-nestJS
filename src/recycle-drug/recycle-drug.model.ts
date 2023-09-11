@@ -11,9 +11,9 @@ import {
   BelongsTo,
 } from "sequelize-typescript";
 import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
-import { Pharmacy } from "src/pharmacies/pharmacy.model";
 import { IsEnum } from "class-validator";
 import { ProductStatus } from "src/recycle-drug/enum/product-status";
+import { Chain } from "src/chains/chains.model";
 
 interface RecycleDrugCreationAttrs {
   email?: string;
@@ -55,9 +55,9 @@ export class RecycleDrug extends Model<RecycleDrug, RecycleDrugCreationAttrs> {
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
-  @ForeignKey(() => Pharmacy)
-  pharmacyId: number;
+  @ForeignKey(() => Chain)
+  chainId: number;
 
-  @BelongsTo(() => Pharmacy)
-  pharmacy: Pharmacy;
+  @BelongsTo(() => Chain)
+  chain: Chain;
 }

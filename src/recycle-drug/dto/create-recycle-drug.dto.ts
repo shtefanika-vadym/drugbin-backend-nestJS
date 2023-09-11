@@ -71,11 +71,11 @@ export class CreateRecycleDrugDto {
 
   @ApiProperty({
     example: 1,
-    description: "Pharmacy Id",
+    description: "Chain Id",
     required: true,
   })
-  @IsNumber(undefined, { message: "Pharmacy Id must be a number" })
-  readonly pharmacyId: number;
+  @IsNumber(undefined, { message: "Chain Id must be a number" })
+  readonly chainId: number;
 
   @ApiProperty({
     example: "Popescu",

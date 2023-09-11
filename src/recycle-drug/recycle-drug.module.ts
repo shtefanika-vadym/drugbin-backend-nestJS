@@ -11,6 +11,8 @@ import { DrugsService } from "src/drugs/drugs.service";
 import { Drug } from "src/drugs/drugs.model";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { VisionService } from "src/vision/vision.service";
+import { ChainsService } from "src/chains/chains.service";
+import { Chain } from "src/chains/chains.model";
 
 @Module({
   controllers: [RecycleDrugController],
@@ -21,9 +23,10 @@ import { VisionService } from "src/vision/vision.service";
     TokenUtils,
     DrugsService,
     VisionService,
+    ChainsService,
   ],
   imports: [
-    SequelizeModule.forFeature([RecycleDrug, Pharmacy, Drug]),
+    SequelizeModule.forFeature([RecycleDrug, Pharmacy, Drug, Chain]),
     forwardRef(() => AuthModule),
   ],
   exports: [],

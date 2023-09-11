@@ -13,4 +13,8 @@ export class ChainsService {
       },
     });
   }
+
+  async getById(id: number): Promise<Chain> {
+    return this.chainRepository.findByPk(id);
+  }
 }

@@ -16,22 +16,23 @@ import { MessageResponse } from "src/reponses/message-response";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { ProductStatus } from "src/recycle-drug/enum/product-status";
 import { ProductPack } from "src/recycle-drug/enum/product-pack";
+import { ChainsService } from "src/chains/chains.service";
+import { Chain } from "src/chains/chains.model";
 
 @Injectable()
 export class RecycleDrugService {
   constructor(
     @InjectModel(RecycleDrug) private recycleDrugRepository: typeof RecycleDrug,
     private puppeteerService: PuppeteerService,
-    private companyService: PharmacyService,
+    private pharmacyService: PharmacyService,
+    private chainService: ChainsService,
     private drugService: DrugsService
   ) {}
 
   async create(dto: CreateRecycleDrugDto): Promise<CreateRecycleDrugResponse> {
-    const pharmacy: Pharmacy = await this.companyService.getPharmacyById(
-      dto.pharmacyId
-    );
+    const chain: Chain = await this.chainService.getById(dto.chainId);
 
-    if (!pharmacy) throw new NotFoundException("Pharmacy not found");
+    if (!chain) throw new NotFoundException("Chain not found");
 
     const drugIdList: number[] = dto.drugList.map(
       ({ drugId }: IDrug) => drugId
@@ -39,7 +40,7 @@ export class RecycleDrugService {
     const drugList: Drug[] = await this.drugService.getDrugByIdList(drugIdList);
 
     if (drugList.length !== drugIdList.length)
-      throw new Error("Drug not found");
+      throw new NotFoundException("Drug not found");
 
     const recycledDrugList: IRecycledDrug[] = drugList.map(
       (drugDetails: Drug) => {
@@ -62,8 +63,11 @@ export class RecycleDrugService {
   }
 
   async getAllDrugByPharmacy(pharmacyId: number): Promise<RecycleDrug[]> {
+    const pharmacy: Pharmacy = await this.pharmacyService.getById(pharmacyId);
+    if (!pharmacy) throw new NotFoundException("Pharmacy not found");
+
     return this.recycleDrugRepository.findAll({
-      where: { pharmacyId },
+      where: { chainId: pharmacy.chainId },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
@@ -73,7 +77,7 @@ export class RecycleDrugService {
 
   async getAllDrugsByPharmacy(pharmacyId: number): Promise<IRecycledDrug[]> {
     const drugs: RecycleDrug[] = await this.recycleDrugRepository.findAll({
-      where: { pharmacyId, status: ProductStatus.recycled },
+      where: { chainId: pharmacyId, status: ProductStatus.recycled },
       order: [["id", "DESC"]],
     });
 
@@ -91,7 +95,7 @@ export class RecycleDrugService {
     pharmacyId: number
   ): Promise<MessageResponse> {
     const drug: RecycleDrug = await this.recycleDrugRepository.findOne({
-      where: { pharmacyId, id },
+      where: { chainId: pharmacyId, id },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
@@ -132,7 +136,7 @@ export class RecycleDrugService {
   }
 
   async getMonthlyAudit(id: number): Promise<any> {
-    const pharmacy: Pharmacy = await this.companyService.getPharmacyById(id);
+    const pharmacy: Pharmacy = await this.pharmacyService.getById(id);
 
     const drugList = await this.getDrugsByOneMonthAgo(id);
 
@@ -151,17 +155,16 @@ export class RecycleDrugService {
     const oneMonthAgo = new Date();
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-    const recycleDrugs: RecycleDrug[] = await this.recycleDrugRepository.findAll(
-      {
+    const recycleDrugs: RecycleDrug[] =
+      await this.recycleDrugRepository.findAll({
         where: {
-          pharmacyId,
+          chainId: pharmacyId,
           status: ProductStatus.recycled,
           createdAt: {
             [Op.gte]: oneMonthAgo,
           },
         },
-      }
-    );
+      });
 
     return recycleDrugs
       .map(
