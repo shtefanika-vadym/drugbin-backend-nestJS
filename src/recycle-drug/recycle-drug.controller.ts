@@ -4,8 +4,10 @@ import {
   Get,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
+  Query,
   Res,
   UseGuards,
 } from "@nestjs/common";
@@ -40,8 +42,12 @@ export class RecycleDrugController {
   @ApiOperation({ summary: "Get all recycle drug" })
   @ApiResponse({ status: 200, type: [RecycleDrug] })
   @Get()
-  getDrugsByPharmacyId(@PharmacyId() id: number): Promise<RecycleDrug[]> {
-    return this.recycleDrugService.getDrugsByPharmacyId(id);
+  getDrugsByPharmacyId(
+    @PharmacyId() id: number,
+    @Query("page", ParseIntPipe) page: number = 1,
+    @Query("limit", ParseIntPipe) limit: number = 10
+  ): Promise<any> {
+    return this.recycleDrugService.getDrugsByPharmacyId(id, page, limit);
   }
 
   // Get filtered drugs by (id or name)

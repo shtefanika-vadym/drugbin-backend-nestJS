@@ -19,6 +19,7 @@ import { ProductPack } from "src/recycle-drug/enum/product-pack";
 import { ChainsService } from "src/chains/chains.service";
 import { Chain } from "src/chains/chains.model";
 import { IVerbalData } from "src/recycle-drug/interfaces/verbal-data.interface";
+import { PaginationHelper } from "src/helpers/pagination.helper";
 
 @Injectable()
 export class RecycleDrugService {
@@ -27,7 +28,8 @@ export class RecycleDrugService {
     private puppeteerService: PuppeteerService,
     private pharmacyService: PharmacyService,
     private chainService: ChainsService,
-    private drugService: DrugsService
+    private drugService: DrugsService,
+    private paginationHelper: PaginationHelper<RecycleDrug>
   ) {}
 
   async create(dto: CreateRecycleDrugDto): Promise<CreateRecycleDrugResponse> {
@@ -63,14 +65,20 @@ export class RecycleDrugService {
     };
   }
 
-  async getDrugsByPharmacyId(pharmacyId: number): Promise<RecycleDrug[]> {
+  async getDrugsByPharmacyId(pharmacyId: number, page: number, limit: number) {
     const pharmacy: Pharmacy = await this.pharmacyService.getById(pharmacyId);
-    return this.recycleDrugRepository.findAll({
-      where: { chainId: pharmacy.chainId },
-      attributes: {
-        exclude: ["createdAt", "updatedAt", "chainId"],
+
+    return this.paginationHelper.paginate({
+      page,
+      limit,
+      options: {
+        where: { chainId: pharmacy.chainId },
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "chainId"],
+        },
+        order: [["id", "DESC"]],
       },
-      order: [["id", "DESC"]],
+      model: this.recycleDrugRepository,
     });
   }
 
@@ -93,6 +101,7 @@ export class RecycleDrugService {
       attributes: {
         exclude: ["createdAt", "updatedAt", "chainId"],
       },
+      limit: 10,
       order: [["id", "DESC"]],
     });
   }

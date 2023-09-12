@@ -13,6 +13,7 @@ import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { VisionService } from "src/vision/vision.service";
 import { ChainsService } from "src/chains/chains.service";
 import { Chain } from "src/chains/chains.model";
+import { PaginationHelper } from "src/helpers/pagination.helper";
 
 @Module({
   controllers: [RecycleDrugController],
@@ -24,6 +25,7 @@ import { Chain } from "src/chains/chains.model";
     DrugsService,
     VisionService,
     ChainsService,
+    PaginationHelper,
   ],
   imports: [
     SequelizeModule.forFeature([RecycleDrug, Pharmacy, Drug, Chain]),
