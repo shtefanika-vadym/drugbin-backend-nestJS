@@ -18,6 +18,7 @@ import { ProductStatus } from "src/recycle-drug/enum/product-status";
 import { ProductPack } from "src/recycle-drug/enum/product-pack";
 import { ChainsService } from "src/chains/chains.service";
 import { Chain } from "src/chains/chains.model";
+import { IVerbalData } from "src/recycle-drug/interfaces/verbal-data.interface";
 
 @Injectable()
 export class RecycleDrugService {
@@ -62,14 +63,35 @@ export class RecycleDrugService {
     };
   }
 
-  async getAllDrugByPharmacy(pharmacyId: number): Promise<RecycleDrug[]> {
+  async getDrugsByPharmacyId(pharmacyId: number): Promise<RecycleDrug[]> {
     const pharmacy: Pharmacy = await this.pharmacyService.getById(pharmacyId);
-    if (!pharmacy) throw new NotFoundException("Pharmacy not found");
-
     return this.recycleDrugRepository.findAll({
       where: { chainId: pharmacy.chainId },
       attributes: {
-        exclude: ["createdAt", "updatedAt"],
+        exclude: ["createdAt", "updatedAt", "chainId"],
+      },
+      order: [["id", "DESC"]],
+    });
+  }
+
+  async getFilteredDrugsByName(query: string, pharmacyId: number) {
+    const pharmacy: Pharmacy = await this.pharmacyService.getById(pharmacyId);
+
+    let defaultFilterClause: Record<string, Record<string, string>>[] = [
+      { firstName: { [Op.iLike]: `%${query}%` } },
+      { lastName: { [Op.iLike]: `%${query}%` } },
+    ];
+
+    if (Number(query))
+      defaultFilterClause = [{ id: { [Op.eq]: Number(query) } }];
+
+    return this.recycleDrugRepository.findAll({
+      where: {
+        chainId: pharmacy.chainId,
+        [Op.or]: defaultFilterClause,
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "chainId"],
       },
       order: [["id", "DESC"]],
     });
@@ -111,7 +133,7 @@ export class RecycleDrugService {
     };
   }
 
-  async getVerbalProcess(id: number): Promise<any> {
+  async getVerbalData(id: number): Promise<IVerbalData> {
     const drug: RecycleDrug = await this.recycleDrugRepository.findOne({
       where: { id },
       include: { all: true },
@@ -119,20 +141,10 @@ export class RecycleDrugService {
 
     if (!drug) throw new NotFoundException("Drug not found");
 
-    const drugList = drug.drugList.map(({ pack, ...rest }: IRecycledDrug) => ({
-      ...rest,
-      pack: pack === ProductPack.pack ? "cutie" : "pastila",
-    }));
-
-    const response = await this.puppeteerService.generatePDF(
-      "pdf-verbal-process.hbs",
-      {
-        ...drug.toJSON(),
-        drugList,
-        date: new Date().toISOString().slice(0, 10),
-      }
-    );
-    return response;
+    return {
+      drugDetails: drug,
+      generationDate: new Date().toISOString().slice(0, 10),
+    };
   }
 
   async getMonthlyAudit(id: number): Promise<any> {

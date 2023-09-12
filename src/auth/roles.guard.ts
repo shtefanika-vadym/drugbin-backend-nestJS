@@ -39,7 +39,6 @@ export class RolesGuard implements CanActivate {
       req.user = company;
       return requiredRoles.includes(company.role);
     } catch (e) {
-      console.log(e);
       throw new ForbiddenException("Forbidden");
     }
   }
