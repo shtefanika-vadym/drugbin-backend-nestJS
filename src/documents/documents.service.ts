@@ -29,22 +29,24 @@ export class DocumentsService {
   async getLastDocumentDate(
     pharmacyId: number,
     documentType: DocumentType
-  ): Promise<string> {
+  ): Promise<{ date: string }> {
     const document: Document = await this.documentRepository.findOne({
       where: { pharmacyId, documentType },
       order: [["startDate", "DESC"]],
     });
 
     if (document)
-      return moment(document.endDate).add(1, "days").format("YYYY-MM-DD");
+      return {
+        date: moment(document.endDate).add(1, "days").format("YYYY-MM-DD"),
+      };
 
     const lastRecycledDrug: RecycleDrug =
       await this.recycleDrugService.getLastRecycledDrug(pharmacyId);
 
     if (lastRecycledDrug)
-      return moment(lastRecycledDrug.updatedAt).format("YYYY-MM-DD");
+      return { date: moment(lastRecycledDrug.updatedAt).format("YYYY-MM-DD") };
 
-    return moment().startOf("month").format("YYYY-MM-DD");
+    return { date: moment().startOf("month").format("YYYY-MM-DD") };
   }
 
   async create(

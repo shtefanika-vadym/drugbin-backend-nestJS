@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards, UseInterceptors } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { MessageResponse } from "src/reponses/message-response";
 import { DocumentsService } from "src/documents/documents.service";
@@ -30,13 +38,12 @@ export class DocumentsController {
 
   // Get last document date
   @ApiOperation({ summary: "Get last document date" })
-  @ApiResponse({ status: 200, type: String })
   @Get("/:documentType/last-date")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   getLastDocumentDate(
     @PharmacyId() id: number,
     @Param("documentType") documentType: DocumentType
-  ): Promise<string> {
+  ): Promise<{ date: string }> {
     return this.documentsService.getLastDocumentDate(id, documentType);
   }
 
