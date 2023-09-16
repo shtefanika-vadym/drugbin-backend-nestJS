@@ -24,8 +24,20 @@ export class DocumentsController {
   getAll(
     @PharmacyId() id: number,
     @Param("documentType") documentType: DocumentType
-  ): Promise<any> {
+  ): Promise<Document[]> {
     return this.documentsService.getAll(id, documentType);
+  }
+
+  // Get last document date
+  @ApiOperation({ summary: "Get last document date" })
+  @ApiResponse({ status: 200, type: String })
+  @Get("/:documentType/last-date")
+  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  getLastDocumentDate(
+    @PharmacyId() id: number,
+    @Param("documentType") documentType: DocumentType
+  ): Promise<string> {
+    return this.documentsService.getLastDocumentDate(id, documentType);
   }
 
   // Create new document

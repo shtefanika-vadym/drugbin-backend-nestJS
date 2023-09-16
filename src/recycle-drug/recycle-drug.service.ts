@@ -128,6 +128,13 @@ export class RecycleDrugService {
       .filter(({ drugList }: RecycleDrug) => !!drugList.length);
   }
 
+  getLastRecycledDrug(pharmacyId: number): Promise<RecycleDrug> {
+    return this.recycleDrugRepository.findOne({
+      where: { chainId: pharmacyId, status: ProductStatus.recycled },
+      order: [["id", "DESC"]],
+    });
+  }
+
   async getPharmacyDrugsByInterval(
     pharmacyId: number,
     startDate: string,

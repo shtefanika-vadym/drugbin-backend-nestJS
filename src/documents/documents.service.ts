@@ -5,6 +5,7 @@ import { DocumentType } from "src/documents/enum/document-type";
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { RecycleDrugService } from "src/recycle-drug/recycle-drug.service";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
+import * as moment from "moment";
 
 @Injectable()
 export class DocumentsService {
@@ -19,7 +20,31 @@ export class DocumentsService {
   ): Promise<Document[]> {
     return this.documentRepository.findAll({
       where: { pharmacyId, documentType },
+      attributes: {
+        exclude: ["pharmacyId", "createdAt", "updatedAt", "documentType"],
+      },
     });
+  }
+
+  async getLastDocumentDate(
+    pharmacyId: number,
+    documentType: DocumentType
+  ): Promise<string> {
+    const document: Document = await this.documentRepository.findOne({
+      where: { pharmacyId, documentType },
+      order: [["startDate", "DESC"]],
+    });
+
+    if (document)
+      return moment(document.endDate).add(1, "days").format("YYYY-MM-DD");
+
+    const lastRecycledDrug: RecycleDrug =
+      await this.recycleDrugService.getLastRecycledDrug(pharmacyId);
+
+    if (lastRecycledDrug)
+      return moment(lastRecycledDrug.updatedAt).format("YYYY-MM-DD");
+
+    return moment().startOf("month").format("YYYY-MM-DD");
   }
 
   async create(
