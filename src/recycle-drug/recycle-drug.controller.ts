@@ -21,6 +21,7 @@ import { MessageResponse } from "src/reponses/message-response";
 import { PharmacyId } from "src/auth/pharmacy-id.decorator";
 import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
 import { IVerbalData } from "src/recycle-drug/interfaces/verbal-data.interface";
+import { IPagination } from "src/helpers/pagination.interface";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle-drug")
@@ -53,13 +54,14 @@ export class RecycleDrugController {
   // Get filtered drugs by (id or name)
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get filtered drugs by (id or name)" })
-  @ApiResponse({ status: 200, type: [RecycleDrug] })
   @Get("/search/:query")
   getFilteredDrugsByName(
     @PharmacyId() id: number,
-    @Param("query") query: string
-  ): Promise<RecycleDrug[]> {
-    return this.recycleDrugService.getFilteredDrugsByName(query, id);
+    @Param("query") query: string,
+    @Query("page", ParseIntPipe) page: number = 1,
+    @Query("limit", ParseIntPipe) limit: number = 10
+  ): Promise<IPagination<RecycleDrug[]>> {
+    return this.recycleDrugService.getFilteredDrugsByName(query, id, page, limit);
   }
 
   // Get all drugs

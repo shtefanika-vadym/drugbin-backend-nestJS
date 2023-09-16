@@ -20,6 +20,7 @@ import { ChainsService } from "src/chains/chains.service";
 import { Chain } from "src/chains/chains.model";
 import { IVerbalData } from "src/recycle-drug/interfaces/verbal-data.interface";
 import { PaginationHelper } from "src/helpers/pagination.helper";
+import { IPagination } from "src/helpers/pagination.interface";
 
 @Injectable()
 export class RecycleDrugService {
@@ -82,7 +83,12 @@ export class RecycleDrugService {
     });
   }
 
-  async getFilteredDrugsByName(query: string, pharmacyId: number) {
+  async getFilteredDrugsByName(
+    query: string,
+    pharmacyId: number,
+    page: number,
+    limit: number
+  ): Promise<IPagination<RecycleDrug[]>> {
     const pharmacy: Pharmacy = await this.pharmacyService.getById(pharmacyId);
 
     let defaultFilterClause: Record<string, Record<string, string>>[] = [
@@ -93,16 +99,20 @@ export class RecycleDrugService {
     if (Number(query))
       defaultFilterClause = [{ id: { [Op.eq]: Number(query) } }];
 
-    return this.recycleDrugRepository.findAll({
-      where: {
-        chainId: pharmacy.chainId,
-        [Op.or]: defaultFilterClause,
+    return this.paginationHelper.paginate({
+      page,
+      limit,
+      options: {
+        where: {
+          chainId: pharmacy.chainId,
+          [Op.or]: defaultFilterClause,
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "chainId"],
+        },
+        order: [["id", "DESC"]],
       },
-      attributes: {
-        exclude: ["createdAt", "updatedAt", "chainId"],
-      },
-      limit: 10,
-      order: [["id", "DESC"]],
+      model: this.recycleDrugRepository,
     });
   }
 
