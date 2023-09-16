@@ -21,7 +21,7 @@ export class DocumentsService {
     return this.documentRepository.findAll({
       where: { pharmacyId, documentType },
       attributes: {
-        exclude: ["pharmacyId", "createdAt", "updatedAt", "documentType"],
+        exclude: ["pharmacyId", "updatedAt", "documentType"],
       },
     });
   }

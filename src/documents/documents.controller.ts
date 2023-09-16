@@ -8,7 +8,6 @@ import {
   UseInterceptors,
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { MessageResponse } from "src/reponses/message-response";
 import { DocumentsService } from "src/documents/documents.service";
 import { PharmacyId } from "src/auth/pharmacy-id.decorator";
 import { DocumentType } from "src/documents/enum/document-type";
