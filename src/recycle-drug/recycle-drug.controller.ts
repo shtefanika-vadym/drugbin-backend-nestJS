@@ -76,7 +76,7 @@ export class RecycleDrugController {
     @PharmacyId() id: number,
     @Query("page", ParseIntPipe) page: number = 1,
     @Query("limit", ParseIntPipe) limit: number = 10
-  ): Promise<IPagination<RecycleDrug[]>> {
+  ): Promise<IPagination<IRecycledDrug[]>> {
     return this.recycleDrugService.getAllDrugsByPharmacy(id, page, limit);
   }
 

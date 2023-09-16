@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import { Op, QueryTypes } from "sequelize";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
@@ -168,27 +168,37 @@ export class RecycleDrugService {
     pharmacyId: number,
     page: number,
     limit: number
-  ): Promise<IPagination<RecycleDrug[]>> {
-    const pagination: IPagination<RecycleDrug[]> =
-      await this.paginationHelper.paginate({
-        page,
-        limit,
-        options: {
-          where: { chainId: pharmacyId, status: ProductStatus.recycled },
-          order: [["id", "DESC"]],
-        },
-        model: this.recycleDrugRepository,
-      });
+  ): Promise<IPagination<IRecycledDrug[]>> {
+    const offset = (page - 1) * limit;
+    const [{ sum: totalItems }]: { sum: number }[] =
+      await this.recycleDrugRepository.sequelize.query(
+        'SELECT SUM(json_array_length("drugList")) FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status',
+        {
+          replacements: { chainId: pharmacyId, status: ProductStatus.recycled },
+          type: QueryTypes.SELECT,
+        }
+      );
+    const data: { json_array_elements: IRecycledDrug }[] =
+      await this.recycleDrugRepository.sequelize.query(
+        'SELECT json_array_elements("drugList") FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status ORDER BY "id" DESC LIMIT :limit OFFSET :offset',
+        {
+          replacements: {
+            chainId: pharmacyId,
+            status: ProductStatus.recycled,
+            limit,
+            offset,
+          },
+          type: QueryTypes.SELECT,
+        }
+      );
 
-    pagination.data = [].concat(
-      ...pagination.data.map(({ drugList, createdAt }) =>
-        drugList
-          .map((item) => ({ ...item, createdAt }))
-          .reduce((acc, val) => acc.concat(val), [])
-      )
-    );
+    return { data: this.replaceJsonResultKey(data), limit, page, totalItems };
+  }
 
-    return pagination;
+  replaceJsonResultKey(
+    data: { json_array_elements: IRecycledDrug }[]
+  ): IRecycledDrug[] {
+    return data.map(({ json_array_elements }) => json_array_elements);
   }
 
   async updateRecycleDrugStatus(
