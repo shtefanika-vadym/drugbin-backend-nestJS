@@ -61,14 +61,23 @@ export class RecycleDrugController {
     @Query("page", ParseIntPipe) page: number = 1,
     @Query("limit", ParseIntPipe) limit: number = 10
   ): Promise<IPagination<RecycleDrug[]>> {
-    return this.recycleDrugService.getFilteredDrugsByName(query, id, page, limit);
+    return this.recycleDrugService.getFilteredDrugsByName(
+      query,
+      id,
+      page,
+      limit
+    );
   }
 
   // Get all drugs
   @UseGuards(JwtAuthGuard)
   @Get("/history")
-  getAllDrugsByPharmacy(@PharmacyId() id: number): Promise<IRecycledDrug[]> {
-    return this.recycleDrugService.getAllDrugsByPharmacy(id);
+  getAllDrugsByPharmacy(
+    @PharmacyId() id: number,
+    @Query("page", ParseIntPipe) page: number = 1,
+    @Query("limit", ParseIntPipe) limit: number = 10
+  ): Promise<IPagination<RecycleDrug[]>> {
+    return this.recycleDrugService.getAllDrugsByPharmacy(id, page, limit);
   }
 
   // Confirm recycle drug status

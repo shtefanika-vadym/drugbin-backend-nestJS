@@ -164,19 +164,31 @@ export class RecycleDrugService {
     return drugs;
   }
 
-  async getAllDrugsByPharmacy(pharmacyId: number): Promise<IRecycledDrug[]> {
-    const drugs: RecycleDrug[] = await this.recycleDrugRepository.findAll({
-      where: { chainId: pharmacyId, status: ProductStatus.recycled },
-      order: [["id", "DESC"]],
-    });
+  async getAllDrugsByPharmacy(
+    pharmacyId: number,
+    page: number,
+    limit: number
+  ): Promise<IPagination<RecycleDrug[]>> {
+    const pagination: IPagination<RecycleDrug[]> =
+      await this.paginationHelper.paginate({
+        page,
+        limit,
+        options: {
+          where: { chainId: pharmacyId, status: ProductStatus.recycled },
+          order: [["id", "DESC"]],
+        },
+        model: this.recycleDrugRepository,
+      });
 
-    return [].concat(
-      ...drugs.map(({ drugList, createdAt }) =>
+    pagination.data = [].concat(
+      ...pagination.data.map(({ drugList, createdAt }) =>
         drugList
           .map((item) => ({ ...item, createdAt }))
           .reduce((acc, val) => acc.concat(val), [])
       )
     );
+
+    return pagination;
   }
 
   async updateRecycleDrugStatus(
