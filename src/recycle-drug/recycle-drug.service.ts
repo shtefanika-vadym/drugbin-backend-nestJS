@@ -106,6 +106,47 @@ export class RecycleDrugService {
     });
   }
 
+  getEndOfDay(date: string): Date {
+    const endOfDay: Date = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+    return endOfDay;
+  }
+
+  getFilteredDrugsByIsPsycholeptic(
+    drugs: RecycleDrug[],
+    isPsycholeptic: boolean
+  ): RecycleDrug[] {
+    const data: RecycleDrug[] = JSON.parse(JSON.stringify(drugs));
+    return data
+      .map((drug: RecycleDrug): RecycleDrug => {
+        const filteredDrugList: IRecycledDrug[] = drug.drugList.filter(
+          ({ drugDetails }: IRecycledDrug): boolean =>
+            drugDetails.isPsycholeptic === isPsycholeptic
+        );
+        return { ...drug, drugList: filteredDrugList } as RecycleDrug;
+      })
+      .filter(({ drugList }: RecycleDrug) => !!drugList.length);
+  }
+
+  async getPharmacyDrugsByInterval(
+    pharmacyId: number,
+    startDate: string,
+    endDate: string
+  ): Promise<RecycleDrug[]> {
+    const pharmacy: Pharmacy = await this.pharmacyService.getById(pharmacyId);
+    const drugs: RecycleDrug[] = await this.recycleDrugRepository.findAll({
+      where: {
+        chainId: pharmacy.chainId,
+        status: ProductStatus.recycled,
+        createdAt: {
+          [Op.between]: [startDate, this.getEndOfDay(endDate)],
+        },
+      },
+      order: [["id", "DESC"]],
+    });
+    return drugs;
+  }
+
   async getAllDrugsByPharmacy(pharmacyId: number): Promise<IRecycledDrug[]> {
     const drugs: RecycleDrug[] = await this.recycleDrugRepository.findAll({
       where: { chainId: pharmacyId, status: ProductStatus.recycled },

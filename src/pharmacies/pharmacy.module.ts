@@ -5,7 +5,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { Pharmacy } from "src/pharmacies/pharmacy.model";
 import { AuthModule } from "src/auth/auth.module";
 import { SeederModule } from "nestjs-sequelize-seeder";
-import { PharmacySeed } from "src/pharmacies/pharmacy.seed";
+import { PharmacySeed } from "src/database/seeders/pharmacy.seed";
 
 @Module({
   controllers: [PharmacyController],

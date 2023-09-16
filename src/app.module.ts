@@ -15,7 +15,9 @@ import { DrugsModule } from "src/drugs/drugs.module";
 import { SeederModule } from "nestjs-sequelize-seeder";
 import { ChainsModule } from "src/chains/chains.module";
 import { Chain } from "src/chains/chains.model";
+import { DocumentsModule } from "src/documents/documents.module";
 import * as process from "process";
+import { Document } from "src/documents/documents.model";
 
 @Module({
   controllers: [AppController],
@@ -31,7 +33,7 @@ import * as process from "process";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Pharmacy, ContactUs, RecycleDrug, Drug, Chain],
+      models: [Pharmacy, ContactUs, RecycleDrug, Drug, Chain, Document],
       autoLoadModels: true,
     }),
     SeederModule.forRoot({
@@ -43,6 +45,7 @@ import * as process from "process";
     AuthModule,
     DrugsModule,
     ChainsModule,
+    DocumentsModule,
     ContactUsModule,
     RecycleDrugModule,
   ],
