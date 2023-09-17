@@ -39,6 +39,16 @@ export class Document extends Model<Document, DocumentCreationAttrs> {
   startDate: string;
 
   @ApiProperty()
+  @AllowNull(true)
+  @Column(DataType.DATE)
+  deletedAt: Date;
+
+  @ApiProperty()
+  @AllowNull(true)
+  @Column(DataType.DATE)
+  sharedAt: Date;
+
+  @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
   endDate: string;

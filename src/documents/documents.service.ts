@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from "@nestjs/common";
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Document } from "src/documents/documents.model";
 import { DocumentType } from "src/documents/enum/document-type";
@@ -6,6 +10,7 @@ import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { RecycleDrugService } from "src/recycle-drug/recycle-drug.service";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import * as moment from "moment";
+import { MessageResponse } from "src/reponses/message-response";
 
 @Injectable()
 export class DocumentsService {
@@ -19,11 +24,28 @@ export class DocumentsService {
     documentType: DocumentType
   ): Promise<Document[]> {
     return this.documentRepository.findAll({
-      where: { pharmacyId, documentType },
+      where: { pharmacyId, documentType, deletedAt: null },
       attributes: {
         exclude: ["pharmacyId", "updatedAt", "documentType"],
       },
     });
+  }
+
+  async delete(
+    pharmacyId: number,
+    documentType: DocumentType,
+    documentId: number
+  ): Promise<MessageResponse> {
+    const document: Document = await this.documentRepository.findOne({
+      where: { pharmacyId, id: documentId, documentType, deletedAt: null },
+    });
+
+    if (!document)
+      throw new NotFoundException("Document with this id doesn't exist");
+
+    await document.update({ deletedAt: new Date() });
+
+    return { message: "Document deleted successfully" };
   }
 
   async getLastDocumentDate(

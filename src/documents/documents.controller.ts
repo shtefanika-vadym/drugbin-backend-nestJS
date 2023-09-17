@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
+  Patch,
   Post,
   UseGuards,
   UseInterceptors,
@@ -16,6 +18,7 @@ import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { EnumValidatorInterceptor } from "src/interceptors/enum-validator.interceptor";
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
+import { MessageResponse } from "src/reponses/message-response";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Documents")
@@ -57,5 +60,18 @@ export class DocumentsController {
     @Param("documentType") documentType: DocumentType
   ): Promise<RecycleDrug[]> {
     return this.documentsService.create(id, documentType, dto);
+  }
+
+  // Delete document
+  @ApiOperation({ summary: "Delete document" })
+  @ApiResponse({ status: 200, type: MessageResponse })
+  @Delete("/:documentType/:documentId")
+  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  delete(
+    @PharmacyId() id: number,
+    @Param("documentId") documentId: number,
+    @Param("documentType") documentType: DocumentType
+  ): Promise<MessageResponse> {
+    return this.documentsService.delete(id, documentType, documentId);
   }
 }
