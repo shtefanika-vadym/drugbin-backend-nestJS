@@ -76,8 +76,9 @@ export class DocumentsService {
     return this.documentRepository.findAll({
       where: { pharmacyId, sharedAt: { [Op.ne]: null } },
       attributes: {
-        exclude: ["pharmacyId", "updatedAt", "documentType"],
+        exclude: ["pharmacyId", "updatedAt"],
       },
+      order: [["sharedAt", "DESC"]],
     });
   }
 
@@ -85,8 +86,9 @@ export class DocumentsService {
     return this.documentRepository.findAll({
       where: { pharmacyId, deletedAt: { [Op.ne]: null } },
       attributes: {
-        exclude: ["pharmacyId", "updatedAt", "documentType"],
+        exclude: ["pharmacyId", "updatedAt"],
       },
+      order: [["deletedAt", "DESC"]],
     });
   }
 
