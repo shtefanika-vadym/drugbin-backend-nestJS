@@ -11,6 +11,7 @@ import { RecycleDrugService } from "src/recycle-drug/recycle-drug.service";
 import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
 import * as moment from "moment";
 import { MessageResponse } from "src/reponses/message-response";
+import { Op } from "sequelize";
 
 @Injectable()
 export class DocumentsService {
@@ -46,6 +47,47 @@ export class DocumentsService {
     await document.update({ deletedAt: new Date() });
 
     return { message: "Document deleted successfully" };
+  }
+
+  async share(
+    pharmacyId: number,
+    documentType: DocumentType,
+    documentId: number
+  ): Promise<MessageResponse> {
+    const document: Document = await this.documentRepository.findOne({
+      where: {
+        pharmacyId,
+        id: documentId,
+        documentType,
+        deletedAt: null,
+        sharedAt: null,
+      },
+    });
+
+    if (!document)
+      throw new NotFoundException("Document with this id doesn't exist");
+
+    await document.update({ sharedAt: new Date() });
+
+    return { message: "Document shared successfully" };
+  }
+
+  async getAllShared(pharmacyId: number): Promise<Document[]> {
+    return this.documentRepository.findAll({
+      where: { pharmacyId, sharedAt: { [Op.ne]: null } },
+      attributes: {
+        exclude: ["pharmacyId", "updatedAt", "documentType"],
+      },
+    });
+  }
+
+  async getAllRemoved(pharmacyId: number): Promise<Document[]> {
+    return this.documentRepository.findAll({
+      where: { pharmacyId, deletedAt: { [Op.ne]: null } },
+      attributes: {
+        exclude: ["pharmacyId", "updatedAt", "documentType"],
+      },
+    });
   }
 
   async getLastDocumentDate(

@@ -26,6 +26,22 @@ import { MessageResponse } from "src/reponses/message-response";
 export class DocumentsController {
   constructor(private documentsService: DocumentsService) {}
 
+  // Get all removed documents
+  @ApiOperation({ summary: "Get all removed documents" })
+  @ApiResponse({ status: 200, type: [Document] })
+  @Get("/removed")
+  getAllRemoved(@PharmacyId() id: number): Promise<Document[]> {
+    return this.documentsService.getAllRemoved(id);
+  }
+
+  // Get all shared documents
+  @ApiOperation({ summary: "Get all shared documents" })
+  @ApiResponse({ status: 200, type: [Document] })
+  @Get("/shared")
+  getAllShared(@PharmacyId() id: number): Promise<Document[]> {
+    return this.documentsService.getAllShared(id);
+  }
+
   // Get all last documents
   @ApiOperation({ summary: "Get all last documents" })
   @ApiResponse({ status: 200, type: [Document] })
@@ -73,5 +89,18 @@ export class DocumentsController {
     @Param("documentType") documentType: DocumentType
   ): Promise<MessageResponse> {
     return this.documentsService.delete(id, documentType, documentId);
+  }
+
+  // Share document
+  @ApiOperation({ summary: "Share document" })
+  @ApiResponse({ status: 200, type: MessageResponse })
+  @Patch("/:documentType/:documentId")
+  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  share(
+    @PharmacyId() id: number,
+    @Param("documentId") documentId: number,
+    @Param("documentType") documentType: DocumentType
+  ): Promise<MessageResponse> {
+    return this.documentsService.share(id, documentType, documentId);
   }
 }
