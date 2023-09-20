@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -6,17 +6,18 @@ module.exports = {
     /**
      * Add altering commands here.
      */
-    await queryInterface.addColumn("documents", "sharedAt", {
-      type: Sequelize.DATE,
+    await queryInterface.addColumn("recycle_drug", "pharmacyId", {
+      type: Sequelize.INTEGER,
       allowNull: true,
     });
+
   },
 
   async down(queryInterface) {
     /**
      * Add reverting commands here.
      */
-    await queryInterface.removeColumn("documents", "sharedAt");
+
+    await queryInterface.removeColumn("recycle_drug", "pharmacyId");
   },
 };
-

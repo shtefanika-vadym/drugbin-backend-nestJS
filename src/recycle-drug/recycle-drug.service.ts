@@ -21,6 +21,7 @@ import { Chain } from "src/chains/chains.model";
 import { IVerbalData } from "src/recycle-drug/interfaces/verbal-data.interface";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { IPagination } from "src/helpers/pagination.interface";
+import * as moment from "moment";
 
 @Injectable()
 export class RecycleDrugService {
@@ -285,5 +286,164 @@ export class RecycleDrugService {
         }
       )
       .reduce((acc, val) => acc.concat(val), []);
+  }
+
+  async getDrugListByYear(pharmacyId: number, year: string): Promise<any> {
+    const data: { json_array_elements: IRecycledDrug }[] =
+      await this.recycleDrugRepository.sequelize.query(
+        'SELECT json_array_elements("drugList") FROM "recycle_drug" WHERE "pharmacyId" = :pharmacyId AND EXTRACT(YEAR FROM "createdAt") = :year',
+        {
+          replacements: {
+            year,
+            pharmacyId,
+          },
+          type: QueryTypes.SELECT,
+        }
+      );
+    return this.replaceJsonResultKey(data);
+  }
+
+  countDrugListItems(drugList: IRecycledDrug[]): number {
+    return drugList.reduce((acc: number) => acc + 1, 0);
+  }
+
+  countMonthlyDrugListItems(
+    drugList: Record<string, IRecycledDrug[]>
+  ): Record<string, number> {
+    const monthlyCounts: Record<string, number> = {};
+
+    for (const month in drugList) {
+      if (drugList.hasOwnProperty(month)) {
+        monthlyCounts[month] = drugList[month].length;
+      }
+    }
+
+    return monthlyCounts;
+  }
+
+  getMonthlyTopProducers(drugList: Record<string, IRecycledDrug[]>) {
+    const producers: Record<string, any> = {};
+
+    for (const month in drugList) {
+      if (drugList.hasOwnProperty(month)) {
+        producers[month] = this.getTopProducers(drugList[month]);
+      }
+    }
+
+    return producers;
+  }
+
+  getMonthlyTopTypes(drugList: Record<string, IRecycledDrug[]>) {
+    const types: Record<string, any> = {};
+
+    for (const month in drugList) {
+      if (drugList.hasOwnProperty(month)) {
+        types[month] = this.getTopTypes(drugList[month]);
+      }
+    }
+
+    return types;
+  }
+
+  getTopProducers(data: IRecycledDrug[]): any {
+    const producers: Record<string, number> = {};
+    data.forEach(({ drugDetails }: IRecycledDrug): void => {
+      const { producer } = drugDetails;
+      if (!producer) return;
+      if (producers.hasOwnProperty(producer)) {
+        producers[producer] += 1;
+      } else {
+        producers[producer] = 1;
+      }
+    });
+
+    const producerArray = Object.entries(producers).map(
+      ([producer, total]) => ({ producer, total })
+    );
+
+    producerArray.sort((a, b) => b.total - a.total);
+
+    const top3Producers = producerArray.slice(0, 3);
+
+    return top3Producers;
+  }
+
+  getTopTypes(data: IRecycledDrug[]): any {
+    const rxPrefixes: string[] = ["PRF", "PR"];
+    const types: Record<string, number> = {};
+    data.forEach(({ drugDetails }: IRecycledDrug) => {
+      const { prescription } = drugDetails;
+      if (!prescription) {
+        types["Supplement"] = (types["Supplement"] || 0) + 1;
+        return;
+      }
+
+      if (rxPrefixes.includes(prescription)) {
+        types["Rx"] = (types["Rx"] || 0) + 1;
+        return;
+      }
+
+      types[prescription] = (types[prescription] || 0) + 1;
+    });
+
+    const producerArray = Object.entries(types).map(([type, total]) => ({
+      type,
+      total,
+    }));
+
+    producerArray.sort((a, b) => b.total - a.total);
+
+    const top3Producers = producerArray.slice(0, 3);
+
+    return top3Producers;
+  }
+
+  splitDashboardDataByMonths(
+    data: IRecycledDrug[]
+  ): Record<string, IRecycledDrug[]> {
+    const groupedByMonth: Record<string, IRecycledDrug[]> = {};
+
+    for (let i: number = 1; i <= 12; i++) {
+      groupedByMonth[i] = [];
+    }
+
+    data.forEach((item: any): void => {
+      const expirationDate: moment.Moment = moment(item.createdAt);
+      const monthYearKey: string = expirationDate.format("MM");
+
+      if (!groupedByMonth[Number(monthYearKey)]) {
+        groupedByMonth[Number(monthYearKey)] = [];
+      }
+
+      groupedByMonth[Number(monthYearKey)].push(item);
+    });
+
+    return groupedByMonth;
+  }
+
+  async geDashboardDataByYear(pharmacyId: number, year: string): Promise<any> {
+    const data: IRecycledDrug[] = await this.getDrugListByYear(
+      pharmacyId,
+      year
+    );
+
+    const groupedByMonth: Record<number, IRecycledDrug[]> =
+      this.splitDashboardDataByMonths(data);
+
+    const annualTotalDrugs: number = this.countDrugListItems(data);
+    const annualTopProducers = this.getTopProducers(data);
+    const annualTopTypes = this.getTopTypes(data);
+
+    const monthlyTotalDrugs: Record<string, number> =
+      this.countMonthlyDrugListItems(groupedByMonth);
+    const monthlyTopTypes: any = this.getMonthlyTopTypes(groupedByMonth);
+    const monthlyTopProducers: any =
+      this.getMonthlyTopProducers(groupedByMonth);
+
+    return {
+      topTypes: { annualTopTypes, monthlyTopTypes },
+      totalDrugs: { annualTotalDrugs, monthlyTotalDrugs },
+      topProducers: { annualTopProducers, monthlyTopProducers },
+    };
   }
 }

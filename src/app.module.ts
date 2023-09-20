@@ -18,6 +18,7 @@ import { Chain } from "src/chains/chains.model";
 import { DocumentsModule } from "src/documents/documents.module";
 import * as process from "process";
 import { Document } from "src/documents/documents.model";
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   controllers: [AppController],
@@ -48,6 +49,7 @@ import { Document } from "src/documents/documents.model";
     DocumentsModule,
     ContactUsModule,
     RecycleDrugModule,
+    DashboardModule,
   ],
 })
 export class AppModule {}

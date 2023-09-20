@@ -14,6 +14,7 @@ import { IRecycledDrug } from "src/recycle-drug/interfaces/drug.interface";
 import { IsEnum } from "class-validator";
 import { ProductStatus } from "src/recycle-drug/enum/product-status";
 import { Chain } from "src/chains/chains.model";
+import { Pharmacy } from "src/pharmacies/pharmacy.model";
 
 interface RecycleDrugCreationAttrs {
   email?: string;
@@ -52,6 +53,14 @@ export class RecycleDrug extends Model<RecycleDrug, RecycleDrugCreationAttrs> {
   @AllowNull(true)
   @Column(DataType.JSON)
   drugList: IRecycledDrug[];
+
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
+  @ForeignKey(() => Pharmacy)
+  pharmacyId: number;
+
+  @BelongsTo(() => Pharmacy)
+  pharmacy: Pharmacy;
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
