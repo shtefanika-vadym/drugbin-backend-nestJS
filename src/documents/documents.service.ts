@@ -157,12 +157,12 @@ export class DocumentsService {
         endDate
       );
 
-    // const newDocument: Document = new Document();
-    // newDocument.pharmacyId = pharmacyId;
-    // newDocument.documentType = documentType;
-    // newDocument.endDate = endDate;
-    // newDocument.startDate = startDate;
-    // await newDocument.save();
+    const newDocument: Document = new Document();
+    newDocument.pharmacyId = pharmacyId;
+    newDocument.documentType = documentType;
+    newDocument.endDate = endDate;
+    newDocument.startDate = startDate;
+    await newDocument.save();
 
     return this.recycleDrugService.getFilteredDrugsByIsPsycholeptic(
       drugsByInterval,
