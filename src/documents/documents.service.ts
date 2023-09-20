@@ -72,6 +72,29 @@ export class DocumentsService {
     return { message: "Document shared successfully" };
   }
 
+  async getDocumentDataById(
+    pharmacyId: number,
+    documentType: DocumentType,
+    documentId: number
+  ): Promise<RecycleDrug[]> {
+    const document: Document = await this.documentRepository.findOne({
+      where: {
+        pharmacyId,
+        id: documentId,
+        documentType,
+      },
+    });
+
+    if (!document)
+      throw new NotFoundException("Document with this id doesn't exist");
+
+    return this.recycleDrugService.getPharmacyDrugsByInterval(
+      pharmacyId,
+      document.startDate,
+      document.endDate
+    );
+  }
+
   async getAllShared(pharmacyId: number): Promise<Document[]> {
     return this.documentRepository.findAll({
       where: { pharmacyId, sharedAt: { [Op.ne]: null } },

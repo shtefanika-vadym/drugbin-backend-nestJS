@@ -103,4 +103,17 @@ export class DocumentsController {
   ): Promise<MessageResponse> {
     return this.documentsService.share(id, documentType, documentId);
   }
+
+  // Get document data
+  @ApiOperation({ summary: "Get document data" })
+  @ApiResponse({ status: 200, type: [RecycleDrug] })
+  @Get("/data/:documentType/:documentId")
+  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  getDocumentDataById(
+    @PharmacyId() id: number,
+    @Param("documentId") documentId: number,
+    @Param("documentType") documentType: DocumentType
+  ): Promise<RecycleDrug[]> {
+    return this.documentsService.getDocumentDataById(id, documentType, documentId);
+  }
 }
