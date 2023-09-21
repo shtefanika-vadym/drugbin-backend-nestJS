@@ -181,7 +181,7 @@ export class RecycleDrugService {
       );
     const data: { json_array_elements: IRecycledDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT json_array_elements("drugList") FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status ORDER BY "id" DESC LIMIT :limit OFFSET :offset',
+        'SELECT "createdAt", json_array_elements("drugList") FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status ORDER BY "id" DESC LIMIT :limit OFFSET :offset',
         {
           replacements: {
             chainId: pharmacyId,
@@ -197,9 +197,12 @@ export class RecycleDrugService {
   }
 
   replaceJsonResultKey(
-    data: { json_array_elements: IRecycledDrug }[]
+    data: { createdAt?: string; json_array_elements: IRecycledDrug }[]
   ): IRecycledDrug[] {
-    return data.map(({ json_array_elements }) => json_array_elements);
+    return data.map(({ json_array_elements, createdAt }) => ({
+      ...json_array_elements,
+      createdAt,
+    }));
   }
 
   async updateRecycleDrugStatus(
@@ -291,7 +294,7 @@ export class RecycleDrugService {
   async getDrugListByYear(pharmacyId: number, year: string): Promise<any> {
     const data: { json_array_elements: IRecycledDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT json_array_elements("drugList") FROM "recycle_drug" WHERE "pharmacyId" = :pharmacyId AND EXTRACT(YEAR FROM "createdAt") = :year',
+        'SELECT "createdAt", json_array_elements("drugList") FROM "recycle_drug" WHERE "pharmacyId" = :pharmacyId AND EXTRACT(YEAR FROM "createdAt") = :year',
         {
           replacements: {
             year,
