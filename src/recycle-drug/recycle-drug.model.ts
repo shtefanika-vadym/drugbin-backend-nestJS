@@ -54,7 +54,7 @@ export class RecycleDrug extends Model<RecycleDrug, RecycleDrugCreationAttrs> {
   @Column(DataType.JSON)
   drugList: IRecycledDrug[];
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.INTEGER)
   @ForeignKey(() => Pharmacy)
   pharmacyId: number;
