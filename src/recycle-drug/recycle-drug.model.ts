@@ -17,9 +17,12 @@ import { Chain } from "src/chains/chains.model";
 import { Pharmacy } from "src/pharmacies/pharmacy.model";
 
 interface RecycleDrugCreationAttrs {
+  cnp?: string;
   email?: string;
   firstName: string;
   lastName: string;
+  address?: string;
+  recycleId: string;
   status: ProductStatus;
   drugList: IRecycledDrug[];
 }
@@ -43,7 +46,15 @@ export class RecycleDrug extends Model<RecycleDrug, RecycleDrugCreationAttrs> {
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  email?: string;
+  cnp?: string;
+
+  @AllowNull(true)
+  @Column(DataType.STRING)
+  address?: string;
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
+  recycleId: string;
 
   @AllowNull(true)
   @IsEnum(ProductStatus)

@@ -56,6 +56,10 @@ class DrugDto {
   readonly drugId;
 }
 
+// TODO: CNP, adresa domiciliu
+// TODO: Lista de spitale
+// enpoint acte dupa cod
+
 export class CreateRecycleDrugDto {
   @ApiProperty({
     example: "Ion",
@@ -68,6 +72,15 @@ export class CreateRecycleDrugDto {
     message: "First Name must be shorter than or equal to 255 characters",
   })
   readonly firstName: string;
+
+  @IsOptional()
+  @IsString({ message: "CNP" })
+  @MinLength(1, { message: "CNP" })
+  readonly cnp: string;
+
+  @IsOptional()
+  @IsString({ message: "Address" })
+  readonly address: string;
 
   @ApiProperty({
     example: 1,
