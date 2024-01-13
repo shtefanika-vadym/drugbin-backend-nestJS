@@ -22,7 +22,7 @@ import { IVerbalData } from "src/recycle-drug/interfaces/verbal-data.interface";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { IPagination } from "src/helpers/pagination.interface";
 import * as moment from "moment";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuidv4";
 
 @Injectable()
 export class RecycleDrugService {
@@ -59,7 +59,7 @@ export class RecycleDrugService {
 
     const createdDrug: RecycleDrug = await this.recycleDrugRepository.create({
       ...dto,
-      recycleId: uuid(),
+      recycleId: uuidv4(),
       status: ProductStatus.pending,
       drugList: recycledDrugList,
     });
