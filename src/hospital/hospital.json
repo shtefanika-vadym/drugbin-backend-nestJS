@@ -1,0 +1,10 @@
+{
+  "hospitals": [
+    {
+      "name": "Spitalul Județean Sf. Ioan",
+      "location": "https://maps.app.goo.gl/anXcLh7rXnyueVsE8",
+      "street": "Bld. 1 Mai nr 24, Secția “Nume”, Cabinet “Nr”",
+      "schedule": ["Lu-Mi 08:00 – 17.00", "Sâ-Du 10:00 – 12.00"]
+    }
+  ]
+}

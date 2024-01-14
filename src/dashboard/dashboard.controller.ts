@@ -1,7 +1,7 @@
 import { Controller, Get, Param, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { DashboardService } from "src/dashboard/dashboard.service";
-import { PharmacyId } from "src/auth/pharmacy-id.decorator";
+import { HospitalId } from "src/auth/hospital-id.decorator";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { DashboardDatePipe } from "src/filters/dashboard-pipe";
 
@@ -15,7 +15,7 @@ export class DashboardController {
   @ApiOperation({ summary: "Get dashboard info" })
   @Get("/:date")
   async get(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Param(new DashboardDatePipe()) year: string
   ): Promise<any> {
     return this.dashboardService.get(id, year);

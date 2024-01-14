@@ -6,11 +6,10 @@ module.exports = {
     /**
      * Add altering commands here.
      */
-    await queryInterface.addColumn("recycle_drug", "pharmacyId", {
+    await queryInterface.addColumn("recycle_drug", "hospitalId", {
       type: Sequelize.INTEGER,
       allowNull: true,
     });
-
   },
 
   async down(queryInterface) {
@@ -18,6 +17,6 @@ module.exports = {
      * Add reverting commands here.
      */
 
-    await queryInterface.removeColumn("recycle_drug", "pharmacyId");
+    await queryInterface.removeColumn("recycle_drug", "hospitalId");
   },
 };

@@ -2,16 +2,14 @@ import { forwardRef, Module } from "@nestjs/common";
 import { DashboardController } from "./dashboard.controller";
 import { DashboardService } from "./dashboard.service";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
-import { Pharmacy } from "src/pharmacies/pharmacy.model";
-import { Chain } from "src/chains/chains.model";
-import { Drug } from "src/drugs/drugs.model";
+import { Recycle } from "src/recycle/recycle.model";
+import { Hospital } from "src/hospital/hospital.model";
+import { Drug } from "src/drug/drug.model";
 import { AuthModule } from "src/auth/auth.module";
-import { RecycleDrugService } from "src/recycle-drug/recycle-drug.service";
+import { RecycleService } from "src/recycle/recycle.service";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
-import { PharmacyService } from "src/pharmacies/pharmacy.service";
-import { ChainsService } from "src/chains/chains.service";
-import { DrugsService } from "src/drugs/drugs.service";
+import { HospitalService } from "src/hospital/hospital.service";
+import { DrugService } from "src/drug/drug.service";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { VisionService } from "src/vision/vision.service";
 
@@ -19,16 +17,15 @@ import { VisionService } from "src/vision/vision.service";
   controllers: [DashboardController],
   providers: [
     DashboardService,
-    RecycleDrugService,
+    RecycleService,
     PuppeteerService,
-    PharmacyService,
-    ChainsService,
-    DrugsService,
+    HospitalService,
+    DrugService,
     PaginationHelper,
     VisionService,
   ],
   imports: [
-    SequelizeModule.forFeature([RecycleDrug, Pharmacy, Chain, Drug]),
+    SequelizeModule.forFeature([Recycle, Hospital, Drug]),
     forwardRef(() => AuthModule),
   ],
 })

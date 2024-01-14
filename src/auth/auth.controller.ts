@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { CreatePharmacyDto } from "src/pharmacies/dto/create-pharmacy.dto";
+import { CreateHospitalDto } from "src/hospital/dto/create-hospital.dto";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "src/auth/dto/login.dto";
 import { LoginResponse } from "src/auth/responses/login-response";
@@ -21,7 +21,9 @@ export class AuthController {
   @ApiOperation({ summary: "Register pharmacies" })
   @ApiResponse({ status: 200, type: MessageResponse })
   @Post("/register")
-  registration(@Body() companyDto: CreatePharmacyDto): Promise<MessageResponse> {
+  registration(
+    @Body() companyDto: CreateHospitalDto
+  ): Promise<MessageResponse> {
     return this.authService.register(companyDto);
   }
 }

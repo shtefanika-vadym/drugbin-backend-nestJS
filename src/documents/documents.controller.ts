@@ -11,13 +11,13 @@ import {
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { DocumentsService } from "src/documents/documents.service";
-import { PharmacyId } from "src/auth/pharmacy-id.decorator";
+import { HospitalId } from "src/auth/hospital-id.decorator";
 import { DocumentType } from "src/documents/enum/document-type";
 import { Document } from "src/documents/documents.model";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { EnumValidatorInterceptor } from "src/interceptors/enum-validator.interceptor";
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
-import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
+import { Recycle } from "src/recycle/recycle.model";
 import { MessageResponse } from "src/reponses/message-response";
 
 @UseGuards(JwtAuthGuard)
@@ -30,7 +30,7 @@ export class DocumentsController {
   @ApiOperation({ summary: "Get all removed documents" })
   @ApiResponse({ status: 200, type: [Document] })
   @Get("/removed")
-  getAllRemoved(@PharmacyId() id: number): Promise<Document[]> {
+  getAllRemoved(@HospitalId() id: number): Promise<Document[]> {
     return this.documentsService.getAllRemoved(id);
   }
 
@@ -38,7 +38,7 @@ export class DocumentsController {
   @ApiOperation({ summary: "Get all shared documents" })
   @ApiResponse({ status: 200, type: [Document] })
   @Get("/shared")
-  getAllShared(@PharmacyId() id: number): Promise<Document[]> {
+  getAllShared(@HospitalId() id: number): Promise<Document[]> {
     return this.documentsService.getAllShared(id);
   }
 
@@ -48,7 +48,7 @@ export class DocumentsController {
   @Get("/:documentType")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   getAll(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Param("documentType") documentType: DocumentType
   ): Promise<Document[]> {
     return this.documentsService.getAll(id, documentType);
@@ -59,7 +59,7 @@ export class DocumentsController {
   @Get("/:documentType/last-date")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   getLastDocumentDate(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Param("documentType") documentType: DocumentType
   ): Promise<{ date: string }> {
     return this.documentsService.getLastDocumentDate(id, documentType);
@@ -67,14 +67,14 @@ export class DocumentsController {
 
   // Create new document
   @ApiOperation({ summary: "Create new document" })
-  @ApiResponse({ status: 200, type: [RecycleDrug] })
+  @ApiResponse({ status: 200, type: [Recycle] })
   @Post("/:documentType")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   create(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Body() dto: CreateDocumentDto,
     @Param("documentType") documentType: DocumentType
-  ): Promise<RecycleDrug[]> {
+  ): Promise<Recycle[]> {
     return this.documentsService.create(id, documentType, dto);
   }
 
@@ -84,7 +84,7 @@ export class DocumentsController {
   @Delete("/:documentType/:documentId")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   delete(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Param("documentId") documentId: number,
     @Param("documentType") documentType: DocumentType
   ): Promise<MessageResponse> {
@@ -97,7 +97,7 @@ export class DocumentsController {
   @Patch("/:documentType/:documentId")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   share(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Param("documentId") documentId: number,
     @Param("documentType") documentType: DocumentType
   ): Promise<MessageResponse> {
@@ -106,14 +106,18 @@ export class DocumentsController {
 
   // Get document data
   @ApiOperation({ summary: "Get document data" })
-  @ApiResponse({ status: 200, type: [RecycleDrug] })
+  @ApiResponse({ status: 200, type: [Recycle] })
   @Get("/data/:documentType/:documentId")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   getDocumentDataById(
-    @PharmacyId() id: number,
+    @HospitalId() id: number,
     @Param("documentId") documentId: number,
     @Param("documentType") documentType: DocumentType
-  ): Promise<RecycleDrug[]> {
-    return this.documentsService.getDocumentDataById(id, documentType, documentId);
+  ): Promise<Recycle[]> {
+    return this.documentsService.getDocumentDataById(
+      id,
+      documentType,
+      documentId
+    );
   }
 }

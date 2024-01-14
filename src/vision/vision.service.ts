@@ -4,7 +4,6 @@ import { Express } from "express";
 import * as path from "path";
 import { Readable } from "stream";
 import * as Jimp from "jimp";
-import { DrugsUtils } from "src/drugs/utils/drugs.utils";
 
 @Injectable()
 export class VisionService {
@@ -69,9 +68,9 @@ export class VisionService {
         ).split("\n");
 
         resultList.push(
-          [...new Set(textList)].filter(
-            (str: string): boolean => str.length > 0
-          ).join(' ')
+          [...new Set(textList)]
+            .filter((str: string): boolean => str.length > 0)
+            .join(" ")
         );
 
         // await croppedImage.writeAsync(

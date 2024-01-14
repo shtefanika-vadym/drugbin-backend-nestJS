@@ -1,7 +1,7 @@
 import { Seeder, OnSeederInit } from "nestjs-sequelize-seeder";
-import { Drug } from "src/drugs/drugs.model";
-import * as MOCK_DATA from "src/drugs/drugs.json";
-import { IDrug } from "src/drugs/interfaces/drug.interface";
+import { Drug } from "src/drug/drug.model";
+import * as MOCK_DATA from "src/drug/drugs.json";
+import { IDrug } from "src/drug/interfaces/drug.interface";
 
 @Seeder({
   unique: ["id"],

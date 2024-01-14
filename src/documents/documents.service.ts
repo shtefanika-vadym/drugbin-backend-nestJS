@@ -7,8 +7,8 @@ import { InjectModel } from "@nestjs/sequelize";
 import { Document } from "src/documents/documents.model";
 import { DocumentType } from "src/documents/enum/document-type";
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
-import { RecycleDrugService } from "src/recycle-drug/recycle-drug.service";
-import { RecycleDrug } from "src/recycle-drug/recycle-drug.model";
+import { RecycleService } from "src/recycle/recycle.service";
+import { Recycle } from "src/recycle/recycle.model";
 import * as moment from "moment";
 import { MessageResponse } from "src/reponses/message-response";
 import { Op } from "sequelize";
@@ -16,29 +16,29 @@ import { Op } from "sequelize";
 @Injectable()
 export class DocumentsService {
   constructor(
-    private readonly recycleDrugService: RecycleDrugService,
+    private readonly recycleDrugService: RecycleService,
     @InjectModel(Document) private documentRepository: typeof Document
   ) {}
 
   async getAll(
-    pharmacyId: number,
+    hospitalId: number,
     documentType: DocumentType
   ): Promise<Document[]> {
     return this.documentRepository.findAll({
-      where: { pharmacyId, documentType, deletedAt: null },
+      where: { hospitalId, documentType, deletedAt: null },
       attributes: {
-        exclude: ["pharmacyId", "updatedAt", "documentType"],
+        exclude: ["hospitalId", "updatedAt", "documentType"],
       },
     });
   }
 
   async delete(
-    pharmacyId: number,
+    hospitalId: number,
     documentType: DocumentType,
     documentId: number
   ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
-      where: { pharmacyId, id: documentId, documentType, deletedAt: null },
+      where: { hospitalId, id: documentId, documentType, deletedAt: null },
     });
 
     if (!document)
@@ -50,13 +50,13 @@ export class DocumentsService {
   }
 
   async share(
-    pharmacyId: number,
+    hospitalId: number,
     documentType: DocumentType,
     documentId: number
   ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
       where: {
-        pharmacyId,
+        hospitalId,
         id: documentId,
         documentType,
         deletedAt: null,
@@ -73,13 +73,13 @@ export class DocumentsService {
   }
 
   async getDocumentDataById(
-    pharmacyId: number,
+    hospitalId: number,
     documentType: DocumentType,
     documentId: number
-  ): Promise<RecycleDrug[]> {
+  ): Promise<Recycle[]> {
     const document: Document = await this.documentRepository.findOne({
       where: {
-        pharmacyId,
+        hospitalId,
         id: documentId,
         documentType,
       },
@@ -89,38 +89,38 @@ export class DocumentsService {
       throw new NotFoundException("Document with this id doesn't exist");
 
     return this.recycleDrugService.getPharmacyDrugsByInterval(
-      pharmacyId,
+      hospitalId,
       document.startDate,
       document.endDate
     );
   }
 
-  async getAllShared(pharmacyId: number): Promise<Document[]> {
+  async getAllShared(hospitalId: number): Promise<Document[]> {
     return this.documentRepository.findAll({
-      where: { pharmacyId, sharedAt: { [Op.ne]: null } },
+      where: { hospitalId, sharedAt: { [Op.ne]: null } },
       attributes: {
-        exclude: ["pharmacyId", "updatedAt"],
+        exclude: ["hospitalId", "updatedAt"],
       },
       order: [["sharedAt", "DESC"]],
     });
   }
 
-  async getAllRemoved(pharmacyId: number): Promise<Document[]> {
+  async getAllRemoved(hospitalId: number): Promise<Document[]> {
     return this.documentRepository.findAll({
-      where: { pharmacyId, deletedAt: { [Op.ne]: null } },
+      where: { hospitalId, deletedAt: { [Op.ne]: null } },
       attributes: {
-        exclude: ["pharmacyId", "updatedAt"],
+        exclude: ["hospitalId", "updatedAt"],
       },
       order: [["deletedAt", "DESC"]],
     });
   }
 
   async getLastDocumentDate(
-    pharmacyId: number,
+    hospitalId: number,
     documentType: DocumentType
   ): Promise<{ date: string }> {
     const document: Document = await this.documentRepository.findOne({
-      where: { pharmacyId, documentType },
+      where: { hospitalId, documentType },
       order: [["startDate", "DESC"]],
     });
 
@@ -129,8 +129,8 @@ export class DocumentsService {
         date: moment(document.endDate).add(1, "days").format("YYYY-MM-DD"),
       };
 
-    const lastRecycledDrug: RecycleDrug =
-      await this.recycleDrugService.getLastRecycledDrug(pharmacyId);
+    const lastRecycledDrug: Recycle =
+      await this.recycleDrugService.getLastRecycledDrug(hospitalId);
 
     if (lastRecycledDrug)
       return { date: moment(lastRecycledDrug.updatedAt).format("YYYY-MM-DD") };
@@ -139,26 +139,26 @@ export class DocumentsService {
   }
 
   async create(
-    pharmacyId: number,
+    hospitalId: number,
     documentType: DocumentType,
     { startDate, endDate }: CreateDocumentDto
-  ): Promise<RecycleDrug[]> {
+  ): Promise<Recycle[]> {
     const document: Document = await this.documentRepository.findOne({
-      where: { pharmacyId, documentType, startDate, endDate },
+      where: { hospitalId, documentType, startDate, endDate },
     });
 
     if (document)
       throw new ConflictException("Document with this interval already exists");
 
-    const drugsByInterval: RecycleDrug[] =
+    const drugsByInterval: Recycle[] =
       await this.recycleDrugService.getPharmacyDrugsByInterval(
-        pharmacyId,
+        hospitalId,
         startDate,
         endDate
       );
 
     const newDocument: Document = new Document();
-    newDocument.pharmacyId = pharmacyId;
+    newDocument.hospitalId = hospitalId;
     newDocument.documentType = documentType;
     newDocument.endDate = endDate;
     newDocument.startDate = startDate;

@@ -18,7 +18,7 @@ interface DocumentCreationAttrs {
   documentType: DocumentType;
 }
 
-@Table({ tableName: "documents" })
+@Table({ tableName: "document" })
 export class Document extends Model<Document, DocumentCreationAttrs> {
   @ApiProperty()
   @PrimaryKey
@@ -31,7 +31,7 @@ export class Document extends Model<Document, DocumentCreationAttrs> {
   @ApiProperty()
   @AllowNull(false)
   @Column(DataType.INTEGER)
-  pharmacyId: number;
+  hospitalId: number;
 
   @ApiProperty()
   @AllowNull(false)
