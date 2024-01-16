@@ -17,6 +17,8 @@ import { IVerbalData } from "src/recycle/interfaces/verbal-data.interface";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { IPagination } from "src/helpers/pagination.interface";
 import * as moment from "moment";
+import * as pdf from "html-pdf";
+
 import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
@@ -227,18 +229,15 @@ export class RecycleService {
     };
   }
 
-  async getVerbalData(id: number): Promise<IVerbalData> {
-    const drug: Recycle = await this.recycleDrugRepository.findOne({
-      where: { id },
+  async getVerbalData(id: string): Promise<Recycle> {
+    const recycle: Recycle = await this.recycleDrugRepository.findOne({
+      where: { recycleId: id },
       include: { all: true },
     });
 
-    if (!drug) throw new NotFoundException("Drug not found");
-
-    return {
-      drugDetails: drug,
-      generationDate: new Date().toISOString().slice(0, 10),
-    };
+    if (!recycle) throw new NotFoundException("Recycle not found");
+x
+    return recycle;
   }
 
   async getMonthlyAudit(id: number): Promise<any> {

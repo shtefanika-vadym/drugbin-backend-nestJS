@@ -20,7 +20,7 @@ import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { Recycle } from "src/recycle/recycle.model";
 import { MessageResponse } from "src/reponses/message-response";
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @ApiTags("Documents")
 @Controller("documents")
 export class DocumentsController {

@@ -20,8 +20,10 @@ import { CreateRecycleResponse } from "src/recycle/responses/create-recycle-resp
 import { MessageResponse } from "src/reponses/message-response";
 import { HospitalId } from "src/auth/hospital-id.decorator";
 import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
-import { IVerbalData } from "src/recycle/interfaces/verbal-data.interface";
 import { IPagination } from "src/helpers/pagination.interface";
+import { RecycleUtils } from "src/recycle/utils/recycle-drug.utils";
+import { Readable } from "stream";
+import * as pdf from "html-pdf";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle")
@@ -91,11 +93,37 @@ export class RecycleController {
   }
 
   // Get data for verbal process
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get data for verbal process" })
-  @Get("/verbal-process/:id")
-  async getVerbalData(@Param("id") id: number): Promise<IVerbalData> {
-    return this.recycleDrugService.getVerbalData(id);
+  @Get("/process/:id")
+  async getVerbalData(
+    @Res() res: Response,
+    @Param("id") id: string
+  ): Promise<any> {
+    const data: Recycle = await this.recycleDrugService.getVerbalData(id);
+    return new Promise((resolve, reject) => {
+      pdf
+        .create(RecycleUtils.getPdfTemplate(data), {})
+        .toBuffer((err, buffer) => {
+          if (err) {
+            console.error(err);
+            reject(err);
+          } else {
+            this.sendPdfResponse(res, buffer);
+            resolve(data);
+          }
+        });
+    });
+  }
+
+  private sendPdfResponse(res: any, pdfBuffer: Buffer): void {
+    const stream = new Readable();
+    stream.push(pdfBuffer);
+    stream.push(null);
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "inline; filename=result.pdf");
+    stream.pipe(res);
   }
 
   // Get monthly audit
