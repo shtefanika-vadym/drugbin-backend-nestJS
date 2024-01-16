@@ -236,7 +236,7 @@ export class RecycleService {
     });
 
     if (!recycle) throw new NotFoundException("Recycle not found");
-x
+
     return recycle;
   }
 
