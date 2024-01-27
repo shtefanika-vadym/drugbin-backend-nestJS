@@ -13,11 +13,9 @@ import { MessageResponse } from "src/reponses/message-response";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { ProductStatus } from "src/recycle/enum/product-status";
 import { ProductPack } from "src/recycle/enum/product-pack";
-import { IVerbalData } from "src/recycle/interfaces/verbal-data.interface";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { IPagination } from "src/helpers/pagination.interface";
 import * as moment from "moment";
-import * as pdf from "html-pdf";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -76,7 +74,7 @@ export class RecycleService {
       options: {
         where: { hospitalId: hospital.id },
         attributes: {
-          exclude: ["createdAt", "updatedAt", "chainId"],
+          exclude: ["updatedAt", "hospitalId"],
         },
         order: [["id", "DESC"]],
       },
@@ -222,7 +220,7 @@ export class RecycleService {
 
     if (!drug) throw new NotFoundException("Drug not found");
 
-    await drug.update({ ...drug, status: ProductStatus.recycled });
+    await drug.update({ ...drug, status: ProductStatus.approved });
 
     return {
       message: "Drug successfully updated!",

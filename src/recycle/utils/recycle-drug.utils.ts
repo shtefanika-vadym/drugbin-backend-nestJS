@@ -63,10 +63,10 @@ const buildDocFooter = (
   doc.moveDown();
 
   doc.text("Am predat:", { continued: true });
-  doc.text(isEmptyList ? " " : "Am preluat:", { align: "right" });
+  doc.text("Am preluat:", { align: "right" });
 
   doc.text(`${userName}`, { continued: true });
-  doc.text(isEmptyList ? " " : hospitalName, { align: "right" });
+  doc.text(hospitalName, { align: "right" });
 };
 
 const getRecycleDoc = (
