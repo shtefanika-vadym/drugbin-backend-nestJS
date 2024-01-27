@@ -24,6 +24,7 @@ import { IPagination } from "src/helpers/pagination.interface";
 import { RecycleUtils } from "src/recycle/utils/recycle-drug.utils";
 import { Readable } from "stream";
 import * as pdf from "html-pdf";
+import * as PDFDocument from "pdfkit";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle")
@@ -96,24 +97,18 @@ export class RecycleController {
   // @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get data for verbal process" })
   @Get("/process/:id")
-  async getVerbalData(
-    @Res() res: Response,
-    @Param("id") id: string
-  ): Promise<any> {
-    const data: Recycle = await this.recycleDrugService.getVerbalData(id);
-    return new Promise((resolve, reject) => {
-      pdf
-        .create(RecycleUtils.getPdfTemplate(data), {})
-        .toBuffer((err, buffer) => {
-          if (err) {
-            console.error(err);
-            reject(err);
-          } else {
-            this.sendPdfResponse(res, buffer);
-            resolve(data);
-          }
-        });
-    });
+  async getVerbalData(@Res() res: any, @Param("id") id: string): Promise<any> {
+    try {
+      const doc = new PDFDocument();
+      // Pipe the PDF into the response
+      doc.pipe(res);
+
+      // Add content to the PDF (in this case, it's empty)
+      doc.end();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      res.status(500).send("Error generating PDF");
+    }
   }
 
   private sendPdfResponse(res: any, pdfBuffer: Buffer): void {
