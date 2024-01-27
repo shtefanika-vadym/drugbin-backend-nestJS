@@ -213,7 +213,7 @@ export class RecycleService {
     hospitalId: number
   ): Promise<MessageResponse> {
     const drug: Recycle = await this.recycleDrugRepository.findOne({
-      where: { hospitalId: hospitalId, id },
+      where: { hospitalId: hospitalId, recycleId: id },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },

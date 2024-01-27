@@ -3,15 +3,12 @@ import { Recycle } from "src/recycle/recycle.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
 
-const getRecycleDoc = ({
-  firstName,
-  lastName,
-  drugList,
-  createdAt,
-  hospital,
-}: Recycle) => {
-  const doc = new PDFDocument({ size: "A4", margin: 35 });
-
+const buildDocHeader = (
+  doc: PDFDocument,
+  title: string,
+  description: string,
+  data: string
+): void => {
   doc.font("src/fonts/Montserrat.ttf");
   doc.image("src/recycle/logo.jpg", { width: 130 });
 
@@ -27,7 +24,7 @@ const getRecycleDoc = ({
   doc.moveDown();
   doc.moveDown();
 
-  doc.text(`Data ${createdAt.toISOString().slice(0, 10)}`, {
+  doc.text(`Data ${data}`, {
     align: "right",
   });
 
@@ -35,48 +32,77 @@ const getRecycleDoc = ({
   doc.moveDown();
   doc.moveDown();
 
-  doc
-    .fontSize(17)
-    .font("src/fonts/Montserrat-SemiBold.ttf")
-    .text("Proces verbal de predare-primire medicamente expirate", {
-      align: "center",
-    });
+  doc.fontSize(17).font("src/fonts/Montserrat-SemiBold.ttf").text(title, {
+    align: "center",
+  });
 
   doc.moveDown();
   doc.font("src/fonts/Montserrat.ttf");
 
   doc.fontSize(14);
-  doc.text(
-    `Subsemnatul(a) ${firstName ?? ""} ${
-      lastName ?? ""
-    }, predau spre distrugere in ${hospital.name} urmatoarele medicamente:`
-  );
+  doc.text(description);
 
   doc.moveDown();
+};
 
-  buildDocTable(doc, drugList);
-
+const buildDocFooter = (
+  doc: PDFDocument,
+  userName: string,
+  hospitalName: string,
+  isEmptyList: boolean
+) => {
   doc.font("src/fonts/Montserrat.ttf");
 
-  doc.moveDown();
-  doc.fontSize(14);
+  if (!isEmptyList) {
+    doc.moveDown();
+    doc.fontSize(14);
+    doc.text("Motivul predarii medicamentelor: PP-OP-05-F03, rev 06");
+  }
 
-  doc.text("Motivul predarii medicamentelor: PP-OP-05-F03, rev 06");
-
-  doc.moveDown();
   doc.moveDown();
   doc.moveDown();
 
   doc.text("Am predat:", { continued: true });
-  doc.text("Am preluat:", { align: "right" });
+  doc.text(isEmptyList ? " " : "Am preluat:", { align: "right" });
 
-  doc.text(`${firstName ?? ""} ${lastName ?? ""}`, { continued: true });
-  doc.text(hospital.name, { align: "right" });
+  doc.text(`${userName}`, { continued: true });
+  doc.text(isEmptyList ? " " : hospitalName, { align: "right" });
+};
+
+const getRecycleDoc = (
+  { firstName, lastName, drugList, createdAt, hospital }: Recycle,
+  isPsycholeptic: boolean
+) => {
+  const doc = new PDFDocument({ size: "A4", margin: 35 });
+
+  const additionalInfo = isPsycholeptic ? " stupifiante" : "";
+  const userName = `${firstName ?? ""} ${lastName ?? ""}`;
+  const title = `Proces verbal de predare-primire medicamente${additionalInfo} expirate`;
+  const description = `Subsemnatul(a) ${userName}, predau spre distrugere in ${hospital.name} urmatoarele medicamente${additionalInfo}:`;
+  const emptyDescription = `Subsemnatul(a) ${userName}, nu predau spre distrugere in ${hospital.name} niciun medicament psihotrop.`;
+
+  const filteredDrugList = drugList.filter(
+    ({ drugDetails }) => drugDetails.isPsycholeptic === isPsycholeptic
+  );
+
+  const isEmptyPsycholepticList = isPsycholeptic && !filteredDrugList.length;
+  buildDocHeader(
+    doc,
+    title,
+    isEmptyPsycholepticList ? emptyDescription : description,
+    createdAt.toISOString().slice(0, 10)
+  );
+
+  if (!isEmptyPsycholepticList) {
+    buildDocTable(doc, filteredDrugList);
+  }
+
+  buildDocFooter(doc, userName, hospital.name, isEmptyPsycholepticList);
   return doc;
 };
 
 const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
-  const tableData = drugList.map(
+  let tableData = drugList.map(
     ({ lot, quantity, pack, drugDetails }, index: number) => {
       return {
         lot,
@@ -84,7 +110,7 @@ const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
         id: index + 1,
         name: drugDetails.name,
         pack: ProductPack.pack ? "cutie" : pack,
-        observation: drugDetails.isPsycholeptic ? drugDetails.atc : "",
+        observation: drugDetails.isPsycholeptic ? "psihotrop" : "",
       };
     }
   );

@@ -97,10 +97,18 @@ export class RecycleController {
   // @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get data for verbal process" })
   @Get("/process/:id")
-  async getVerbalData(@Res() res: any, @Param("id") id: string): Promise<any> {
+  async getVerbalData(
+    @Res() res: any,
+    @Param("id") id: string,
+    @Query("type") type: string
+  ): Promise<any> {
     try {
       const recycleData = await this.recycleDrugService.getVerbalData(id);
-      let doc = RecycleUtils.getRecycleDoc(recycleData);
+      console.log(type);
+      const doc = RecycleUtils.getRecycleDoc(
+        recycleData,
+        type === "psycholeptic"
+      );
 
       doc.pipe(res);
       doc.end();
