@@ -36,23 +36,20 @@ export class HospitalService {
     return { message: "Company successfully updated" };
   }
 
-  async getHospitalByEmail(id: number): Promise<Hospital> {
-    const user: Hospital = await this.hospitalRepository.findOne({
-      where: { id },
+  async getHospitalByEmail(email: string): Promise<Hospital> {
+    return await this.hospitalRepository.findOne({
+      where: { email },
       include: { all: true },
     });
-    return user;
   }
 
   async getById(id: number): Promise<Hospital> {
-    const pharmacy: Hospital = await this.hospitalRepository.findOne({
+    return await this.hospitalRepository.findOne({
       where: {
         id: id,
       },
       attributes: { exclude: ["password", "updatedAt", "createdAt"] },
     });
-
-    return pharmacy;
   }
 
   async getPharmacyDetails(companyId: number) {

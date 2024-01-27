@@ -27,9 +27,8 @@ export class AuthService {
   }
 
   async register(companyDto: CreateHospitalDto): Promise<MessageResponse> {
-    // TODO: Update
     const candidate: Hospital = await this.pharmacistService.getHospitalByEmail(
-      1
+      companyDto.email
     );
     if (candidate) {
       throw new HttpException(
@@ -53,9 +52,8 @@ export class AuthService {
   }
 
   async validateCompany(companyDto: LoginDto): Promise<Hospital> {
-    // TODO: Update
     const company: Hospital = await this.pharmacistService.getHospitalByEmail(
-      1
+      companyDto.email
     );
     if (!company)
       throw new NotFoundException({

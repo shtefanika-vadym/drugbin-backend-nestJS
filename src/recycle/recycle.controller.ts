@@ -127,12 +127,12 @@ export class RecycleController {
   }
 
   // Get monthly audit
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: "Get monthly audit" })
   @Get("/audit")
-  async getMonthlyAudit(@Res() res, @HospitalId() id: number): Promise<any> {
+  async getMonthlyAudit(@Res() res): Promise<any> {
     try {
-      const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(id);
+      const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(1);
       res.set({
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename=pdf.pdf`,
@@ -141,6 +141,7 @@ export class RecycleController {
         Pragma: "no-cache",
         Expires: 0,
       });
+      console.log(monthlyAuditPdf);
       res.end(monthlyAuditPdf);
     } catch (error) {
       if (error instanceof NotFoundException)

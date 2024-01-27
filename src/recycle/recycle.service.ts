@@ -241,15 +241,14 @@ export class RecycleService {
   }
 
   async getMonthlyAudit(id: number): Promise<any> {
-    const pharmacy: Hospital = await this.hospitalService.getById(id);
-
+    const hospital: Hospital = await this.hospitalService.getById(id);
     const drugList = await this.getDrugsByOneMonthAgo(id);
 
     const response = await this.puppeteerService.generatePDF(
       "pdf-verbal-process-month.hbs",
       {
         drugList,
-        pharmacyName: pharmacy.name,
+        pharmacyName: hospital.name,
         date: new Date().toISOString().slice(0, 10),
       }
     );
