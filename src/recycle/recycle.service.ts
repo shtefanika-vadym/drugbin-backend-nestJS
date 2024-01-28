@@ -107,7 +107,7 @@ export class RecycleService {
           [Op.or]: defaultFilterClause,
         },
         attributes: {
-          exclude: ["createdAt", "updatedAt", "chainId"],
+          exclude: ["updatedAt", "chainId"],
         },
         order: [["id", "DESC"]],
       },
@@ -285,7 +285,7 @@ export class RecycleService {
   async getDrugListByYear(hospitalId: number, year: string): Promise<any> {
     const data: { json_array_elements: IRecycledDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT "createdAt", json_array_elements("drugList") FROM "recycle_drug" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
+        'SELECT "createdAt", json_array_elements("drugList") FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
         {
           replacements: {
             year,
@@ -294,6 +294,7 @@ export class RecycleService {
           type: QueryTypes.SELECT,
         }
       );
+    console.log(data);
     return this.replaceJsonResultKey(data);
   }
 

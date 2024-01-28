@@ -11,6 +11,7 @@ import {
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { DocumentsService } from "src/documents/documents.service";
+
 import { HospitalId } from "src/auth/hospital-id.decorator";
 import { DocumentType } from "src/documents/enum/document-type";
 import { Document } from "src/documents/documents.model";
@@ -20,7 +21,7 @@ import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { Recycle } from "src/recycle/recycle.model";
 import { MessageResponse } from "src/reponses/message-response";
 
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @ApiTags("Documents")
 @Controller("documents")
 export class DocumentsController {
