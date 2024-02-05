@@ -12,6 +12,7 @@ import { HospitalService } from "src/hospital/hospital.service";
 import { DrugService } from "src/drug/drug.service";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { VisionService } from "src/vision/vision.service";
+import { Document } from "src/documents/documents.model";
 
 @Module({
   controllers: [DashboardController],
@@ -25,7 +26,7 @@ import { VisionService } from "src/vision/vision.service";
     VisionService,
   ],
   imports: [
-    SequelizeModule.forFeature([Recycle, Hospital, Drug]),
+    SequelizeModule.forFeature([Recycle, Hospital, Drug, Document]),
     forwardRef(() => AuthModule),
   ],
 })

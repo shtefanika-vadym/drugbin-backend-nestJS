@@ -13,17 +13,20 @@ import { CreateRecycleResponse } from "src/recycle/responses/create-recycle-resp
 import { MessageResponse } from "src/reponses/message-response";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { ProductStatus } from "src/recycle/enum/product-status";
+import { Document } from "src/documents/documents.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { IPagination } from "src/helpers/pagination.interface";
 import * as moment from "moment";
 
 import { v4 as uuidv4 } from "uuid";
+import { DocumentType } from "src/documents/enum/document-type";
 
 @Injectable()
 export class RecycleService {
   constructor(
     @InjectModel(Recycle) private recycleDrugRepository: typeof Recycle,
+    @InjectModel(Document) private documentRepository: typeof Document,
     private puppeteerService: PuppeteerService,
     private hospitalService: HospitalService,
     private drugService: DrugService,
@@ -319,14 +322,12 @@ export class RecycleService {
     return drugList.reduce((acc: number) => acc + 1, 0);
   }
 
-  countMonthlyDrugListItems(
-    drugList: Record<string, IRecycledDrug[]>
-  ): Record<string, number> {
+  countMonthlyItems<T>(list: Record<string, T[]>): Record<string, number> {
     const monthlyCounts: Record<string, number> = {};
 
-    for (const month in drugList) {
-      if (drugList.hasOwnProperty(month)) {
-        monthlyCounts[month] = drugList[month].length;
+    for (const month in list) {
+      if (list.hasOwnProperty(month)) {
+        monthlyCounts[month] = list[month].length;
       }
     }
 
@@ -410,10 +411,22 @@ export class RecycleService {
     return top3Producers;
   }
 
-  splitDashboardDataByMonths(
-    data: IRecycledDrug[]
-  ): Record<string, IRecycledDrug[]> {
-    const groupedByMonth: Record<string, IRecycledDrug[]> = {};
+  getAnnualDocuments(hospitalId: number, year: string, documentType: string) {
+    return this.documentRepository.sequelize.query(
+      'SELECT * FROM "document" WHERE "hospitalId" = :hospitalId AND "documentType" = :documentType AND EXTRACT(YEAR FROM "createdAt") = :year',
+      {
+        replacements: {
+          year,
+          hospitalId,
+          documentType,
+        },
+        type: QueryTypes.SELECT,
+      }
+    );
+  }
+
+  splitDashboardDataByMonths<T>(data: T[]): Record<string, T[]> {
+    const groupedByMonth: Record<string, T[]> = {};
 
     for (let i: number = 1; i <= 12; i++) {
       groupedByMonth[i] = [];
@@ -447,17 +460,34 @@ export class RecycleService {
     const annualTopTypes = this.getTopTypes(data);
 
     const monthlyTotalDrugs: Record<string, number> =
-      this.countMonthlyDrugListItems(groupedByMonth);
-    const monthlyTopTypes: any = this.getMonthlyTopTypes(groupedByMonth);
-    const monthlyTopProducers: any =
-      this.getMonthlyTopProducers(groupedByMonth);
+      this.countMonthlyItems(groupedByMonth);
+    const monthlyTopTypes = this.getMonthlyTopTypes(groupedByMonth);
+    // const monthlyDocuments = this.getMonthlyTopProducers(groupedByMonth);
+    const monthlyTopProducers = this.getMonthlyTopProducers(groupedByMonth);
 
-    // const montly;
+    const [normal, psycholeptic] = await Promise.all([
+      this.getAnnualDocuments(hospitalId, year, DocumentType.normal),
+      this.getAnnualDocuments(hospitalId, year, DocumentType.psycholeptic),
+    ]);
 
     return {
-      types: { annualTopTypes, monthlyTopTypes },
-      drugs: { annualTotalDrugs, monthlyTotalDrugs },
-      documents: {},
+      types: { annual: annualTopTypes, monthly: monthlyTopTypes },
+      drugs: { annual: annualTotalDrugs, monthly: monthlyTotalDrugs },
+      documents: {
+        annual: {
+          normal: normal.length,
+          psycholeptic: psycholeptic.length,
+          total: normal.length + psycholeptic.length,
+        },
+        monthly: {
+          normal: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(normal)
+          ),
+          psycholeptic: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(psycholeptic)
+          ),
+        },
+      },
       // topProducers: { annualTopProducers, monthlyTopProducers },
     };
   }

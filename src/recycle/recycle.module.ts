@@ -9,11 +9,10 @@ import { Hospital } from "src/hospital/hospital.model";
 import { TokenUtils } from "src/utils/token.utils";
 import { DrugService } from "src/drug/drug.service";
 import { Drug } from "src/drug/drug.model";
-import { Document } from "src/documents/documents.model";
 import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { VisionService } from "src/vision/vision.service";
 import { PaginationHelper } from "src/helpers/pagination.helper";
-import { DocumentsService } from "src/documents/documents.service";
+import { Document } from "src/documents/documents.model";
 
 @Module({
   controllers: [RecycleController],
@@ -21,14 +20,13 @@ import { DocumentsService } from "src/documents/documents.service";
     RecycleService,
     PuppeteerService,
     HospitalService,
-    // DocumentsService,
     TokenUtils,
     DrugService,
     VisionService,
     PaginationHelper,
   ],
   imports: [
-    SequelizeModule.forFeature([Recycle, Hospital, Drug]),
+    SequelizeModule.forFeature([Recycle, Hospital, Drug, Document]),
     forwardRef(() => AuthModule),
   ],
   exports: [],
