@@ -72,14 +72,14 @@ export class DocumentsController {
 
   // Create new document
   @ApiOperation({ summary: "Create new document" })
-  @ApiResponse({ status: 200, type: [Recycle] })
+  @ApiResponse({ status: 200, type: [MessageResponse] })
   @Post("/:documentType")
   @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
   create(
     @HospitalId() id: number,
     @Body() dto: CreateDocumentDto,
     @Param("documentType") documentType: DocumentType
-  ): Promise<Recycle[]> {
+  ): Promise<MessageResponse> {
     return this.documentsService.create(id, documentType, dto);
   }
 

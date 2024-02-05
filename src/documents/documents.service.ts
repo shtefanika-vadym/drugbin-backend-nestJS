@@ -147,7 +147,7 @@ export class DocumentsService {
     hospitalId: number,
     documentType: DocumentType,
     { startDate, endDate }: CreateDocumentDto
-  ): Promise<Recycle[]> {
+  ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
       where: { hospitalId, documentType, startDate, endDate },
     });
@@ -155,12 +155,12 @@ export class DocumentsService {
     if (document)
       throw new ConflictException("Document with this interval already exists");
 
-    const drugsByInterval: Recycle[] =
-      await this.recycleDrugService.getHospitalDrugsByInterval(
-        hospitalId,
-        startDate,
-        endDate
-      );
+    // const drugsByInterval: Recycle[] =
+    //   await this.recycleDrugService.getHospitalDrugsByInterval(
+    //     hospitalId,
+    //     startDate,
+    //     endDate
+    //   );
 
     const newDocument: Document = new Document();
     newDocument.hospitalId = hospitalId;
@@ -169,10 +169,11 @@ export class DocumentsService {
     newDocument.startDate = startDate;
     newDocument.documentId = uuidv4();
     await newDocument.save();
-
-    return this.recycleDrugService.getFilteredDrugsByIsPsycholeptic(
-      drugsByInterval,
-      documentType === DocumentType.psycholeptic
-    );
+    return { message: "Document created successfully" };
+    // TODO: CHECK
+    // return this.recycleDrugService.getFilteredDrugsByIsPsycholeptic(
+    //   drugsByInterval,
+    //   documentType === DocumentType.psycholeptic
+    // );
   }
 }
