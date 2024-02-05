@@ -445,7 +445,29 @@ export class RecycleService {
 
     return groupedByMonth;
   }
+  splitDashboardDataByMonthsAndDays<T>(
+    data: T[]
+  ): Record<string, Record<string, number>> {
+    const groupedByMonthAndDay: Record<string, Record<string, number>> = {};
 
+    data.forEach((item: any): void => {
+      const expirationDate: moment.Moment = moment(item.createdAt);
+      const monthYearKey: string = expirationDate.format("MM");
+      const dayKey: string = expirationDate.format("DD");
+
+      if (!groupedByMonthAndDay[monthYearKey]) {
+        groupedByMonthAndDay[monthYearKey] = {};
+      }
+
+      if (!groupedByMonthAndDay[monthYearKey][dayKey]) {
+        groupedByMonthAndDay[monthYearKey][dayKey] = 0;
+      }
+
+      groupedByMonthAndDay[monthYearKey][dayKey]++;
+    });
+
+    return groupedByMonthAndDay;
+  }
   async geDashboardDataByYear(hospitalId: number, year: string): Promise<any> {
     const data: IRecycledDrug[] = await this.getDrugListByYear(
       hospitalId,
@@ -456,7 +478,7 @@ export class RecycleService {
       this.splitDashboardDataByMonths(data);
 
     const annualTotalDrugs: number = this.countDrugListItems(data);
-    const annualTopProducers = this.getTopProducers(data);
+    // const annualTopProducers = this.getTopProducers(data);
     const annualTopTypes = this.getTopTypes(data);
 
     const monthlyTotalDrugs: Record<string, number> =
@@ -469,10 +491,21 @@ export class RecycleService {
       this.getAnnualDocuments(hospitalId, year, DocumentType.normal),
       this.getAnnualDocuments(hospitalId, year, DocumentType.psycholeptic),
     ]);
+    const groupedByMonthAndDay: Record<
+      string,
+      Record<string, number>
+    > = this.splitDashboardDataByMonthsAndDays(data);
 
     return {
-      types: { annual: annualTopTypes, monthly: monthlyTopTypes },
-      drugs: { annual: annualTotalDrugs, monthly: monthlyTotalDrugs },
+      types: {
+        annual: annualTopTypes,
+        monthly: monthlyTopTypes,
+      },
+      drugs: {
+        annual: annualTotalDrugs,
+        monthlyDetails: groupedByMonthAndDay,
+        monthly: monthlyTotalDrugs,
+      },
       documents: {
         annual: {
           normal: normal.length,
