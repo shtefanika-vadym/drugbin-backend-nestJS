@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   NotFoundException,
   Param,
@@ -23,8 +24,6 @@ import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
 import { IPagination } from "src/helpers/pagination.interface";
 import { RecycleUtils } from "src/recycle/utils/recycle-drug.utils";
 import { Readable } from "stream";
-import * as pdf from "html-pdf";
-import PDFDocument from "pdfkit-table";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle")
@@ -50,6 +49,17 @@ export class RecycleController {
     @Query("limit", ParseIntPipe) limit: number = 10
   ): Promise<any> {
     return this.recycleDrugService.getDrugsByHospitalId(id, page, limit);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: "Delete recycle drug by recycle_ID" })
+  @ApiResponse({ status: 200, type: [MessageResponse] })
+  @Delete("/:id")
+  deleteById(
+    @HospitalId() hospitalId: number,
+    @Param("id") id: string
+  ): Promise<any> {
+    return this.recycleDrugService.deleteById(hospitalId, id);
   }
 
   // Get filtered drugs by (id or name)

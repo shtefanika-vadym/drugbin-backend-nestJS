@@ -1,3 +1,4 @@
+// TODO: Refactor
 import { Op, QueryTypes } from "sequelize";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
@@ -63,6 +64,23 @@ export class RecycleService {
     return {
       recycleId: createdDrug.recycleId,
     };
+  }
+
+  async deleteById(
+    hospitalId: number,
+    recycleId: string
+  ): Promise<MessageResponse> {
+    const status: number = await this.recycleDrugRepository.destroy({
+      where: { recycleId, hospitalId },
+    });
+
+    if (status === 0) {
+      throw new NotFoundException({
+        message: "Recycle not found",
+      });
+    }
+
+    return { message: "Recycle successfully deleted" };
   }
 
   async getDrugsByHospitalId(hospitalId: number, page: number, limit: number) {
@@ -294,7 +312,6 @@ export class RecycleService {
           type: QueryTypes.SELECT,
         }
       );
-    console.log(data);
     return this.replaceJsonResultKey(data);
   }
 
@@ -435,10 +452,13 @@ export class RecycleService {
     const monthlyTopProducers: any =
       this.getMonthlyTopProducers(groupedByMonth);
 
+    // const montly;
+
     return {
-      topTypes: { annualTopTypes, monthlyTopTypes },
-      totalDrugs: { annualTotalDrugs, monthlyTotalDrugs },
-      topProducers: { annualTopProducers, monthlyTopProducers },
+      types: { annualTopTypes, monthlyTopTypes },
+      drugs: { annualTotalDrugs, monthlyTotalDrugs },
+      documents: {},
+      // topProducers: { annualTopProducers, monthlyTopProducers },
     };
   }
 }
