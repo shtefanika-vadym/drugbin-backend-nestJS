@@ -114,7 +114,6 @@ export class RecycleController {
   ): Promise<any> {
     try {
       const recycleData = await this.recycleDrugService.getVerbalData(id);
-      console.log(type);
       const doc = RecycleUtils.getRecycleDoc(
         recycleData,
         type === "psycholeptic"
@@ -140,24 +139,24 @@ export class RecycleController {
 
   // Get monthly audit
   // @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: "Get monthly audit" })
-  @Get("/audit")
-  async getMonthlyAudit(@Res() res): Promise<any> {
-    try {
-      const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(1);
-      res.set({
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=pdf.pdf`,
-        "Content-Length": monthlyAuditPdf.length,
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: 0,
-      });
-      res.end(monthlyAuditPdf);
-    } catch (error) {
-      if (error instanceof NotFoundException)
-        res.status(404).send({ error: error.message });
-      else res.status(500).send({ error: "Internal Server Error" });
-    }
-  }
+  // @ApiOperation({ summary: "Get monthly audit" })
+  // @Get("/audit")
+  // async getMonthlyAudit(@Res() res): Promise<any> {
+  //   try {
+  //     const monthlyAuditPdf = await this.recycleDrugService.getMonthlyAudit(1);
+  //     res.set({
+  //       "Content-Type": "application/pdf",
+  //       "Content-Disposition": `attachment; filename=pdf.pdf`,
+  //       "Content-Length": monthlyAuditPdf.length,
+  //       "Cache-Control": "no-cache, no-store, must-revalidate",
+  //       Pragma: "no-cache",
+  //       Expires: 0,
+  //     });
+  //     res.end(monthlyAuditPdf);
+  //   } catch (error) {
+  //     if (error instanceof NotFoundException)
+  //       res.status(404).send({ error: error.message });
+  //     else res.status(500).send({ error: "Internal Server Error" });
+  //   }
+  // }
 }

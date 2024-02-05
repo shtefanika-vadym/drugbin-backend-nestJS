@@ -165,7 +165,7 @@ export class RecycleService {
     });
   }
 
-  async getPharmacyDrugsByInterval(
+  async getHospitalDrugsByInterval(
     hospitalId: number,
     startDate: string,
     endDate: string
@@ -179,6 +179,7 @@ export class RecycleService {
           [Op.between]: [startDate, this.getEndOfDay(endDate)],
         },
       },
+      include: { all: true },
       order: [["id", "DESC"]],
     });
     return drugs;
@@ -503,8 +504,8 @@ export class RecycleService {
       },
       drugs: {
         annual: annualTotalDrugs,
-        monthlyDetails: groupedByMonthAndDay,
         monthly: monthlyTotalDrugs,
+        monthlyDetails: groupedByMonthAndDay,
       },
       documents: {
         annual: {

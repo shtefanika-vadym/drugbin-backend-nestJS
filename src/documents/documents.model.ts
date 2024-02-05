@@ -33,6 +33,10 @@ export class Document extends Model<Document, DocumentCreationAttrs> {
   @Column(DataType.INTEGER)
   hospitalId: number;
 
+  @AllowNull(false)
+  @Column(DataType.STRING)
+  documentId: string;
+
   @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)

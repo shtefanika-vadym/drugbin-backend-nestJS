@@ -12,6 +12,7 @@ import { Recycle } from "src/recycle/recycle.model";
 import * as moment from "moment";
 import { MessageResponse } from "src/reponses/message-response";
 import { Op } from "sequelize";
+import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
 export class DocumentsService {
@@ -75,24 +76,28 @@ export class DocumentsService {
   async getDocumentDataById(
     hospitalId: number,
     documentType: DocumentType,
-    documentId: number
-  ): Promise<Recycle[]> {
+    documentId: string
+  ) {
     const document: Document = await this.documentRepository.findOne({
       where: {
         hospitalId,
-        id: documentId,
+        documentId,
         documentType,
       },
+      include: { all: true },
     });
 
     if (!document)
       throw new NotFoundException("Document with this id doesn't exist");
 
-    return this.recycleDrugService.getPharmacyDrugsByInterval(
-      hospitalId,
-      document.startDate,
-      document.endDate
-    );
+    const recycleData =
+      await this.recycleDrugService.getHospitalDrugsByInterval(
+        hospitalId,
+        document.startDate,
+        document.endDate
+      );
+
+    return { recycleData, createdAt: document.createdAt.toISOString() };
   }
 
   async getAllShared(hospitalId: number): Promise<Document[]> {
@@ -151,7 +156,7 @@ export class DocumentsService {
       throw new ConflictException("Document with this interval already exists");
 
     const drugsByInterval: Recycle[] =
-      await this.recycleDrugService.getPharmacyDrugsByInterval(
+      await this.recycleDrugService.getHospitalDrugsByInterval(
         hospitalId,
         startDate,
         endDate
@@ -162,6 +167,7 @@ export class DocumentsService {
     newDocument.documentType = documentType;
     newDocument.endDate = endDate;
     newDocument.startDate = startDate;
+    newDocument.documentId = uuidv4();
     await newDocument.save();
 
     return this.recycleDrugService.getFilteredDrugsByIsPsycholeptic(

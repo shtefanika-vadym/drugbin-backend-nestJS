@@ -6,6 +6,8 @@ import {
   Param,
   Patch,
   Post,
+  Query,
+  Res,
   UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
@@ -20,6 +22,8 @@ import { EnumValidatorInterceptor } from "src/interceptors/enum-validator.interc
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { Recycle } from "src/recycle/recycle.model";
 import { MessageResponse } from "src/reponses/message-response";
+import { Readable } from "stream";
+import { DocumentUtils } from "src/documents/utils/documents.utils";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Documents")
@@ -106,19 +110,54 @@ export class DocumentsController {
   }
 
   // Get document data
-  @ApiOperation({ summary: "Get document data" })
-  @ApiResponse({ status: 200, type: [Recycle] })
-  @Get("/data/:documentType/:documentId")
-  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
-  getDocumentDataById(
-    @HospitalId() id: number,
-    @Param("documentId") documentId: number,
-    @Param("documentType") documentType: DocumentType
-  ): Promise<Recycle[]> {
-    return this.documentsService.getDocumentDataById(
-      id,
-      documentType,
-      documentId
-    );
+  // @ApiOperation({ summary: "Get document data" })
+  // @ApiResponse({ status: 200, type: [Recycle] })
+  // @Get("/data/:documentType/:documentId")
+  // @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  // getDocumentDataById(
+  //   @HospitalId() id: number,
+  //   @Param("documentId") documentId: number,
+  //   @Param("documentType") documentType: DocumentType
+  // ): Promise<Recycle[]> {
+  //   return this.documentsService.getDocumentDataById(
+  //     id,
+  //     documentType,
+  //     documentId
+  //   );
+  // }
+
+  @ApiOperation({ summary: "Get document pdf" })
+  @Get("/data/:id")
+  async getVerbalData(
+    @Res() res: any,
+    @HospitalId() hospitalId: number,
+    @Param("id") id: string,
+    @Query("type") type: DocumentType
+  ): Promise<any> {
+    try {
+      const { recycleData, createdAt } =
+        await this.documentsService.getDocumentDataById(hospitalId, type, id);
+      const doc = DocumentUtils.getDocument(
+        recycleData,
+        type === DocumentType.psycholeptic,
+        createdAt
+      );
+
+      doc.pipe(res);
+      doc.end();
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      res.status(500).send("Error generating PDF");
+    }
+  }
+
+  private sendPdfResponse(res: any, pdfBuffer: Buffer): void {
+    const stream = new Readable();
+    stream.push(pdfBuffer);
+    stream.push(null);
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "inline; filename=result.pdf");
+    stream.pipe(res);
   }
 }
