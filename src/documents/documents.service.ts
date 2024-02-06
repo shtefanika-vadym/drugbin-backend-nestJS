@@ -123,47 +123,44 @@ export class DocumentsService {
   async getLastDocumentDate(
     hospitalId: number,
     documentType: DocumentType
-  ): Promise<{ date: string }> {
+  ): Promise<{ startDate: string }> {
     const document: Document = await this.documentRepository.findOne({
       where: { hospitalId, documentType },
       order: [["startDate", "DESC"]],
     });
 
-    // Fix update status to recycled
-    // Rezolvat drugbin-solutiion -> vercel
-    // Scoiatem start date, endpoint pentru getFirstDate, replace startDare as getFirstDate
     if (document)
       return {
-        date: moment(document.endDate).add(1, "days").format("YYYY-MM-DD"),
+        startDate: moment(document.endDate).add(1, "days").format("YYYY-MM-DD"),
       };
 
     const lastRecycledDrug: Recycle =
       await this.recycleDrugService.getLastRecycledDrug(hospitalId);
 
     if (lastRecycledDrug)
-      return { date: moment(lastRecycledDrug.updatedAt).format("YYYY-MM-DD") };
+      return {
+        startDate: moment(lastRecycledDrug.updatedAt).format("YYYY-MM-DD"),
+      };
 
-    return { date: moment().startOf("month").format("YYYY-MM-DD") };
+    return { startDate: moment().startOf("month").format("YYYY-MM-DD") };
   }
 
   async create(
     hospitalId: number,
     documentType: DocumentType,
-    { startDate, endDate }: CreateDocumentDto
+    { endDate }: CreateDocumentDto
   ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
-      where: { hospitalId, documentType, startDate, endDate },
+      where: { hospitalId, documentType, endDate },
     });
 
     if (document)
       throw new ConflictException("Document with this interval already exists");
 
-    // const drugsByInterval: Recycle[] =
-    //   await this.recycleDrugService.getHospitalDrugsByInterval(
-    //     hospitalId,
-    //     startDate,
-    //     endDate
-    //   );
+    const { startDate } = await this.getLastDocumentDate(
+      hospitalId,
+      documentType
+    );
 
     const newDocument: Document = new Document();
     newDocument.hospitalId = hospitalId;

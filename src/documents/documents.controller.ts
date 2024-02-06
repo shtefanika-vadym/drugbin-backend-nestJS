@@ -50,23 +50,21 @@ export class DocumentsController {
   // Get all last documents
   @ApiOperation({ summary: "Get all last documents" })
   @ApiResponse({ status: 200, type: [Document] })
-  @Get("/:documentType")
-  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  @Get("/all")
   getAll(
     @HospitalId() id: number,
-    @Param("documentType") documentType: DocumentType
+    @Query("type") documentType: DocumentType
   ): Promise<Document[]> {
     return this.documentsService.getAll(id, documentType);
   }
 
-  // Get last document date
-  @ApiOperation({ summary: "Get last document date" })
-  @Get("/:documentType/last-date")
-  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  // Get start document date
+  @ApiOperation({ summary: "Get start document date" })
+  @Get("/start-date")
   getLastDocumentDate(
     @HospitalId() id: number,
-    @Param("documentType") documentType: DocumentType
-  ): Promise<{ date: string }> {
+    @Query("type") documentType: DocumentType
+  ): Promise<{ startDate: string }> {
     return this.documentsService.getLastDocumentDate(id, documentType);
   }
 
