@@ -52,6 +52,7 @@ const buildDocFooter = (
   isEmptyList: boolean
 ) => {
   doc.font("src/fonts/Montserrat.ttf");
+  doc.fillColor("black");
 
   if (!isEmptyList) {
     doc.moveDown();
@@ -74,6 +75,7 @@ const getRecycleDoc = (
   isPsycholeptic: boolean
 ) => {
   const doc = new PDFDocument({ size: "A4", margin: 35 });
+  doc.fillColor("black");
 
   const additionalInfo = isPsycholeptic ? " stupifiante" : "";
   const userName = `${firstName ?? ""} ${lastName ?? ""}`;
@@ -126,7 +128,7 @@ const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
           headerColor: "#67BAEF",
         },
         {
-          width: 150,
+          width: 270,
           label: "Nume",
           property: "name",
           headerColor: "#67BAEF",
@@ -138,22 +140,10 @@ const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
           label: "Tip (cutie/blister)",
         },
         {
-          width: 62,
-          label: "Lot",
-          property: "lot",
-          headerColor: "#67BAEF",
-        },
-        {
-          width: 62,
-          label: "Cantitate",
-          property: "quantity",
-          headerColor: "#67BAEF",
-        },
-        {
           width: 100,
           align: "center",
-          label: "Observatii",
-          property: "observation",
+          label: "Cantitate",
+          property: "quantity",
           headerColor: "#67BAEF",
         },
       ],
