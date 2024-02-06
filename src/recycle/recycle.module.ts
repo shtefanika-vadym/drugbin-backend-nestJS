@@ -1,4 +1,10 @@
-import { forwardRef, Module } from "@nestjs/common";
+import {
+  forwardRef,
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { RecycleController } from "src/recycle/recycle.controller";
 import { RecycleService } from "src/recycle/recycle.service";
@@ -13,6 +19,7 @@ import { PuppeteerService } from "src/puppeteer/puppetter.service";
 import { VisionService } from "src/vision/vision.service";
 import { PaginationHelper } from "src/helpers/pagination.helper";
 import { Document } from "src/documents/documents.model";
+import { IpRateLimitMiddleware } from "src/helpers/ip-rate.middleware";
 
 @Module({
   controllers: [RecycleController],
@@ -31,4 +38,10 @@ import { Document } from "src/documents/documents.model";
   ],
   exports: [],
 })
-export class RecycleModule {}
+export class RecycleModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(IpRateLimitMiddleware)
+      .forRoutes({ path: "recycle", method: RequestMethod.POST });
+  }
+}
