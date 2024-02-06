@@ -17,6 +17,7 @@ import { Drug } from "src/drug/drug.model";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { imageFilter } from "src/filters/image.filter";
 import { RequestTime } from "src/request-time/request-time";
+import { IpRateLimitMiddleware } from "src/helpers/ip-rate.middleware";
 
 @ApiTags("Drugs")
 @Controller("drugs")
