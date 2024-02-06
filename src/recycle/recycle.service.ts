@@ -208,7 +208,9 @@ export class RecycleService {
     const recycleData: Recycle[] = await this.recycleDrugRepository.findAll({
       where: {
         hospitalId: hospital.id,
-        status: ProductStatus.approved,
+        status: {
+          [Op.in]: [ProductStatus.recycled, ProductStatus.approved],
+        },
         createdAt: {
           [Op.between]: [startDate, this.getEndOfDay(endDate)],
         },
@@ -216,7 +218,12 @@ export class RecycleService {
       include: { all: true },
       order: [["id", "DESC"]],
     });
-    this.updateRecycleDataStatus(recycleData, ProductStatus.recycled);
+    if (
+      !recycleData.length ||
+      recycleData[0].status === ProductStatus.approved
+    ) {
+      this.updateRecycleDataStatus(recycleData, ProductStatus.recycled);
+    }
     return { recycleData, hospital };
   }
 
