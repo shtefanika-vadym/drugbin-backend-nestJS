@@ -189,6 +189,16 @@ export class RecycleService {
     });
   }
 
+  async updateRecycleDataStatus(
+    recycleData: Recycle[],
+    newStatus: ProductStatus
+  ): Promise<void> {
+    for (const data of recycleData) {
+      data.status = newStatus;
+      await data.save();
+    }
+  }
+
   async getHospitalDrugsByInterval(
     hospitalId: number,
     startDate: string,
@@ -198,7 +208,7 @@ export class RecycleService {
     const recycleData: Recycle[] = await this.recycleDrugRepository.findAll({
       where: {
         hospitalId: hospital.id,
-        status: ProductStatus.recycled,
+        status: ProductStatus.approved,
         createdAt: {
           [Op.between]: [startDate, this.getEndOfDay(endDate)],
         },
@@ -206,6 +216,7 @@ export class RecycleService {
       include: { all: true },
       order: [["id", "DESC"]],
     });
+    this.updateRecycleDataStatus(recycleData, ProductStatus.recycled);
     return { recycleData, hospital };
   }
 
