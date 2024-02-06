@@ -129,6 +129,9 @@ export class DocumentsService {
       order: [["startDate", "DESC"]],
     });
 
+    // Fix update status to recycled
+    // Rezolvat drugbin-solutiion -> vercel
+    // Scoiatem start date, endpoint pentru getFirstDate, replace startDare as getFirstDate
     if (document)
       return {
         date: moment(document.endDate).add(1, "days").format("YYYY-MM-DD"),

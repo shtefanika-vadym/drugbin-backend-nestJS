@@ -43,30 +43,54 @@ export class RecycleService {
     const drugIdList: number[] = dto.drugList.map(
       ({ drugId }: IDrug) => drugId
     );
-    const drugList: Drug[] = await this.drugService.getDrugByIdList(drugIdList);
 
-    if (drugList.length !== drugIdList.length)
-      throw new NotFoundException("Drug not found");
+    const drugIdMap: Map<number, number> = new Map();
 
-    const recycledDrugList: IRecycledDrug[] = drugList.map(
-      (drugDetails: Drug) => {
-        const drug = dto.drugList.find(
-          ({ drugId }: IDrug): boolean => drugId === drugDetails.id
-        );
-        return { ...drug, drugDetails };
+    for (const drugId of drugIdList) {
+      if (drugIdMap.has(drugId)) {
+        drugIdMap.set(drugId, drugIdMap.get(drugId)! + 1);
+      } else {
+        drugIdMap.set(drugId, 1);
       }
-    );
+    }
 
-    const createdDrug: Recycle = await this.recycleDrugRepository.create({
-      ...dto,
-      recycleId: uuidv4(),
-      status: ProductStatus.pending,
-      drugList: recycledDrugList,
+    const promises: Promise<Drug[]>[] = [];
+    drugIdMap.forEach((count: number, id: number) => {
+      const requests = Array(count)
+        .fill(id)
+        .map((id) => this.drugService.getDrugByIdList([id]));
+      promises.push(...requests);
     });
 
-    return {
-      recycleId: createdDrug.recycleId,
-    };
+    try {
+      const results = await Promise.all(promises);
+      const drugList = results.flat();
+      if (drugList.length !== drugIdList.length) {
+        throw new NotFoundException("Drug not found");
+      }
+
+      const recycledDrugList: IRecycledDrug[] = drugList.map(
+        (drugDetails: Drug) => {
+          const drug = dto.drugList.find(
+            ({ drugId }: IDrug): boolean => drugId === drugDetails.id
+          );
+          return { ...drug, drugDetails };
+        }
+      );
+
+      const createdDrug: Recycle = await this.recycleDrugRepository.create({
+        ...dto,
+        recycleId: uuidv4(),
+        status: ProductStatus.pending,
+        drugList: recycledDrugList,
+      });
+
+      return {
+        recycleId: createdDrug.recycleId,
+      };
+    } catch (error) {
+      throw error;
+    }
   }
 
   async deleteById(
