@@ -133,12 +133,13 @@ export class DocumentsController {
     @Query("type") type: DocumentType
   ): Promise<any> {
     try {
-      const { recycleData, createdAt } =
+      const { recycleData, hospital, createdAt } =
         await this.documentsService.getDocumentDataById(hospitalId, type, id);
       const doc = DocumentUtils.getDocument(
         recycleData,
         type === DocumentType.psycholeptic,
-        createdAt
+        createdAt,
+        hospital
       );
 
       doc.pipe(res);

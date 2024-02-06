@@ -90,14 +90,18 @@ export class DocumentsService {
     if (!document)
       throw new NotFoundException("Document with this id doesn't exist");
 
-    const recycleData =
+    const { recycleData, hospital } =
       await this.recycleDrugService.getHospitalDrugsByInterval(
         hospitalId,
         document.startDate,
         document.endDate
       );
 
-    return { recycleData, createdAt: document.createdAt.toISOString() };
+    return {
+      hospital,
+      recycleData,
+      createdAt: document.createdAt.toISOString(),
+    };
   }
 
   async getAllShared(hospitalId: number): Promise<Document[]> {

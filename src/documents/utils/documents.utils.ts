@@ -2,6 +2,7 @@ import PDFDocument from "pdfkit-table";
 import { Recycle } from "src/recycle/recycle.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
+import { Hospital } from "src/hospital/hospital.model";
 
 const buildDocHeader = (
   doc: PDFDocument,
@@ -72,15 +73,19 @@ const buildDocFooter = (
 const getDocument = (
   recycleInfo: Recycle[],
   isPsycholeptic: boolean,
-  createdAt: string
+  createdAt: string,
+  hospital: Hospital
 ) => {
-  const [firstRecycle] = recycleInfo;
-  const { hospital } = firstRecycle;
+  const isEmptyRecycleList = !recycleInfo.length;
   const doc = new PDFDocument({ size: "A4", margin: 35 });
   const additionalInfo = isPsycholeptic ? " stupifiante" : "";
   const title = `Proces verbal lunar de predare-primire medicamente${additionalInfo} expirate către firma de casare`;
-  const description = `${hospital.name}, predau spre distrugere către firma de casare Demeco următoarele medicamente${additionalInfo}:`;
+  let description = `${hospital.name}, predau spre distrugere către firma de casare Demeco următoarele medicamente${additionalInfo}:`;
   const emptyDescription = `Farmacia ${hospital.name}, nu predau spre distrugere către firma de casare Demeco niciun medicament psihotrop.`;
+
+  if (isEmptyRecycleList) {
+    description = `${hospital.name}, nu predau spre distrugere către firma de casare Demeco niciun medicament`;
+  }
 
   const drugList = recycleInfo
     .map((recycle: Recycle) => recycle.drugList)
@@ -91,6 +96,7 @@ const getDocument = (
   );
 
   const isEmptyPsycholepticList = isPsycholeptic && !filteredDrugList.length;
+
   buildDocHeader(
     doc,
     title,
@@ -98,15 +104,16 @@ const getDocument = (
     createdAt.slice(0, 10)
   );
 
-  if (!isEmptyPsycholepticList) {
-    buildDocTable(doc, filteredDrugList);
-  }
+  buildDocTable(doc, filteredDrugList);
 
   buildDocFooter(doc, hospital.name, "Demeco", isEmptyPsycholepticList);
   return doc;
 };
 
 const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
+  if (!drugList.length) {
+    return;
+  }
   let tableData = drugList.map(
     ({ lot, quantity, pack, drugDetails }, index: number) => {
       return {

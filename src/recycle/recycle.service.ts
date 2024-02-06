@@ -193,11 +193,11 @@ export class RecycleService {
     hospitalId: number,
     startDate: string,
     endDate: string
-  ): Promise<Recycle[]> {
-    const pharmacy: Hospital = await this.hospitalService.getById(hospitalId);
-    const drugs: Recycle[] = await this.recycleDrugRepository.findAll({
+  ): Promise<any> {
+    const hospital: Hospital = await this.hospitalService.getById(hospitalId);
+    const recycleData: Recycle[] = await this.recycleDrugRepository.findAll({
       where: {
-        hospitalId: pharmacy.id,
+        hospitalId: hospital.id,
         status: ProductStatus.recycled,
         createdAt: {
           [Op.between]: [startDate, this.getEndOfDay(endDate)],
@@ -206,7 +206,7 @@ export class RecycleService {
       include: { all: true },
       order: [["id", "DESC"]],
     });
-    return drugs;
+    return { recycleData, hospital };
   }
 
   async getAllDrugsByPharmacy(
