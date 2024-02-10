@@ -166,6 +166,17 @@ export class DocumentsService {
       documentType
     );
 
+    const { recycleData } =
+      await this.recycleDrugService.getHospitalDrugsByInterval(
+        hospitalId,
+        startDate,
+        endDate
+      );
+
+    if (!recycleData.length) {
+      throw new NotFoundException("No recycle data found in this interval");
+    }
+
     const newDocument: Document = new Document();
     newDocument.hospitalId = hospitalId;
     newDocument.documentType = documentType;

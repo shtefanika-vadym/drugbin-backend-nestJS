@@ -28,7 +28,7 @@ export class DrugController {
   // Get drugs by name
   @ApiOperation({ summary: "Get drugs by name" })
   @ApiResponse({ status: 200, type: [Drug] })
-  @Get("/search/")
+  @Get("/search")
   getDrugsByName(
     @Query("limit") limit: number,
     @Query("name") name?: string
