@@ -13,10 +13,10 @@ export class DrugService {
     private visionService: VisionService
   ) {}
 
-  getDrugsByName(name: string): Promise<Drug[]> {
+  getDrugsByName(name: string, limit: number): Promise<Drug[]> {
     if (!name)
       return this.drugRepository.findAll({
-        limit: 10,
+        limit: limit,
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },

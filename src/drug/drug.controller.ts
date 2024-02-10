@@ -3,6 +3,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from "@nestjs/common";
@@ -27,12 +28,12 @@ export class DrugController {
   // Get drugs by name
   @ApiOperation({ summary: "Get drugs by name" })
   @ApiResponse({ status: 200, type: [Drug] })
-  @Get("/search/:name?")
+  @Get("/search/")
   getDrugsByName(
-    @RequestTime() requestTime: any,
-    @Param("name") name?: string
+    @Query("limit") limit: number,
+    @Query("name") name?: string
   ): Promise<Drug[]> {
-    return this.drugService.getDrugsByName(name);
+    return this.drugService.getDrugsByName(name, limit);
   }
 
   // Identify drug by image
