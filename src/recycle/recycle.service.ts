@@ -346,10 +346,23 @@ export class RecycleService {
       .reduce((acc, val) => acc.concat(val), []);
   }
 
+  async getRecycleStatusByYear(hospitalId: number, year: string): Promise<any> {
+    return this.recycleDrugRepository.sequelize.query(
+      'SELECT "status", "createdAt" FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
+      {
+        replacements: {
+          year,
+          hospitalId,
+        },
+        type: QueryTypes.SELECT,
+      }
+    );
+  }
+
   async getDrugListByYear(hospitalId: number, year: string): Promise<any> {
     const data: { json_array_elements: IRecycledDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT "createdAt", json_array_elements("drugList") FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
+        'SELECT "status", "createdAt", json_array_elements("drugList") FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
         {
           replacements: {
             year,
@@ -511,18 +524,43 @@ export class RecycleService {
 
     return groupedByMonthAndDay;
   }
+
+  getAnnualRecycle(data: any[]): Record<string, number> {
+    const result: Record<string, number> = {
+      [ProductStatus.pending]: 0,
+      [ProductStatus.approved]: 0,
+      [ProductStatus.recycled]: 0,
+    };
+
+    data.forEach(({ status }) => {
+      result[status] = result[status] + 1;
+    });
+
+    return result;
+  }
+
+  getMonthlyRecycle(data: any): Record<string, Record<string, number>> {
+    const result: Record<string, Record<string, number>> = {};
+
+    for (const month in data) {
+      result[month] = this.getAnnualRecycle(data[month]);
+    }
+
+    return result;
+  }
+
   async geDashboardDataByYear(hospitalId: number, year: string): Promise<any> {
-    const data: IRecycledDrug[] = await this.getDrugListByYear(
-      hospitalId,
-      year
-    );
+    const [drugList, recycleList] = await Promise.all([
+      this.getDrugListByYear(hospitalId, year),
+      this.getRecycleStatusByYear(hospitalId, year),
+    ]);
 
     const groupedByMonth: Record<number, IRecycledDrug[]> =
-      this.splitDashboardDataByMonths(data);
+      this.splitDashboardDataByMonths(drugList);
 
-    const annualTotalDrugs: number = this.countDrugListItems(data);
-    // const annualTopProducers = this.getTopProducers(data);
-    const annualTopTypes = this.getTopTypes(data);
+    const annualTotalDrugs: number = this.countDrugListItems(drugList);
+    // const annualTopProducers = this.getTopProducers(drugList);
+    const annualTopTypes = this.getTopTypes(drugList);
 
     const monthlyTotalDrugs: Record<string, number> =
       this.countMonthlyItems(groupedByMonth);
@@ -534,11 +572,11 @@ export class RecycleService {
       this.getAnnualDocuments(hospitalId, year, DocumentType.normal),
       this.getAnnualDocuments(hospitalId, year, DocumentType.psycholeptic),
     ]);
+
     const groupedByMonthAndDay: Record<
       string,
       Record<string, number>
-    > = this.splitDashboardDataByMonthsAndDays(data);
-
+    > = this.splitDashboardDataByMonthsAndDays(drugList);
     return {
       types: {
         annual: annualTopTypes,
@@ -563,6 +601,12 @@ export class RecycleService {
             this.splitDashboardDataByMonths(psycholeptic)
           ),
         },
+      },
+      recycle: {
+        annual: this.getAnnualRecycle(recycleList),
+        monthly: this.getMonthlyRecycle(
+          this.splitDashboardDataByMonths(recycleList)
+        ),
       },
       // topProducers: { annualTopProducers, monthlyTopProducers },
     };

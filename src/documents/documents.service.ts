@@ -173,9 +173,8 @@ export class DocumentsService {
         endDate
       );
 
-    if (!recycleData.length) {
+    if (!recycleData.length)
       throw new NotFoundException("No recycle data found in this interval");
-    }
 
     const newDocument: Document = new Document();
     newDocument.hospitalId = hospitalId;
