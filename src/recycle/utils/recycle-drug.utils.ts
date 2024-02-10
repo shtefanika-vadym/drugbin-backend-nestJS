@@ -111,7 +111,7 @@ const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
         quantity,
         id: index + 1,
         name: drugDetails.name,
-        pack: ProductPack.pack ? "cutie" : pack,
+        pack: pack === ProductPack.pack ? "cutie" : pack,
         observation: drugDetails.isPsycholeptic ? "psihotrop" : "",
       };
     }
