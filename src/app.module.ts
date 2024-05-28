@@ -24,6 +24,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
   imports: [
     ConfigModule.forRoot({
       envFilePath: ".env",
+      isGlobal: true
     }),
     SequelizeModule.forRoot({
       dialect: "postgres",
