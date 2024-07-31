@@ -1,7 +1,7 @@
 export interface IHospital {
   id: number;
-  lat: number;
-  lng: number;
+  lat: string;
+  lng: string;
   name: string;
   password: string;
   fullAddress: string;

@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { Hospital } from "src/hospital/hospital.model";
 import { InjectModel } from "@nestjs/sequelize";
 import { CreateHospitalDto } from "src/hospital/dto/create-hospital.dto";
-import { Role } from "src/hospital/enum/Role";
 import { UpdateHospitalDto } from "src/hospital/dto/update-hospital.dto";
 import { MessageResponse } from "src/reponses/message-response";
 
@@ -17,11 +16,76 @@ export class HospitalService {
     return user;
   }
 
-  async getAllHospitals(role: Role): Promise<Hospital[]> {
-    const hospitals: Hospital[] = await this.hospitalRepository.findAll({
-      attributes: ["id", "name", "location", "street", "schedule"],
+  private haversineDistance(
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number
+  ): number {
+    const R = 6371; // Radius of the Earth in kilometers
+    const dLat = this.toRad(lat2 - lat1);
+    const dLon = this.toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.toRad(lat1)) *
+        Math.cos(this.toRad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  private toRad(value: number): number {
+    return (value * Math.PI) / 180;
+  }
+
+  public findClosestLocation(
+    currentLocation: {
+      lat: number;
+      lng: number;
+    },
+    locations: Hospital[]
+  ): Hospital | null {
+    let closestLocation: Hospital | null = null;
+    let shortestDistance = Infinity;
+
+    locations.forEach((location) => {
+      const distance = this.haversineDistance(
+        currentLocation.lat,
+        currentLocation.lng,
+        +location.lat,
+        +location.lng
+      );
+      if (distance < shortestDistance) {
+        shortestDistance = distance;
+        closestLocation = location;
+      }
     });
-    return hospitals;
+
+    return closestLocation;
+  }
+
+  async getAllHospitals(): Promise<Hospital[]> {
+    return await this.hospitalRepository.findAll({
+      attributes: [
+        "id",
+        "name",
+        "lng",
+        "lat",
+        "regionShortName",
+        "regionLongName",
+        "fullAddress",
+      ],
+    });
+  }
+
+  async getNearestHospital(location: {
+    lat: number;
+    lng: number;
+  }): Promise<Hospital> {
+    const hospitals: Hospital[] = await this.getAllHospitals();
+
+    return this.findClosestLocation(location, hospitals);
   }
 
   async updateCompany(

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Put, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Put,
+  Query,
+  UseGuards,
+} from "@nestjs/common";
 import { HospitalService } from "src/hospital/hospital.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { RolesGuard } from "src/auth/roles.guard";
@@ -20,7 +28,7 @@ export class HospitalController {
   @ApiResponse({ status: 200, type: [Hospital] })
   @Get()
   async getAllPharmacies(): Promise<Hospital[]> {
-    return this.companyService.getAllHospitals(Role.pharmacy);
+    return this.companyService.getAllHospitals();
   }
 
   // Update a hospital
@@ -33,6 +41,15 @@ export class HospitalController {
     @Param("id") id: string
   ): Promise<MessageResponse> {
     return this.companyService.updateCompany(companyDto, id);
+  }
+
+  @ApiResponse({ status: 200, type: Hospital })
+  @Get("/location")
+  getNearestHospital(
+    @Query("lat") lat: number,
+    @Query("lng") lng: number
+  ): Promise<Hospital> {
+    return this.companyService.getNearestHospital({ lat, lng });
   }
 
   // Retrieve hospital details
