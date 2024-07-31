@@ -390,18 +390,6 @@ export class RecycleService {
     return monthlyCounts;
   }
 
-  getMonthlyTopProducers(drugList: Record<string, IRecycledDrug[]>) {
-    const producers: Record<string, any> = {};
-
-    for (const month in drugList) {
-      if (drugList.hasOwnProperty(month)) {
-        producers[month] = this.getTopProducers(drugList[month]);
-      }
-    }
-
-    return producers;
-  }
-
   getMonthlyTopTypes(drugList: Record<string, IRecycledDrug[]>) {
     const types: Record<string, any> = {};
 
@@ -412,29 +400,6 @@ export class RecycleService {
     }
 
     return types;
-  }
-
-  getTopProducers(data: IRecycledDrug[]): any {
-    const producers: Record<string, number> = {};
-    data.forEach(({ drugDetails }: IRecycledDrug): void => {
-      const { producer } = drugDetails;
-      if (!producer) return;
-      if (producers.hasOwnProperty(producer)) {
-        producers[producer] += 1;
-      } else {
-        producers[producer] = 1;
-      }
-    });
-
-    const producerArray = Object.entries(producers).map(
-      ([producer, total]) => ({ producer, total })
-    );
-
-    producerArray.sort((a, b) => b.total - a.total);
-
-    const top3Producers = producerArray.slice(0, 3);
-
-    return top3Producers;
   }
 
   getTopTypes(data: IRecycledDrug[]): any {
@@ -559,14 +524,11 @@ export class RecycleService {
       this.splitDashboardDataByMonths(drugList);
 
     const annualTotalDrugs: number = this.countDrugListItems(drugList);
-    // const annualTopProducers = this.getTopProducers(drugList);
     const annualTopTypes = this.getTopTypes(drugList);
 
     const monthlyTotalDrugs: Record<string, number> =
       this.countMonthlyItems(groupedByMonth);
     const monthlyTopTypes = this.getMonthlyTopTypes(groupedByMonth);
-    // const monthlyDocuments = this.getMonthlyTopProducers(groupedByMonth);
-    const monthlyTopProducers = this.getMonthlyTopProducers(groupedByMonth);
 
     const [normal, psycholeptic] = await Promise.all([
       this.getAnnualDocuments(hospitalId, year, DocumentType.normal),
@@ -608,7 +570,6 @@ export class RecycleService {
           this.splitDashboardDataByMonths(recycleList)
         ),
       },
-      // topProducers: { annualTopProducers, monthlyTopProducers },
     };
   }
 }

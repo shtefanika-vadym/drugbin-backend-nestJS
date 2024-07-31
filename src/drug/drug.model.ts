@@ -26,16 +26,6 @@ export class Drug extends Model<Drug> {
   name: string;
 
   @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  producer: string;
-
-  @ApiProperty()
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  importer: string;
-
-  @ApiProperty()
   @AllowNull(false)
   @Column(DataType.BOOLEAN)
   isPsycholeptic: boolean;
@@ -44,6 +34,11 @@ export class Drug extends Model<Drug> {
   @AllowNull(true)
   @Column(DataType.STRING)
   atc: string;
+
+  @ApiProperty()
+  @AllowNull(true)
+  @Column(DataType.STRING)
+  concentration: string;
 
   @ApiProperty()
   @AllowNull(true)

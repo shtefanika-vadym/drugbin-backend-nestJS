@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import OpenAI from "openai";
-import * as fs from "fs";
 
 @Injectable()
 export class VisionService {
@@ -18,6 +17,7 @@ export class VisionService {
 
     const { choices } = await this.openai.chat.completions.create({
       model: this.configService.get<string>("MODEL"),
+      temperature: 0,
       messages: [
         {
           role: "user",
@@ -30,6 +30,7 @@ export class VisionService {
               type: "image_url",
               image_url: {
                 url: `data:image/jpeg;base64,${base64Image}`,
+                detail: "high",
               },
             },
           ],

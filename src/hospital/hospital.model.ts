@@ -34,8 +34,13 @@ export class Hospital extends Model<Hospital, HospitalCreationAttrs> {
 
   @ApiProperty()
   @AllowNull(false)
-  @Column(DataType.STRING)
-  email: string;
+  @Column(DataType.NUMBER)
+  lat: number;
+
+  @ApiProperty()
+  @AllowNull(false)
+  @Column(DataType.NUMBER)
+  lng: number;
 
   @ApiProperty()
   @AllowNull(false)
@@ -45,17 +50,17 @@ export class Hospital extends Model<Hospital, HospitalCreationAttrs> {
   @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
-  location: string;
+  full_address: string;
 
   @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
-  street: string;
+  region_long_name: string;
 
   @ApiProperty()
   @AllowNull(false)
-  @Column(DataType.ARRAY(DataType.STRING))
-  schedule: string[];
+  @Column(DataType.STRING)
+  region_short_name: string;
 
   @HasMany(() => Recycle)
   recycleList: Recycle[];

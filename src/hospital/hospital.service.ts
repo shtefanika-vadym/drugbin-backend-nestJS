@@ -36,9 +36,9 @@ export class HospitalService {
     return { message: "Company successfully updated" };
   }
 
-  async getHospitalByEmail(email: string): Promise<Hospital> {
+  async getHospitalByEmail(name: string): Promise<Hospital> {
     return await this.hospitalRepository.findOne({
-      where: { email },
+      where: { name },
       include: { all: true },
     });
   }
