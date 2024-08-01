@@ -20,6 +20,7 @@ export class SeedHospital implements OnSeederInit {
         lat: String(lat),
         lng: String(lng),
         fullAddress: fullAddress,
+        email: rest.email ?? null,
         regionShortName: region.short_name,
         regionLongName: region.long_name,
         password: process.env.MOCK_PASSWORD,

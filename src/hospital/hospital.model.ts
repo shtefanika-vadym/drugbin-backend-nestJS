@@ -36,6 +36,11 @@ export class Hospital extends Model<Hospital, HospitalCreationAttrs> {
   name: string;
 
   @ApiProperty()
+  @AllowNull(true)
+  @Column(DataType.STRING)
+  email: string;
+
+  @ApiProperty()
   @AllowNull(false)
   @Column(DataType.STRING)
   lat: string;

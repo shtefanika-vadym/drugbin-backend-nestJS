@@ -1,10 +1,9 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Drug } from "src/drug/drug.model";
 import { VisionService } from "src/vision/vision.service";
 import { Op } from "sequelize";
 import { DrugPillsType } from "src/drug/enum/drug-pills-type";
-import axios from "axios";
 
 @Injectable()
 export class DrugService {
@@ -73,7 +72,11 @@ export class DrugService {
   }
 
   async identifyDrugByImage(image: Express.Multer.File): Promise<Drug[]> {
-    const textList: any[] = await this.visionService.identifyText(image);
-    return textList;
+    try {
+      return await this.visionService.identifyText(image);
+    } catch (err) {
+      console.log(err);
+      throw new BadRequestException("Something went wrong, please try again.");
+    }
   }
 }
