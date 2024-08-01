@@ -65,8 +65,8 @@ export class HospitalService {
     return closestLocation;
   }
 
-  async getAllHospitals(): Promise<Hospital[]> {
-    return await this.hospitalRepository.findAll({
+  async getAllHospitals(county?: string): Promise<Hospital[]> {
+    const queryOptions = {
       attributes: [
         "id",
         "name",
@@ -76,7 +76,10 @@ export class HospitalService {
         "regionLongName",
         "fullAddress",
       ],
-    });
+      where: county ? { regionLongName: county } : undefined,
+    };
+
+    return await this.hospitalRepository.findAll(queryOptions);
   }
 
   async getNearestHospital(location: {
@@ -114,6 +117,17 @@ export class HospitalService {
       },
       attributes: { exclude: ["password", "updatedAt", "createdAt"] },
     });
+  }
+
+  async getAllCounties(): Promise<string[]> {
+    const counties = await this.hospitalRepository.findAll({
+      attributes: ["regionLongName"],
+    });
+    return [
+      ...new Set(
+        counties.map(({ regionLongName }: Hospital) => regionLongName)
+      ),
+    ];
   }
 
   async getPharmacyDetails(companyId: number) {

@@ -27,8 +27,10 @@ export class HospitalController {
   @ApiOperation({ summary: "Get all hospitals" })
   @ApiResponse({ status: 200, type: [Hospital] })
   @Get()
-  async getAllPharmacies(): Promise<Hospital[]> {
-    return this.companyService.getAllHospitals();
+  async getAllPharmacies(
+    @Query("county") county?: string
+  ): Promise<Hospital[]> {
+    return this.companyService.getAllHospitals(county);
   }
 
   // Update a hospital
@@ -50,6 +52,12 @@ export class HospitalController {
     @Query("lng") lng: number
   ): Promise<Hospital> {
     return this.companyService.getNearestHospital({ lat, lng });
+  }
+
+  @ApiResponse({ status: 200, type: [String] })
+  @Get("/counties")
+  getAllCounties(): Promise<string[]> {
+    return this.companyService.getAllCounties();
   }
 
   // Retrieve hospital details

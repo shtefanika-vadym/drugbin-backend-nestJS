@@ -17,7 +17,10 @@ interface HospitalCreationAttrs {
   password: string;
 }
 
-@Table({ tableName: "hospital" })
+@Table({
+  tableName: "hospital",
+  underscored: true,
+})
 export class Hospital extends Model<Hospital, HospitalCreationAttrs> {
   @ApiProperty()
   @PrimaryKey

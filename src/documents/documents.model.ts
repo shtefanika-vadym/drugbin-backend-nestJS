@@ -18,7 +18,7 @@ interface DocumentCreationAttrs {
   documentType: DocumentType;
 }
 
-@Table({ tableName: "document" })
+@Table({ tableName: "document", underscored: true })
 export class Document extends Model<Document, DocumentCreationAttrs> {
   @ApiProperty()
   @PrimaryKey

@@ -10,7 +10,7 @@ import {
 } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 
-@Table({ tableName: "drug" })
+@Table({ tableName: "drug", underscored: true })
 export class Drug extends Model<Drug> {
   @ApiProperty()
   @PrimaryKey

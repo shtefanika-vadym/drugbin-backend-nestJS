@@ -5,15 +5,15 @@
         "long_name": "Arad",
         "short_name": "AR"
       },
-      "name": "Spitalul Boli Cronice Sebis Consiliul Local Sebis",
+      "name": "Spitalul Boli Cronice Sebis",
       "lat": 46.3730822,
       "lng": 22.1279431,
-      "fullAddress": "315700 Sebiș, Romania"
+      "fullAddress": "Strada Parcul Libertăţii, Sebiș 315700"
     },
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic Colentina Bucuresti Primaria Municipiului Bucuresti",
       "lat": 44.4536293,
@@ -23,7 +23,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic Coltea Bucuresti Primaria Municipiului Bucuresti",
       "lat": 44.4345143,
@@ -32,40 +32,40 @@
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Clinic de Boli Infectioase Cluj Napoca Consiliul Judetean Cluj",
+      "name": "Spitalul Clinic de Boli Infectioase Cluj Napoca",
       "lat": 46.7604263,
       "lng": 23.5839605,
       "fullAddress": "Strada Iuliu Moldovan 23, Cluj-Napoca 400003, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
+        "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Clinic de Boli Infectioase Constanta Consiliul Local Constanta",
+      "name": "Spitalul Clinic de Boli Infectioase Constanta",
       "lat": 44.1711725,
       "lng": 28.6379845,
       "fullAddress": "Bulevardul Ferdinand 100, Constanța 900178, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic de Boli Infectioase Iasi Consiliul Judetean Iasi",
+      "name": "Spitalul Clinic de Boli Infectioase Iasi",
       "lat": 47.170543,
       "lng": 27.5843775,
       "fullAddress": "Strada Octav Botez nr. 2, Iași 700116, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Clinic de Boli Infectioase si Pneumoftiziologie Craiova babes Consiliul Local Craiova",
+      "name": "Spitalul Clinic de Boli Infectioase si Pneumoftiziologie Craiova babes",
       "lat": 44.3184379,
       "lng": 23.7949374,
       "fullAddress": "Strada Alexandru Ioan Cuza 1, Craiova 200734, Romania"
@@ -75,15 +75,15 @@
         "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Clinic de Boli Infectioase Timisoara Consiliul Local Timisoara",
+      "name": "Spitalul Clinic de Boli Infectioase Timisoara",
       "lat": 45.7488716,
       "lng": 21.2086793,
-      "fullAddress": "Timișoara, Romania"
+      "fullAddress": "Strada Gheorghe Adam 13, Timișoara"
     },
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Boli Infectioase Victor Babes Primaria Municipiului Bucuresti",
       "lat": 44.4275159,
@@ -93,7 +93,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Chirurgie Oro-maxilo-faciala Primaria Municipiului Bucuresti",
       "lat": 44.4355647,
@@ -102,28 +102,28 @@
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Clinic de Copii Brasov Consiliul Judetean Brasov",
+      "name": "Spitalul Clinic de Copii Brasov",
       "lat": 45.6568234,
       "lng": 25.5869029,
       "fullAddress": "Strada Nicopole 45, Brașov 500063, Romania"
     },
     {
       "region": {
-        "long_name": "Bucharest",
-        "short_name": "Bucharest"
+        "long_name": "București",
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Copii Gomoiu Primaria Municipiului Bucuresti",
       "lat": 44.4267674,
       "lng": 26.1025384,
-      "fullAddress": "Bucharest, Romania"
+      "fullAddress": "Bulevardul Basarabia 21, București 022102"
     },
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Nefrologie Dr. Carol Davila BucureSti",
       "lat": 44.4446575,
@@ -132,10 +132,10 @@
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Clinic de Neuropsihiatrie Craiova Consiliul Local Craiova",
+      "name": "Spitalul Clinic de Neuropsihiatrie Craiova",
       "lat": 44.317577,
       "lng": 23.8163804,
       "fullAddress": "Calea București 99, Craiova 200473, Romania"
@@ -143,7 +143,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Obstetrica si Ginecologie Filantropia",
       "lat": 44.4531506,
@@ -152,30 +152,30 @@
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Clinic de Obstetrica-Ginecologie Brasov Consiliul Judetean Brasov",
+      "name": "Spitalul Clinic de Obstetrica-Ginecologie Brasov",
       "lat": 45.6406742,
       "lng": 25.5850168,
       "fullAddress": "Str Gheorghe Bariţiu 36, Brașov 500025, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic de Obstetrica-Ginecologie Iasi CUZA VODA Consiliul Judetean Iasi",
+      "name": "Spitalul Clinic de Obstetrica-Ginecologie Iasi CUZA VODA",
       "lat": 47.1606371,
       "lng": 27.5978163,
       "fullAddress": "Strada Elena Doamna 49, Iași 700398, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic de Obstetrica-Ginecologie Iasi ELENA DOAMNA Consiliul Judetean Iasi",
+      "name": "Spitalul Clinic de Obstetrica-Ginecologie Iasi ELENA DOAMNA",
       "lat": 47.1606371,
       "lng": 27.5978163,
       "fullAddress": "Strada Elena Doamna 49, Iași 700398, Romania"
@@ -183,7 +183,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Obstetrica-Ginecologie Panait Sirbu Primaria Municipiului Bucuresti",
       "lat": 44.44987099999999,
@@ -193,7 +193,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Ortopedie-Traumatologie Foisor Primaria Municipiului Bucuresti",
       "lat": 44.440842,
@@ -202,50 +202,50 @@
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
-      "name": "Spitalul Clinic de Pediatrie Sibiu Consiliul Local Sibiu",
+      "name": "Spitalul Clinic de Pediatrie Sibiu",
       "lat": 45.7953026,
       "lng": 24.1552001,
       "fullAddress": "Strada Pompeiu Onofreiu 2-4, Sibiu 550166, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Clinic de Pneumoftiziologie Cluj Napoca Consiliul Judetean Cluj",
+      "name": "Spitalul Clinic de Pneumoftiziologie Cluj Napoca",
       "lat": 46.7639388,
       "lng": 23.5829619,
       "fullAddress": "Strada Bogdan Petriceicu Hasdeu 6, Cluj-Napoca 400332, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
+        "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Clinic de Pneumoftiziologie Constanta Consiliul Judetean Constanta",
+      "name": "Spitalul Clinic de Pneumoftiziologie Constanta",
       "lat": 44.2309822,
       "lng": 28.6073483,
       "fullAddress": "Strada Santinelei nr. 40, Constanța, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic de Pneumoftiziologie Iasi Consiliul Judetean Iasi",
+      "name": "Spitalul Clinic de Pneumoftiziologie Iasi",
       "lat": 47.1596382,
       "lng": 27.5857649,
       "fullAddress": "Casa Pătrată, Bulevardul Ștefan cel Mare și Sfânt 69, Iași 700075, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Orasenesc Sinaia Consiliul Local Sinaia",
+      "name": "Spitalul Orasenesc Sinaia",
       "lat": 45.333551,
       "lng": 25.5549925,
       "fullAddress": "Strada Spitalului 2, Sinaia 106100, Romania"
@@ -253,7 +253,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Psihiatrie Obregia Primaria Municipiului Bucuresti",
       "lat": 44.3873798,
@@ -262,7 +262,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
       "name": "Spitalul Clinic de Psihiatrie Socola",
@@ -272,27 +272,27 @@
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Clinic de Recuperare Cluj-Napoca Consiliul Judetean Cluj",
+      "name": "Spitalul Clinic de Recuperare Cluj-Napoca",
       "lat": 46.7548915,
       "lng": 23.5823162,
       "fullAddress": "Str. Viilor 46-50, Cluj-Napoca 400066, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic de Recuperare Iasi Consiliul Local Iasi",
+      "name": "Spitalul Clinic de Recuperare Iasi",
       "lat": 47.1494283,
       "lng": 27.5738299,
       "fullAddress": "Strada Pantelimon Halipa 14, Iași 700661, Romania"
     },
     {
       "region": {
-        "long_name": "Bihor County",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
       "name": "Spitalul Clinic de Recuperare Medicala Baile Felix",
@@ -302,18 +302,8 @@
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
-        "short_name": "CT"
-      },
-      "name": "Spitalul Clinic de Recuperare, Medicina Fizica si Balneologie Eforie Nord",
-      "lat": 44.0639437,
-      "lng": 28.6315339,
-      "fullAddress": "Eforie Nord, Romania"
-    },
-    {
-      "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Urgenta Bagdasar-Arseni",
       "lat": 44.3854266,
@@ -322,7 +312,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
       "name": "Spitalul Clinic de Urgenta Iasi OBLU",
@@ -333,7 +323,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Urgenta pentru Copii Grigore Alexandrescu",
       "lat": 44.4522787,
@@ -343,7 +333,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Urgenta pentru Copii M.S. Curie",
       "lat": 44.3897178,
@@ -352,30 +342,30 @@
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic de Urgenta pentru Copii SF MARIA Iasi Consiliul Judetean Iasi",
+      "name": "Spitalul Clinic de Urgenta pentru Copii SF MARIA Iasi",
       "lat": 47.1595902,
       "lng": 27.6078972,
       "fullAddress": "Strada Vasile Lupu nr. 62, Iași 700309, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul Clinic de Urgenta pentru Copii Sf. Ioan Galati Consiliul Local Galati",
+      "name": "Spitalul Clinic de Urgenta pentru Copii Sf. Ioan Galati",
       "lat": 45.4301411,
       "lng": 28.0271198,
       "fullAddress": "Bloc E2, Strada Constructorilor 7, Galați 800402, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Clinic de Urgenta pentru Copii Timisoara Consiliul Local Timisoara",
+      "name": "Spitalul Clinic de Urgenta pentru Copii Timisoara",
       "lat": 45.7535596,
       "lng": 21.2219023,
       "fullAddress": "Strada Doctor Iosif Nemoianu 2, Timișoara 300011, Romania"
@@ -383,7 +373,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Urgenta Sf. Pantelimon",
       "lat": 44.4412951,
@@ -393,7 +383,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic de Urgente Oftalmologice",
       "lat": 44.445895,
@@ -402,10 +392,10 @@
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Clinic Dr. C.I. Parhon Iasi Consiliul Local Iasi",
+      "name": "Spitalul Clinic Dr. C.I. Parhon Iasi",
       "lat": 47.180312,
       "lng": 27.5679668,
       "fullAddress": "Bulevardul Carol I 50, Iași 700503, Romania"
@@ -413,7 +403,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic Dr. Ion Cantacuzino",
       "lat": 44.4448177,
@@ -422,27 +412,27 @@
     },
     {
       "region": {
-        "long_name": "Județul Arad",
+        "long_name": "Arad",
         "short_name": "AR"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Arad Consiliul Judetean Arad",
+      "name": "Spitalul Clinic Judetean de Urgenta Arad",
       "lat": 46.1835447,
       "lng": 21.30917,
       "fullAddress": "Calea Victoriei, Arad, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Brasov Consiliul Judetean Brasov",
+      "name": "Spitalul Clinic Judetean de Urgenta Brasov",
       "lat": 45.64859449999999,
       "lng": 25.6205779,
       "fullAddress": "Calea București 25, Brașov 500326, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
       "name": "Spitalul Clinic Judetean de Urgenta Cluj-Napoca",
@@ -452,17 +442,17 @@
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
+        "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Constanta Consiliul Judetean Constanta",
+      "name": "Spitalul Clinic Judetean de Urgenta Constanta",
       "lat": 44.186097,
       "lng": 28.6424088,
       "fullAddress": "Bulevardul Tomis 145, Constanța 900591, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
       "name": "Spitalul Clinic Judetean de Urgenta Craiova",
@@ -473,46 +463,46 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Ilfov Consiliul Judetean Ilfov",
+      "name": "Spitalul Clinic Judetean de Urgenta Ilfov",
       "lat": 44.4380737,
       "lng": 26.068596,
       "fullAddress": "Strada Doctor Ernest Juvara 3, București, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Oradea Consiliul Local al MunicipiuluiOradea",
+      "name": "Spitalul Clinic Judetean de Urgenta Oradea",
       "lat": 47.06425549999999,
       "lng": 21.9540723,
       "fullAddress": "Strada Gheorghe Doja 65, Oradea 410169, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Sf. Apostol Andrei Consiliul Judetean Galati",
+      "name": "Spitalul Clinic Judetean de Urgenta Sf. Apostol Andrei",
       "lat": 45.4198282,
       "lng": 28.0189584,
       "fullAddress": "Strada Brăilei 177, Galați 800578, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
-      "name": "Spitalul Clinic Judetean de Urgenta Sibiu Consiliul Judetean Sibiu",
+      "name": "Spitalul Clinic Judetean de Urgenta Sibiu",
       "lat": 45.7944924,
       "lng": 24.1557007,
       "fullAddress": "Bulevardul Corneliu Coposu 2-4, Sibiu 550245, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mureș",
+        "long_name": "Mureș",
         "short_name": "MS"
       },
       "name": "Spitalul Clinic Judetean de Urgenta Targu Mures",
@@ -522,7 +512,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
       "name": "Spitalul Clinic Judetean de Urgenta Timisoara",
@@ -532,50 +522,50 @@
     },
     {
       "region": {
-        "long_name": "Județul Mureș",
+        "long_name": "Mureș",
         "short_name": "MS"
       },
-      "name": "Spitalul Clinic Judetean Mures Consiliul Judetean Mures",
+      "name": "Spitalul Clinic Judetean Mures",
       "lat": 46.5430254,
       "lng": 24.5573362,
       "fullAddress": "Piața Victoriei 1, Târgu Mureș 540026, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Clinic Municipal Cluj-Napoca Consiliul Local Cluj-Napoca",
+      "name": "Spitalul Clinic Municipal Cluj-Napoca",
       "lat": 46.7893483,
       "lng": 23.6071765,
       "fullAddress": "Str. Tăbăcarilor 11, Cluj-Napoca 400139, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Clinic Municipal de Urgenta Timisoara Consiliul Local Timisoara",
+      "name": "Spitalul Clinic Municipal de Urgenta Timisoara",
       "lat": 45.7594431,
       "lng": 21.2267886,
       "fullAddress": "Strada Gheorghe Dima nr.5, Timișoara 300254, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Clinic Municipal Filantropia Craiova Consiliul Local Craiova",
+      "name": "Spitalul Clinic Municipal Filantropia Craiova",
       "lat": 44.3222824,
       "lng": 23.7913818,
       "fullAddress": "Strada Filantropiei 1, Craiova 200143, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul Clinic Municipal Oradea Consiliul Local Oradea",
+      "name": "Spitalul Clinic Municipal Oradea",
       "lat": 47.0559824,
       "lng": 21.9428585,
       "fullAddress": "Aleea Ștrandului 18, Oradea, Romania"
@@ -583,7 +573,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic Nicolae Malaxa Bucuresti Primaria Municipiului Bucuresti",
       "lat": 44.4383968,
@@ -593,7 +583,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic Prof. Dr. Th. Burghele Primaria Municipiului Bucuresti",
       "lat": 44.425767,
@@ -603,7 +593,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Clinic Sf. Maria Bucuresti Primaria Municipiului Bucuresti",
       "lat": 44.456431,
@@ -612,7 +602,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Călărași",
+        "long_name": "Călărași",
         "short_name": "CL"
       },
       "name": "Spitalul Comunal Vidra",
@@ -622,7 +612,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
       "name": "Spitalul de Boli Cronice Calinesti Str.Dr.Ion Craciun nr 484",
@@ -632,97 +622,97 @@
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul de Boli Cronice Campeni Consiliul Local Campeni",
+      "name": "Spitalul de Boli Cronice Campeni",
       "lat": 46.3657495,
       "lng": 23.04543,
       "fullAddress": "Strada Crișan 11, Câmpeni 515500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sălaj",
+        "long_name": "Sălaj",
         "short_name": "SJ"
       },
-      "name": "Spitalul de Boli Cronice Crasna Consiliul Local Crasna",
+      "name": "Spitalul de Boli Cronice Crasna",
       "lat": 47.161781,
       "lng": 22.8806397,
       "fullAddress": "Strada Alszeg 363, Crasna 457085, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Buzău",
+        "long_name": "Buzău",
         "short_name": "BZ"
       },
-      "name": "Spitalul de Boli Cronice Smeeni Consiliul Local Smeeni",
+      "name": "Spitalul de Boli Cronice Smeeni",
       "lat": 44.9967268,
       "lng": 26.8609387,
       "fullAddress": "DJ203D, Smeeni 127595, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul de Boli Infectioase Brasov Consiliul Judetean Brasov",
+      "name": "Spitalul de Boli Infectioase Brasov",
       "lat": 45.6566649,
       "lng": 25.5975575,
       "fullAddress": "Strada Mihai Viteazul 9, Brașov 500174, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul de Boli Infectioase Galati Consiliul Judetean Galati",
+      "name": "Spitalul de Boli Infectioase Galati",
       "lat": 45.4655223,
       "lng": 28.0344642,
       "fullAddress": "Strada Traian 393, Galați, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Boli Infectioase Ploiesti Consiliul Local Ploiesti",
+      "name": "Spitalul de Boli Infectioase Ploiesti",
       "lat": 44.94993300000001,
       "lng": 25.999942,
       "fullAddress": "Bulevardul Republicii 271, Ploiești, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul de Boli Infectioase si Psihiatrie Baia Mare Consiliul Judetean Maramures",
+      "name": "Spitalul de Boli Infectioase si Psihiatrie Baia Mare",
       "lat": 47.65824869999999,
       "lng": 23.5747803,
       "fullAddress": "Str. Gheorghe Șincai 46, Baia Mare 430311, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul de Boli Psihice Cronice Borsa Consiliul Judetean Cluj",
+      "name": "Spitalul de Boli Psihice Cronice Borsa",
       "lat": 46.93328,
       "lng": 23.6580231,
       "fullAddress": "Str. Principala, 88, Com. Borsa, Cluj, Borșa 407110, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Boli Pulmonare Breaza Consiliul Local Breaza",
+      "name": "Spitalul de Boli Pulmonare Breaza",
       "lat": 45.1791735,
       "lng": 25.6766248,
       "fullAddress": "Strada Erou Miron Căproiu 56, Breaza de Jos 105400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Covasna",
+        "long_name": "Covasna",
         "short_name": "CV"
       },
       "name": "Spitalul de Cardiologie Covasna",
@@ -732,37 +722,37 @@
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Geriatrie si Boli Cronice Stefanesti Consiliul Judetean Arges",
+      "name": "Spitalul de Geriatrie si Boli Cronice Stefanesti",
       "lat": 44.865823,
       "lng": 24.924271,
       "fullAddress": "Strada Coasta Câmpului 54, Ștefăneștii Noi, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul de Obstetrica-Ginecologie Galati Consiliul Local Galati",
+      "name": "Spitalul de Obstetrica-Ginecologie Galati",
       "lat": 45.4445922,
       "lng": 28.0437914,
       "fullAddress": "Strada Nicolae Alexandrescu 99, Galați, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Obstetrica-Ginecologie Ploiesti Consiliul Judetean Prahova",
+      "name": "Spitalul de Obstetrica-Ginecologie Ploiesti",
       "lat": 44.941761,
       "lng": 26.0236587,
       "fullAddress": "Bulevardul Republicii 2-4, Ploiești 100389, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Ilfov",
+        "long_name": "Ilfov",
         "short_name": "IF"
       },
       "name": "Spitalul de Obstretica Ginecologie Buftea",
@@ -772,10 +762,10 @@
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Ortopedie si Traumatologie Azuga Consiliul Local Azuga",
+      "name": "Spitalul de Ortopedie si Traumatologie Azuga",
       "lat": 45.4265835,
       "lng": 25.5544913,
       "fullAddress": "Strada Victoriei 2, Azuga 105100, Romania"
@@ -785,234 +775,224 @@
         "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul de Ortopedie, Traumatologie si Recuperare Medicala Eforie Sud Consiliul Judetean Constanta",
+      "name": "Spitalul de Ortopedie, Traumatologie si Recuperare Medicala Eforie Sud",
       "lat": 44.0258361,
       "lng": 28.6486349,
-      "fullAddress": "Eforie Sud, Romania"
+      "fullAddress": "Bulevardul Republicii 7, Eforie Sud 905360"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Pediatrie Pitesti Consiliul Judetean Arges",
+      "name": "Spitalul de Pediatrie Pitesti",
       "lat": 44.8553668,
       "lng": 24.8773384,
       "fullAddress": "Piața Vasile Milea 1, Pitești 110053, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Pediatrie Ploiesti Consiliul Judetean Prahova",
+      "name": "Spitalul de Pediatrie Ploiesti",
       "lat": 44.9320497,
       "lng": 26.0266691,
       "fullAddress": "Strada Mihai Eminescu 4-6, Ploiești, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul de Pneumoftiziologie Aiud Consiliul Judetean Alba",
+      "name": "Spitalul de Pneumoftiziologie Aiud",
       "lat": 46.0674248,
       "lng": 23.5811502,
       "fullAddress": "Piața Ion I.C. Brătianu 1, Alba Iulia 510118, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bacău",
+        "long_name": "Bacău",
         "short_name": "BC"
       },
-      "name": "Spitalul de Pneumoftiziologie Bacau Consiliul Local Bacau",
+      "name": "Spitalul de Pneumoftiziologie Bacau",
       "lat": 46.5641567,
       "lng": 26.8999675,
       "fullAddress": "Strada Oituz 72, Bacău 600252, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul de Pneumoftiziologie Baia Mare Consiliul Local Baia Mare",
+      "name": "Spitalul de Pneumoftiziologie Baia Mare",
       "lat": 47.6627692,
       "lng": 23.5524524,
       "fullAddress": "Strada Doctor Victor Babeș 34, Baia Mare, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Neamț",
+        "long_name": "Neamț",
         "short_name": "NT"
       },
-      "name": "Spitalul de Pneumoftiziologie Bisericani Consiliul Local Alexandru cel Bun",
+      "name": "Spitalul de Pneumoftiziologie Bisericani",
       "lat": 46.9588471,
       "lng": 26.2390996,
       "fullAddress": "Spitalul de Pneumoftiziologie Bisericani, DJ157C, Bisericani, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Botoșani",
+        "long_name": "Botoșani",
         "short_name": "BT"
       },
-      "name": "Spitalul de Pneumoftiziologie Botosani Consiliul Local Botosani",
+      "name": "Spitalul de Pneumoftiziologie Botosani",
       "lat": 47.73475,
       "lng": 26.6643529,
       "fullAddress": "Strada Trandafirilor nr. 24, Botoșani 710202, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brăila",
+        "long_name": "Brăila",
         "short_name": "BR"
       },
-      "name": "Spitalul de Pneumoftiziologie Braila Consiliul Judetean Braila",
+      "name": "Spitalul de Pneumoftiziologie Braila",
       "lat": 45.2695131,
       "lng": 27.970121,
       "fullAddress": "Strada Radu S. Campiniu 21, Brăila 810003, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul de Pneumoftiziologie Brasov Consiliul Judetean Brasov",
+      "name": "Spitalul de Pneumoftiziologie Brasov",
       "lat": 45.6429853,
       "lng": 25.5738109,
       "fullAddress": "Aleea Dealul Spirii 12, Brașov 500118, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Călărași",
+        "long_name": "Călărași",
         "short_name": "CL"
       },
-      "name": "Spitalul de Pneumoftiziologie Calarasi Consiliul Judetean Calarasi",
+      "name": "Spitalul de Pneumoftiziologie Calarasi",
       "lat": 44.1936305,
       "lng": 27.3516631,
       "fullAddress": "Str. Rocadei 2, Călărași, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Pneumoftiziologie Campulung Consiliul Local al Municipiului Campulung",
+      "name": "Spitalul de Pneumoftiziologie Campulung",
       "lat": 45.27769989999999,
       "lng": 25.0474888,
       "fullAddress": "Strada Lascăr Catargiu 38, Câmpulung 115100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Pneumoftiziologie Drajna Consiliul Local Drajna",
+      "name": "Spitalul de Pneumoftiziologie Drajna",
       "lat": 45.2218603,
       "lng": 26.0492309,
       "fullAddress": "Strada Castelului, Comuna Drajna 107190, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Pneumoftiziologie Floresti Consiliul Local Floresti",
+      "name": "Spitalul de Pneumoftiziologie Floresti",
       "lat": 45.0301616,
       "lng": 25.792333,
       "fullAddress": "Strada Grigore Cantacuzino nr. 44, Florești 107255, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul de Pneumoftiziologie Galati Consiliul Judetean Galati",
+      "name": "Spitalul de Pneumoftiziologie Galati",
       "lat": 45.4555586,
       "lng": 28.0456054,
       "fullAddress": "Spital 1, Strada Radu Negru, Galați 800552, Romania"
     },
     {
       "region": {
-        "long_name": "Giurgiu County",
-        "short_name": "GR"
-      },
-      "name": "Spitalul de Pneumoftiziologie Izvoru Consiliul Judetean Giurgiu",
-      "lat": 44.5121786,
-      "lng": 25.5367719,
-      "fullAddress": "Vânătorii Mici, Romania"
-    },
-    {
-      "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul de Pneumoftiziologie Leamna Consiliul Judetean Dolj",
+      "name": "Spitalul de Pneumoftiziologie Leamna",
       "lat": 44.3179296,
       "lng": 23.7954177,
       "fullAddress": "Calea Unirii 19, Craiova 200585, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Pneumoftiziologie Leordeni Consiliul Judetean Arges",
+      "name": "Spitalul de Pneumoftiziologie Leordeni",
       "lat": 44.7936327,
       "lng": 25.1152631,
       "fullAddress": "Strada Coloniei 106, Leordeni 117410, Romania"
     },
     {
       "region": {
-        "long_name": "Vâlcea County",
+        "long_name": "Vâlcea",
         "short_name": "VL"
       },
-      "name": "Spitalul de Pneumoftiziologie Mihaesti Consiliul Judetean Valcea",
+      "name": "Spitalul de Pneumoftiziologie Mihaesti",
       "lat": 45.02282710000001,
       "lng": 24.2378137,
       "fullAddress": "Mihăești 247375, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Teleorman",
+        "long_name": "Teleorman",
         "short_name": "TR"
       },
-      "name": "Spitalul de Pneumoftiziologie Rosiori de Vede Consiliul Judetean Teleorman",
+      "name": "Spitalul de Pneumoftiziologie Rosiori de Vede",
       "lat": 44.1081345,
       "lng": 24.9995217,
       "fullAddress": "Strada Buzești nr.16, Roșiori de Vede 145100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul de Pneumoftiziologie Runcu Consiliul Judetean Gorj",
+      "name": "Spitalul de Pneumoftiziologie Runcu",
       "lat": 45.166154,
       "lng": 23.208361,
       "fullAddress": "Drobeta.turnu Severin, Dobrița 217393, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Satu Mare",
+        "long_name": "Satu Mare",
         "short_name": "SM"
       },
-      "name": "Spitalul de Pneumoftiziologie Satu Mare Consiliul Judetean Satu Mare",
+      "name": "Spitalul de Pneumoftiziologie Satu Mare",
       "lat": 47.79164919999999,
       "lng": 22.8858224,
       "fullAddress": "Strada Ialomiţei 9, Satu Mare 447230, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Pneumoftiziologie Sf. Andrei Valea Iasului Consiliul Judetean Arges",
+      "name": "Spitalul de Pneumoftiziologie Sf. Andrei Valea Iasului",
       "lat": 45.186691,
       "lng": 24.692041,
       "fullAddress": "DN73C, Valea Iașului 117795, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
       "name": "Spitalul de Pneumoftiziologie Sf. Stefan",
@@ -1022,10 +1002,10 @@
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
-      "name": "Spitalul de Pneumoftiziologie Sibiu Consiliul Judetean Sibiu",
+      "name": "Spitalul de Pneumoftiziologie Sibiu",
       "lat": 45.7948392,
       "lng": 24.142917,
       "fullAddress": "Aleea Filozofilor 3-5, Sibiu 550196, Romania"
@@ -1033,39 +1013,39 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
-      "name": "Spitalul de Psihiatrie Balaceanca Consiliul Judetean Ilfov",
+      "name": "Spitalul de Psihiatrie Balaceanca",
       "lat": 44.4380737,
       "lng": 26.068596,
       "fullAddress": "Strada Doctor Ernest Juvara 3, București, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul de Psihiatrie Campulung Moldovenesc Consiliul Local Campulung Moldovenesc",
+      "name": "Spitalul de Psihiatrie Campulung Moldovenesc",
       "lat": 47.5276203,
       "lng": 25.5599867,
       "fullAddress": "Strada Trandafirilor 2, Câmpulung Moldovenesc 725100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Arad",
+        "long_name": "Arad",
         "short_name": "AR"
       },
-      "name": "Spitalul de Psihiatrie Capalnas Consiliul Judetean Arad",
+      "name": "Spitalul de Psihiatrie Capalnas",
       "lat": 45.9747658,
       "lng": 22.2241428,
       "fullAddress": "DJ707B, Căpâlnaş, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul de Psihiatrie Cavnic Consiliul Local Cavnic",
+      "name": "Spitalul de Psihiatrie Cavnic",
       "lat": 47.6618692,
       "lng": 23.8391651,
       "fullAddress": "Strada Unirii 4, Cavnic 435300, Romania"
@@ -1082,50 +1062,50 @@
     },
     {
       "region": {
-        "long_name": "Județul Olt",
+        "long_name": "Olt",
         "short_name": "OT"
       },
-      "name": "Spitalul de Psihiatrie Cronici Schitu Greci Consiliul Judetean Olt",
+      "name": "Spitalul de Psihiatrie Cronici Schitu Greci",
       "lat": 44.4278026,
       "lng": 24.3662983,
       "fullAddress": "Bulevardul Alexandru Ioan Cuza 14, Slatina 230025, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul de Psihiatrie Cronici Siret Consiliul Local Siret",
+      "name": "Spitalul de Psihiatrie Cronici Siret",
       "lat": 47.9564482,
       "lng": 26.0630895,
       "fullAddress": "Str. Transilvaniei 6, Siret 725500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
-      "name": "Spitalul de Psihiatrie Dr. Gheorghe Preda Sibiu Consiliul Judetean Sibiu",
+      "name": "Spitalul de Psihiatrie Dr. Gheorghe Preda Sibiu",
       "lat": 45.8081789,
       "lng": 24.1543902,
       "fullAddress": "Strada Doctor Dumitru Bagdazar 12, Sibiu 550082, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vâlcea",
+        "long_name": "Vâlcea",
         "short_name": "VL"
       },
-      "name": "Spitalul de Psihiatrie Dragoesti Consiliul Judetean Valcea",
+      "name": "Spitalul de Psihiatrie Dragoesti",
       "lat": 44.8318654,
       "lng": 24.2821091,
       "fullAddress": "Strada Spitalului 1, Drăgoeşti, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul de Psihiatrie Elisabeta Doamna Galati Consiliul Local Galati",
+      "name": "Spitalul de Psihiatrie Elisabeta Doamna Galati",
       "lat": 45.4593296,
       "lng": 28.038961,
       "fullAddress": "Strada Traian 290, Galați 800179, Romania"
@@ -1142,37 +1122,37 @@
     },
     {
       "region": {
-        "long_name": "Județul Arad",
+        "long_name": "Arad",
         "short_name": "AR"
       },
-      "name": "Spitalul de Psihiatrie Mocrea Consiliul Judetean Arad",
+      "name": "Spitalul de Psihiatrie Mocrea",
       "lat": 46.3966052,
       "lng": 21.8155077,
       "fullAddress": "DJ792D 2, Mocrea 315301, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vaslui",
+        "long_name": "Vaslui",
         "short_name": "VS"
       },
-      "name": "Spitalul de Psihiatrie Murgeni Consiliul Local Murgeni",
+      "name": "Spitalul de Psihiatrie Murgeni",
       "lat": 46.2055438,
       "lng": 28.0185279,
       "fullAddress": "Doctor Eugen Mitrofan nr. 2, Murgeni 737370, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul de Psihiatrie Nucet Consiliul Judetean Bihor",
+      "name": "Spitalul de Psihiatrie Nucet",
       "lat": 46.487981,
       "lng": 22.552438,
       "fullAddress": "Strada Pescăruşului 5, Nucet 417419, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
       "name": "Spitalul de Psihiatrie Poiana Mare",
@@ -1185,37 +1165,37 @@
         "long_name": "Teleorman",
         "short_name": "TR"
       },
-      "name": "Spitalul de Psihiatrie Poroschia Consiliul Judetean Teleorman",
+      "name": "Spitalul de Psihiatrie Poroschia",
       "lat": 43.9348531,
       "lng": 25.360062,
       "fullAddress": "Poroschia 147280, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Călărași",
+        "long_name": "Călărași",
         "short_name": "CL"
       },
-      "name": "Spitalul de Psihiatrie Sapunari Consiliul Judetean Calarasi",
+      "name": "Spitalul de Psihiatrie Sapunari",
       "lat": 44.494898,
       "lng": 26.8335205,
       "fullAddress": "DJ305, Săpunari 917151, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Psihiatrie Sf. Maria Vedea Consiliul Judetean Arges",
+      "name": "Spitalul de Psihiatrie Sf. Maria Vedea",
       "lat": 44.7790721,
       "lng": 24.6269676,
       "fullAddress": "DN67B, Vedea, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Neamț",
+        "long_name": "Neamț",
         "short_name": "NT"
       },
-      "name": "Spitalul de Psihiatrie Sf. Nicolae Roman Consiliul Judetean Neamt",
+      "name": "Spitalul de Psihiatrie Sf. Nicolae Roman",
       "lat": 46.9367713,
       "lng": 26.9409423,
       "fullAddress": "Strada Ion Nanu 4, Roman 611142, Romania"
@@ -1225,17 +1205,17 @@
         "long_name": "Brăila",
         "short_name": "BR"
       },
-      "name": "Spitalul de Psihiatrie Sf. Pantelimon Braila Consiliul Local Braila",
+      "name": "Spitalul de Psihiatrie Sf. Pantelimon Braila",
       "lat": 45.2652463,
       "lng": 27.9594714,
-      "fullAddress": "Brăila, Romania"
+      "fullAddress": "Calea Călărașilor 59, Brăila 810209"
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul de Psihiatrie si Neurologie Brasov Consiliul Judetean Brasov",
+      "name": "Spitalul de Psihiatrie si Neurologie Brasov",
       "lat": 45.6379828,
       "lng": 25.5849024,
       "fullAddress": "Strada Prundului 7-9, Brașov 500123, Romania"
@@ -1252,7 +1232,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
       "name": "Spitalul de Psihiatrie si pentru Masuri de Siguranta Padureni Grajduri",
@@ -1262,7 +1242,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Buzău",
+        "long_name": "Buzău",
         "short_name": "BZ"
       },
       "name": "Spitalul de Psihiatrie si pentru Masuri de Siguranta Sapoca",
@@ -1272,7 +1252,7 @@
     },
     {
       "region": {
-        "long_name": "Bihor County",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
       "name": "Spitalul de Psihiatrie si pentru Masuri de Siguranta Stei",
@@ -1283,7 +1263,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul de Psihiatrie Titan Gorgos Primaria Municipiului Bucuresti",
       "lat": 44.4203575,
@@ -1292,27 +1272,27 @@
     },
     {
       "region": {
-        "long_name": "Harghita County",
+        "long_name": "Harghita",
         "short_name": "HR"
       },
-      "name": "Spitalul de Psihiatrie Tulghes Consiliul Judetean Harghita",
+      "name": "Spitalul de Psihiatrie Tulghes",
       "lat": 46.9590773,
       "lng": 25.7608833,
       "fullAddress": "Tulgheș 537330, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul de Psihiatrie Voila Consiliul Local Campina",
+      "name": "Spitalul de Psihiatrie Voila",
       "lat": 45.1589477,
       "lng": 25.749881,
       "fullAddress": "Strada Voila 114, Câmpina 105600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
       "name": "Spitalul de Psihiatrie Zam",
@@ -1322,7 +1302,7 @@
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
       "name": "Spitalul de Recuperare Borsa",
@@ -1332,17 +1312,17 @@
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul de Recuperare Bradet Consiliul Judetean Arges",
+      "name": "Spitalul de Recuperare Bradet",
       "lat": 45.3128384,
       "lng": 24.7615592,
       "fullAddress": "DJ703I, Brădetu, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Arad",
+        "long_name": "Arad",
         "short_name": "AR"
       },
       "name": "Spitalul de Recuperare Neuromotorie dr. Corneliu Barsan Dezna",
@@ -1352,30 +1332,30 @@
     },
     {
       "region": {
-        "long_name": "Județul Botoșani",
+        "long_name": "Botoșani",
         "short_name": "BT"
       },
-      "name": "Spitalul de Recuperare Sf. Gheorghe Botosani Consiliul Local Botosani",
+      "name": "Spitalul de Recuperare Sf. Gheorghe Botosani",
       "lat": 47.7531346,
       "lng": 26.6363938,
       "fullAddress": "Calea Națională 2, Botoșani 710010, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brăila",
+        "long_name": "Brăila",
         "short_name": "BR"
       },
-      "name": "Spitalul de Urgenta Judetean Braila Consiliul Judetean Braila",
+      "name": "Spitalul de Urgenta Judetean Braila",
       "lat": 45.2527766,
       "lng": 27.9409124,
       "fullAddress": "Șos. Buzăului 2, Brăila, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul de Urgenta Petrosani Consiliul Local Petrosani",
+      "name": "Spitalul de Urgenta Petrosani",
       "lat": 45.4075904,
       "lng": 23.376411,
       "fullAddress": "137A, Strada 1 Decembrie 1918 1917, Petroșani 332058, Romania"
@@ -1383,7 +1363,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul de Urgenta Prof.dr. Dimitrie Gerota Bucuresti MAI",
       "lat": 44.44000339999999,
@@ -1392,207 +1372,207 @@
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Dr. Karl Diel Jimbolia Consiliul Local Jimbolia",
+      "name": "Spitalul Dr. Karl Diel Jimbolia",
       "lat": 45.7823563,
       "lng": 20.7156724,
       "fullAddress": "Strada Contele Csekonics, Jimbolia 305400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Judetean de Urgenta Alba Iulia Consiliul Judetean Alba",
+      "name": "Spitalul Judetean de Urgenta Alba Iulia",
       "lat": 46.0674248,
       "lng": 23.5811502,
       "fullAddress": "Piața Ion I.C. Brătianu 1, Alba Iulia 510118, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Teleorman",
+        "long_name": "Teleorman",
         "short_name": "TR"
       },
-      "name": "Spitalul Judetean de Urgenta Alexandria Consiliul Judetean Teleorman",
+      "name": "Spitalul Judetean de Urgenta Alexandria",
       "lat": 43.9796366,
       "lng": 25.3143922,
       "fullAddress": "Strada Libertății 1, Alexandria 140009, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bacău",
+        "long_name": "Bacău",
         "short_name": "BC"
       },
-      "name": "Spitalul Judetean de Urgenta Bacau Consiliul Judetean Bacau",
+      "name": "Spitalul Judetean de Urgenta Bacau",
       "lat": 46.5562244,
       "lng": 26.9106189,
       "fullAddress": "Strada Spiru Haret 2-4, Bacău 600114, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul Judetean de Urgenta Baia Mare Consiliul Judetean Maramures",
+      "name": "Spitalul Judetean de Urgenta Baia Mare",
       "lat": 47.65566829999999,
       "lng": 23.5543251,
       "fullAddress": "Strada George Coșbuc 31, Baia Mare 430031, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bistrița-Năsăud",
+        "long_name": "Bistrița-Năsăud",
         "short_name": "BN"
       },
-      "name": "Spitalul Judetean de Urgenta Bistrita Consiliul Judetean Bistrita Nasaud",
+      "name": "Spitalul Judetean de Urgenta Bistrita",
       "lat": 47.1404779,
       "lng": 24.5066563,
       "fullAddress": "Bld, General Grigore Balan 43, Bistrița 420016, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Buzău",
+        "long_name": "Buzău",
         "short_name": "BZ"
       },
-      "name": "Spitalul Judetean de Urgenta Buzau Consiliul Judetean Buzau",
+      "name": "Spitalul Judetean de Urgenta Buzau",
       "lat": 45.1505811,
       "lng": 26.8011624,
       "fullAddress": "Bulevardul Stadionului 7, Buzău 120140, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Călărași",
+        "long_name": "Călărași",
         "short_name": "CL"
       },
-      "name": "Spitalul Judetean de Urgenta Calarasi Consiliul Judetean Calarasi",
+      "name": "Spitalul Judetean de Urgenta Calarasi",
       "lat": 44.1921997,
       "lng": 27.327135,
       "fullAddress": "Strada Eroilor 1-3, Călărași 910071, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Judetean de Urgenta Deva Consiliul Judetean Hunedoara",
+      "name": "Spitalul Judetean de Urgenta Deva",
       "lat": 45.8766355,
       "lng": 22.9048592,
       "fullAddress": "Bulevardul 22 Decembrie 58, Deva, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Covasna",
+        "long_name": "Covasna",
         "short_name": "CV"
       },
-      "name": "Spitalul Judetean de Urgenta Dr. Fogolyan Kristof Sfantu Gheorghe Consiliul Judetean Covasna",
+      "name": "Spitalul Judetean de Urgenta Dr. Fogolyan Kristof Sfantu Gheorghe",
       "lat": 45.8642327,
       "lng": 25.7799072,
       "fullAddress": "Strada Stadionului 1-3, Sfântu Gheorghe 520064, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mehedinți",
+        "long_name": "Mehedinți",
         "short_name": "MH"
       },
-      "name": "Spitalul Judetean de Urgenta Dr. Tr. Severin Consiliul Judetean Mehedinti",
+      "name": "Spitalul Judetean de Urgenta Dr. Tr. Severin",
       "lat": 44.6429436,
       "lng": 22.6535231,
       "fullAddress": "Bulevardul Mihai Viteazul 6D, Drobeta-Turnu Severin 220056, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Giurgiu",
+        "long_name": "Giurgiu",
         "short_name": "GR"
       },
-      "name": "Spitalul Judetean de Urgenta Giurgiu Consiliul Judetean Giurgiu",
+      "name": "Spitalul Judetean de Urgenta Giurgiu",
       "lat": 43.8979455,
       "lng": 25.9694065,
       "fullAddress": "Bulevardul București 82, Giurgiu 080272, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Botoșani",
+        "long_name": "Botoșani",
         "short_name": "BT"
       },
-      "name": "Spitalul Judetean de Urgenta Mavromati Botosani Consiliul Judetean Botosani",
+      "name": "Spitalul Judetean de Urgenta Mavromati Botosani",
       "lat": 47.74088159999999,
       "lng": 26.6613642,
       "fullAddress": "Strada Arhimandrit Marchian Nr. 11, Botoșani 710221, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Harghita",
+        "long_name": "Harghita",
         "short_name": "HR"
       },
-      "name": "Spitalul Judetean de Urgenta Miercurea-Ciuc Consiliul Judetean Harghita",
+      "name": "Spitalul Judetean de Urgenta Miercurea-Ciuc",
       "lat": 46.3485614,
       "lng": 25.8078583,
       "fullAddress": "Strada Doctor Dénes László 2, Miercurea Ciuc 530173, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Neamț",
+        "long_name": "Neamț",
         "short_name": "NT"
       },
-      "name": "Spitalul Judetean de Urgenta Piatra-Neamt Consiliul Judetean Neamt",
+      "name": "Spitalul Judetean de Urgenta Piatra-Neamt",
       "lat": 46.9262167,
       "lng": 26.3731233,
       "fullAddress": "Statia Spital-Maratei, Bulevardul Traian, Piatra Neamț, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul Judetean de Urgenta Pitesti Consiliul Judetean Arges",
+      "name": "Spitalul Judetean de Urgenta Pitesti",
       "lat": 44.8711549,
       "lng": 24.8471675,
       "fullAddress": "Aleea Spitalului 36, Pitești 110283, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Judetean de Urgenta Ploiesti Consiliul Judetean Prahova",
+      "name": "Spitalul Judetean de Urgenta Ploiesti",
       "lat": 44.9627628,
       "lng": 26.0092535,
       "fullAddress": "Strada Găgeni 100, Ploiești 100054, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vâlcea",
+        "long_name": "Vâlcea",
         "short_name": "VL"
       },
-      "name": "Spitalul Judetean de Urgenta Ramnicu Valcea Consiliul Judetean Valcea",
+      "name": "Spitalul Judetean de Urgenta Ramnicu Valcea",
       "lat": 45.116631,
       "lng": 24.3633659,
       "fullAddress": "Spitalul Județean de Urgență, Râmnicu Vâlcea, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Caraș-Severin",
+        "long_name": "Caraș-Severin",
         "short_name": "CS"
       },
-      "name": "Spitalul Judetean de Urgenta Resita Consiliul Judetean Caras Severin",
+      "name": "Spitalul Judetean de Urgenta Resita",
       "lat": 45.2906443,
       "lng": 21.8849744,
       "fullAddress": "Strada Unirii 7, Reșița 320003, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Satu Mare",
+        "long_name": "Satu Mare",
         "short_name": "SM"
       },
-      "name": "Spitalul Judetean de Urgenta Satu Mare Consiliul Judetean Satu Mare",
+      "name": "Spitalul Judetean de Urgenta Satu Mare",
       "lat": 47.7827552,
       "lng": 22.8629472,
       "fullAddress": "Strada Ravensburg 2, Satu Mare, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vrancea",
+        "long_name": "Vrancea",
         "short_name": "VN"
       },
       "name": "Spitalul Judetean de Urgenta Sf. Pantelimon Focsani",
@@ -1602,80 +1582,80 @@
     },
     {
       "region": {
-        "long_name": "Județul Olt",
+        "long_name": "Olt",
         "short_name": "OT"
       },
-      "name": "Spitalul Judetean de Urgenta Slatina Consiliul Judetean Olt",
+      "name": "Spitalul Judetean de Urgenta Slatina",
       "lat": 44.4321914,
       "lng": 24.3670278,
       "fullAddress": "Strada Crișan 9, Slatina 230008, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Ialomița",
+        "long_name": "Ialomița",
         "short_name": "IL"
       },
-      "name": "Spitalul Judetean de Urgenta Slobozia Consiliul Judetean Ialomita",
+      "name": "Spitalul Judetean de Urgenta Slobozia",
       "lat": 44.5590581,
       "lng": 27.3619443,
       "fullAddress": "Bulevardul Chimiei 21, Slobozia 920055, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Judetean de Urgenta Suceava Consiliul Judetean Suceava",
+      "name": "Spitalul Judetean de Urgenta Suceava",
       "lat": 47.6385814,
       "lng": 26.2409217,
       "fullAddress": "Bulevardul 1 Mai 18, Suceava 720224, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dâmbovița",
+        "long_name": "Dâmbovița",
         "short_name": "DB"
       },
-      "name": "Spitalul Judetean de Urgenta Targoviste Consiliul Judetean Dambovita",
+      "name": "Spitalul Judetean de Urgenta Targoviste",
       "lat": 44.9196336,
       "lng": 25.457609,
       "fullAddress": "Bulevardul Ion Constantin Brătianu 4, Târgoviște, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Judetean de Urgenta Targu Jiu Consiliul Judetean Gorj",
+      "name": "Spitalul Judetean de Urgenta Targu Jiu",
       "lat": 45.0353467,
       "lng": 23.2796113,
       "fullAddress": "Strada Alexandru Ioan Cuza 1, Târgu Jiu 210140, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Tulcea",
+        "long_name": "Tulcea",
         "short_name": "TL"
       },
-      "name": "Spitalul Judetean de Urgenta Tulcea Consiliul Judetean Tulcea",
+      "name": "Spitalul Judetean de Urgenta Tulcea",
       "lat": 45.173748,
       "lng": 28.7858534,
       "fullAddress": "Spitalul Judetean, Strada 1848, Tulcea, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vaslui",
+        "long_name": "Vaslui",
         "short_name": "VS"
       },
-      "name": "Spitalul Judetean de Urgenta Vaslui Consiliul Judetean Vaslui",
+      "name": "Spitalul Judetean de Urgenta Vaslui",
       "lat": 46.6554101,
       "lng": 27.7358475,
       "fullAddress": "Pavilionul I, Strada Ștefan cel Mare 233, Vaslui 730006, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sălaj",
+        "long_name": "Sălaj",
         "short_name": "SJ"
       },
-      "name": "Spitalul Judetean de Urgenta Zalau Consiliul Judetean Salaj",
+      "name": "Spitalul Judetean de Urgenta Zalau",
       "lat": 47.19287449999999,
       "lng": 23.0515351,
       "fullAddress": "Str. Simion Bărnuțiu 67, Zalău 450129, Romania"
@@ -1683,7 +1663,7 @@
     {
       "region": {
         "long_name": "București",
-        "short_name": "București"
+        "short_name": "B"
       },
       "name": "Spitalul Militar de Urgenta Prof. Dr. Agrippa Ionescu Bucuresti SRI",
       "lat": 44.4589016,
@@ -1692,240 +1672,240 @@
     },
     {
       "region": {
-        "long_name": "Județul Vrancea",
+        "long_name": "Vrancea",
         "short_name": "VN"
       },
-      "name": "Spitalul Municipal Adjud Consiliul Local Adjud",
+      "name": "Spitalul Municipal Adjud",
       "lat": 46.0920879,
       "lng": 27.1875563,
       "fullAddress": "Str. Republicii 1H, Adjud 625100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Municipal Aiud Consiliul Local Aiud",
+      "name": "Spitalul Municipal Aiud",
       "lat": 46.3078587,
       "lng": 23.7234201,
       "fullAddress": "Strada Spitalului 2, Aiud 515200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul Municipal Anton Cincu Tecuci Consiliul Local Tecuci",
+      "name": "Spitalul Municipal Anton Cincu Tecuci",
       "lat": 45.8472489,
       "lng": 27.4371171,
       "fullAddress": "Strada Costache Conachi 35, Tecuci 805300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Municipal Bailesti Consiliul Local Bailesti",
+      "name": "Spitalul Municipal Bailesti",
       "lat": 44.0294725,
       "lng": 23.3496067,
       "fullAddress": "Strada Victoriei 18A, Băilești 205100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Municipal Blaj Consiliul Local Blaj",
+      "name": "Spitalul Municipal Blaj",
       "lat": 46.17934,
       "lng": 23.92412,
       "fullAddress": "Strada Andrei Muresanu 16, Blaj 515400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Municipal Brad Consiliul Local Brad",
+      "name": "Spitalul Municipal Brad",
       "lat": 46.1266598,
       "lng": 22.7904571,
       "fullAddress": "Strada Spitalului 3, Brad 335200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Municipal Calafat Consiliul Local Calafat",
+      "name": "Spitalul Municipal Calafat",
       "lat": 43.9946646,
       "lng": 22.9430204,
       "fullAddress": "Strada Traian 5, Calafat 205200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Municipal Campia Turzii Consiliul Local Campia Turzii",
+      "name": "Spitalul Municipal Campia Turzii",
       "lat": 46.546887,
       "lng": 23.8822416,
       "fullAddress": "Strada Avram Iancu 33, Câmpia Turzii 405100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Municipal Campina Consiliul Local Campina",
+      "name": "Spitalul Municipal Campina",
       "lat": 45.1281164,
       "lng": 25.732392,
       "fullAddress": "Bulevardul Carol I 117, Câmpina 105600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul Municipal Campulung Consiliul Local Campulung",
+      "name": "Spitalul Municipal Campulung",
       "lat": 45.2662208,
       "lng": 25.0379213,
       "fullAddress": "Strada Doctor Costea 8, Câmpulung 115100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Municipal Campulung Moldovenesc Consiliul Local Campulung Moldovenesc",
+      "name": "Spitalul Municipal Campulung Moldovenesc",
       "lat": 47.5318036,
       "lng": 25.5437493,
       "fullAddress": "Strada Sirenei 25, Câmpulung Moldovenesc 725100, Romania"
     },
     {
       "region": {
-        "long_name": "Olt County",
+        "long_name": "Olt",
         "short_name": "OT"
       },
-      "name": "Spitalul Municipal Caracal Consiliul Local Caracal",
+      "name": "Spitalul Municipal Caracal",
       "lat": 44.1165769,
       "lng": 24.3550871,
       "fullAddress": "Caracal 235200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Satu Mare",
+        "long_name": "Satu Mare",
         "short_name": "SM"
       },
-      "name": "Spitalul Municipal Carei Consiliul Local Carei",
+      "name": "Spitalul Municipal Carei",
       "lat": 47.6807121,
       "lng": 22.4654942,
       "fullAddress": "Bulevardul 25 Octombrie 25, Carei 445100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Teleorman",
+        "long_name": "Teleorman",
         "short_name": "TR"
       },
-      "name": "Spitalul Municipal Caritas Rosiori de Vede Consiliul Local Rosiori de Vede",
+      "name": "Spitalul Municipal Caritas Rosiori de Vede",
       "lat": 44.114708,
       "lng": 24.9874717,
       "fullAddress": "Spitalul Municipal Caritas, Strada Carpați 33, Roșiori de Vede 145100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Municipal Codlea Consiliul Local Codlea",
+      "name": "Spitalul Municipal Codlea",
       "lat": 45.7026004,
       "lng": 25.4473033,
       "fullAddress": "Strada 9 Mai 10, Codlea 505100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vâlcea",
+        "long_name": "Vâlcea",
         "short_name": "VL"
       },
-      "name": "Spitalul Municipal Costache Nicolescu Dragasani Consiliul Local Dragasani",
+      "name": "Spitalul Municipal Costache Nicolescu Dragasani",
       "lat": 44.6592899,
       "lng": 24.2583811,
       "fullAddress": "Strada Doctor Dumitru Bagdazar 2, Drăgășani 245700, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul Municipal Curtea de Arges Consiliul Local Curtea de Arges",
+      "name": "Spitalul Municipal Curtea de Arges",
       "lat": 45.1486796,
       "lng": 24.6788108,
       "fullAddress": "Strada Cuza Vodă 6-8, Curtea de Argeș 115300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vaslui",
+        "long_name": "Vaslui",
         "short_name": "VS"
       },
-      "name": "Spitalul Municipal de Urgenta Barlad Consiliul Local Barlad",
+      "name": "Spitalul Municipal de Urgenta Barlad",
       "lat": 46.2351377,
       "lng": 27.6713664,
       "fullAddress": "Bulevardul Republicii 300, Bârlad 731054, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Caraș-Severin",
+        "long_name": "Caraș-Severin",
         "short_name": "CS"
       },
-      "name": "Spitalul Municipal de Urgenta Caransebes Consiliul Local Caransebes",
+      "name": "Spitalul Municipal de Urgenta Caransebes",
       "lat": 45.4116276,
       "lng": 22.2282928,
       "fullAddress": "Strada Grădinilor 12, Caransebeș 325400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bacău",
+        "long_name": "Bacău",
         "short_name": "BC"
       },
-      "name": "Spitalul Municipal de Urgenta Moinesti Consiliul Local Moinesti",
+      "name": "Spitalul Municipal de Urgenta Moinesti",
       "lat": 46.4764311,
       "lng": 26.4882886,
       "fullAddress": "Strada Zorilor 1, Moinești 605400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Neamț",
+        "long_name": "Neamț",
         "short_name": "NT"
       },
-      "name": "Spitalul Municipal de Urgenta Roman Consiliul Local Roman",
+      "name": "Spitalul Municipal de Urgenta Roman",
       "lat": 46.928022,
       "lng": 26.9309455,
       "fullAddress": "Strada Tineretului 28-30, Roman, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Municipal Dej Consiliul Local Dej",
+      "name": "Spitalul Municipal Dej",
       "lat": 47.1418522,
       "lng": 23.8819584,
       "fullAddress": "Strada 1 Mai 14-16, Dej 405200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vaslui",
+        "long_name": "Vaslui",
         "short_name": "VS"
       },
-      "name": "Spitalul Municipal Dimitrie Castroian Husi Consiliul Local Husi",
+      "name": "Spitalul Municipal Dimitrie Castroian Husi",
       "lat": 46.67518219999999,
       "lng": 28.0505092,
       "fullAddress": "Strada 1 Decembrie 1918 40, Huși 735100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Botoșani",
+        "long_name": "Botoșani",
         "short_name": "BT"
       },
-      "name": "Spitalul Municipal Dorohoi Consiliul Local Dorohoi",
+      "name": "Spitalul Municipal Dorohoi",
       "lat": 47.9462647,
       "lng": 26.4037097,
       "fullAddress": "Bulevardul Victoriei 75, Dorohoi 715200, Romania"
@@ -1935,117 +1915,117 @@
         "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Municipal Dr. Aurel Tulbure Fagaras Consiliul Local Fagaras",
+      "name": "Spitalul Municipal Dr. Aurel Tulbure Fagaras",
       "lat": 45.84164029999999,
       "lng": 24.9730954,
-      "fullAddress": "Făgăraș, Romania"
+      "fullAddress": "Strada Ghioceilor 1, Făgăraș 505200"
     },
     {
       "region": {
         "long_name": "Mureş",
         "short_name": "MS"
       },
-      "name": "Spitalul Municipal Dr. E. Nicoara Reghin Consiliul Local Reghin",
+      "name": "Spitalul Municipal Dr. E. Nicoara Reghin",
       "lat": 46.7710931,
       "lng": 24.700762,
-      "fullAddress": "Reghin, Romania"
+      "fullAddress": "Strada Spitalului 19-20, Reghin 545300"
     },
     {
       "region": {
-        "long_name": "Județul Mureș",
+        "long_name": "Mureș",
         "short_name": "MS"
       },
-      "name": "Spitalul Municipal Dr. Gheorghe Marinescu Tarnaveni Consiliul Judetean Mures",
+      "name": "Spitalul Municipal Dr. Gheorghe Marinescu Tarnaveni",
       "lat": 46.3286382,
       "lng": 24.2936849,
       "fullAddress": "Strada Victor Babeș 2, Târnăveni 545600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul Municipal Dr. Pop Mircea Marghita Consiliul Local Marghita",
+      "name": "Spitalul Municipal Dr. Pop Mircea Marghita",
       "lat": 47.3485246,
       "lng": 22.3377552,
       "fullAddress": "Strada Eroilor 14, Marghita 415300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul Municipal Episcop N. Popovici Beius Consiliul Local Beius",
+      "name": "Spitalul Municipal Episcop N. Popovici Beius",
       "lat": 46.6694903,
       "lng": 22.3498597,
       "fullAddress": "Spitalul Municipal, DJ764, Beiuș 415200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Municipal Falticeni Consiliul Local Falticeni",
+      "name": "Spitalul Municipal Falticeni",
       "lat": 47.4618072,
       "lng": 26.2946679,
       "fullAddress": "Strada Cuza Vodă, Fălticeni 725200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Ialomița",
+        "long_name": "Ialomița",
         "short_name": "IL"
       },
-      "name": "Spitalul Municipal Fetesti Consiliul Local Fetesti",
+      "name": "Spitalul Municipal Fetesti",
       "lat": 44.4082698,
       "lng": 27.8278636,
       "fullAddress": "Str. Calarasi, 475, Fetesti, Ialomita, 925100, Fetești, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Harghita",
+        "long_name": "Harghita",
         "short_name": "HR"
       },
-      "name": "Spitalul Municipal Gheorghieni Consiliul Local Gheorghieni",
+      "name": "Spitalul Municipal Gheorghieni",
       "lat": 46.7234873,
       "lng": 25.6022926,
       "fullAddress": "Bulevardul Lacu Rosu 16, Gheorgheni 535500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Municipal Gherla Consiliul Local Gherla",
+      "name": "Spitalul Municipal Gherla",
       "lat": 47.02440550000001,
       "lng": 23.9046942,
       "fullAddress": "E576, Gherla 405300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Municipal Hunedoara Consiliul Local Hunedoara",
+      "name": "Spitalul Municipal Hunedoara",
       "lat": 45.7497063,
       "lng": 22.9069082,
       "fullAddress": "Strada Victoriei 14, Hunedoara 331057, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Municipal Lugoj Consiliul Local Lugoj",
+      "name": "Spitalul Municipal Lugoj",
       "lat": 45.6905419,
       "lng": 21.8887066,
       "fullAddress": "Strada Gheorghe Doja 36, Lugoj 305500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Municipal Lupeni Consiliul Local Lupeni",
+      "name": "Spitalul Municipal Lupeni",
       "lat": 45.3549714,
       "lng": 23.2179179,
       "fullAddress": "Strada Tudor Vladimirescu 24, Lupeni 335600, Romania"
@@ -2055,427 +2035,427 @@
         "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Municipal Mangalia Consiliul Local Medgidia",
+      "name": "Spitalul Municipal Mangalia",
       "lat": 44.2416271,
       "lng": 28.2777338,
       "fullAddress": "905600 Medgidia, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
+        "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Municipal Medgidia Consiliul Local Medgidia",
+      "name": "Spitalul Municipal Medgidia",
       "lat": 44.2397168,
       "lng": 28.2721406,
       "fullAddress": "Strada Ion Creangă 18, Medgidia 905600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
-      "name": "Spitalul Municipal Medias Consiliul Local Medias",
+      "name": "Spitalul Municipal Medias",
       "lat": 46.1639799,
       "lng": 24.3565345,
       "fullAddress": "Strada Cloşca, Mediaș, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dâmbovița",
+        "long_name": "Dâmbovița",
         "short_name": "DB"
       },
-      "name": "Spitalul Municipal Moreni Consiliul Local Moreni",
+      "name": "Spitalul Municipal Moreni",
       "lat": 44.9776826,
       "lng": 25.6465779,
       "fullAddress": "Bulevardul 22 Decembrie 1989 18, Moreni 135300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Municipal Motru Consiliul Local Motru",
+      "name": "Spitalul Municipal Motru",
       "lat": 44.8005869,
       "lng": 22.9674912,
       "fullAddress": "Bulevardul Gării 1, Motru 215200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Harghita",
+        "long_name": "Harghita",
         "short_name": "HR"
       },
-      "name": "Spitalul Municipal Odorheiu Secuiesc Consiliul Local Odorheiu Secuiesc",
+      "name": "Spitalul Municipal Odorheiu Secuiesc",
       "lat": 46.30757089999999,
       "lng": 25.3004115,
       "fullAddress": "Spital Municipal, DN13A, Odorheiu Secuiesc 535600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Călărași",
+        "long_name": "Călărași",
         "short_name": "CL"
       },
-      "name": "Spitalul Municipal Oltenita Consiliul Local Oltenita",
+      "name": "Spitalul Municipal Oltenita",
       "lat": 44.080131,
       "lng": 26.6338716,
       "fullAddress": "Strada Argeșului 134, Oltenița 915400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bacău",
+        "long_name": "Bacău",
         "short_name": "BC"
       },
-      "name": "Spitalul Municipal Onesti Consiliul Local Onesti",
+      "name": "Spitalul Municipal Onesti",
       "lat": 46.2536379,
       "lng": 26.7649546,
       "fullAddress": "Strada Perchiului 1, Onești 601048, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Municipal Orastie Consiliul Local Orastie",
+      "name": "Spitalul Municipal Orastie",
       "lat": 45.8421832,
       "lng": 23.187311,
       "fullAddress": "Strada Pricazului nr. 16, Orăștie 335700, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mehedinți",
+        "long_name": "Mehedinți",
         "short_name": "MH"
       },
-      "name": "Spitalul Municipal Orsova Consiliul Local Orsova",
+      "name": "Spitalul Municipal Orsova",
       "lat": 44.7213803,
       "lng": 22.396103,
       "fullAddress": "Strada Porțile de Fier 34, Orșova 225200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Municipal Pascani Consiliul Local Pascani",
+      "name": "Spitalul Municipal Pascani",
       "lat": 47.2438382,
       "lng": 26.7255318,
       "fullAddress": "Strada Grădiniței 5, Pașcani, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Municipal Ploiesti Consiliul Local Ploiesti",
+      "name": "Spitalul Municipal Ploiesti",
       "lat": 44.93129709999999,
       "lng": 26.0201859,
       "fullAddress": "Spitalul Municipal Ploiești, Ploiești, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Municipal Radauti Consiliul Local Radauti",
+      "name": "Spitalul Municipal Radauti",
       "lat": 47.8375923,
       "lng": 25.9264523,
       "fullAddress": "Calea Bucovinei 34A, Rădăuți 725400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Buzău",
+        "long_name": "Buzău",
         "short_name": "BZ"
       },
-      "name": "Spitalul Municipal Ramnicu Sarat Consiliul Local Ramnicu Sarat",
+      "name": "Spitalul Municipal Ramnicu Sarat",
       "lat": 45.3789218,
       "lng": 27.0522338,
       "fullAddress": "Strada Nicolae Bălcescu 2, Râmnicu Sărat 125300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul Municipal Salonta Consiliul Local Salonta",
+      "name": "Spitalul Municipal Salonta",
       "lat": 46.804885,
       "lng": 21.6694099,
       "fullAddress": "Spitalul Municipal Salonta, Salonta 415500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Municipal Sebes Consiliul Local Sebes",
+      "name": "Spitalul Municipal Sebes",
       "lat": 45.9514021,
       "lng": 23.5676841,
       "fullAddress": "Strada Șurianu 41, Sebeș 515800, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul Municipal Sighetu Marmatiei Consiliul Local Sighetu Marmatiei",
+      "name": "Spitalul Municipal Sighetu Marmatiei",
       "lat": 47.9293004,
       "lng": 23.8755518,
       "fullAddress": "Strada Avram Iancu 22, Sighetu Marmației 435500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mureș",
+        "long_name": "Mureș",
         "short_name": "MS"
       },
-      "name": "Spitalul Municipal Sighisoara Consiliul Local Sighisoara",
+      "name": "Spitalul Municipal Sighisoara",
       "lat": 46.2206339,
       "lng": 24.7838743,
       "fullAddress": "Strada Zaharia Boiu 40, Sighișoara 545400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Covasna",
+        "long_name": "Covasna",
         "short_name": "CV"
       },
-      "name": "Spitalul Municipal Targu Secuiesc Consiliul Local Targu Secuiesc",
+      "name": "Spitalul Municipal Targu Secuiesc",
       "lat": 45.9975597,
       "lng": 26.1403504,
       "fullAddress": "Strada Fabricii 2A, Târgu Secuiesc 525400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Harghita",
+        "long_name": "Harghita",
         "short_name": "HR"
       },
-      "name": "Spitalul Municipal Toplita Consiliul Local Toplita",
+      "name": "Spitalul Municipal Toplita",
       "lat": 46.9222858,
       "lng": 25.3562436,
       "fullAddress": "Strada Victor Babeș 26, Toplița 535700, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Municipal Turda Consiliul Local Turda",
+      "name": "Spitalul Municipal Turda",
       "lat": 46.57939229999999,
       "lng": 23.7773675,
       "fullAddress": "Strada Andrei Mureşanu 12-16, Turda, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Teleorman",
+        "long_name": "Teleorman",
         "short_name": "TR"
       },
-      "name": "Spitalul Municipal Turnu Magurele Consiliul Local Turnu Magurele",
+      "name": "Spitalul Municipal Turnu Magurele",
       "lat": 43.7438942,
       "lng": 24.8686195,
       "fullAddress": "Strada Castanilor, Turnu Măgurele 145200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Ialomița",
+        "long_name": "Ialomița",
         "short_name": "IL"
       },
-      "name": "Spitalul Municipal Urziceni Consiliul Local Urziceni",
+      "name": "Spitalul Municipal Urziceni",
       "lat": 44.7114203,
       "lng": 26.649198,
       "fullAddress": "Strada Teilor 39, Urziceni 925300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Municipal Vatra Dornei Consiliul Local Vatra Dornei",
+      "name": "Spitalul Municipal Vatra Dornei",
       "lat": 47.34806769999999,
       "lng": 25.3582905,
       "fullAddress": "Strada Mihai Eminescu 14, Vatra Dornei 725700, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Municipal Vulcan Consiliul Local Vulcan",
+      "name": "Spitalul Municipal Vulcan",
       "lat": 45.37788949999999,
       "lng": 23.2938466,
       "fullAddress": "Bulevardul Nicolae Titulescu 59, Vulcan 336200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Orasenesc Abrud Consiliul Local Abrud",
+      "name": "Spitalul Orasenesc Abrud",
       "lat": 46.2659645,
       "lng": 23.0824202,
       "fullAddress": "Strada Republicii 13, Abrud 515100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sibiu",
+        "long_name": "Sibiu",
         "short_name": "SB"
       },
-      "name": "Spitalul Orasenesc Agnita Consiliul Local Agnita",
+      "name": "Spitalul Orasenesc Agnita",
       "lat": 45.9790606,
       "lng": 24.6227306,
       "fullAddress": "Strada Spitalului 10, Agnita 555100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
-      "name": "Spitalul Orasenesc Alesd Consiliul Local Alesd",
+      "name": "Spitalul Orasenesc Alesd",
       "lat": 47.0600767,
       "lng": 22.3938906,
       "fullAddress": "Strada 1 Decembrie NR 3, Aleșd 415100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Orasenesc Asezamintele Brancovenesti Dabuleni Consiliul Judetean Dolj",
+      "name": "Spitalul Orasenesc Asezamintele Brancovenesti Dabuleni",
       "lat": 43.80119260000001,
       "lng": 24.094187,
       "fullAddress": "Strada Unirii 13, Dăbuleni 207220, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mehedinți",
+        "long_name": "Mehedinți",
         "short_name": "MH"
       },
-      "name": "Spitalul Orasenesc Baia de Arama Consiliul Local Baia de Arama",
+      "name": "Spitalul Orasenesc Baia de Arama",
       "lat": 44.998098,
       "lng": 22.8094625,
       "fullAddress": "DC41 12, Baia de Aramă 225100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Orasenesc Baicoi Consiliul Local Baicoi",
+      "name": "Spitalul Orasenesc Baicoi",
       "lat": 45.0296755,
       "lng": 25.8379973,
       "fullAddress": "Spital Băicoi, Strada Spitalului 7, Băicoi 105200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Olt",
+        "long_name": "Olt",
         "short_name": "OT"
       },
-      "name": "Spitalul Orasenesc Bals Consiliul Local Bals",
+      "name": "Spitalul Orasenesc Bals",
       "lat": 44.3471044,
       "lng": 24.1156639,
       "fullAddress": "Strada Nicolae Bălcescu 115, Balș 235100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Covasna",
+        "long_name": "Covasna",
         "short_name": "CV"
       },
-      "name": "Spitalul Orasenesc Baraolt Consiliul Local Baraolt",
+      "name": "Spitalul Orasenesc Baraolt",
       "lat": 46.07253,
       "lng": 25.59169,
       "fullAddress": "Strada Kossuth Lajos 202, Baraolt 525100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bistrița-Năsăud",
+        "long_name": "Bistrița-Năsăud",
         "short_name": "BN"
       },
-      "name": "Spitalul Orasenesc Beclean Consiliul Local Beclean",
+      "name": "Spitalul Orasenesc Beclean",
       "lat": 47.1830664,
       "lng": 24.1857658,
       "fullAddress": "DN17 65, Beclean 425100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Giurgiu",
+        "long_name": "Giurgiu",
         "short_name": "GR"
       },
-      "name": "Spitalul Orasenesc Bolintin-Vale Consiliul Local Bolintin-Vale",
+      "name": "Spitalul Orasenesc Bolintin-Vale",
       "lat": 44.4536483,
       "lng": 25.8210598,
       "fullAddress": "Strada Republicii 5, Bolintin-Vale 085100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vâlcea",
+        "long_name": "Vâlcea",
         "short_name": "VL"
       },
-      "name": "Spitalul Orasenesc Brezoi Consiliul Local Brezoi",
+      "name": "Spitalul Orasenesc Brezoi",
       "lat": 45.3423503,
       "lng": 24.2456514,
       "fullAddress": "DN7A, Brezoi 245500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bacău",
+        "long_name": "Bacău",
         "short_name": "BC"
       },
-      "name": "Spitalul Orasenesc Buhusi Consiliul Local Buhusi",
+      "name": "Spitalul Orasenesc Buhusi",
       "lat": 46.7201681,
       "lng": 26.7083146,
       "fullAddress": "Strada Văioaga 3, Buhuși 605100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Orasenesc Bumbesti-Jiu Consiliul Local al Orasului Bumbesti-Jiu",
+      "name": "Spitalul Orasenesc Bumbesti-Jiu",
       "lat": 45.1807715,
       "lng": 23.3788417,
       "fullAddress": "Strada Zorilor 1, Bumbești-Jiu 215100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Orasenesc Campeni Consiliul Local Campeni",
+      "name": "Spitalul Orasenesc Campeni",
       "lat": 46.3624373,
       "lng": 23.0419363,
       "fullAddress": "Strada Horea, Câmpeni 515500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
+        "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Orasenesc Cernavoda Consiliul Local Cernavoda",
+      "name": "Spitalul Orasenesc Cernavoda",
       "lat": 44.3416647,
       "lng": 28.0443781,
       "fullAddress": "Strada Gheorghe Doja 1A, Cernavodă 905200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Olt",
+        "long_name": "Olt",
         "short_name": "OT"
       },
-      "name": "Spitalul Orasenesc Corabia Consiliul Local Corabia",
+      "name": "Spitalul Orasenesc Corabia",
       "lat": 43.7747282,
       "lng": 24.5021027,
       "fullAddress": "Strada Cuza Vodă 54, Corabia 235300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Alba",
+        "long_name": "Alba",
         "short_name": "AB"
       },
-      "name": "Spitalul Orasenesc Cugir Consiliul Local Cugir",
+      "name": "Spitalul Orasenesc Cugir",
       "lat": 45.8368645,
       "lng": 23.364086,
       "fullAddress": "Strada Nicolae Bălcescu 5, Cugir 515600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Orasenesc Deta Consiliul Local Deta",
+      "name": "Spitalul Orasenesc Deta",
       "lat": 45.3902564,
       "lng": 21.2227934,
       "fullAddress": "Str. Mihai Viteazu 10, Deta, Romania"
@@ -2485,287 +2465,287 @@
         "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Orasenesc Dr. C.T. Sparchez Zarnesti Consiliul Local Zarnesti",
+      "name": "Spitalul Orasenesc Dr. C.T. Sparchez Zarnesti",
       "lat": 45.5606505,
       "lng": 25.322019,
-      "fullAddress": "Zărnești, Romania"
+      "fullAddress": "Str. Policlinicii, 12, Zarnesti, Brasov, 0, Zărnești"
     },
     {
       "region": {
-        "long_name": "Județul Bistrița-Năsăud",
+        "long_name": "Bistrița-Năsăud",
         "short_name": "BN"
       },
-      "name": "Spitalul Orasenesc Dr. George Trifon Nasaud Consiliul Local Nasaud",
+      "name": "Spitalul Orasenesc Dr. George Trifon Nasaud",
       "lat": 47.28363820000001,
       "lng": 24.4093889,
       "fullAddress": "Strada Tudor Vladimirescu 1, Nasaud 425200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mureș",
+        "long_name": "Mureș",
         "short_name": "MS"
       },
-      "name": "Spitalul Orasenesc Dr. Valer Russu Ludus Consiliul Local Ludus",
+      "name": "Spitalul Orasenesc Dr. Valer Russu Ludus",
       "lat": 46.4746648,
       "lng": 24.0946777,
       "fullAddress": "Strada Policlinicii 1, Luduș 545200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Orasenesc Faget Consiliul Local Faget",
+      "name": "Spitalul Orasenesc Faget",
       "lat": 45.84488100000001,
       "lng": 22.1707883,
       "fullAddress": "Strada Spitalului 3, Făget 305300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brăila",
+        "long_name": "Brăila",
         "short_name": "BR"
       },
-      "name": "Spitalul Orasenesc Faurei Consiliul Local Faurei",
+      "name": "Spitalul Orasenesc Faurei",
       "lat": 45.0850324,
       "lng": 27.2742866,
       "fullAddress": "Strada Păcii 6, Făurei 815100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Orasenesc Filiasi Consiliul Local Filiasi",
+      "name": "Spitalul Orasenesc Filiasi",
       "lat": 44.5582961,
       "lng": 23.5027638,
       "fullAddress": "Bulevardul Racoțeanu 200, Filiași 205300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dâmbovița",
+        "long_name": "Dâmbovița",
         "short_name": "DB"
       },
-      "name": "Spitalul Orasenesc Gaesti Consiliul Local Gaesti",
+      "name": "Spitalul Orasenesc Gaesti",
       "lat": 44.71414350000001,
       "lng": 25.3385828,
       "fullAddress": "Strada 13 Decembrie 170, Găești 135200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Suceava",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Orasenesc Gura Humorului Consiliul Local Gura Humorului",
+      "name": "Spitalul Orasenesc Gura Humorului",
       "lat": 47.554906,
       "lng": 25.8896217,
       "fullAddress": "Piața Republicii 1, Gura Humorului 725300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Iași",
+        "long_name": "Iași",
         "short_name": "IS"
       },
-      "name": "Spitalul Orasenesc Harlau Consiliul Local Harlau",
+      "name": "Spitalul Orasenesc Harlau",
       "lat": 47.4303518,
       "lng": 26.8998206,
       "fullAddress": "Str. Bogdan Voda, DN28B 33, Hârlău 705100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Constanța",
+        "long_name": "Constanța",
         "short_name": "CT"
       },
-      "name": "Spitalul Orasenesc Harsova Consiliul Local Harsova",
+      "name": "Spitalul Orasenesc Harsova",
       "lat": 44.6912779,
       "lng": 27.9522938,
       "fullAddress": "Strada Vadului 76, Hârșova 905400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Hunedoara",
+        "long_name": "Hunedoara",
         "short_name": "HD"
       },
-      "name": "Spitalul Orasenesc Hateg Consiliul Local Hateg",
+      "name": "Spitalul Orasenesc Hateg",
       "lat": 45.6109836,
       "lng": 22.9507796,
       "fullAddress": "Strada Tudor Vladimirescu 7, Hațeg 335500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vâlcea",
+        "long_name": "Vâlcea",
         "short_name": "VL"
       },
-      "name": "Spitalul Orasenesc Horezu Consiliul Local Horezu",
+      "name": "Spitalul Orasenesc Horezu",
       "lat": 45.1431988,
       "lng": 23.9917508,
       "fullAddress": "DC139 9, Horezu 245800, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Cluj",
+        "long_name": "Cluj",
         "short_name": "CJ"
       },
-      "name": "Spitalul Orasenesc Huedin Consiliul Local Huedin",
+      "name": "Spitalul Orasenesc Huedin",
       "lat": 46.8627109,
       "lng": 23.0154832,
       "fullAddress": "Str. Spitalului nr. 42, Huedin 405400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Arad",
+        "long_name": "Arad",
         "short_name": "AR"
       },
-      "name": "Spitalul Orasenesc Ineu Consiliul Local Ineu",
+      "name": "Spitalul Orasenesc Ineu",
       "lat": 46.42268199999999,
       "lng": 21.833825,
       "fullAddress": "Calea Republicii nr. 2, Ineu 315300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bacău",
+        "long_name": "Bacău",
         "short_name": "BC"
       },
-      "name": "Spitalul Orasenesc Ioan Lascar Comanesti Consiliul Local Comanesti",
+      "name": "Spitalul Orasenesc Ioan Lascar Comanesti",
       "lat": 46.41896,
       "lng": 26.4485369,
       "fullAddress": "Strada Spitalului, Comănești 605200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sălaj",
+        "long_name": "Sălaj",
         "short_name": "SJ"
       },
-      "name": "Spitalul Orasenesc Jibou Consiliul Local Jibou",
+      "name": "Spitalul Orasenesc Jibou",
       "lat": 47.2589056,
       "lng": 23.2521709,
       "fullAddress": "Strada Libertății 28, Jibou 455200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Călărași",
+        "long_name": "Călărași",
         "short_name": "CL"
       },
-      "name": "Spitalul Orasenesc Lehliu-Gara Consiliul Local Lehliu-Gara",
+      "name": "Spitalul Orasenesc Lehliu-Gara",
       "lat": 44.4427066,
       "lng": 26.851727,
       "fullAddress": "Strada Policlinicii, Lehliu-Gară 915300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Arad",
+        "long_name": "Arad",
         "short_name": "AR"
       },
-      "name": "Spitalul Orasenesc Lipova Consiliul Local Lipova",
+      "name": "Spitalul Orasenesc Lipova",
       "lat": 46.0911805,
       "lng": 21.6920617,
       "fullAddress": "Str. Vânatu Aurel, 11, Lipova, Arad, 315400, Lipova 315400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Tulcea",
+        "long_name": "Tulcea",
         "short_name": "TL"
       },
-      "name": "Spitalul Orasenesc Macin Consiliul Local Macin",
+      "name": "Spitalul Orasenesc Macin",
       "lat": 45.2454831,
       "lng": 28.1352996,
       "fullAddress": "Strada Mircea Vodă 34, Măcin 825300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Caraș-Severin",
+        "long_name": "Caraș-Severin",
         "short_name": "CS"
       },
-      "name": "Spitalul Orasenesc Moldova Noua Consiliul Local Moldova Noua",
+      "name": "Spitalul Orasenesc Moldova Noua",
       "lat": 44.7262691,
       "lng": 21.6229842,
       "fullAddress": "Strada Sf. Varvara 1, Moldova Veche 325500, Serbia"
     },
     {
       "region": {
-        "long_name": "Județul Satu Mare",
+        "long_name": "Satu Mare",
         "short_name": "SM"
       },
-      "name": "Spitalul Orasenesc Negresti-Oas Consiliul Judetean Satu Mare",
+      "name": "Spitalul Orasenesc Negresti-Oas",
       "lat": 47.8718472,
       "lng": 23.4279126,
       "fullAddress": "Strada Victoriei 90, Negrești-Oaș 445200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Buzău",
+        "long_name": "Buzău",
         "short_name": "BZ"
       },
-      "name": "Spitalul Orasenesc Nehoiu Consiliul Local Nehoiu",
+      "name": "Spitalul Orasenesc Nehoiu",
       "lat": 45.4201332,
       "lng": 26.3009512,
       "fullAddress": "Strada Alexandru Ioan Cuza 17, Nehoiu 125100, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Orasenesc Novaci Consiliul Local Novaci",
+      "name": "Spitalul Orasenesc Novaci",
       "lat": 45.1734738,
       "lng": 23.6616532,
       "fullAddress": "Strada Gruiului 1, Novaci 215300, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Caraș-Severin",
+        "long_name": "Caraș-Severin",
         "short_name": "CS"
       },
-      "name": "Spitalul Orasenesc Oravita Consiliul Local Oravita",
+      "name": "Spitalul Orasenesc Oravita",
       "lat": 45.03569170000001,
       "lng": 21.6885815,
       "fullAddress": "Strada Spitalului 25, Oravița, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Caraș-Severin",
+        "long_name": "Caraș-Severin",
         "short_name": "CS"
       },
-      "name": "Spitalul Orasenesc Otelu Rosu Consiliul Local Otelu Rosu",
+      "name": "Spitalul Orasenesc Otelu Rosu",
       "lat": 45.5258536,
       "lng": 22.3677075,
       "fullAddress": "Bulevardul Republicii 109, Oțelu Roșu 325700, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Vrancea",
+        "long_name": "Vrancea",
         "short_name": "VN"
       },
-      "name": "Spitalul Orasenesc Panciu Consiliul Local Panciu",
+      "name": "Spitalul Orasenesc Panciu",
       "lat": 45.9097303,
       "lng": 27.0864462,
       "fullAddress": "Strada Nicolae Titulescu 99, Panciu 625400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dâmbovița",
+        "long_name": "Dâmbovița",
         "short_name": "DB"
       },
-      "name": "Spitalul Orasenesc Pucioasa Consiliul Local Pucioasa",
+      "name": "Spitalul Orasenesc Pucioasa",
       "lat": 45.0750629,
       "lng": 25.4351096,
       "fullAddress": "Strada Republicii 125, Pucioasa 135400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul Orasenesc Regele Carol I Costesti Consiliul Judetean Arges",
+      "name": "Spitalul Orasenesc Regele Carol I Costesti",
       "lat": 44.6646584,
       "lng": 24.8742487,
       "fullAddress": "Strada Industriilor 19, Costești 115200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Brașov",
+        "long_name": "Brașov",
         "short_name": "BV"
       },
-      "name": "Spitalul Orasenesc Rupea Consiliul Local Rupea",
+      "name": "Spitalul Orasenesc Rupea",
       "lat": 46.0375806,
       "lng": 25.2207695,
       "fullAddress": "Str. Republicii 128, Rupea 505500, Romania"
@@ -2775,84 +2755,84 @@
         "long_name": "Mureş",
         "short_name": "MS"
       },
-      "name": "Spitalul Orasenesc Sangeorgiu de Padure Consiliul Local Sangiorgiu de Padure",
+      "name": "Spitalul Orasenesc Sangeorgiu de Padure",
       "lat": 46.4291872,
       "lng": 24.8386374,
       "fullAddress": "547535 Sângeorgiu de Pădure, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Timiș",
+        "long_name": "Timiș",
         "short_name": "TM"
       },
-      "name": "Spitalul Orasenesc Sannicolau Mare Consiliul Local Sannicolau Mare",
+      "name": "Spitalul Orasenesc Sannicolau Mare",
       "lat": 46.0681538,
       "lng": 20.6361536,
       "fullAddress": "Strada Timișoara 10, Sânnicolau Mare 305600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Dolj",
+        "long_name": "Dolj",
         "short_name": "DJ"
       },
-      "name": "Spitalul Orasenesc Segarcea Consiliul Local Segarcea",
+      "name": "Spitalul Orasenesc Segarcea",
       "lat": 44.0996321,
       "lng": 23.743502,
       "fullAddress": "Strada Unirii 50, Segarcea 205400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Orasenesc Sf. Filofteia Mizil Consiliul Local Mizil",
+      "name": "Spitalul Orasenesc Sf. Filofteia Mizil",
       "lat": 44.9995,
       "lng": 26.43984,
       "fullAddress": "Strada Spitalului 21, Mizil 105800, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Argeș",
+        "long_name": "Argeș",
         "short_name": "AG"
       },
-      "name": "Spitalul Orasenesc Sf. Spiridon Mioveni Consiliul Local Mioveni",
+      "name": "Spitalul Orasenesc Sf. Spiridon Mioveni",
       "lat": 44.9691423,
       "lng": 24.960527,
       "fullAddress": "Bulevardul Dacia 131A, Mioveni 115400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Orasenesc Sf. Stefan Rovinari Consiliul Local Rovinari",
+      "name": "Spitalul Orasenesc Sf. Stefan Rovinari",
       "lat": 44.89898549999999,
       "lng": 23.1629923,
       "fullAddress": "Strada Jiului 1, Rovinari 215400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Sălaj",
+        "long_name": "Sălaj",
         "short_name": "SJ"
       },
-      "name": "Spitalul Orasenesc Simleul Silvaniei Consiliul Local Simleul Silvaniei",
+      "name": "Spitalul Orasenesc Simleul Silvaniei",
       "lat": 47.225294,
       "lng": 22.8035401,
       "fullAddress": "Strada George Coșbuc 29, Șimleu Silvaniei 455300, Romania"
     },
     {
       "region": {
-        "long_name": "Suceava County",
+        "long_name": "Suceava",
         "short_name": "SV"
       },
-      "name": "Spitalul Orasenesc Siret Consiliul Local Siret",
+      "name": "Spitalul Orasenesc Siret",
       "lat": 47.9552669,
       "lng": 26.0641684,
       "fullAddress": "725500 Siret, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Bihor",
+        "long_name": "Bihor",
         "short_name": "BH"
       },
       "name": "Spitalul Orasenesc Stei",
@@ -2862,100 +2842,100 @@
     },
     {
       "region": {
-        "long_name": "Județul Ialomița",
+        "long_name": "Ialomița",
         "short_name": "IL"
       },
-      "name": "Spitalul Orasenesc Tandarei Consiliul Local Tandarei",
+      "name": "Spitalul Orasenesc Tandarei",
       "lat": 44.63907649999999,
       "lng": 27.6748813,
       "fullAddress": "Strada Spitalului, Țăndărei 925200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Galați",
+        "long_name": "Galați",
         "short_name": "GL"
       },
-      "name": "Spitalul Orasenesc Targu Bujor Consiliul Local Targu Bujor",
+      "name": "Spitalul Orasenesc Targu Bujor",
       "lat": 45.8694475,
       "lng": 27.9127923,
       "fullAddress": "DJ242 97, Târgu Bujor 805200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Orasenesc Targu Carbunesti Consiliul Local Targu Carbunesti",
+      "name": "Spitalul Orasenesc Targu Carbunesti",
       "lat": 44.96247959999999,
       "lng": 23.5137762,
       "fullAddress": "Strada Eroilor 5, Târgu Cărbunești 215500, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul Orasenesc Targu Lapus Consiliul Local Targu Lapus",
+      "name": "Spitalul Orasenesc Targu Lapus",
       "lat": 47.4553653,
       "lng": 23.8617169,
       "fullAddress": "Strada Tineretului 9-11, Târgu Lăpuș 435600, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Neamț",
+        "long_name": "Neamț",
         "short_name": "NT"
       },
-      "name": "Spitalul Orasenesc Targu-Neamt Consiliul Local Targu-Neamt",
+      "name": "Spitalul Orasenesc Targu-Neamt",
       "lat": 47.2069967,
       "lng": 26.3598975,
       "fullAddress": "Bulevardul Ștefan cel Mare 35, Târgu Neamț 615200, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Gorj",
+        "long_name": "Gorj",
         "short_name": "GJ"
       },
-      "name": "Spitalul Orasenesc Turceni Consiliul Local Turceni",
+      "name": "Spitalul Orasenesc Turceni",
       "lat": 44.6810758,
       "lng": 23.3700707,
       "fullAddress": "Strada Sănătăţii 1, Turceni 217520, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Prahova",
+        "long_name": "Prahova",
         "short_name": "PH"
       },
-      "name": "Spitalul Orasenesc Valenii de Munte Consiliul Local Valenii de Munte",
+      "name": "Spitalul Orasenesc Valenii de Munte",
       "lat": 45.1756086,
       "lng": 26.0350898,
       "fullAddress": "Bulevardul Nicolae Iorga 10, Vălenii de Munte 106400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Maramureș",
+        "long_name": "Maramureș",
         "short_name": "MM"
       },
-      "name": "Spitalul Orasenesc Viseu de Sus Consiliul Local Viseu de Sus",
+      "name": "Spitalul Orasenesc Viseu de Sus",
       "lat": 47.707494,
       "lng": 24.4252058,
       "fullAddress": "Strada 22 Decembrie 1989 1 435700, Vișeu de Sus 435700, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Teleorman",
+        "long_name": "Teleorman",
         "short_name": "TR"
       },
-      "name": "Spitalul Orasenesc Zimnicea Consiliul Local Zimnicea",
+      "name": "Spitalul Orasenesc Zimnicea",
       "lat": 43.6503079,
       "lng": 25.3646425,
       "fullAddress": "1-, Strada Trandafirilor 2, Zimnicea 145400, Romania"
     },
     {
       "region": {
-        "long_name": "Județul Mureș",
+        "long_name": "Mureș",
         "short_name": "MS"
       },
-      "name": "Spitalul Sovata - Niraj Consiliul Local Sovata",
+      "name": "Spitalul Sovata - Niraj",
       "lat": 46.5937783,
       "lng": 25.0712382,
       "fullAddress": "Strada Petofi Sándor, Sovata 545500, Romania"

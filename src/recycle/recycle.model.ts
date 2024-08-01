@@ -26,7 +26,7 @@ interface RecycleCreationAttrs {
   drugList: IRecycledDrug[];
 }
 
-@Table({ tableName: "recycle" })
+@Table({ tableName: "recycle", underscored: true })
 export class Recycle extends Model<Recycle, RecycleCreationAttrs> {
   @PrimaryKey
   @AutoIncrement
