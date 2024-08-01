@@ -10,7 +10,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
-import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
+import { IDrug } from "src/recycle/interfaces/drug.interface";
 import { IsEnum } from "class-validator";
 import { ProductStatus } from "src/recycle/enum/product-status";
 import { Hospital } from "src/hospital/hospital.model";
@@ -23,7 +23,7 @@ interface RecycleCreationAttrs {
   address?: string;
   recycleId: string;
   status: ProductStatus;
-  drugList: IRecycledDrug[];
+  drugList: IDrug[];
 }
 
 @Table({ tableName: "recycle", underscored: true })
@@ -62,7 +62,7 @@ export class Recycle extends Model<Recycle, RecycleCreationAttrs> {
 
   @AllowNull(true)
   @Column(DataType.JSON)
-  drugList: IRecycledDrug[];
+  drugList: IDrug[];
 
   @AllowNull(false)
   @Column(DataType.INTEGER)

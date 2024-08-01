@@ -15,7 +15,6 @@
       <th scope="col">Nr.</th>
       <th scope="col">Denumire medicament(RX/OTC)</th>
       <th scope="col">Data expirarii</th>
-      <th scope="col">Lot</th>
       <th scope="col">Tip (cutie/pastila)</th>
       <th scope="col">Cantitate</th>
     </tr>
@@ -24,9 +23,8 @@
     {{#each drugList}}
       <tr>
         <th scope="row">{{math @index '+' 1}}</th>
-        <td>{{drugDetails.name}}</td>
+        <td>{{name}}</td>
         <td>{{expirationDate}}</td>
-        <td>{{lot}}</td>
         <td>{{pack}}</td>
         <td>{{quantity}}</td>
       </tr>

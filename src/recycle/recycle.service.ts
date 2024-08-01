@@ -6,8 +6,7 @@ import { Recycle } from "src/recycle/recycle.model";
 import { CreateRecycleDto } from "src/recycle/dto/create-recycle.dto";
 import { HospitalService } from "src/hospital/hospital.service";
 import { DrugService } from "src/drug/drug.service";
-import { IDrug, IRecycledDrug } from "src/recycle/interfaces/drug.interface";
-import { Drug } from "src/drug/drug.model";
+import { IDrug } from "src/recycle/interfaces/drug.interface";
 import { Hospital } from "src/hospital/hospital.model";
 import { CreateRecycleResponse } from "src/recycle/responses/create-recycle-response";
 import { MessageResponse } from "src/reponses/message-response";
@@ -40,57 +39,15 @@ export class RecycleService {
 
     if (!hospital) throw new NotFoundException("Hospital not found");
 
-    const drugIdList: number[] = dto.drugList.map(
-      ({ drugId }: IDrug) => drugId
-    );
-
-    const drugIdMap: Map<number, number> = new Map();
-
-    for (const drugId of drugIdList) {
-      if (drugIdMap.has(drugId)) {
-        drugIdMap.set(drugId, drugIdMap.get(drugId)! + 1);
-      } else {
-        drugIdMap.set(drugId, 1);
-      }
-    }
-
-    const promises: Promise<Drug[]>[] = [];
-    drugIdMap.forEach((count: number, id: number) => {
-      const requests = Array(count)
-        .fill(id)
-        .map((id) => this.drugService.getDrugByIdList([id]));
-      promises.push(...requests);
+    const createdDrug: Recycle = await this.recycleDrugRepository.create({
+      ...dto,
+      recycleId: uuidv4(),
+      status: ProductStatus.pending,
     });
 
-    try {
-      const results = await Promise.all(promises);
-      const drugList = results.flat();
-      if (drugList.length !== drugIdList.length) {
-        throw new NotFoundException("Drug not found");
-      }
-
-      const recycledDrugList: IRecycledDrug[] = drugList.map(
-        (drugDetails: Drug) => {
-          const drug = dto.drugList.find(
-            ({ drugId }: IDrug): boolean => drugId === drugDetails.id
-          );
-          return { ...drug, drugDetails };
-        }
-      );
-
-      const createdDrug: Recycle = await this.recycleDrugRepository.create({
-        ...dto,
-        recycleId: uuidv4(),
-        status: ProductStatus.pending,
-        drugList: recycledDrugList,
-      });
-
-      return {
-        recycleId: createdDrug.recycleId,
-      };
-    } catch (error) {
-      throw error;
-    }
+    return {
+      recycleId: createdDrug.recycleId,
+    };
   }
 
   async deleteById(
@@ -173,9 +130,9 @@ export class RecycleService {
     const data: Recycle[] = JSON.parse(JSON.stringify(drugs));
     return data
       .map((drug: Recycle): Recycle => {
-        const filteredDrugList: IRecycledDrug[] = drug.drugList.filter(
-          ({ drugDetails }: IRecycledDrug): boolean =>
-            drugDetails.isPsycholeptic === isPsycholeptic
+        const filteredDrugList: IDrug[] = drug.drugList.filter(
+          ({ atc }: IDrug): boolean =>
+            isPsycholeptic ? atc?.startsWith("N05") : !atc?.startsWith("N05")
         );
         return { ...drug, drugList: filteredDrugList } as Recycle;
       })
@@ -231,7 +188,7 @@ export class RecycleService {
     hospitalId: number,
     page: number,
     limit: number
-  ): Promise<IPagination<IRecycledDrug[]>> {
+  ): Promise<IPagination<IDrug[]>> {
     const offset = (page - 1) * limit;
     const [{ sum: totalItems }]: { sum: number }[] =
       await this.recycleDrugRepository.sequelize.query(
@@ -244,7 +201,7 @@ export class RecycleService {
           type: QueryTypes.SELECT,
         }
       );
-    const data: { json_array_elements: IRecycledDrug }[] =
+    const data: { json_array_elements: IDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
         'SELECT "createdAt", json_array_elements("drugList") FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status ORDER BY "id" DESC LIMIT :limit OFFSET :offset',
         {
@@ -262,8 +219,8 @@ export class RecycleService {
   }
 
   replaceJsonResultKey(
-    data: { createdAt?: string; json_array_elements: IRecycledDrug }[]
-  ): IRecycledDrug[] {
+    data: { createdAt?: string; json_array_elements: IDrug }[]
+  ): IDrug[] {
     return data.map(({ json_array_elements, createdAt }) => ({
       ...json_array_elements,
       createdAt,
@@ -335,10 +292,10 @@ export class RecycleService {
       .map(
         ({ firstName, lastName, drugList, updatedAt: recycledAt }: Recycle) => {
           const details = { fullName: `${firstName} ${lastName}`, recycledAt };
-          return drugList.map(({ pack, ...rest }: IRecycledDrug) => ({
+          return drugList.map(({ pack, ...rest }: IDrug) => ({
             ...rest,
             ...details,
-            pack: pack === ProductPack.pack ? "cutie" : "pastila",
+            pack: pack === ProductPack.box ? "cutie" : "pastila",
             recycledAt: new Date(recycledAt).toISOString().slice(0, 10),
           }));
         }
@@ -360,7 +317,7 @@ export class RecycleService {
   }
 
   async getDrugListByYear(hospitalId: number, year: string): Promise<any> {
-    const data: { json_array_elements: IRecycledDrug }[] =
+    const data: { json_array_elements: IDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
         'SELECT "status", "createdAt", json_array_elements("drugList") FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
         {
@@ -374,7 +331,7 @@ export class RecycleService {
     return this.replaceJsonResultKey(data);
   }
 
-  countDrugListItems(drugList: IRecycledDrug[]): number {
+  countDrugListItems(drugList: IDrug[]): number {
     return drugList.reduce((acc: number) => acc + 1, 0);
   }
 
@@ -390,7 +347,7 @@ export class RecycleService {
     return monthlyCounts;
   }
 
-  getMonthlyTopTypes(drugList: Record<string, IRecycledDrug[]>) {
+  getMonthlyTopTypes(drugList: Record<string, IDrug[]>) {
     const types: Record<string, any> = {};
 
     for (const month in drugList) {
@@ -402,11 +359,10 @@ export class RecycleService {
     return types;
   }
 
-  getTopTypes(data: IRecycledDrug[]): any {
+  getTopTypes(data: IDrug[]): any {
     const rxPrefixes: string[] = ["PRF", "PR"];
     const types: Record<string, number> = {};
-    data.forEach(({ drugDetails }: IRecycledDrug) => {
-      const { prescription } = drugDetails;
+    data.forEach(({ name, prescription }: IDrug) => {
       if (!prescription) {
         types["Supplement"] = (types["Supplement"] || 0) + 1;
         return;
@@ -466,6 +422,7 @@ export class RecycleService {
 
     return groupedByMonth;
   }
+
   splitDashboardDataByMonthsAndDays<T>(
     data: T[]
   ): Record<string, Record<string, number>> {
@@ -520,7 +477,7 @@ export class RecycleService {
       this.getRecycleStatusByYear(hospitalId, year),
     ]);
 
-    const groupedByMonth: Record<number, IRecycledDrug[]> =
+    const groupedByMonth: Record<number, IDrug[]> =
       this.splitDashboardDataByMonths(drugList);
 
     const annualTotalDrugs: number = this.countDrugListItems(drugList);

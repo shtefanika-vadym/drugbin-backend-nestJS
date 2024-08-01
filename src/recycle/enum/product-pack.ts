@@ -1,5 +1,4 @@
 export enum ProductPack {
-  pack = "pack",
-  pill = "pill",
-  blister = "blister",
+  box = "box",
+  entity = "entity",
 }

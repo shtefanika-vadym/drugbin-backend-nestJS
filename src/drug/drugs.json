@@ -214,7 +214,7 @@
       "name": "ABRAXANE 5 mg/ml",
       "concentration": "5mg/ml",
       "atc": "L01CD01",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. a 100 mg pulb. pt. dispersie perf."
     },
     {
@@ -550,7 +550,7 @@
       "name": "ACICLOVIR ROMPHARM 250 mg",
       "concentration": "250mg",
       "atc": "J05AB01",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 5 flac. din sticla incolora cu pulb. pt. sol. perf."
     },
     {
@@ -1009,25 +1009,11 @@
       "packaging": "Cutie cu 5 fiole din sticla incolora cu punct de rupere x 5 ml sol. inj."
     },
     {
-      "name": 37205,
-      "concentration": "100UI/ml",
-      "atc": "A10AD01",
-      "prescription": "P-RF",
-      "packaging": "Cutie x 1 cartus x 10 penuri preumplute x 3 ml susp. inj."
-    },
-    {
       "name": "ACTRAPHANE 10 PENFIILL",
       "concentration": "100UI/ml",
       "atc": "A10AD01",
       "prescription": "P-RF",
       "packaging": "Cutie x 10 cartuse x 3 ml susp. inj."
-    },
-    {
-      "name": 37215,
-      "concentration": "100UI/ml",
-      "atc": "A10AD01",
-      "prescription": "P-RF",
-      "packaging": "Cutie x 1 cartus x 10 penuri preumplute x 3 ml susp. inj."
     },
     {
       "name": "ACTRAPHANE 20 PENFIILL",
@@ -1058,7 +1044,7 @@
       "packaging": "Cutie x 1 cartus x 10 penuri preumplute x 3 ml susp. inj."
     },
     {
-      "name": 37225,
+
       "concentration": "100UI/ml",
       "atc": "A10AD01",
       "prescription": "P-RF",
@@ -1072,7 +1058,7 @@
       "packaging": "Cutie x 10 cartuse x 3 ml susp. inj."
     },
     {
-      "name": 51441,
+
       "concentration": "100UI/ml",
       "atc": "A10AD01",
       "prescription": "P-RF",
@@ -1086,7 +1072,7 @@
       "packaging": "Cutie x 10 cartuse x 3 ml susp. inj."
     },
     {
-      "name": 18568,
+
       "concentration": "100UI/ml",
       "atc": "A10AD01",
       "prescription": "P-RF",
@@ -1281,7 +1267,7 @@
       "name": "ADOZIN 10 mg/2ml",
       "concentration": "10mg/2ml",
       "atc": "C01EB10",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "cutie cu 10 fiole a 2 ml sol. inj./perf."
     },
     {
@@ -2074,34 +2060,6 @@
       "packaging": "Cutie cu 1 flac. din sticla bruna x 10 ml spray nazal, sol., prevazut cu pompa de pulverizare (din PP,PE,polioximetilena,elastomer si otel inoxidabil) cu aplicator nazal din PP"
     },
     {
-      "name": "ALLUZIENCE 200 UNITATI Speywood/ml",
-      "concentration": "200UNITATI SPEYWOOD/ml",
-      "atc": "M03AX01",
-      "prescription": "PR",
-      "packaging": "Cutie cu 2 flac. din sticla cu sol inj."
-    },
-    {
-      "name": "ALLÃ‰ 10 mg+250 UI/gram",
-      "concentration": "10mg+250UI/gram",
-      "atc": "C05BA53",
-      "prescription": "OTC",
-      "packaging": "Cutie cu 1 tub Al x 150 g crema"
-    },
-    {
-      "name": "ALLÃ‰ 10 mg+500 UI",
-      "concentration": "10mg+500UI",
-      "atc": "C05BA53",
-      "prescription": "OTC",
-      "packaging": "Cutie cu 1 tub din Al x 170 g gel"
-    },
-    {
-      "name": "ALLÃ‰ FORTE 10 mg+1000 UI/gram",
-      "concentration": "10mg+1000UI/gram",
-      "atc": "C05BA53",
-      "prescription": "OTC",
-      "packaging": "Cutie cu 1 tub Al x 75 g crema"
-    },
-    {
       "name": "ALMACOR 10 mg",
       "concentration": "10mg",
       "atc": "C08CA01",
@@ -2569,13 +2527,6 @@
       "packaging": "Cutie cu 1 flac. din sticla bruna prevazut cu pompa dozatoare x 25 ml spray bucofaringian, sol."
     },
     {
-      "name": 36586,
-      "concentration": 0.03,
-      "atc": "D11AH01",
-      "prescription": "PR",
-      "packaging": "Cutie x 1 tub x 60 g"
-    },
-    {
       "name": "AMBROXOL 0,75%",
       "concentration": "7,5mg/ml",
       "atc": "R05CB06",
@@ -2730,13 +2681,13 @@
       "packaging": "Cutie cu 2 blist. PVC/Al x 25 compr."
     },
     {
-      "name": 37196,
+
       "atc": "B05BA10",
       "prescription": "PR",
       "packaging": "Cutie cu 4 pungi bicamerale Biofine x 2000 ml sol. perf."
     },
     {
-      "name": 37197,
+
       "atc": "B05BA10",
       "prescription": "PR",
       "packaging": "Cutie cu 4 pungi bicamerale Biofine x 2000 ml sol. perf."
@@ -2763,14 +2714,14 @@
       "packaging": "Cutie x 10 flacoane x 500 ml sol. perf."
     },
     {
-      "name": 37165,
+
       "concentration": 0.1,
       "atc": "B05BA01",
       "prescription": "PR",
       "packaging": "Cutie cu 6 flac. din sticla incolora x 1000 ml sol. perf."
     },
     {
-      "name": 37012,
+
       "concentration": 0.05,
       "atc": "B05BA01",
       "prescription": "PR",
@@ -3263,7 +3214,7 @@
       "name": "AMSPARITY 20 mg",
       "concentration": "20mg",
       "atc": "L04AB04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 2 seringi preumplute+2 tampoane cu alcool"
     },
     {
@@ -3277,7 +3228,7 @@
       "name": "AMSPARITY 40 mg/0,8 ml",
       "concentration": "40mg/0,8ml",
       "atc": "L04AB04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Ambalaj multiplu 2 (2x1) flacoane+2 (2x1) seringi+2 (2x1) ace+2 (2x1) adaptoarepentru flacon+4 (2x2) tampoanecu alcool medicinal"
     },
     {
@@ -5307,35 +5258,35 @@
       "name": "AYVAKYT 100 mg",
       "concentration": "100mg",
       "atc": "L01EX18",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din HDPE x 30 compr. film."
     },
     {
       "name": "AYVAKYT 200 mg",
       "concentration": "200mg",
       "atc": "L01EX18",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din HDPE x 30 compr. film."
     },
     {
       "name": "AYVAKYT 25 mg",
       "concentration": "25mg",
       "atc": "L01EX18",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din HDPE x 30 compr. film."
     },
     {
       "name": "AYVAKYT 300 mg",
       "concentration": "300mg",
       "atc": "L01EX18",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din HDPE x 30 compr. film."
     },
     {
       "name": "AYVAKYT 50 mg",
       "concentration": "50mg",
       "atc": "L01EX18",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din HDPE x 30 compr. film."
     },
     {
@@ -5681,7 +5632,7 @@
       "name": "BEKEMV 300 mg",
       "concentration": "300mg",
       "atc": "L04AA25",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. x 30 ml conc. pt. sol. perf."
     },
     {
@@ -5812,7 +5763,7 @@
     {
       "name": "BENELYTE",
       "atc": "B05BB02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 flac. din PEJD (KabiPac) x 500 ml sol. perf."
     },
     {
@@ -7055,7 +7006,7 @@
       "name": "BOTULINUM ANTITOXIN ABE 500UI+500UI+100UI/ml",
       "concentration": "500UI+500UI+100UI/ml",
       "atc": "J06AA04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 fiola x 10 ml sol. inj."
     },
     {
@@ -7653,14 +7604,14 @@
       "name": "BYFAVO 20 mg",
       "concentration": "20mg",
       "atc": "N05CD14",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 flac. din sticla care contin pulb. pt. sol. inj"
     },
     {
       "name": "BYFAVO 50 mg",
       "concentration": "50mg",
       "atc": "N05CD14",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 flac. din sticla care contin pulb. pt. conc. pt. sol. inj./perf."
     },
     {
@@ -9983,7 +9934,7 @@
       "name": "CLONIDIN-RATIOPHARM 150 mcg/ml",
       "concentration": "150mcg/ml",
       "atc": "C02AC01",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 5 fiole x 1 ml sol. inj."
     },
     {
@@ -10148,7 +10099,7 @@
       "packaging": "Cutie cu 20 fiole PEJD x 20 ml conc. pt. sol. perf."
     },
     {
-      "name": 36770,
+
       "concentration": "9mg/ml",
       "atc": "B05BB01",
       "prescription": "S",
@@ -11278,7 +11229,7 @@
       "name": "COTELLIC 20 mg",
       "concentration": "20mg",
       "atc": "L01EE02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu blist. PVC/PVDC x 63 (3x21) compr. film."
     },
     {
@@ -11498,7 +11449,7 @@
       "name": "CYCLOLUX 0,5 mmol/ml",
       "concentration": "0,5mmol/ml",
       "atc": "V08CA02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 flac. din sticla incolora cu capacitatea de 20 ml x 20 ml sol. inj."
     },
     {
@@ -12590,7 +12541,7 @@
       "packaging": "Cutie cu 100 blist. Al/PVC x 10 compr. film."
     },
     {
-      "name": 36557,
+
       "concentration": 0.02,
       "atc": "C05BB04",
       "prescription": "PR",
@@ -12726,7 +12677,7 @@
       "name": "DEXMEDETOMIDINA EVER VALINJECT 100 micrograme/ml",
       "concentration": "100micrograme/ml",
       "atc": "N05CM18",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 5 fiole din sticla incolora, cu capacitatea de 10 ml care contin conc. pt. sol. perf."
     },
     {
@@ -13226,7 +13177,7 @@
       "name": "DIGIFAB 40 mg",
       "concentration": "40mg",
       "atc": "V03AB24",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. cu pulb. pt. sol. perf."
     },
     {
@@ -13751,7 +13702,7 @@
       "name": "DOPRAM 20 mg/ml",
       "concentration": "20mg/ml",
       "atc": "R07AB01",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 5 fiole a cate 5 ml sol. inj."
     },
     {
@@ -15524,7 +15475,7 @@
       "name": "EPIDYOLEX 100 mg/ml",
       "concentration": "100mg/ml",
       "atc": "N03AX24",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie x 1 flac. de 100 ml din sticla bruna+2 seringi de 1 ml+2 seringi de 5ml+2 adaptoare pt. flac. (PEJD)"
     },
     {
@@ -15636,7 +15587,7 @@
       "name": "EPTIFIBATIDE 2 mg/ml",
       "concentration": "2mg/ml",
       "atc": "B01AC16",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din sticla x 10 ml sol. inj."
     },
     {
@@ -15860,7 +15811,7 @@
       "name": "ERWINASE",
       "concentration": "10000E./flacon",
       "atc": "L01XX02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 5 flac. cu pulb. pt. sol. inj./perf."
     },
     {
@@ -16461,7 +16412,7 @@
       "name": "EVRENZO 150 mg",
       "concentration": "150mg",
       "atc": "B03XA05",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu blist. perforate pt. eliberarea unei unitati dozate PVC/Al x 36x1 compr. film."
     },
     {
@@ -17456,7 +17407,7 @@
       "packaging": "10 (2 ambalaje a 5) stilouri injectoare preumplute (sticla) (FlexTouch) x 3 ml sol.  (ambalaj multiplu)"
     },
     {
-      "name": 36647,
+
       "concentration": "500000KIU/50 ml",
       "atc": "B02AB01",
       "prescription": "PR",
@@ -19070,7 +19021,7 @@
       "name": "GEMCITABINA SUN 10 mg/ml",
       "concentration": "10mg/ml",
       "atc": "L01BC05",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 pungi a cÃ¢te o singura doza (1500 mg/150 ml) sol. perf."
     },
     {
@@ -19182,7 +19133,7 @@
       "name": "GIAPREZA 2,5 mg/ml",
       "concentration": "2,5mg/ml",
       "atc": "C01CX09",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 flac. de sticla x 1 ml conc. pt. sol. perf."
     },
     {
@@ -23207,14 +23158,14 @@
       "name": "JEXT 150 micrograme",
       "concentration": "150micrograme",
       "atc": "C01CA24",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 2 stilouri injectoare (pen-uri) preumplute cu sol. inj. care contin fiecare cÃ¢te un stilou auto-injector cu un cartus"
     },
     {
       "name": "JEXT 300 micrograme",
       "concentration": "300micrograme",
       "atc": "C01CA24",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 2 stilouri injectoare (pen-uri) preumplute cu sol. inj. care contin fiecare cÃ¢te un stilou auto-injector cu un cartus"
     },
     {
@@ -26239,7 +26190,7 @@
       "name": "LIVMARLI 9,5 mg/ml",
       "concentration": "9,5mg/ml",
       "atc": "A05AX04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Flacon PET de 30 ml + 1 seringa pentru administrare orala de 0,5 ml+1 seringa pentru administrare orala de 1 ml + 1 seringa pentru administrare orala de 3 ml"
     },
     {
@@ -26253,7 +26204,7 @@
       "name": "LOCAMETZ 25 micrograme",
       "concentration": "25micrograme",
       "atc": "V09IX14",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. cu pulbere alba, liofilizata"
     },
     {
@@ -27206,7 +27157,7 @@
       "packaging": "Cutie x 1 tub din Al cu membrana, acoperit cu lac de protectie epoxifenolic, inchis cu capac cu filet PE x 100 g gel"
     },
     {
-      "name": 36971,
+
       "atc": "G03AA09",
       "prescription": "P6L",
       "packaging": "Cutie x 3 plicuri x 1 blist. PVC/Al  x 21 compr."
@@ -27961,7 +27912,7 @@
       "name": "MEROPENEM APTAPHARMA 2000 mg",
       "concentration": "2000mg",
       "atc": "J01DH02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. cu capacitatea de 50 ml din sticla transparenta cu pulb. pt. sol. perf."
     },
     {
@@ -28105,15 +28056,15 @@
       "packaging": "Cutie cu 5 blist. Al/PVC-PVDC x 10 compr."
     },
     {
-      "name": "METALYSE 10000 U",
-      "concentration": "5mg/ml (1000 U/ml",
+      "name": "METALYSE 200mg",
+      "concentration": "200mg",
       "atc": "B01AD11",
       "prescription": "S",
       "packaging": "Cutie x 1 flac. pulb. + 1 seringa preumpluta x 6ml solvent + 1 dispozitiv de tranzvazare aseptica"
     },
     {
-      "name": "METALYSE 8000 U",
-      "concentration": "5mg/ml (1000 U/ml",
+      "name": "METALYSE 200mg",
+      "concentration": "200mg",
       "atc": "B01AD11",
       "prescription": "S",
       "packaging": "Cutie x 1 flac. pulb. + 1 seringa preumpluta x 6ml solvent + 1 dispozitiv de tranzvazare aseptica"
@@ -31679,7 +31630,7 @@
       "name": "NYVEPRIA 6 mg",
       "concentration": "6mg",
       "atc": "L03AA13",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 seringa preumpluta care contine 0,6 ml (10mg/ml) sol. inj."
     },
     {
@@ -31718,7 +31669,7 @@
       "packaging": "Cutie cu 1 flac. x 10 ml conc."
     },
     {
-      "name": 37174,
+
       "concentration": "100 mg/ml",
       "atc": "J06BA02",
       "prescription": "PR",
@@ -32556,14 +32507,14 @@
       "name": "OMVOH 100 mg",
       "concentration": "100mg",
       "atc": "L04AC24",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Ambalaj multiplu: 6 (3 ambalaje a cÃ¢te 2) stilouri injectoare (pen-uri) preumplute cu cÃ¢te 1 ml de sol."
     },
     {
       "name": "OMVOH 300 mg",
       "concentration": "300mg",
       "atc": "L04AC24",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din sticla cu 15 ml conc. pt. sol. perf."
     },
     {
@@ -33044,7 +32995,7 @@
       "name": "ORGOVYX 120 mg",
       "concentration": "120mg",
       "atc": "L02BX04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din PEID x 30 compr. film."
     },
     {
@@ -33580,7 +33531,7 @@
       "name": "OYAVAS 25 mg/ml",
       "concentration": "25mg/ml",
       "atc": "L01XC07",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu un flacon x 16ml concentrat pentru solutie perfuzabila (contine 400mg bevacizumab)"
     },
     {
@@ -35323,7 +35274,7 @@
       "name": "PLERIXAFOR ONKOGEN 20 mg/ml",
       "concentration": "20mg/ml",
       "atc": "L03AX16",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. de sticla transparenta care contine 1,2 ml sol. inj."
     },
     {
@@ -35494,7 +35445,7 @@
       "name": "PPD TUBERCULIN MAMMALIAN 5 TU/0,1 ml",
       "concentration": "5U.I./0.1ml",
       "atc": "V04CF01",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 flac. x 1 ml sol. inj. (1 ml continand 10 doze)"
     },
     {
@@ -37145,7 +37096,7 @@
       "name": "RANIVISIO 10 mg/ml",
       "concentration": "10mg/ml",
       "atc": "S01LA04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. (din sticla de tip I) continand 0,23 ml solutie sterila"
     },
     {
@@ -37438,28 +37389,28 @@
       "name": "REFIXIA 1000 UI",
       "concentration": "1000UI",
       "atc": "B02BD04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flacon de sticla (de tip I) cu pulb.+1 seringa preumpluta cu 4 ml solv.+1 tija pentru piston+1 adaptor steril pentru flacon"
     },
     {
       "name": "REFIXIA 2000 UI",
       "concentration": "2000UI",
       "atc": "B02BD04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flacon de sticla (de tip I) cu pulb.+1 seringa preumpluta cu 4 ml solv.+1 tija pentru piston+1 adaptor steril pentru flacon"
     },
     {
       "name": "REFIXIA 3000 UI",
       "concentration": "3000UI",
       "atc": "B02BD04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flacon de sticla (de tip I) cu pulb.+1 seringa preumpluta cu 4 ml solv.+1 tija pentru piston+1 adaptor steril pentru flacon"
     },
     {
       "name": "REFIXIA 500 UI",
       "concentration": "500UI",
       "atc": "B02BD04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flacon de sticla (de tip I) cu pulb.+1 seringa preumpluta cu 4 ml solv.+1 tija pentru piston+1 adaptor steril pentru flacon"
     },
     {
@@ -38729,13 +38680,13 @@
       "name": "ROBINUL 0,2 mg/ml",
       "concentration": "0,2mg/ml",
       "atc": "A03AB02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 fiole a cate 1 ml sol. inj."
     },
     {
       "name": "ROBINUL-NEOSTIGMINE 0,5 mg/ml 2,5 mg/ml",
       "concentration": "0,5mg/ml 2,5mg/ml",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 10 fiole a cÃ¢te 1 ml sol. inj."
     },
     {
@@ -41291,7 +41242,7 @@
       "name": "SKILARENCE 30 mg",
       "concentration": "30mg",
       "atc": "L04AX07",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu blist. PVC-PVDC/Al x 42 compr. gastrorez."
     },
     {
@@ -41802,7 +41753,7 @@
       "name": "SORAFENIB ACCORD 200 mg",
       "concentration": "200mg",
       "atc": "L01EX02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu blist. Al/Al perforate pe unitati de dozaj x 112x1 compr. film."
     },
     {
@@ -42047,7 +41998,7 @@
       "name": "SPEVIGO 450 mg",
       "concentration": "450mg",
       "atc": "L04AC22",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 2 flac. din sticla de 10 ml a cate 7,5 ml conc. (60mg/ml)"
     },
     {
@@ -42297,7 +42248,7 @@
       "name": "STELARA 45 mg",
       "concentration": "45mg/0,5ml",
       "atc": "L04AC05",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 stilou injector (pen) preumplut x 0,5 ml sol."
     },
     {
@@ -43971,13 +43922,13 @@
     {
       "name": "TECVAYLI 10 mg/ml",
       "concentration": "10mg/ml",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. x 3 ml sol. inj."
     },
     {
       "name": "TECVAYLI 90 mg/ml",
       "concentration": "90mg/ml",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. x 1,7 ml sol. inj"
     },
     {
@@ -44480,7 +44431,7 @@
       "name": "TERIFLUNOMIDA STADA 14 mg",
       "concentration": "14mg",
       "atc": "L04AA31",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu blist. din  OPA-Al-PVC/Al x 84 compr. film."
     },
     {
@@ -44501,7 +44452,7 @@
       "name": "TERIPARATIDE SUN 20 micrograme/80 microlitri",
       "concentration": "20micrograme/80microlitri",
       "atc": "H05AA02",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 3 cartuse prevazute cu un piston (cauciuc halobutilic) asamblate intr-un stilou injector preumplut care contine 2,4 ml sol. inj."
     },
     {
@@ -44557,7 +44508,7 @@
       "name": "TESTOSTERON TEVA 1000 mg/4 ml",
       "concentration": "1000mg/4ml",
       "atc": "G03BA03",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. din sticla bruna x 4 ml sol. inj."
     },
     {
@@ -49171,7 +49122,7 @@
       "name": "XIMLUCI 10 mg/ml",
       "concentration": "10mg/ml",
       "atc": "S01LA04",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac. (din sticla de tip I) continÃ¢nd 0,23 ml solutie sterila si un ac steril cu filtru"
     },
     {
@@ -50231,7 +50182,7 @@
       "name": "ZYNLONTA 10 mg",
       "concentration": "10mg",
       "atc": "L01FX22",
-      "prescription": "PR   \u0002",
+      "prescription": "PR",
       "packaging": "Cutie cu 1 flac."
     },
     {
@@ -62576,9 +62527,6 @@
       "name": "MAGNEVITA, caps."
     },
     {
-      "name": 40178
-    },
-    {
       "name": "COMPLEX DE VITAMINE SI FIER, caps."
     },
     {
@@ -63639,9 +63587,6 @@
     },
     {
       "name": "VITAMINA C 180 mg, comp."
-    },
-    {
-      "name": 39965
     },
     {
       "name": "LIFEPAC SENIOR, comp.- NOTIFICAREA ESTE VALABILA PANA IN ANUL 2009"
@@ -65007,9 +64952,6 @@
     },
     {
       "name": "ACD FOLIC 400 mcg    ANULAT LA CERERE"
-    },
-    {
-      "name": 39878
     },
     {
       "name": "OMEGA 3"

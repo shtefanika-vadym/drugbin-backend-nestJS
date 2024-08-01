@@ -16,12 +16,6 @@ import { ProductPack } from "src/recycle/enum/product-pack";
 
 class DrugDto {
   @ApiProperty({
-    example: 123,
-    description: "The lot number",
-  })
-  readonly lot: number;
-
-  @ApiProperty({
     example: 10,
     description: "The quantity of the drug",
     required: true,
@@ -30,7 +24,7 @@ class DrugDto {
   readonly quantity: number;
 
   @ApiProperty({
-    example: ProductPack.pack,
+    example: ProductPack.box,
     description: "Pack",
     required: true,
   })
@@ -39,21 +33,18 @@ class DrugDto {
   })
   readonly pack: ProductPack;
 
+  readonly atc: string | null;
+  readonly name: string | null;
+  readonly prescription: string | null;
+  readonly concentration: string | null;
+
   @ApiProperty({
     example: "2023-01-01",
     description: "The expiration date of the drug",
   })
   @IsOptional()
   @IsDateString(undefined, { message: "Invalid date string" })
-  readonly expirationDate?: string;
-
-  @ApiProperty({
-    required: true,
-    example: 1,
-    description: "Selected drug id from drugs",
-  })
-  @IsNumber(undefined, { message: "Drug Id must be a number" })
-  readonly drugId;
+  readonly expirationDate: string;
 }
 
 export class CreateRecycleDto {
@@ -111,7 +102,6 @@ export class CreateRecycleDto {
   })
   readonly email: string;
 
-  @ApiProperty({ type: [DrugDto], description: "Drug List", required: true })
   @IsArray()
   @Type(() => DrugDto)
   @ValidateNested({ each: true })

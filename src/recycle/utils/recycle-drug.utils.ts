@@ -1,7 +1,7 @@
 import PDFDocument from "pdfkit-table";
 import { Recycle } from "src/recycle/recycle.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
-import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
+import { IDrug } from "src/recycle/interfaces/drug.interface";
 
 const buildDocHeader = (
   doc: PDFDocument,
@@ -83,8 +83,8 @@ const getRecycleDoc = (
   const description = `Subsemnatul(a) ${userName}, predau spre distrugere in ${hospital.name} urmatoarele medicamente${additionalInfo}:`;
   const emptyDescription = `Subsemnatul(a) ${userName}, nu predau spre distrugere in ${hospital.name} niciun medicament psihotrop.`;
 
-  const filteredDrugList = drugList.filter(
-    ({ drugDetails }) => drugDetails.isPsycholeptic === isPsycholeptic
+  const filteredDrugList = drugList.filter(({ atc }) =>
+    isPsycholeptic ? atc?.startsWith("N05") : !atc?.startsWith("N05")
   );
 
   const isEmptyPsycholepticList = isPsycholeptic && !filteredDrugList.length;
@@ -103,16 +103,15 @@ const getRecycleDoc = (
   return doc;
 };
 
-const buildDocTable = (doc: PDFDocument, drugList: IRecycledDrug[]) => {
+const buildDocTable = (doc: PDFDocument, drugList: IDrug[]) => {
   let tableData = drugList.map(
-    ({ lot, quantity, pack, drugDetails }, index: number) => {
+    ({ quantity, pack, name, atc }, index: number) => {
       return {
-        lot,
+        name,
         quantity,
         id: index + 1,
-        name: drugDetails.name,
-        pack: pack === ProductPack.pack ? "cutie" : pack,
-        observation: drugDetails.isPsycholeptic ? "psihotrop" : "",
+        pack: pack === ProductPack.box ? "cutie" : "unitate",
+        observation: atc?.startsWith("N05") ? "psihotrop" : "",
       };
     }
   );

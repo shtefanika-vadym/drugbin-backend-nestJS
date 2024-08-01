@@ -20,7 +20,7 @@ import { Recycle } from "src/recycle/recycle.model";
 import { CreateRecycleResponse } from "src/recycle/responses/create-recycle-response";
 import { MessageResponse } from "src/reponses/message-response";
 import { HospitalId } from "src/auth/hospital-id.decorator";
-import { IRecycledDrug } from "src/recycle/interfaces/drug.interface";
+import { IDrug } from "src/recycle/interfaces/drug.interface";
 import { IPagination } from "src/helpers/pagination.interface";
 import { RecycleUtils } from "src/recycle/utils/recycle-drug.utils";
 import { Readable } from "stream";
@@ -87,7 +87,7 @@ export class RecycleController {
     @HospitalId() id: number,
     @Query("page", ParseIntPipe) page: number = 1,
     @Query("limit", ParseIntPipe) limit: number = 10
-  ): Promise<IPagination<IRecycledDrug[]>> {
+  ): Promise<IPagination<IDrug[]>> {
     return this.recycleDrugService.getAllDrugsByPharmacy(id, page, limit);
   }
 

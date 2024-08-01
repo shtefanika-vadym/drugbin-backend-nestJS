@@ -1,14 +1,11 @@
-import { Drug } from "src/drug/drug.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 
 export interface IDrug {
-  lot?: number;
-  drugId: number;
   quantity: number;
   pack: ProductPack;
-  expirationDate?: string;
-}
-
-export interface IRecycledDrug extends IDrug {
-  drugDetails: Drug;
+  atc: string | null;
+  name: string | null;
+  prescription: string | null;
+  concentration: string | null;
+  expirationDate: string | null;
 }
