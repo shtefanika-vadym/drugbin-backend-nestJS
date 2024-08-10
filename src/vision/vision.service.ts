@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import OpenAI from "openai";
-import * as sharp from "sharp";
+// import * as sharp from "sharp";
 
 @Injectable()
 export class VisionService {
@@ -14,11 +14,11 @@ export class VisionService {
   }
 
   async identifyText(image: Express.Multer.File): Promise<any> {
-    const buffer: Buffer = await sharp(image.buffer)
-      .toFormat("jpeg", { quality: 100 })
-      .toBuffer();
+    // const buffer: Buffer = await sharp(image.buffer)
+    //   .toFormat("jpeg", { quality: 100 })
+    //   .toBuffer();
 
-    const base64Image: string = buffer.toString("base64");
+    const base64Image: string = image.buffer.toString("base64");
 
     const { choices } = await this.openai.chat.completions.create({
       model: this.configService.get<string>("MODEL"),
