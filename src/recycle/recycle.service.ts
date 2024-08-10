@@ -360,7 +360,26 @@ export class RecycleService {
   }
 
   getTopTypes(data: IDrug[]): any {
-    const rxPrefixes: string[] = ["PRF", "PR"];
+    const rxPrefixes: string[] = [
+      "RX",
+      "P-RF/R",
+      "P-RF",
+      "PS,PR",
+      "P-6L",
+      "P6L",
+      "PR",
+      "P-RF/S",
+      "PR/PS",
+      "PR",
+      "PS",
+      "PRF",
+      "PS/PR",
+      "P-6L/S",
+      "PR, PS.",
+      "PRF",
+      "PR",
+    ];
+
     const types: Record<string, number> = {};
     data.forEach(({ name, prescription }: IDrug) => {
       if (!prescription) {
@@ -368,7 +387,7 @@ export class RecycleService {
         return;
       }
 
-      if (rxPrefixes.includes(prescription)) {
+      if (rxPrefixes.includes(prescription.toUpperCase().trim())) {
         types["Rx"] = (types["Rx"] || 0) + 1;
         return;
       }
