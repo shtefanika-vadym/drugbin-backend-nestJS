@@ -241,7 +241,9 @@ export class RecycleService {
 
     if (!drug) throw new NotFoundException("Drug not found");
 
-    await drug.update({ ...drug, status: ProductStatus.approved });
+    if (drug.status === ProductStatus.pending)
+      await drug.update({ ...drug, status: ProductStatus.approved });
+    else await drug.update({ ...drug, status: ProductStatus.pending });
 
     return {
       message: "Drug successfully updated!",

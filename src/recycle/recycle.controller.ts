@@ -92,7 +92,7 @@ export class RecycleController {
 
   // Confirm recycle drug status
   @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: "Confirm recycle drug status" })
+  @ApiOperation({ summary: "Update recycle drug status" })
   @ApiResponse({ status: 200, type: MessageResponse })
   @Patch("/:id")
   updateRecycleDrugStatus(
