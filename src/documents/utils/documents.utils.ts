@@ -77,7 +77,7 @@ const getDocument = (
   hospital: Hospital
 ) => {
   const isEmptyRecycleList = !recycleInfo.length;
-  const doc = new PDFDocument({ size: "A4", margin: 35 });
+  const doc = new PDFDocument({ margin: 35 });
   const additionalInfo = isPsycholeptic ? " stupifiante" : "";
   const title = `Proces verbal lunar de predare-primire medicamente${additionalInfo} expirate către firma de casare`;
   let description = `${hospital.name}, predau spre distrugere către firma de casare Demeco următoarele medicamente${additionalInfo}:`;
@@ -114,6 +114,7 @@ const buildDocTable = (doc: PDFDocument, drugList: IDrug[]) => {
   if (!drugList.length) {
     return;
   }
+  console.log(drugList);
   let tableData = drugList.map(
     ({ quantity, pack, name, atc }, index: number) => {
       return {
@@ -146,7 +147,7 @@ const buildDocTable = (doc: PDFDocument, drugList: IDrug[]) => {
           width: 100,
           property: "pack",
           headerColor: "#67BAEF",
-          label: "Tip (cutie/blister)",
+          label: "Tip (cutie/unitate)",
         },
         {
           width: 100,

@@ -74,7 +74,7 @@ const getRecycleDoc = (
   { firstName, lastName, drugList, createdAt, hospital }: Recycle,
   isPsycholeptic: boolean
 ) => {
-  const doc = new PDFDocument({ size: "A4", margin: 35 });
+  const doc = new PDFDocument({ margin: 35 });
   doc.fillColor("black");
 
   const additionalInfo = isPsycholeptic ? " stupifiante" : "";
@@ -136,7 +136,7 @@ const buildDocTable = (doc: PDFDocument, drugList: IDrug[]) => {
           width: 100,
           property: "pack",
           headerColor: "#67BAEF",
-          label: "Tip (cutie/blister)",
+          label: "Tip (cutie/unitate)",
         },
         {
           width: 100,
