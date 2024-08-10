@@ -6,10 +6,11 @@ import { Hospital } from "src/hospital/hospital.model";
 import { AuthModule } from "src/auth/auth.module";
 import { SeederModule } from "nestjs-sequelize-seeder";
 import { SeedHospital } from "src/database/seeders/hospital.seed";
+import { PaginationHelper } from "src/helpers/pagination.helper";
 
 @Module({
   controllers: [HospitalController],
-  providers: [HospitalService],
+  providers: [HospitalService, PaginationHelper],
   imports: [
     SequelizeModule.forFeature([Hospital]),
     SeederModule.forFeature([SeedHospital]),

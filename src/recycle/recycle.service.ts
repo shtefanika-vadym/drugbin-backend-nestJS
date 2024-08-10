@@ -192,7 +192,7 @@ export class RecycleService {
     const offset = (page - 1) * limit;
     const [{ sum: totalItems }]: { sum: number }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT SUM(json_array_length("drugList")) FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status',
+        'SELECT SUM(json_array_length("drug_list")) FROM "recycle_drug" WHERE "chain_id" = :chainId AND "status" = :status',
         {
           replacements: {
             hospitalId: hospitalId,
@@ -203,7 +203,7 @@ export class RecycleService {
       );
     const data: { json_array_elements: IDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT "createdAt", json_array_elements("drugList") FROM "recycle_drug" WHERE "chainId" = :chainId AND "status" = :status ORDER BY "id" DESC LIMIT :limit OFFSET :offset',
+        'SELECT "created_at", json_array_elements("drug_list") FROM "recycle_drug" WHERE "chain_id" = :chainId AND "status" = :status ORDER BY "id" DESC LIMIT :limit OFFSET :offset',
         {
           replacements: {
             hospitalId: hospitalId,
@@ -305,7 +305,7 @@ export class RecycleService {
 
   async getRecycleStatusByYear(hospitalId: number, year: string): Promise<any> {
     return this.recycleDrugRepository.sequelize.query(
-      'SELECT "status", "createdAt" FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
+      'SELECT "status", "created_at" FROM "recycle" WHERE "hospital_id" = :hospitalId AND EXTRACT(YEAR FROM "created_at") = :year',
       {
         replacements: {
           year,
@@ -319,7 +319,7 @@ export class RecycleService {
   async getDrugListByYear(hospitalId: number, year: string): Promise<any> {
     const data: { json_array_elements: IDrug }[] =
       await this.recycleDrugRepository.sequelize.query(
-        'SELECT "status", "createdAt", json_array_elements("drugList") FROM "recycle" WHERE "hospitalId" = :hospitalId AND EXTRACT(YEAR FROM "createdAt") = :year',
+        'SELECT "status", "created_at", json_array_elements("drug_list") FROM "recycle" WHERE "hospital_id" = :hospitalId AND EXTRACT(YEAR FROM "created_at") = :year',
         {
           replacements: {
             year,
@@ -390,7 +390,7 @@ export class RecycleService {
 
   getAnnualDocuments(hospitalId: number, year: string, documentType: string) {
     return this.documentRepository.sequelize.query(
-      'SELECT * FROM "document" WHERE "hospitalId" = :hospitalId AND "documentType" = :documentType AND EXTRACT(YEAR FROM "createdAt") = :year',
+      'SELECT * FROM "document" WHERE "hospital_id" = :hospitalId AND "document_type" = :documentType AND EXTRACT(YEAR FROM "created_at") = :year',
       {
         replacements: {
           year,

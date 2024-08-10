@@ -16,7 +16,7 @@ interface ContactUsCreationAttrs {
   message: string;
 }
 
-@Table({ tableName: "contact_us" })
+@Table({ tableName: "contact_us", underscored: true })
 export class ContactUs extends Model<ContactUs, ContactUsCreationAttrs> {
   @ApiProperty()
   @PrimaryKey

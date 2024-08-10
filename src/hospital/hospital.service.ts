@@ -4,11 +4,14 @@ import { InjectModel } from "@nestjs/sequelize";
 import { CreateHospitalDto } from "src/hospital/dto/create-hospital.dto";
 import { UpdateHospitalDto } from "src/hospital/dto/update-hospital.dto";
 import { MessageResponse } from "src/reponses/message-response";
+import { PaginationHelper } from "src/helpers/pagination.helper";
+import { IPagination } from "src/helpers/pagination.interface";
 
 @Injectable()
 export class HospitalService {
   constructor(
-    @InjectModel(Hospital) private hospitalRepository: typeof Hospital
+    @InjectModel(Hospital) private hospitalRepository: typeof Hospital,
+    private paginationHelper: PaginationHelper<Hospital>
   ) {}
 
   async createHospital(dto: CreateHospitalDto): Promise<Hospital> {
@@ -80,6 +83,32 @@ export class HospitalService {
     };
 
     return await this.hospitalRepository.findAll(queryOptions);
+  }
+
+  async getAllPaginatedHospitals(
+    county: string | undefined,
+    page: number,
+    limit: number
+  ): Promise<IPagination<Hospital[]>> {
+    const queryOptions = {
+      attributes: [
+        "id",
+        "name",
+        "lng",
+        "lat",
+        "regionShortName",
+        "regionLongName",
+        "fullAddress",
+      ],
+      where: county ? { regionLongName: county } : undefined,
+    };
+
+    return this.paginationHelper.paginate({
+      page,
+      limit,
+      options: queryOptions,
+      model: this.hospitalRepository,
+    });
   }
 
   async getNearestHospital(location: {

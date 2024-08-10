@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseIntPipe,
   Put,
   Query,
   UseGuards,
@@ -17,6 +18,7 @@ import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { MessageResponse } from "src/reponses/message-response";
 import { Hospital } from "src/hospital/hospital.model";
 import { HospitalDto } from "src/hospital/dto/hospital.dto";
+import { IPagination } from "src/helpers/pagination.interface";
 
 @ApiTags("Hospital")
 @Controller("hospitals")
@@ -28,9 +30,11 @@ export class HospitalController {
   @ApiResponse({ status: 200, type: [Hospital] })
   @Get()
   async getAllPharmacies(
-    @Query("county") county?: string
-  ): Promise<Hospital[]> {
-    return this.companyService.getAllHospitals(county);
+    @Query("county") county?: string,
+    @Query("page", ParseIntPipe) page: number = 1,
+    @Query("limit", ParseIntPipe) limit: number = 10
+  ): Promise<IPagination<Hospital[]>> {
+    return this.companyService.getAllPaginatedHospitals(county, page, limit);
   }
 
   // Update a hospital
