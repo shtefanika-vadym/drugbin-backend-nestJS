@@ -114,7 +114,6 @@ const buildDocTable = (doc: PDFDocument, drugList: IDrug[]) => {
   if (!drugList.length) {
     return;
   }
-  console.log(drugList);
   let tableData = drugList.map(
     ({ quantity, pack, name, atc }, index: number) => {
       return {
