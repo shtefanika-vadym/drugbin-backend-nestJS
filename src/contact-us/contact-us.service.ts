@@ -18,11 +18,10 @@ export class ContactUsService {
   }
 
   async getAll(): Promise<ContactUs[]> {
-    const contactUsList: ContactUs[] = await this.contactUsRepository.findAll({
+    return await this.contactUsRepository.findAll({
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
     });
-    return contactUsList;
   }
 }
