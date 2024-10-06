@@ -12,6 +12,7 @@ export class ContactUsService {
 
   async create(dto: CreateContactDto): Promise<MessageResponse> {
     await this.contactUsRepository.create(dto);
+    console.log();
     return {
       message: "Thanks! We will contact you shortly",
     };
