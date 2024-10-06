@@ -21,6 +21,8 @@ lerna-debug.log*
 /.env
 /migrations
 
+/package-lock.json
+
 # IDEs and editors
 /.idea
 .project
