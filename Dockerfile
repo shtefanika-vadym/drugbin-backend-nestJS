@@ -4,6 +4,9 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 
+# Install the NestJS CLI globally
+RUN npm install -g @nestjs/cli
+
 # Install production dependencies.
 RUN npm install --omit=dev
 
