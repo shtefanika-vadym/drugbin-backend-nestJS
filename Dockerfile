@@ -4,15 +4,17 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 
-# Install the NestJS CLI globally
-RUN npm install -g @nestjs/cli
+RUN npm install
 
-# Install production dependencies.
-RUN npm install --omit=dev
+# Install dependencies.
+RUN npm install
 
 # Copy the rest of the application code.
 COPY . .
 
 RUN npm run build
+
+# Prune dev dependencies to make the image smaller
+RUN npm prune --omit=dev
 
 CMD ["npm", "run", "start:prod"]
