@@ -3,7 +3,7 @@
     "docker": {
       "dockerfile": "Dockerfile"
     },
-    "nodeVersion": "16.x"
+    "nodeVersion": "18.x"
   },
   "deploy": {
     "command": "npm run start:prod"
