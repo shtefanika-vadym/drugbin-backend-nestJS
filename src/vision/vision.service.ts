@@ -44,6 +44,14 @@ export class VisionService {
       response_format: { type: "json_object" },
     });
 
-    return JSON.parse(choices[0].message.content);
+    const data = JSON.parse(choices[0].message.content);
+    data.result = data.result.map((drug: any) => {
+      if (drug.package === "injectable") {
+        drug.category = 3;
+      }
+      return drug;
+    });
+
+    return data;
   }
 }
