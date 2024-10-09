@@ -29,7 +29,6 @@ export class VisionService {
     const modelPrompt = !isProduction
       ? await this.readModelPromptFile()
       : this.configService.get<string>("MODEL_PROMPT");
-    console.log(modelPrompt);
     const { choices } = await this.openai.chat.completions.create({
       model: this.configService.get<string>("MODEL"),
       temperature: 0,
