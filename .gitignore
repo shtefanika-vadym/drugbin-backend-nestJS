@@ -22,7 +22,7 @@ lerna-debug.log*
 /migrations
 
 /package-lock.json
-
+/model-prompt.txt
 # IDEs and editors
 /.idea
 .project

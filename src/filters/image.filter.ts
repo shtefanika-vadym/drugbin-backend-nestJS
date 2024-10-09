@@ -7,7 +7,9 @@ export const imageFilter = (
 ): void => {
   if (!Boolean(file.mimetype.match(/(jpg|jpeg|png)/))) {
     callback(
-      new BadRequestException("Only types of .jpg, .jpeg, .png are allowed"),
+      new BadRequestException(
+        "Only interfaces of .jpg, .jpeg, .png are allowed"
+      ),
       false
     );
   }

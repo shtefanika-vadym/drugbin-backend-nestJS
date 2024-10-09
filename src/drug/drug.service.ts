@@ -4,6 +4,7 @@ import { Drug } from "src/drug/drug.model";
 import { VisionService } from "src/vision/vision.service";
 import { Op } from "sequelize";
 import { DrugPillsType } from "src/drug/enum/drug-pills-type";
+import { IdentifiedDrug } from "src/vision/interfaces/identified-drug.interface";
 
 @Injectable()
 export class DrugService {
@@ -50,10 +51,6 @@ export class DrugService {
         details.includes(DrugPillsType.capsules)
     );
 
-    // const drugPackList: string[] = DrugsUtils.getDrugPack(pack);
-
-    // console.log(pack);
-
     let packageTotal: number = drugPackageList
       .map(Number)
       .reduce((acc: number, el: number) => acc * el, 1);
@@ -71,9 +68,11 @@ export class DrugService {
     return { hasPackage: false, packageTotal, isSamePackage };
   }
 
-  async identifyDrugByImage(image: Express.Multer.File): Promise<Drug[]> {
+  async identifyDrugByImage(
+    image: Express.Multer.File
+  ): Promise<IdentifiedDrug[]> {
     try {
-      return await this.visionService.identifyText(image);
+      return await this.visionService.identifyDrugs(image);
     } catch (err) {
       console.log(err);
       throw new BadRequestException("Something went wrong, please try again.");

@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-  Param,
   Post,
   Query,
   UploadedFiles,
@@ -18,7 +17,7 @@ import { Drug } from "src/drug/drug.model";
 import { FilesInterceptor } from "@nestjs/platform-express";
 import { imageFilter } from "src/filters/image.filter";
 import { RequestTime } from "src/request-time/request-time";
-import { IpRateLimitMiddleware } from "src/helpers/ip-rate.middleware";
+import { IdentifiedDrug } from "src/vision/interfaces/identified-drug.interface";
 
 @ApiTags("Drugs")
 @Controller("drugs")
@@ -40,13 +39,12 @@ export class DrugController {
   @ApiOperation({ summary: "Identify drugs by image" })
   @ApiConsumes("multipart/form-data")
   @UseInterceptors(FilesInterceptor("image", 1, { fileFilter: imageFilter }))
-  @ApiResponse({ status: 200, type: [Drug] })
   @Post("/identify")
   identifyDrugByImage(
     @UploadedFiles()
     files: Express.Multer.File[],
     @RequestTime() requestTime: any
-  ): Promise<Drug[]> {
+  ): Promise<IdentifiedDrug[]> {
     return this.drugService.identifyDrugByImage(files[0]);
   }
 }
