@@ -76,7 +76,7 @@ export class VisionService {
       this.logCategoryChange(drug.name, newCategory, drug.category);
       drug.category = newCategory;
     };
-
+    console.log(drugs, "drugs");
     return drugs.map((drug: IdentifiedDrug): IdentifiedDrug => {
       if (drug.category === DrugCategories.Injectables || !drug.atc)
         return drug;
