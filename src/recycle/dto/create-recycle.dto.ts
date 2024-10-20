@@ -13,7 +13,7 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer";
 import { ProductPack } from "src/recycle/enum/product-pack";
-import { DrugCategories } from "src/vision/interfaces/identified-drug.interface";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
 
 class DrugDto {
   @ApiProperty({
@@ -47,10 +47,10 @@ class DrugDto {
   @IsDateString(undefined, { message: "Invalid date string" })
   readonly expirationDate: string;
 
-  @IsEnum(DrugCategories, {
+  @IsEnum(DrugCategory, {
     message: "category type must be one of the allowed values",
   })
-  readonly category: DrugCategories;
+  readonly category: DrugCategory;
 }
 
 export class CreateRecycleDto {

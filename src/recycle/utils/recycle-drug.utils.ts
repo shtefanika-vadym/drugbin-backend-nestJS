@@ -2,7 +2,7 @@ import PDFDocument from "pdfkit-table";
 import { Recycle } from "src/recycle/recycle.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 import { IDrug } from "src/recycle/interfaces/drug.interface";
-import { DrugCategories } from "src/vision/interfaces/identified-drug.interface";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
 
 // TODO: Refactor
 const categoryLabels: Record<number, string> = {
@@ -12,7 +12,7 @@ const categoryLabels: Record<number, string> = {
   4: "insuline",
   5: "uzuale",
   6: "suplimente",
-  7: "psiholeptice",
+  7: "stupefiante",
 };
 
 const buildDocHeader = (
@@ -84,7 +84,7 @@ const buildDocFooter = (
 
 const getRecycleDoc = (
   { firstName, lastName, drugList, createdAt, hospital }: Recycle,
-  category: DrugCategories
+  category: DrugCategory
 ) => {
   const doc = new PDFDocument({ margin: 35 });
   doc.fillColor("black");

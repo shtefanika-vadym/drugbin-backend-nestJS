@@ -15,15 +15,14 @@ import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { DocumentsService } from "src/documents/documents.service";
 
 import { HospitalId } from "src/auth/hospital-id.decorator";
-import { DocumentType } from "src/documents/enum/document-type";
 import { Document } from "src/documents/documents.model";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { EnumValidatorInterceptor } from "src/interceptors/enum-validator.interceptor";
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
-import { Recycle } from "src/recycle/recycle.model";
 import { MessageResponse } from "src/reponses/message-response";
 import { Readable } from "stream";
 import { DocumentUtils } from "src/documents/utils/documents.utils";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
 
 @UseGuards(JwtAuthGuard)
 @ApiTags("Documents")
@@ -53,9 +52,9 @@ export class DocumentsController {
   @Get("/all")
   getAll(
     @HospitalId() id: number,
-    @Query("type") documentType: DocumentType
+    @Query("category") category: DrugCategory
   ): Promise<Document[]> {
-    return this.documentsService.getAll(id, documentType);
+    return this.documentsService.getAll(id, category);
   }
 
   // Get start document date
@@ -63,66 +62,48 @@ export class DocumentsController {
   @Get("/start-date")
   getLastDocumentDate(
     @HospitalId() id: number,
-    @Query("type") documentType: DocumentType
+    @Query("type") category: DrugCategory
   ): Promise<{ startDate: string }> {
-    return this.documentsService.getLastDocumentDate(id, documentType);
+    return this.documentsService.getLastDocumentDate(id, category);
   }
 
   // Create new document
   @ApiOperation({ summary: "Create new document" })
   @ApiResponse({ status: 200, type: [MessageResponse] })
-  @Post("/:documentType")
-  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  @Post()
   create(
     @HospitalId() id: number,
     @Body() dto: CreateDocumentDto,
-    @Param("documentType") documentType: DocumentType
+    @Query("category") category: DrugCategory
   ): Promise<MessageResponse> {
-    return this.documentsService.create(id, documentType, dto);
+    return this.documentsService.create(id, category, dto);
   }
 
   // Delete document
   @ApiOperation({ summary: "Delete document" })
   @ApiResponse({ status: 200, type: MessageResponse })
-  @Delete("/:documentType/:documentId")
-  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  @Delete("/:category/:documentId")
+  @UseInterceptors(new EnumValidatorInterceptor(DrugCategory))
   delete(
     @HospitalId() id: number,
     @Param("documentId") documentId: number,
-    @Param("documentType") documentType: DocumentType
+    @Param("category") category: DrugCategory
   ): Promise<MessageResponse> {
-    return this.documentsService.delete(id, documentType, documentId);
+    return this.documentsService.delete(id, category, documentId);
   }
 
   // Share document
   @ApiOperation({ summary: "Share document" })
   @ApiResponse({ status: 200, type: MessageResponse })
-  @Patch("/:documentType/:documentId")
-  @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
+  @Patch("/:category/:documentId")
+  @UseInterceptors(new EnumValidatorInterceptor(DrugCategory))
   share(
     @HospitalId() id: number,
     @Param("documentId") documentId: number,
-    @Param("documentType") documentType: DocumentType
+    @Param("category") category: DrugCategory
   ): Promise<MessageResponse> {
-    return this.documentsService.share(id, documentType, documentId);
+    return this.documentsService.share(id, category, documentId);
   }
-
-  // Get document data
-  // @ApiOperation({ summary: "Get document data" })
-  // @ApiResponse({ status: 200, type: [Recycle] })
-  // @Get("/data/:documentType/:documentId")
-  // @UseInterceptors(new EnumValidatorInterceptor(DocumentType))
-  // getDocumentDataById(
-  //   @HospitalId() id: number,
-  //   @Param("documentId") documentId: number,
-  //   @Param("documentType") documentType: DocumentType
-  // ): Promise<Recycle[]> {
-  //   return this.documentsService.getDocumentDataById(
-  //     id,
-  //     documentType,
-  //     documentId
-  //   );
-  // }
 
   @ApiOperation({ summary: "Get document pdf" })
   @Get("/data/:id")
@@ -130,14 +111,18 @@ export class DocumentsController {
     @Res() res: any,
     @HospitalId() hospitalId: number,
     @Param("id") id: string,
-    @Query("type") type: DocumentType
+    @Query("category") category: DrugCategory
   ): Promise<any> {
     try {
       const { recycleData, hospital, createdAt } =
-        await this.documentsService.getDocumentDataById(hospitalId, type, id);
+        await this.documentsService.getDocumentDataById(
+          hospitalId,
+          category,
+          id
+        );
       const doc = DocumentUtils.getDocument(
         recycleData,
-        type === DocumentType.psycholeptic,
+        category,
         createdAt,
         hospital
       );

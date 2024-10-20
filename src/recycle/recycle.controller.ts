@@ -10,6 +10,7 @@ import {
   Query,
   Res,
   UseGuards,
+  UseInterceptors,
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { RecycleService } from "src/recycle/recycle.service";
@@ -23,7 +24,8 @@ import { IDrug } from "src/recycle/interfaces/drug.interface";
 import { IPagination } from "src/helpers/pagination.interface";
 import { RecycleUtils } from "src/recycle/utils/recycle-drug.utils";
 import { Readable } from "stream";
-import { DrugCategories } from "src/vision/interfaces/identified-drug.interface";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
+import { EnumValidatorInterceptor } from "src/interceptors/enum-validator.interceptor";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle")
@@ -117,7 +119,7 @@ export class RecycleController {
   async getVerbalData(
     @Res() res: any,
     @Param("id") id: string,
-    @Query("category") category: DrugCategories
+    @Query("category") category: DrugCategory
   ): Promise<any> {
     try {
       const recycleData = await this.recycleDrugService.getVerbalData(id);

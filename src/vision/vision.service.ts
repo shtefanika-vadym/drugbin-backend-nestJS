@@ -5,7 +5,7 @@ import { ConfigService } from "@nestjs/config";
 import OpenAI from "openai";
 import * as sharp from "sharp";
 import {
-  DrugCategories,
+  DrugCategory,
   IdentifiedDrug,
 } from "src/vision/interfaces/identified-drug.interface";
 
@@ -71,31 +71,30 @@ export class VisionService {
   private processIdentifiedDrugs(drugs: IdentifiedDrug[]): IdentifiedDrug[] {
     const updateCategory = (
       drug: IdentifiedDrug,
-      newCategory: DrugCategories
+      newCategory: DrugCategory
     ): void => {
       this.logCategoryChange(drug.name, newCategory, drug.category);
       drug.category = newCategory;
     };
     console.log(drugs, "drugs");
     return drugs.map((drug: IdentifiedDrug): IdentifiedDrug => {
-      if (drug.category === DrugCategories.Injectables || !drug.atc)
-        return drug;
+      if (drug.category === DrugCategory.Injectables || !drug.atc) return drug;
 
       switch (true) {
         case drug.atc.startsWith("A10") &&
-          drug.category !== DrugCategories.Insulin:
-          updateCategory(drug, DrugCategories.Insulin);
+          drug.category !== DrugCategory.Insulin:
+          updateCategory(drug, DrugCategory.Insulin);
           break;
         case drug.atc.startsWith("N05") &&
-          drug.category !== DrugCategories.Psycholeptics:
-          updateCategory(drug, DrugCategories.Psycholeptics);
+          drug.category !== DrugCategory.Psycholeptics:
+          updateCategory(drug, DrugCategory.Psycholeptics);
           break;
         case drug.atc.startsWith("R03") &&
-          drug.category !== DrugCategories.Inhalers:
-          updateCategory(drug, DrugCategories.Inhalers);
+          drug.category !== DrugCategory.Inhalers:
+          updateCategory(drug, DrugCategory.Inhalers);
           break;
         case drug.package === "injectable" || drug.text.includes("injectabil"):
-          updateCategory(drug, DrugCategories.Injectables);
+          updateCategory(drug, DrugCategory.Injectables);
           break;
       }
 

@@ -19,8 +19,9 @@ import { IPagination } from "src/helpers/pagination.interface";
 import * as moment from "moment";
 
 import { v4 as uuidv4 } from "uuid";
-import { DocumentType } from "src/documents/enum/document-type";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
 
+// TODO: Refactor
 @Injectable()
 export class RecycleService {
   constructor(
@@ -179,9 +180,9 @@ export class RecycleService {
     const recycleData: Recycle[] = await this.recycleDrugRepository.findAll({
       where: {
         hospitalId: hospital.id,
-        status: {
-          [Op.in]: [ProductStatus.recycled, ProductStatus.approved],
-        },
+        // status: {
+        //   [Op.in]: [ProductStatus.recycled, ProductStatus.approved],
+        // },
         createdAt: {
           [Op.between]: [startDate, this.getEndOfDay(endDate)],
         },
@@ -363,74 +364,44 @@ export class RecycleService {
     return monthlyCounts;
   }
 
-  getMonthlyTopTypes(drugList: Record<string, IDrug[]>) {
-    const types: Record<string, any> = {};
+  getMonthlyTopCategories(drugList: Record<string, IDrug[]>) {
+    const categories: Record<string, any> = {};
 
     for (const month in drugList) {
       if (drugList.hasOwnProperty(month)) {
-        types[month] = this.getTopTypes(drugList[month]);
+        categories[month] = this.getTopCategories(drugList[month]);
       }
     }
 
-    return types;
+    return categories;
   }
 
-  getTopTypes(data: IDrug[]): any {
-    const rxPrefixes: string[] = [
-      "RX",
-      "P-RF/R",
-      "P-RF",
-      "PS,PR",
-      "P-6L",
-      "P6L",
-      "PR",
-      "P-RF/S",
-      "PR/PS",
-      "PR",
-      "PS",
-      "PRF",
-      "PS/PR",
-      "P-6L/S",
-      "PR, PS.",
-      "PRF",
-      "PR",
-    ];
-
-    const types: Record<string, number> = {};
-    data.forEach(({ name, prescription }: IDrug) => {
-      if (!prescription) {
-        types["Supplement"] = (types["Supplement"] || 0) + 1;
-        return;
-      }
-
-      if (rxPrefixes.includes(prescription.toUpperCase().trim())) {
-        types["Rx"] = (types["Rx"] || 0) + 1;
-        return;
-      }
-
-      types[prescription] = (types[prescription] || 0) + 1;
+  getTopCategories(data: IDrug[]): any {
+    const categories: Record<string, number> = {};
+    data.forEach(({ name, category }: IDrug) => {
+      categories[category] = (categories[category] || 0) + 1;
     });
 
-    const producerArray = Object.entries(types).map(([type, total]) => ({
-      type,
-      total,
-    }));
+    const categoriesArray = Object.entries(categories).map(
+      ([category, total]) => ({
+        category: +category,
+        total,
+      })
+    );
 
-    producerArray.sort((a, b) => b.total - a.total);
+    categoriesArray.sort((a, b) => b.total - a.total);
 
-    const top3Producers = producerArray.slice(0, 3);
-
-    return top3Producers;
+    return categoriesArray.slice(0, 3);
   }
 
-  getAnnualDocuments(hospitalId: number, year: string, documentType: string) {
+  getAnnualDocuments(hospitalId: number, year: string, category: DrugCategory) {
     return this.documentRepository.sequelize.query(
-      'SELECT * FROM "document" WHERE "hospital_id" = :hospitalId AND "document_type" = :documentType AND EXTRACT(YEAR FROM "created_at") = :year',
+      'SELECT * FROM "document" WHERE "hospital_id" = :hospitalId AND "category" = :category AND EXTRACT(YEAR FROM "created_at") = :year',
       {
         replacements: {
           year,
           hospitalId,
-          documentType,
+          category,
         },
         type: QueryTypes.SELECT,
       }
@@ -516,25 +487,44 @@ export class RecycleService {
       this.splitDashboardDataByMonths(drugList);
 
     const annualTotalDrugs: number = this.countDrugListItems(drugList);
-    const annualTopTypes = this.getTopTypes(drugList);
+    const annualTopCategories = this.getTopCategories(drugList);
 
     const monthlyTotalDrugs: Record<string, number> =
       this.countMonthlyItems(groupedByMonth);
-    const monthlyTopTypes = this.getMonthlyTopTypes(groupedByMonth);
+    const monthlyTopCategories = this.getMonthlyTopCategories(groupedByMonth);
 
-    const [normal, psycholeptic] = await Promise.all([
-      this.getAnnualDocuments(hospitalId, year, DocumentType.normal),
-      this.getAnnualDocuments(hospitalId, year, DocumentType.psycholeptic),
-    ]);
+    const categories = [
+      DrugCategory.Cytototoxic,
+      DrugCategory.Inhalers,
+      DrugCategory.Injectables,
+      DrugCategory.Insulin,
+      DrugCategory.Common,
+      DrugCategory.Supplements,
+      DrugCategory.Psycholeptics,
+    ];
+
+    const documentPromises = categories.map((category) =>
+      this.getAnnualDocuments(hospitalId, year, category)
+    );
+
+    const [
+      cytototoxic,
+      inhalers,
+      injectables,
+      insulin,
+      common,
+      supplements,
+      psycholeptics,
+    ] = await Promise.all(documentPromises);
 
     const groupedByMonthAndDay: Record<
       string,
       Record<string, number>
     > = this.splitDashboardDataByMonthsAndDays(drugList);
     return {
-      types: {
-        annual: annualTopTypes,
-        monthly: monthlyTopTypes,
+      categories: {
+        annual: annualTopCategories,
+        monthly: monthlyTopCategories,
       },
       drugs: {
         annual: annualTotalDrugs,
@@ -543,16 +533,43 @@ export class RecycleService {
       },
       documents: {
         annual: {
-          normal: normal.length,
-          psycholeptic: psycholeptic.length,
-          total: normal.length + psycholeptic.length,
+          cytototoxic: cytototoxic.length,
+          inhalers: inhalers.length,
+          injectables: injectables.length,
+          insulin: insulin.length,
+          common: common.length,
+          supplements: supplements.length,
+          psycholeptics: psycholeptics.length,
+          total:
+            cytototoxic.length +
+            inhalers.length +
+            injectables.length +
+            insulin.length +
+            common.length +
+            supplements.length +
+            psycholeptics.length,
         },
         monthly: {
-          normal: this.countMonthlyItems(
-            this.splitDashboardDataByMonths(normal)
+          cytototoxic: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(cytototoxic)
           ),
-          psycholeptic: this.countMonthlyItems(
-            this.splitDashboardDataByMonths(psycholeptic)
+          inhalers: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(inhalers)
+          ),
+          injectables: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(injectables)
+          ),
+          insulin: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(insulin)
+          ),
+          common: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(common)
+          ),
+          supplements: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(supplements)
+          ),
+          psycholeptics: this.countMonthlyItems(
+            this.splitDashboardDataByMonths(psycholeptics)
           ),
         },
       },

@@ -5,7 +5,6 @@ import {
 } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Document } from "src/documents/documents.model";
-import { DocumentType } from "src/documents/enum/document-type";
 import { CreateDocumentDto } from "src/documents/dto/create-document.dto";
 import { RecycleService } from "src/recycle/recycle.service";
 import { Recycle } from "src/recycle/recycle.model";
@@ -13,6 +12,7 @@ import * as moment from "moment";
 import { MessageResponse } from "src/reponses/message-response";
 import { Op } from "sequelize";
 import { v4 as uuidv4 } from "uuid";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
 
 @Injectable()
 export class DocumentsService {
@@ -23,23 +23,23 @@ export class DocumentsService {
 
   async getAll(
     hospitalId: number,
-    documentType: DocumentType
+    category: DrugCategory
   ): Promise<Document[]> {
     return this.documentRepository.findAll({
-      where: { hospitalId, documentType, deletedAt: null },
+      where: { hospitalId, category, deletedAt: null },
       attributes: {
-        exclude: ["hospitalId", "updatedAt", "documentType"],
+        exclude: ["hospitalId", "updatedAt", "category"],
       },
     });
   }
 
   async delete(
     hospitalId: number,
-    documentType: DocumentType,
+    category: DrugCategory,
     documentId: number
   ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
-      where: { hospitalId, id: documentId, documentType, deletedAt: null },
+      where: { hospitalId, id: documentId, category, deletedAt: null },
     });
 
     if (!document)
@@ -52,14 +52,14 @@ export class DocumentsService {
 
   async share(
     hospitalId: number,
-    documentType: DocumentType,
+    category: DrugCategory,
     documentId: number
   ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
       where: {
         hospitalId,
         id: documentId,
-        documentType,
+        category,
         deletedAt: null,
         sharedAt: null,
       },
@@ -75,14 +75,14 @@ export class DocumentsService {
 
   async getDocumentDataById(
     hospitalId: number,
-    documentType: DocumentType,
+    category: DrugCategory,
     documentId: string
   ) {
     const document: Document = await this.documentRepository.findOne({
       where: {
         hospitalId,
         documentId,
-        documentType,
+        category,
       },
       include: { all: true },
     });
@@ -126,10 +126,10 @@ export class DocumentsService {
 
   async getLastDocumentDate(
     hospitalId: number,
-    documentType: DocumentType
+    category: DrugCategory
   ): Promise<{ startDate: string }> {
     const document: Document = await this.documentRepository.findOne({
-      where: { hospitalId, documentType },
+      where: { hospitalId, category },
       order: [["startDate", "DESC"]],
     });
 
@@ -151,20 +151,17 @@ export class DocumentsService {
 
   async create(
     hospitalId: number,
-    documentType: DocumentType,
+    category: DrugCategory,
     { endDate }: CreateDocumentDto
   ): Promise<MessageResponse> {
     const document: Document = await this.documentRepository.findOne({
-      where: { hospitalId, documentType, endDate },
+      where: { hospitalId, category, endDate },
     });
 
     if (document)
       throw new ConflictException("Document with this interval already exists");
 
-    const { startDate } = await this.getLastDocumentDate(
-      hospitalId,
-      documentType
-    );
+    const { startDate } = await this.getLastDocumentDate(hospitalId, category);
 
     const { recycleData } =
       await this.recycleDrugService.getHospitalDrugsByInterval(
@@ -178,16 +175,11 @@ export class DocumentsService {
 
     const newDocument: Document = new Document();
     newDocument.hospitalId = hospitalId;
-    newDocument.documentType = documentType;
+    newDocument.category = category;
     newDocument.endDate = endDate;
     newDocument.startDate = startDate;
     newDocument.documentId = uuidv4();
     await newDocument.save();
     return { message: "Document created successfully" };
-    // TODO: CHECK
-    // return this.recycleDrugService.getFilteredDrugsByIsPsycholeptic(
-    //   drugsByInterval,
-    //   documentType === DocumentType.psycholeptic
-    // );
   }
 }

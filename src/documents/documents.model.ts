@@ -10,12 +10,12 @@ import {
 } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum } from "class-validator";
-import { DocumentType } from "src/documents/enum/document-type";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
 
 interface DocumentCreationAttrs {
   endDate: string;
   startDate: string;
-  documentType: DocumentType;
+  category: DrugCategory;
 }
 
 @Table({ tableName: "document", underscored: true })
@@ -58,7 +58,7 @@ export class Document extends Model<Document, DocumentCreationAttrs> {
   endDate: string;
 
   @AllowNull(false)
-  @IsEnum(DocumentType)
-  @Column(DataType.ENUM(...Object.values(DocumentType)))
-  documentType: DocumentType;
+  @IsEnum(DrugCategory)
+  @Column(DataType.INTEGER)
+  category: DrugCategory;
 }

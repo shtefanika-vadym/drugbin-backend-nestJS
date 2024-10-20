@@ -3,6 +3,18 @@ import { Recycle } from "src/recycle/recycle.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 import { IDrug } from "src/recycle/interfaces/drug.interface";
 import { Hospital } from "src/hospital/hospital.model";
+import { DrugCategory } from "src/vision/interfaces/identified-drug.interface";
+
+// TODO: Refactor
+const categoryLabels: Record<number, string> = {
+  1: "citotoxice și citostatice",
+  2: "inhalatoare",
+  3: "tăietoare",
+  4: "insuline",
+  5: "uzuale",
+  6: "suplimente",
+  7: "stupefiante",
+};
 
 const buildDocHeader = (
   doc: PDFDocument,
@@ -72,41 +84,35 @@ const buildDocFooter = (
 
 const getDocument = (
   recycleInfo: Recycle[],
-  isPsycholeptic: boolean,
+  category: DrugCategory,
   createdAt: string,
   hospital: Hospital
 ) => {
-  const isEmptyRecycleList = !recycleInfo.length;
   const doc = new PDFDocument({ margin: 35 });
-  const additionalInfo = isPsycholeptic ? " stupifiante" : "";
-  const title = `Proces verbal lunar de predare-primire medicamente${additionalInfo} expirate către firma de casare`;
-  let description = `${hospital.name}, predau spre distrugere către firma de casare Demeco următoarele medicamente${additionalInfo}:`;
-  const emptyDescription = `Farmacia ${hospital.name}, nu predau spre distrugere către firma de casare Demeco niciun medicament psihotrop.`;
-
-  if (isEmptyRecycleList) {
-    description = `${hospital.name}, nu predau spre distrugere către firma de casare Demeco niciun medicament`;
-  }
+  const title = `Proces verbal lunar de predare-primire medicamente expirate din categoria ${categoryLabels[category]} către firma de casare`;
+  let description = `${hospital.name}, predau spre distrugere către firma de casare Demeco următoarele medicamente expirate din categoria ${categoryLabels[category]}:`;
+  const emptyDescription = `Spitalul ${hospital.name}, nu predau spre distrugere către firma de casare Demeco niciun medicament din categoria ${categoryLabels[category]}.`;
 
   const drugList = recycleInfo
     .map((recycle: Recycle) => recycle.drugList)
     .flat();
 
-  const filteredDrugList = drugList.filter(({ atc }) =>
-    isPsycholeptic ? atc?.startsWith("N05") : !atc?.startsWith("N05")
+  const filteredDrugList = drugList.filter(
+    (drug) => drug.category === category
   );
 
-  const isEmptyPsycholepticList = isPsycholeptic && !filteredDrugList.length;
+  const isEmptyDrugList = !filteredDrugList.length;
 
   buildDocHeader(
     doc,
     title,
-    isEmptyPsycholepticList ? emptyDescription : description,
+    isEmptyDrugList ? emptyDescription : description,
     createdAt.slice(0, 10)
   );
 
   buildDocTable(doc, filteredDrugList);
 
-  buildDocFooter(doc, hospital.name, "Demeco", isEmptyPsycholepticList);
+  buildDocFooter(doc, hospital.name, "Demeco", isEmptyDrugList);
   return doc;
 };
 
