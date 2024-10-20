@@ -133,14 +133,14 @@ export class HospitalService {
   }
 
   async getHospitalByEmail(email: string): Promise<Hospital> {
-    return await this.hospitalRepository.findOne({
+    return this.hospitalRepository.findOne({
       where: { email },
       include: { all: true },
     });
   }
 
   async getById(id: number): Promise<Hospital> {
-    return await this.hospitalRepository.findOne({
+    return this.hospitalRepository.findOne({
       where: {
         id: id,
       },

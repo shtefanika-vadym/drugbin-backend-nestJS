@@ -23,6 +23,7 @@ import { IDrug } from "src/recycle/interfaces/drug.interface";
 import { IPagination } from "src/helpers/pagination.interface";
 import { RecycleUtils } from "src/recycle/utils/recycle-drug.utils";
 import { Readable } from "stream";
+import { DrugCategories } from "src/vision/interfaces/identified-drug.interface";
 
 @ApiTags("Recycle Drug")
 @Controller("recycle")
@@ -59,6 +60,13 @@ export class RecycleController {
     @Param("id") id: string
   ): Promise<any> {
     return this.recycleDrugService.deleteById(hospitalId, id);
+  }
+
+  @ApiOperation({ summary: "Get recycle drug by recycle_ID" })
+  @ApiResponse({ status: 200, type: [Recycle] })
+  @Get("/:id")
+  getById(@Param("id") id: string): Promise<any> {
+    return this.recycleDrugService.getById(id);
   }
 
   // Get filtered drugs by (id or name)
@@ -109,14 +117,11 @@ export class RecycleController {
   async getVerbalData(
     @Res() res: any,
     @Param("id") id: string,
-    @Query("type") type: string
+    @Query("category") category: DrugCategories
   ): Promise<any> {
     try {
       const recycleData = await this.recycleDrugService.getVerbalData(id);
-      const doc = RecycleUtils.getRecycleDoc(
-        recycleData,
-        type === "psycholeptic"
-      );
+      const doc = RecycleUtils.getRecycleDoc(recycleData, +category);
 
       doc.pipe(res);
       doc.end();

@@ -67,6 +67,20 @@ export class RecycleService {
     return { message: "Recycle successfully deleted" };
   }
 
+  async getById(recycleId: string): Promise<Recycle> {
+    const recycle: Recycle = await this.recycleDrugRepository.findOne({
+      where: { recycleId },
+    });
+
+    if (!recycle) {
+      throw new NotFoundException({
+        message: "Recycle not found",
+      });
+    }
+
+    return recycle;
+  }
+
   async getDrugsByHospitalId(hospitalId: number, page: number, limit: number) {
     const hospital: Hospital = await this.hospitalService.getById(hospitalId);
 

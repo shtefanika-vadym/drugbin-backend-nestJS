@@ -2,6 +2,18 @@ import PDFDocument from "pdfkit-table";
 import { Recycle } from "src/recycle/recycle.model";
 import { ProductPack } from "src/recycle/enum/product-pack";
 import { IDrug } from "src/recycle/interfaces/drug.interface";
+import { DrugCategories } from "src/vision/interfaces/identified-drug.interface";
+
+// TODO: Refactor
+const categoryLabels: Record<number, string> = {
+  1: "citotoxice și citostatice",
+  2: "inhalatoare",
+  3: "tăietoare",
+  4: "insuline",
+  5: "uzuale",
+  6: "suplimente",
+  7: "psiholeptice",
+};
 
 const buildDocHeader = (
   doc: PDFDocument,
@@ -72,34 +84,33 @@ const buildDocFooter = (
 
 const getRecycleDoc = (
   { firstName, lastName, drugList, createdAt, hospital }: Recycle,
-  isPsycholeptic: boolean
+  category: DrugCategories
 ) => {
   const doc = new PDFDocument({ margin: 35 });
   doc.fillColor("black");
 
-  const additionalInfo = isPsycholeptic ? " stupifiante" : "";
   const userName = `${firstName ?? ""} ${lastName ?? ""}`;
-  const title = `Proces verbal de predare-primire medicamente${additionalInfo} expirate`;
-  const description = `Subsemnatul(a) ${userName}, predau spre distrugere in ${hospital.name} urmatoarele medicamente${additionalInfo}:`;
-  const emptyDescription = `Subsemnatul(a) ${userName}, nu predau spre distrugere in ${hospital.name} niciun medicament psihotrop.`;
+  const title = `Proces verbal de predare-primire medicamente expirate din categoria ${categoryLabels[category]}`;
+  const description = `Subsemnatul(a) ${userName}, predau spre distrugere in ${hospital.name} urmatoarele medicamente:`;
+  const emptyDescription = `Subsemnatul(a) ${userName}, nu predau spre distrugere in ${hospital.name} niciun medicament expirat din categeoria ${categoryLabels[category]}.`;
 
-  const filteredDrugList = drugList.filter(({ atc }) =>
-    isPsycholeptic ? atc?.startsWith("N05") : !atc?.startsWith("N05")
+  const filteredDrugList = drugList.filter(
+    (drug) => drug.category === category
   );
 
-  const isEmptyPsycholepticList = isPsycholeptic && !filteredDrugList.length;
+  const isEmptyDrugList = !filteredDrugList.length;
   buildDocHeader(
     doc,
     title,
-    isEmptyPsycholepticList ? emptyDescription : description,
+    isEmptyDrugList ? emptyDescription : description,
     createdAt.toISOString().slice(0, 10)
   );
 
-  if (!isEmptyPsycholepticList) {
+  if (!isEmptyDrugList) {
     buildDocTable(doc, filteredDrugList);
   }
 
-  buildDocFooter(doc, userName, hospital.name, isEmptyPsycholepticList);
+  buildDocFooter(doc, userName, hospital.name, isEmptyDrugList);
   return doc;
 };
 

@@ -1,4 +1,4 @@
-type DrugCategory =
+export type DrugCategory =
   | 1 // Cytotoxic and Cytostatic Drugs
   | 2 // Inhalers
   | 3 // Injectables or Syringes
